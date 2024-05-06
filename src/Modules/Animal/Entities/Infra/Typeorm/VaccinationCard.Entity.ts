@@ -6,8 +6,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Animal } from "./Animal";
-import { RelationshipVaccination } from "./Relationship";
+import { Animal } from "./Animal.Entity";
+import { RelationshipVaccination } from "./Relationship.Entity";
 
 @Entity()
 export class VaccinationCard {

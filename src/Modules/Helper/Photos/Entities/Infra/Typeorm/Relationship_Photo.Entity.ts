@@ -1,9 +1,10 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Photo } from './Photos';
+import { Photo } from './Photos.Entity';
+import { Organization } from '@Modules/Organization/Entities/Infra/Typeorm/Organization.Entity';
+import { Animal } from '@Modules/Animal/Entities/Infra/Typeorm/Animal.Entity';
 
-import { Organization } from '@Modules/Organization/Entities/Infra/Typeorm/Organization';
-import { Animal } from '@Modules/Animal/Entities/Infra/Typeorm/Animal';
+
 
 @Entity()
 export class RelationshipPhoto {

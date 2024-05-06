@@ -1,11 +1,19 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { IsEmail, IsEnum, IsNotEmpty,Length } from "class-validator";
-import { OrganizationType } from "../../Enums/OrganizationType";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
+import { IsEmail, IsEnum, IsNotEmpty, Length } from "class-validator";
+import { OrganizationType } from "../../Enums/Organization.enum";
 
-import { RelationshipAddress } from "@Modules/Helper/Adresses/Infra/Typeorm/Entities/RelationshipAddress";
-import { RelationshipContact } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipContacts";
-import { RelationshipLink } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipLink";
-import { RelationshipPhoto } from "@Modules/Helper/Photos/Entities/Infra/Typeorm/RelationshipPhoto";
+import { RelationshipAddress } from "@Modules/Helper/Adresses/Infra/Typeorm/Entities/Relationship_Address.Entity";
+import { RelationshipContact } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/Relationship_Contacts.Entity";
+import { RelationshipLink } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/Relationship_Link.Entity";
+import { AnimalAd } from "@Modules/Ad/Entities/Infra/Typeorm/Ad.entiy";
+import { RelationshipPhoto } from "@Modules/Helper/Photos/Entities/Infra/Typeorm/Relationship_Photo.Entity";
 
 @Entity()
 export class Organization {
@@ -22,7 +30,7 @@ export class Organization {
   @Length(1, 2000)
   description: string;
 
-  @Column({ unique: true, nullable: false,})
+  @Column({ unique: true, nullable: false })
   @IsNotEmpty()
   @IsEmail()
   @Length(1, 100)
@@ -33,10 +41,10 @@ export class Organization {
   @IsNotEmpty()
   type: OrganizationType;
 
-  @Column("varchar", { unique: true, nullable: false, length: 14})
+  @Column("varchar", { unique: true, nullable: false, length: 14 })
   @IsNotEmpty()
   @Length(11, 14)
-  cnpjCpf: string;
+  cnpj_cpf: string;
 
   @OneToMany(() => RelationshipPhoto, (photo) => photo.organization, {
     cascade: true,
@@ -65,4 +73,16 @@ export class Organization {
     nullable: true,
   })
   addresses: RelationshipAddress[];
+
+  @OneToMany(() => AnimalAd, (animalAd) => animalAd.organization)
+  animal_ads?: AnimalAd[];
+
+  @Column({ nullable: true })
+  operation: Date;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  update_at: Date;
 }

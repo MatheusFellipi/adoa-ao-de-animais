@@ -5,9 +5,10 @@ import {
   Column,
   OneToMany,
 } from "typeorm";
-import { VaccinationCard } from "./VaccinationCard";
 import { IsNotEmpty } from "class-validator";
-import { Vaccination } from "./Vaccination";
+
+import { Vaccination } from "./Vaccination.Entity";
+import { VaccinationCard } from "./VaccinationCard.Entity";
 
 @Entity()
 export class RelationshipVaccination {

@@ -1,9 +1,10 @@
 import {Entity, Column, OneToMany, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 
-import { Address } from "./Address";
+import { Address } from "./Address.Entity";
 
-import { Organization } from "@Modules/Organization/Entities/Infra/Typeorm/Organization";
-import { User } from "@Modules/User/Infra/Typeorm/Entities/Users";
+import { Organization } from "@Modules/Organization/Entities/Infra/Typeorm/Organization.Entity";
+import { User } from "@Modules/User/Infra/Typeorm/Entities/Users.Entity";
+
 
 @Entity()
 export class RelationshipAddress {

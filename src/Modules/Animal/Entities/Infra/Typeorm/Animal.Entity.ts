@@ -5,10 +5,12 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { RelationshipPhoto } from "@Modules/Helper/Photos/Entities/Infra/Typeorm/RelationshipPhoto";
-import { VaccinationCard } from "./VaccinationCard";
+
 import { IsNotEmpty } from "class-validator";
-import { AnimalGender, AnimalSize } from "../../Enum/animal";
+import { AnimalGender, AnimalSize } from "../../Enum/animal.enum";
+import { VaccinationCard } from "./VaccinationCard.Entity";
+
+import { RelationshipPhoto } from "@Modules/Helper/Photos/Entities/Infra/Typeorm/Relationship_Photo.Entity";
 
 @Entity("animals")
 export class Animal {

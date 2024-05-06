@@ -8,9 +8,10 @@ import {
 } from "typeorm";
 import { IsEmail } from "class-validator";
 
-import { RelationshipContact } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipContacts";
-import { RelationshipLink } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipLink";
-import { RelationshipAddress } from "@Modules/Helper/Adresses/Infra/Typeorm/Entities/RelationshipAddress";
+import { RelationshipContact } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/Relationship_Contacts.Entity";
+import { RelationshipLink } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/Relationship_Link.Entity";
+import { RelationshipAddress } from "@Modules/Helper/Adresses/Infra/Typeorm/Entities/Relationship_Address.Entity";
+import { AnimalAd } from "@Modules/Ad/Entities/Infra/Typeorm/Ad.entiy";
 
 @Entity("users")
 export class User {
@@ -54,6 +55,9 @@ export class User {
     nullable: true,
   })
   addresses: RelationshipAddress[];
+
+  @OneToMany(() => AnimalAd, (animalAd) => animalAd.user)
+  animal_ads?: AnimalAd[];
 
   @CreateDateColumn()
   created_at: Date;

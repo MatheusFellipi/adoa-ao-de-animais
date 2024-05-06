@@ -1,9 +1,11 @@
 import {Entity, Column, OneToMany, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 
-import { Contact } from "./Contact";
+import { Contact } from "./Contact.Entity";
 
-import { Organization } from "@Modules/Organization/Entities/Infra/Typeorm/Organization";
-import { User } from "@Modules/User/Infra/Typeorm/Entities/Users";
+import { User } from "@Modules/User/Infra/Typeorm/Entities/Users.Entity";
+import { Organization } from "@Modules/Organization/Entities/Infra/Typeorm/Organization.Entity";
+
+
 
 @Entity()
 export class RelationshipContact {
