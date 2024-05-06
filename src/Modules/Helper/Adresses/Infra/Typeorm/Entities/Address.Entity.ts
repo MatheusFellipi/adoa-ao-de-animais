@@ -6,8 +6,9 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
 } from "typeorm";
-import { Cities } from "./Cities";
 import { IsNotEmpty, IsPostalCode } from "class-validator";
+
+import { Cities } from "./City.Entity";
 
 @Entity("addresses")
 export class Address {
@@ -24,7 +25,7 @@ export class Address {
   @Column("varchar")
   @IsNotEmpty()
   @IsPostalCode()
-  zipCode: string;
+  postal_code: string;
 
   @Column("varchar")
   @IsNotEmpty()

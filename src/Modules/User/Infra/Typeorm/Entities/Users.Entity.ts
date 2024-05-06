@@ -8,9 +8,9 @@ import {
 } from "typeorm";
 import { IsEmail } from "class-validator";
 
-import { RelationshipContact } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/Relationship_Contacts.Entity";
-import { RelationshipLink } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/Relationship_Link.Entity";
-import { RelationshipAddress } from "@Modules/Helper/Adresses/Infra/Typeorm/Entities/Relationship_Address.Entity";
+import { RelationshipContact } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipContacts.Entity";
+import { RelationshipLink } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipLink.Entity";
+import { RelationshipAddress } from "@Modules/Helper/Adresses/Infra/Typeorm/Entities/RelationshipAddress.Entity";
 import { AnimalAd } from "@Modules/Ad/Entities/Infra/Typeorm/Ad.entiy";
 
 @Entity("users")

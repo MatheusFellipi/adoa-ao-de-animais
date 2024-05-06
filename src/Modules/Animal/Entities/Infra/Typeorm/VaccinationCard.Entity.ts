@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Animal } from "./Animal.Entity";
-import { RelationshipVaccination } from "./Relationship.Entity";
+import { RelationshipVaccination } from "./RelationshipVaccination.Entity";
 
 @Entity()
 export class VaccinationCard {
@@ -30,7 +30,7 @@ export class VaccinationCard {
       nullable: true,
     }
   )
-  relationshipVaccination: RelationshipVaccination[];
+  vaccination: RelationshipVaccination[];
 
   @CreateDateColumn()
   created_at: Date;

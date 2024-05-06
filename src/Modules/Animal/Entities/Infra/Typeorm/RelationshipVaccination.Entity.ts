@@ -21,18 +21,15 @@ export class RelationshipVaccination {
 
   @Column()
   @IsNotEmpty()
-  vaccinationDate: Date;
+  vaccination_date: Date;
 
   @Column()
   @IsNotEmpty()
   crmv: string;
 
-  @OneToMany(() => Vaccination, (vaccinationCard) => vaccinationCard.id)
+  @OneToMany(() => Vaccination, (vaccination) => vaccination)
   vaccination: Vaccination;
 
-  @ManyToOne(
-    () => VaccinationCard,
-    (vaccinationCard) => vaccinationCard.relationshipVaccination
-  )
+  @ManyToOne(() => VaccinationCard, (vaccination) => vaccination.vaccination)
   vaccinationCard: VaccinationCard;
 }

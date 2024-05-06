@@ -7,13 +7,13 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { IsEmail, IsEnum, IsNotEmpty, Length } from "class-validator";
-import { OrganizationType } from "../../Enums/Organization.enum";
 
-import { RelationshipAddress } from "@Modules/Helper/Adresses/Infra/Typeorm/Entities/Relationship_Address.Entity";
-import { RelationshipContact } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/Relationship_Contacts.Entity";
-import { RelationshipLink } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/Relationship_Link.Entity";
+import { RelationshipAddress } from "@Modules/Helper/Adresses/Infra/Typeorm/Entities/RelationshipAddress.Entity";
+import { RelationshipContact } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipContacts.Entity";
+import { RelationshipLink } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipLink.Entity";
 import { AnimalAd } from "@Modules/Ad/Entities/Infra/Typeorm/Ad.entiy";
-import { RelationshipPhoto } from "@Modules/Helper/Photos/Entities/Infra/Typeorm/Relationship_Photo.Entity";
+import { RelationshipPhoto } from "@Modules/Helper/Photos/Entities/Infra/Typeorm/RelationshipPhoto.Entity";
+import { OrganizationType } from "../../Enums/organization.enum";
 
 @Entity()
 export class Organization {
@@ -78,7 +78,7 @@ export class Organization {
   animal_ads?: AnimalAd[];
 
   @Column({ nullable: true })
-  operation: Date;
+  operation_at: Date;
 
   @CreateDateColumn()
   created_at: Date;
