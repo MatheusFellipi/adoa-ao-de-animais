@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/Shared/Infra/Http/Server.ts"
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/Shared/Infra/Http/Server.ts",
+    "orm:migration": "typeorm typeorm migration:generat -- -d ",
+    "typeorm": "ts-node-dev -r ./node_modules/typeorm/cli",
+    "typeorm:run": "ts-node-dev -r ./node_modules/typeorm/cli migration:run -- -d src/Shared/Infra/Typeorm/Server.ts",
+    "typeorm:revert": "ts-node-dev -r ./node_modules/typeorm/cli migration:migration:revert"
   },
   "dependencies": {
     "@types/express": "^4.17.21",

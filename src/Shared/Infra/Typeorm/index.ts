@@ -7,7 +7,8 @@ export const myDataSource = new DataSource({
   username: "math",
   password: "1234",
   database: "animals",
-  entities: ["src/Modules/**/entity/*.js"],
+  entities: ["src/Modules/**/Entities/Infra/Typeorm/*.js"],
   migrations: ["src/Shared/Infra/Typeorm/Migrations/*.ts"],
-  migrationsTableName: "custom_migration_table",
+  logging: true,
+  synchronize: true,
 });
