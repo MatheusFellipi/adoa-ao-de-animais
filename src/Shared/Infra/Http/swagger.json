@@ -1,0 +1,94 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "doação de animais documentação",
+    "description": "Api para um app de doação de animais para canil e ONGs de animais",
+    "version": "1.0.0",
+    "contact": {
+      "email": "matheus.fellipi@outlook.com"
+    }
+  },
+  "paths": {
+    "/auth": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Create a category",
+        "description": "Create a new category ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Nome da categoria",
+                  "description": "Descrição da categoria"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Category already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "List all categories",
+        "description": "List all categories",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Specification": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
