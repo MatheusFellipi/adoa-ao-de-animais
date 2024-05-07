@@ -6,7 +6,7 @@ export class StateTable1715056805694 implements MigrationInterface {
         await queryRunner.createTable(new Table({
             name: "states",
             columns: [
-                { name: "id", type: "int", isPrimary: true, isGenerated: true },
+                { name: "id", type: "int", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
                 { name: "acronyms", type: "varchar" },
                 { name: "name", type: "varchar" }
             ]
