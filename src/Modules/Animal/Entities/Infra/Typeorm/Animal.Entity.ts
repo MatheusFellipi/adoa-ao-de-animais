@@ -7,10 +7,10 @@ import {
 } from "typeorm";
 
 import { IsNotEmpty } from "class-validator";
-import { AnimalGender, AnimalSize } from "../../Enum/animal.enum";
-import { VaccinationCard } from "./VaccinationCard.Entity";
 
-import { RelationshipPhoto } from "@Modules/Helper/Photos/Entities/Infra/Typeorm/RelationshipPhoto.Entity";
+import { AnimalGender, AnimalSize } from "../../enum/animal.enum";
+import { VaccinationCard } from "./vaccinationCard.entity";
+import { RelationshipPhoto } from "@modules/helper/photos/entities/infra/typeorm/relationshipPhoto.entity";
 
 @Entity("animals")
 export class Animal {

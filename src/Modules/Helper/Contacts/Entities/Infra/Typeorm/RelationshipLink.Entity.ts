@@ -1,13 +1,11 @@
-import {Entity, Column, OneToMany, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, Column, OneToMany, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 
-import { Link } from "./Link.Entity";
+import { Link } from "./link.entity";
 
-import { User } from "@Modules/User/Infra/Typeorm/Entities/Users.Entity";
-import { Organization } from "@Modules/Organization/Entities/Infra/Typeorm/Organization.Entity";
+import { User } from "@modules/user/infra/typeorm/entities/users.entity";
+import { Organization } from "@modules/organization/entities/infra/typeorm/entities/organization.entity";
 
-
-
-@Entity()
+@Entity("relationship_links")
 export class RelationshipLink {
   @PrimaryGeneratedColumn()
   id: number;

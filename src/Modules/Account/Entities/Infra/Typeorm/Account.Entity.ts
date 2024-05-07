@@ -1,4 +1,3 @@
-import { IsEmail, IsNotEmpty, IsStrongPassword } from "class-validator";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,11 +5,12 @@ import {
   ManyToOne,
   JoinColumn,
 } from "typeorm";
+import { IsEmail, IsNotEmpty, IsStrongPassword } from "class-validator";
 
-import { Organization } from "@Modules/Organization/Entities/Infra/Typeorm/Organization.Entity";
-import { User } from "@Modules/User/Infra/Typeorm/Entities/Users.Entity";
+import { User } from "@modules/user/infra/typeorm/entities/users.entity";
+import { Organization } from "@modules/organization/entities/infra/typeorm/entities/organization.entity";
 
-@Entity()
+@Entity("accounts")
 export class Account {
   @PrimaryGeneratedColumn()
   id: number;

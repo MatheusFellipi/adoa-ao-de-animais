@@ -1,9 +1,10 @@
 import "reflect-metadata";
 require("dotenv").config({ path: __dirname + "/.env" });
 import express, { NextFunction, Request, Response } from "express";
-import { AppError } from "../Errors/AppError";
+import { AppError } from "../errors/AppError";
 
 import helmet from "helmet";
+import { myDataSource } from "../typeorm";
 
 var cors = require("cors");
 
@@ -26,6 +27,15 @@ app.use(
     });
   }
 );
+
+myDataSource
+    .initialize()
+    .then(() => {
+        console.log("Data Source has been initialized!")
+    })
+    .catch((err) => {
+        console.error("Error during Data Source initialization:", err)
+    })
 
 app.listen(port, () => {
   console.log("running server " + port);

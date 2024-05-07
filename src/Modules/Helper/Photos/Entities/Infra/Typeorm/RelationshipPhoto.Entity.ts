@@ -1,22 +1,20 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Photo } from './Photos.Entity';
-import { Organization } from '@Modules/Organization/Entities/Infra/Typeorm/Organization.Entity';
-import { Animal } from '@Modules/Animal/Entities/Infra/Typeorm/Animal.Entity';
+import { Animal } from '@modules/animal/entities/infra/typeorm/animal.entity';
+import { Organization } from '@modules/organization/entities/infra/typeorm/entities/organization.entity';
+import { Photo } from './photos.entity';
 
-
-
-@Entity()
+@Entity("relationship_photo")
 export class RelationshipPhoto {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @ManyToOne(() => Animal, (animal) => animal.photos)
-  animal?: Animal;
+    @ManyToOne(() => Animal, (animal) => animal.photos)
+    animal?: Animal;
 
-  @ManyToOne(() => Organization, (organization) => organization.photos)
-  organization?: Organization;
+    @ManyToOne(() => Organization, (organization) => organization.photos)
+    organization?: Organization;
 
-  @ManyToOne(() => Photo, { onDelete: "CASCADE" })
-  photo: Photo;
+    @ManyToOne(() => Photo, { onDelete: "CASCADE" })
+    photo: Photo;
 }

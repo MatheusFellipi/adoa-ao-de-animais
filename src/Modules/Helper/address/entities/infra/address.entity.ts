@@ -1,22 +1,16 @@
-import {
-  Entity,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-} from "typeorm";
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { IsNotEmpty, IsPostalCode } from "class-validator";
 
-import { Cities } from "./City.Entity";
+import { City } from "./city.entity";
+
 
 @Entity("addresses")
 export class Address {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Cities, (city) => city.id)
-  city: Cities;
+  @ManyToOne(() => City, (city) => city.id)
+  city: City;
 
   @Column("varchar")
   @IsNotEmpty()

@@ -1,7 +1,7 @@
-import { IsNotEmpty } from "class-validator";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { IsNotEmpty } from "class-validator";
 
-@Entity()
+@Entity("contacts")
 export class Contact {
   @PrimaryGeneratedColumn()
   id: number;

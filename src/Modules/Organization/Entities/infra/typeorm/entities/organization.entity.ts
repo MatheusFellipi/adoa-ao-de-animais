@@ -1,21 +1,14 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { IsEmail, IsEnum, IsNotEmpty, Length } from "class-validator";
 
-import { RelationshipAddress } from "@Modules/Helper/Adresses/Infra/Typeorm/Entities/RelationshipAddress.Entity";
-import { RelationshipContact } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipContacts.Entity";
-import { RelationshipLink } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipLink.Entity";
-import { AnimalAd } from "@Modules/Ad/Entities/Infra/Typeorm/Ad.entiy";
-import { RelationshipPhoto } from "@Modules/Helper/Photos/Entities/Infra/Typeorm/RelationshipPhoto.Entity";
-import { OrganizationType } from "../../Enums/organization.enum";
+import { AnimalAd } from "@modules/ad/entities/infra/typeorm/ad.entity";
+import { OrganizationType } from "@modules/organization/entities/enums/organization.enum";
+import { RelationshipLink } from "@modules/helper/contacts/entities/infra/typeorm/relationshipLink.entity";
+import { RelationshipContact } from "@modules/helper/contacts/entities/infra/typeorm/relationshipContacts.entity";
+import { RelationshipPhoto } from "@modules/helper/photos/entities/infra/typeorm/relationshipPhoto.entity";
+import { RelationshipAddress } from "@modules/helper/address/entities/infra/relationshipAddress.entity";
 
-@Entity()
+@Entity("organizations")
 export class Organization {
   @PrimaryGeneratedColumn()
   id: number;

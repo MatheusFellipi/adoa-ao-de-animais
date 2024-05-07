@@ -6,10 +6,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Animal } from "./Animal.Entity";
-import { RelationshipVaccination } from "./RelationshipVaccination.Entity";
 
-@Entity()
+import { Animal } from "./animal.entity";
+import { RelationshipVaccination } from "./relationshipVaccination.entity";
+
+@Entity("vaccination_cards")
 export class VaccinationCard {
   @PrimaryGeneratedColumn()
   id: number;

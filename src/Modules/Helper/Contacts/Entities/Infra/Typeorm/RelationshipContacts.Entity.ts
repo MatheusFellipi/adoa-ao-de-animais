@@ -1,13 +1,11 @@
-import {Entity, Column, OneToMany, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, Column, OneToMany, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 
-import { Contact } from "./Contact.Entity";
+import { Contact } from "./contact.entity";
 
-import { User } from "@Modules/User/Infra/Typeorm/Entities/Users.Entity";
-import { Organization } from "@Modules/Organization/Entities/Infra/Typeorm/Organization.Entity";
+import { Organization } from "@modules/organization/entities/infra/typeorm/entities/organization.entity";
+import { User } from "@modules/user/infra/typeorm/entities/users.entity";
 
-
-
-@Entity()
+@Entity("relationship_contacts")
 export class RelationshipContact {
   @PrimaryGeneratedColumn()
   id: number;

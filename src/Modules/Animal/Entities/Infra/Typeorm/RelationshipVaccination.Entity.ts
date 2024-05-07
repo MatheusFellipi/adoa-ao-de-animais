@@ -7,10 +7,10 @@ import {
 } from "typeorm";
 import { IsNotEmpty } from "class-validator";
 
-import { Vaccination } from "./Vaccination.Entity";
-import { VaccinationCard } from "./VaccinationCard.Entity";
+import { Vaccination } from "./vaccination.entity";
+import { VaccinationCard } from "./vaccinationCard.entity";
 
-@Entity()
+@Entity("relationship_vaccinations")
 export class RelationshipVaccination {
   @PrimaryGeneratedColumn()
   id: number;

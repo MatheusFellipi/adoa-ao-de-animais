@@ -1,8 +1,9 @@
 import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
-import { Cities } from "./City.Entity";
 
-@Entity()
-export class States {
+import { City } from "./city.entity";
+
+@Entity("states")
+export class State {
   @PrimaryColumn()
   id: number;
 
@@ -12,6 +13,6 @@ export class States {
   @Column("varchar")
   name: string;
 
-  @OneToMany(() => Cities, (city) => city.id)
-  city: Cities[];
+  @OneToMany(() => City, (city) => city.id)
+  city: City[];
 }

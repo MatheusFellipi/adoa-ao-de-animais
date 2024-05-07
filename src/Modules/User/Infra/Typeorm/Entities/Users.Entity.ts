@@ -1,17 +1,11 @@
-import {
-  Entity,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  PrimaryGeneratedColumn,
-  OneToMany,
-} from "typeorm";
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { IsEmail } from "class-validator";
 
-import { RelationshipContact } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipContacts.Entity";
-import { RelationshipLink } from "@Modules/Helper/Contacts/Entities/Infra/Typeorm/RelationshipLink.Entity";
-import { RelationshipAddress } from "@Modules/Helper/Adresses/Infra/Typeorm/Entities/RelationshipAddress.Entity";
-import { AnimalAd } from "@Modules/Ad/Entities/Infra/Typeorm/Ad.entiy";
+import { RelationshipLink } from "@modules/helper/contacts/entities/infra/typeorm/relationshipLink.entity";
+import { RelationshipContact } from "@modules/helper/contacts/entities/infra/typeorm/relationshipContacts.entity";
+import { RelationshipAddress } from "@modules/helper/address/entities/infra/relationshipAddress.entity";
+import { AnimalAd } from "@modules/ad/entities/infra/typeorm/ad.entity";
+
 
 @Entity("users")
 export class User {

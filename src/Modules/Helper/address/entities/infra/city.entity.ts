@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryColumn, ManyToOne } from "typeorm";
-import { States } from "./State.Entity";
+import { State } from "./state.entity";
 
-@Entity()
-export class Cities {
+@Entity("cities")
+export class City {
   @PrimaryColumn()
   id: number;
 
-  @ManyToOne(() => States, (state) => state.id)
-  state: States;
+  @ManyToOne(() => State, (state) => state.id)
+  state: State;
 
   @Column("varchar")
   name: string;
