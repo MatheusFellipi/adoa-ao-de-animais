@@ -4,13 +4,14 @@ import { Address } from "../../typeorm/entities/address.entity";
 
 
 export class AddressRepositoryInMemory implements IAddressRepository {
-  private addresses: Address[] = [];
-  async create({street, district, complement, city, postal_code}: IAddressDtos): Promise<void> {
+  private _addresses: Address[] = [];
+  async create({street, district, complement, city, postal_code}: IAddressDtos): Promise<Address> {
     const addresses = new Address();
     Object.assign(addresses, { street, district, complement, city, postal_code });
-    this.addresses.push(addresses);
+    this._addresses.push(addresses);
+    return addresses
   }
   async findById(id: number): Promise<Address> {
-    return this.addresses.find((address) => address.id === id );
+    return this._addresses.find((address) => address.id === id );
   }
 }

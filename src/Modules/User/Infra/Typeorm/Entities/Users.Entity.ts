@@ -1,13 +1,8 @@
 import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany } from "typeorm";
-import { IsEmail } from "class-validator";
 
-import { RelationshipLink } from "@modules/helper/contacts/entities/infra/typeorm/relationshipLink.entity";
-import { RelationshipContact } from "@modules/helper/contacts/entities/infra/typeorm/relationshipContacts.entity";
-import { RelationshipAddress } from "@modules/helper/address/entities/infra/relationshipAddress.entity";
-import { AnimalAd } from "@modules/ad/entities/infra/typeorm/ad.entity";
+import { Address } from "@modules/helper/address/infra/typeorm/entities/address.entity";
 
-
-@Entity("users")
+@Entity({name:"users"})
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -21,7 +16,6 @@ export class User {
     unique: true,
     nullable: false,
   })
-  @IsEmail()
   email: string;
 
   @Column("varchar", {
@@ -29,33 +23,16 @@ export class User {
   })
   avatar?: string;
 
-  @OneToMany(() => RelationshipLink, (link) => link.user, {
+  @OneToMany(() => Address, (address) => address.user, {
     cascade: true,
     onDelete: "CASCADE",
     nullable: true,
   })
-  links?: RelationshipLink[];
-
-  @OneToMany(() => RelationshipContact, (contacts) => contacts.user, {
-    cascade: true,
-    onDelete: "CASCADE",
-    nullable: true,
-  })
-  contacts?: RelationshipContact[];
-
-  @OneToMany(() => RelationshipAddress, (address) => address.user, {
-    cascade: true,
-    onDelete: "CASCADE",
-    nullable: true,
-  })
-  addresses: RelationshipAddress[];
-
-  @OneToMany(() => AnimalAd, (animalAd) => animalAd.user)
-  animal_ads?: AnimalAd[];
+  addresses: Address[];
 
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
-  update_at: Date;
+  updated_at: Date;
 }

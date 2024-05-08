@@ -2,10 +2,11 @@ import { Repository } from "typeorm";
 import { autoInjectable } from "tsyringe";
 
 import { dbContext } from "@shared/infra/typeorm"
+import { Address } from "../entities/address.entity";
+import { IAddressRepository } from "../../repositories/IAddressRepository";
+import { IAddressDtos } from "@modules/helper/address/dtos/IAddressDtos";
 
-import { IAddressRepository } from "./IAddressRepository";
-import { Address } from "../typeorm/entities/address.entity";
-import { IAddressDtos } from "../../dtos/IAddressDtos";
+
 
 
 @autoInjectable()
@@ -16,9 +17,9 @@ export class AddressRepository implements IAddressRepository {
     this.__repository = context.getRepository(Address);
   }
 
-  async create({ street, complement, district, postal_code, city }: IAddressDtos): Promise<void> {
+  async create({ street, complement, district, postal_code, city }: IAddressDtos): Promise<Address> {
     const user = this.__repository.create({ street, complement, district, postal_code, city });
-    await this.__repository.save(user);
+    return await this.__repository.save(user);
   }
 
   async findById(id: number): Promise<Address> {
