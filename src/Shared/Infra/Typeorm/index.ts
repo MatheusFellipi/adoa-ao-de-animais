@@ -1,12 +1,24 @@
-import { DataSource } from "typeorm"
+import { DataSource, DataSourceOptions,  } from "typeorm"
+import { singleton } from "tsyringe"
 
-export const dbConnection = new DataSource({
-  type: "postgres",
-  host: "localhost",
-  port: 5432,
-  username: "math",
-  password: "1234",
-  database: "animals",
-  entities: [`/src/**/**.entity{.ts,.js}`],
-  migrations: [`src/shared/infra/typeorm/migrations/*{.ts,.js}`],
-});
+import { db } from "@config/db"
+
+@singleton()
+class DbContext {
+  private __connection: DataSource | null = null
+  public connection(): DataSource {
+    if (this.__connection != null) {
+      return this.__connection
+    }
+    this.__connection = new DataSource(
+      {
+        ...db,
+        entities: [`/src/**/**.entity{.ts,.js}`],
+        migrations: [`src/shared/infra/typeorm/migrations/*{.ts,.js}`],
+      } as DataSourceOptions
+    )
+    return this.__connection
+  }
+}
+
+export const dbContext = new DbContext().connection()

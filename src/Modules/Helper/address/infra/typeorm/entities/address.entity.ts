@@ -1,8 +1,7 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 import { IsNotEmpty, IsPostalCode } from "class-validator";
 
 import { City } from "./city.entity";
-
 
 @Entity("addresses")
 export class Address {
@@ -10,18 +9,19 @@ export class Address {
   id: number;
 
   @ManyToOne(() => City, (city) => city.id)
+  @JoinColumn({ name: "city_id", referencedColumnName: "id" })
   city: City;
 
-  @Column("varchar")
+  @Column()
   @IsNotEmpty()
   street: string;
 
-  @Column("varchar")
+  @Column()
   @IsNotEmpty()
   @IsPostalCode()
   postal_code: string;
 
-  @Column("varchar")
+  @Column()
   @IsNotEmpty()
   district: string;
 

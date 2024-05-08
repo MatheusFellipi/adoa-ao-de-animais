@@ -14,5 +14,5 @@ export class State {
   name: string;
 
   @OneToMany(() => City, (city) => city.id)
-  city: City[];
+  cities: City[];
 }

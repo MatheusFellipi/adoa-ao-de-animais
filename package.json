@@ -11,7 +11,8 @@
     "typeorm:reset": "npm run typeorm:drop && npm run typeorm:sync",
     "typeorm:migrate": "env NODE_ENV=development npm run typeorm migration:generate -- -n",
     "typeorm:create": "env NODE_ENV=development npm run typeorm migration:create",
-    "typeorm:run": "ts-node -r tsconfig-paths/register typeorm migration:run -- -d src/shared/infra/typeorm/index.ts"
+    "typeorm:run": "ts-node -r tsconfig-paths/register typeorm migration:run -- -d src/shared/infra/typeorm/index.ts",
+    "test": "jest"
   },
   "dependencies": {
     "@types/express": "^4.17.21",
@@ -25,14 +26,19 @@
     "pg": "^8.11.5",
     "reflect-metadata": "^0.2.2",
     "swagger-ui-express": "^5.0.0",
+    "tsyringe": "^4.8.0",
     "typeorm": "^0.3.20",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
+    "@types/jest": "^29.5.12",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^20.12.8",
     "@types/swagger-ui-express": "^4.1.6",
     "@types/uuid": "^9.0.8",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
     "ts-jest": "^29.1.2",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.2.0",
