@@ -1,11 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  JoinColumn,
-} from "typeorm";
-import { IsEmail, IsNotEmpty, IsStrongPassword } from "class-validator";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToOne } from "typeorm";
 
 import { User } from "@modules/user/infra/typeorm/entities/users.entity";
 import { Organization } from "@modules/organization/entities/infra/typeorm/entities/organization.entity";
@@ -15,27 +8,20 @@ export class Account {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({
-    unique: true,
-    nullable: false,
-  })
-  @IsEmail()
-  @IsNotEmpty()
+  @Column({ unique: true, nullable: false })
   email: string;
 
   @Column()
-  @IsNotEmpty()
-  @IsStrongPassword()
   password: string;
 
-  @ManyToOne(() => User, { nullable: true })
+  @OneToOne(() => User, (user) => user.account, { nullable: true, cascade: true })
   @JoinColumn({ name: "user_id" })
-  user: User;
+  user?: User;
 
-  @ManyToOne(() => Organization, { nullable: true })
+  @ManyToOne(() => User, (organization) => organization.account, { nullable: true, cascade: true })
   @JoinColumn({ name: "organization_id" })
-  organization: Organization;
+  organization?: Organization;
 
   @Column({ name: "last_login", nullable: true })
-  lastLogin: Date;
+  last_login: Date;
 }

@@ -1,9 +1,9 @@
 const request = require("supertest");
 
 import app from "@shared/infra/http/config/app";
+import { AddressRepositoryInMemory } from "../../infra/repositories/in-memory/AddressRepositoryInMemory";
+import { AddressUseCase } from "./AddressUseCase";
 import { AppError } from "@shared/infra/errors/AppError";
-import { AddressRepositoryInMemory } from "@modules/address/infra/repositories/in-memory/AddressRepositoryInMemory";
-import { AddressUseCase } from "@modules/address/useCases/create/AddressUseCase";
 
 describe("Authenticate User", () => {
   let repository: AddressRepositoryInMemory;

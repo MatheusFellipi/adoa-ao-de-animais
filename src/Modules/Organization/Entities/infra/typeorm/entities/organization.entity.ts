@@ -1,7 +1,10 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 import { OrganizationType } from "@modules/organization/entities/enums/organization.enum";
-import { Address } from "@modules/helper/address/infra/typeorm/entities/address.entity";
+import { Account } from "@modules/account/entities/infra/typeorm/account.entity";
+import { Contact } from "@modules/contacts/entities/infra/typeorm/contact.entity";
+import { Link } from "@modules/contacts/entities/infra/typeorm/link.entity";
+import { Address } from "@modules/address/infra/typeorm/entities/address.entity";
 
 @Entity("organizations")
 export class Organization {
@@ -19,14 +22,18 @@ export class Organization {
 
   @Column({ type: "enum", enum: OrganizationType, nullable: false })
   type: OrganizationType;
+  
+  @OneToOne(() => Contact, (contact) => contact.organization, { cascade: true, onDelete: "CASCADE", nullable: false, })
+  account: Account;
 
-  @OneToMany(() => Address, (address) => address.organization, {
-    cascade: true,
-    onDelete: "CASCADE",
-    nullable: true,
-  })
+  @OneToMany(() => Contact, (contact) => contact.organization, { cascade: true, onDelete: "CASCADE", nullable: true })
+  contacts: Contact[];
+
+  @OneToMany(() => Link, (link) => link.organization, { cascade: true, onDelete: "CASCADE", nullable: true })
+  links: Link[];
+
+  @OneToMany(() => Address, (address) => address.user, { cascade: true, onDelete: "CASCADE", nullable: true,})
   addresses: Address[];
-
 
   @Column("varchar", { unique: true, nullable: false, length: 14 })
   cnpj_cpf: string;

@@ -1,6 +1,10 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany, OneToOne } from "typeorm";
 
-import { Address } from "@modules/helper/address/infra/typeorm/entities/address.entity";
+
+import { Account } from "@modules/account/entities/infra/typeorm/account.entity";
+import { Contact } from "@modules/contacts/entities/infra/typeorm/contact.entity";
+import { Link } from "@modules/contacts/entities/infra/typeorm/link.entity";
+import { Address } from "@modules/address/infra/typeorm/entities/address.entity";
 
 @Entity({name:"users"})
 export class User {
@@ -23,11 +27,16 @@ export class User {
   })
   avatar?: string;
 
-  @OneToMany(() => Address, (address) => address.user, {
-    cascade: true,
-    onDelete: "CASCADE",
-    nullable: true,
-  })
+  @OneToOne(() => Contact, (contact) => contact.organization, { cascade: true, onDelete: "CASCADE", nullable: false, })
+  account: Account;
+
+  @OneToMany(() => Contact, (contact) => contact.organization, { cascade: true, onDelete: "CASCADE", nullable: true })
+  contacts: Contact[];
+
+  @OneToMany(() => Link, (link) => link.organization, { cascade: true, onDelete: "CASCADE", nullable: true })
+  links: Link[];
+
+  @OneToMany(() => Address, (address) => address.user, { cascade: true, onDelete: "CASCADE", nullable: true,})
   addresses: Address[];
 
   @CreateDateColumn()

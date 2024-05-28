@@ -14,8 +14,8 @@ class DbContext {
     this.__connection = new DataSource(
       {
         ...db,
-        entities: ["src/modules/**/entities/*.entity.ts"],
-        migrations: [`src/shared/infra/typeorm/migrations/*{.ts,.js}`],
+        entities: [`${__dirname}/modules/**/entities/**.entity.ts`],
+        migrations: [`${__dirname}../typeorm/migrations/*{.ts,.js}`],
       } as DataSourceOptions
     )
     return this.__connection

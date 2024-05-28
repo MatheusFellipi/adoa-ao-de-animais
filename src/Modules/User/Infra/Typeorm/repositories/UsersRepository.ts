@@ -19,8 +19,8 @@ export class UsersRepository implements IUsersRepository {
     });
   }
 
-  async create({ email, name, avatar, addresses }: IUserDtos): Promise<User> {
-    const user = this.__repository.create({ email, name, avatar, addresses });
+  async create({ email, name, avatar, addresses, contacts, links }: IUserDtos): Promise<User> {
+    const user = this.__repository.create({ email, name, avatar, addresses, contacts, links });
     return await this.__repository.save(user);
   }
 
