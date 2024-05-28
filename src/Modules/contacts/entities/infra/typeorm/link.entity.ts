@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "@modules/user/infra/typeorm/entities/users.entity";
-import { Organization } from "@modules/organization/entities/infra/typeorm/entities/organization.entity";
+import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
 
 @Entity("links")
 export class Link {
@@ -12,6 +12,9 @@ export class Link {
 
   @OneToMany(() => Organization, (organization) => organization.links, { nullable: true })
   organization?: Organization;
+
+  @Column()
+  name: string
 
   @Column()
   link: string;

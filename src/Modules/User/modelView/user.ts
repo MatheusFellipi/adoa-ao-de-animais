@@ -1,7 +1,7 @@
-import { IAddressDtos } from "@modules/helper/address/dtos/IAddressDtos";
-import { AddressModelView } from "@modules/helper/address/modelView/address";
-import { IContactDtos } from "@modules/helper/contacts/dtos/IContactDtos";
-import { ILinkDtos } from "@modules/helper/contacts/dtos/ILinkDtos";
+
+import { AddressModelView } from "@modules/address/modelView/address";
+import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
+import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
 import { AppError } from "@shared/infra/errors/AppError";
 import { IsArray, IsEmail, IsNotEmpty, validate } from "class-validator";
 

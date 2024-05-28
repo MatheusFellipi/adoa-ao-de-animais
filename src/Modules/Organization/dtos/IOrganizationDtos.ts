@@ -1,7 +1,7 @@
-import { IAddressDtos } from "@modules/helper/address/dtos/IAddressDtos";
-import { OrganizationType } from "../entities/enums/organization.enum";
-import { ILinkDtos } from "@modules/helper/contacts/dtos/ILinkDtos";
-import { IContactDtos } from "@modules/helper/contacts/dtos/IContactDtos";
+import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
+import { OrganizationType } from "../enums/organization.enum";
+import { IAddressDtos } from "@modules/address/dtos/IAddressDtos";
+import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
 
 export interface IOrganizationDtos {
   id?: number;

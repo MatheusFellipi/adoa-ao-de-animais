@@ -2,10 +2,11 @@ import { IsArray, IsDate, IsEmail, IsNotEmpty, IsNotEmptyObject, validate } from
 import { AppError } from "@shared/infra/errors/AppError";
 
 
-import { OrganizationType } from "../entities/enums/organization.enum";
-import { IContactDtos } from "@modules/helper/contacts/dtos/IContactDtos";
-import { ILinkDtos } from "@modules/helper/contacts/dtos/ILinkDtos";
-import { IAddressDtos } from "@modules/helper/address/dtos/IAddressDtos";
+import { OrganizationType } from "../enums/organization.enum";
+import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
+import { IAddressDtos } from "@modules/address/dtos/IAddressDtos";
+import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
+import { AddressModelView } from "@modules/address/modelView/address";
 
 export class OrganizationModelView {
   id?: number;
@@ -39,12 +40,13 @@ export class OrganizationModelView {
   @IsDate()
   operation_at: Date;
 
-  static validade(data: Partial<OrganizationModelView>) {
+  static validade(data: OrganizationModelView) {
     const instance = new OrganizationModelView();
+    data.addresses.forEach(element => AddressModelView.validade(element));
     Object.assign(instance, data)
     validate(this).then((errors) => {
       if (errors.length > 0)
-        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 401);
+        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 400);
     });
     return data
   }
