@@ -1,10 +1,9 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-
+import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { IsNotEmpty } from "class-validator";
 
+import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 import { VaccinationCard } from "./vaccinationCard.entity";
 import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
-import { Photo } from "@modules/photos/entities/infra/typeorm/photos.entity";
 
 @Entity("animals")
 export class Animal {
@@ -44,4 +43,10 @@ export class Animal {
 
   @OneToMany(() => Photo, (photo) => photo.animal, { cascade: true, onDelete: "CASCADE", nullable: true, })
   photos: Photo[];
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  update_at: Date;
 }

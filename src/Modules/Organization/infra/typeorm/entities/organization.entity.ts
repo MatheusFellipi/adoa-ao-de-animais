@@ -3,8 +3,8 @@ import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Up
 import { Address } from "@modules/address/infra/typeorm/entities/address.entity";
 import { Contact } from "@modules/contacts/entities/infra/typeorm/contact.entity";
 import { Link } from "@modules/contacts/entities/infra/typeorm/link.entity";
-import { Photo } from "@modules/photos/entities/infra/typeorm/photos.entity";
 import { OrganizationType } from "@modules/organization/enums/organization.enum";
+import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 
 @Entity("organizations")
 export class Organization {

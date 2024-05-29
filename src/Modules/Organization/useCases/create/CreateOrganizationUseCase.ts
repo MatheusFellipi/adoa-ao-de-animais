@@ -9,13 +9,13 @@ import { IOrganizationRepository } from "@modules/organization/infra/repositorie
 @injectable()
 export class CreateOrganizationUseCase {
   constructor(
-    @inject("IOrganizationRepository") private userRepository: IOrganizationRepository
+    @inject("IOrganizationRepository") private __repository: IOrganizationRepository
   ) { }
 
   async execute(data: OrganizationModelView): Promise<Organization> {
     const org = OrganizationModelView.validade(data);
-    const org_user = await this.userRepository.findByCpfCnpj(data.cnpj_cpf);
+    const org_user = await this.__repository.findByCpfCnpj(data.cnpj_cpf);
     if (org_user) throw new AppError("O cnpj/cpf ja esta em cadastrado.", 400);
-    return await this.userRepository.create(org);
+    return await this.__repository.create(org);
   }
 }

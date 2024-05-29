@@ -3,8 +3,8 @@ import { Request, Response } from "express";
 
 import { CreateOrganizationUseCase } from "./CreateOrganizationUseCase";
 
-export class CreateUserController {
-  async handle(request: Request, response: Response): Promise<Response> {
+export class CreateOrganizationController {
+ static  async handle(request: Request, response: Response): Promise<Response> {
     const { addresses, cnpj_cpf, email, name, operation_at, type, contacts, description, links } = request.body;
     const createUserUseCase = container.resolve(CreateOrganizationUseCase);
     const token = await createUserUseCase.execute({
