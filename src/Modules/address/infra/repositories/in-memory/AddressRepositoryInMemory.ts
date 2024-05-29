@@ -1,6 +1,6 @@
-import { IAddressDtos } from "@modules/helper/address/dtos/IAddressDtos";
 import { IAddressRepository } from "../IAddressRepository";
 import { Address } from "../../typeorm/entities/address.entity";
+import { IAddressDtos } from "@modules/address/dtos/IAddressDtos";
 
 
 export class AddressRepositoryInMemory implements IAddressRepository {

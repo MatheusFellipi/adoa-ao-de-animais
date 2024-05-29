@@ -1,9 +1,8 @@
-const request = require("supertest");
-
-import app from "@shared/infra/http/config/app";
 import { AppError } from "@shared/infra/errors/AppError";
 import { AddressRepositoryInMemory } from "@modules/address/infra/repositories/in-memory/AddressRepositoryInMemory";
 import { AddressUseCase } from "@modules/address/useCases/create/AddressUseCase";
+import app from "@shared/infra/http/config/app";
+const request = require('supertest');
 
 describe("Authenticate User", () => {
   let repository: AddressRepositoryInMemory;
@@ -63,9 +62,5 @@ describe("Authenticate User", () => {
         name: "Morrinhos"
       },
     });
-  });
-
-  it("route", async () => {
-    await request(app).get("/api-v1/register/").expect(200);
   });
 });

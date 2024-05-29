@@ -1,3 +1,7 @@
+import "reflect-metadata";
+import "express-async-errors";
+require("dotenv").config({ path: __dirname + "/.env" });
+
 import express from 'express'
 import setupMiddleware from './middleware'
 import setupRoutes from './routes'

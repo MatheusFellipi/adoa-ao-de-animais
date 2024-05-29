@@ -23,5 +23,6 @@ module.exports = {
   //   "!src/**/*.d.ts",
   //   "!src/shared/infra/typeorm/migrations/**" 
   // ],
-    setupFiles: ["<rootDir>/.jest/setEnvVars.js"]
+  testEnvironment: "node",
+  setupFiles: ["<rootDir>/.jest/setEnvVars.js"]
 };

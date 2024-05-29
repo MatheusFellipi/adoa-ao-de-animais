@@ -4,8 +4,9 @@ import { validate } from "class-validator";
 import { Address } from "../../infra/typeorm/entities/address.entity";
 
 import { AppError } from "@shared/infra/errors/AppError";
-import { IAddressRepository } from "@modules/helper/address/infra/repositories/IAddressRepository";
-import { AddressModelView } from "@modules/helper/address/modelView/address";
+import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
+import { AddressModelView } from "@modules/address/modelView/address";
+
 
 @injectable()
 export class AddressUseCase {

@@ -3,7 +3,7 @@ import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedCol
 import { City } from "./city.entity";
 
 import { User } from "@modules/user/infra/typeorm/entities/users.entity";
-import { Organization } from "@modules/organization/entities/infra/typeorm/entities/organization.entity";
+import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
 
 @Entity("addresses")
 export class Address {

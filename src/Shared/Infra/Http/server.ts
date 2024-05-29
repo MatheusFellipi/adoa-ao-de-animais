@@ -1,7 +1,3 @@
-import "reflect-metadata";
-import "express-async-errors";
-require("dotenv").config({ path: __dirname + "/.env" });
-
 import app from "./config/app";
 import { dbContext } from "../typeorm";
 
