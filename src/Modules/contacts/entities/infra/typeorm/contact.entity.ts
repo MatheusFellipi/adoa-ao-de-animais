@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "@modules/user/infra/typeorm/entities/users.entity";
+
 import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
+import { User } from "@modules/user/infra/typeorm/entities/users.entity";
 
 @Entity("contacts")
 export class Contact {

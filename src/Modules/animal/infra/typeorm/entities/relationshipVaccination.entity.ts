@@ -1,11 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  Column,
-  OneToMany,
-} from "typeorm";
-import { IsNotEmpty } from "class-validator";
+import { Entity, PrimaryGeneratedColumn, ManyToOne, Column, OneToMany } from "typeorm";
 
 import { Vaccination } from "./vaccination.entity";
 import { VaccinationCard } from "./vaccinationCard.entity";
@@ -16,15 +9,12 @@ export class RelationshipVaccination {
   id: number;
 
   @Column()
-  @IsNotEmpty()
   dose: string;
 
   @Column()
-  @IsNotEmpty()
   vaccination_date: Date;
 
   @Column()
-  @IsNotEmpty()
   crmv: string;
 
   @OneToMany(() => Vaccination, (vaccination) => vaccination)

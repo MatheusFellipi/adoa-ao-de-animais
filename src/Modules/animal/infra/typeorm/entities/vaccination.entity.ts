@@ -1,4 +1,3 @@
-import { IsNotEmpty } from "class-validator";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("vaccinations")
@@ -7,10 +6,8 @@ export class Vaccination {
   id: number;
 
   @Column("varchar")
-  @IsNotEmpty()
   name: string;
 
   @Column("varchar")
-  @IsNotEmpty()
   description: string;
 }

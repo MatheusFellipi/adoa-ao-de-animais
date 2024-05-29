@@ -1,16 +1,10 @@
-import {
-  Column,
-  Entity,
-  OneToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 import { IsNotEmpty } from "class-validator";
 
-import { AnimalGender, AnimalSize } from "../../enum/animal.enum";
 import { VaccinationCard } from "./vaccinationCard.entity";
-import { RelationshipPhoto } from "@modules/helper/photos/entities/infra/typeorm/relationshipPhoto.entity";
+import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
+import { Photo } from "@modules/photos/entities/infra/typeorm/photos.entity";
 
 @Entity("animals")
 export class Animal {
@@ -36,7 +30,7 @@ export class Animal {
   @Column({ nullable: true, default: "" })
   weight: string;
 
-  @Column({ name: "birth_date", nullable: true})
+  @Column({ name: "birth_date", nullable: true })
   birthDate: Date;
 
   @Column({ nullable: true, default: "" })
@@ -45,17 +39,9 @@ export class Animal {
   @Column({ name: "microchip_code", nullable: true, default: "" })
   microchipCode?: string;
 
-  @OneToOne(
-    () => VaccinationCard,
-    (vaccinationCard) => vaccinationCard.animal,
-    { cascade: true, onDelete: "CASCADE", nullable: true }
-  )
+  @OneToOne( () => VaccinationCard, (vaccinationCard) => vaccinationCard.animal, {cascade: true, onDelete: "CASCADE", nullable: true })
   vaccinationCard?: VaccinationCard;
 
-  @OneToMany(() => RelationshipPhoto, (relationship) => relationship.animal, {
-    cascade: true,
-    onDelete: "CASCADE",
-    nullable: true,
-  })
-  photos: RelationshipPhoto[];
+  @OneToMany(() => Photo, (photo) => photo.animal, { cascade: true, onDelete: "CASCADE", nullable: true, })
+  photos: Photo[];
 }
