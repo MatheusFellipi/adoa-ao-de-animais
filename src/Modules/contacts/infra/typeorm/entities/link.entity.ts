@@ -18,7 +18,7 @@ export class Link {
   created_at: Date;
 
   @UpdateDateColumn()
-  update_at: Date;
+  updated_at: Date;
 
   @ManyToOne(() => Organization, organization => organization.links)
   @JoinColumn({ name: "organization_id" })

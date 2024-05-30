@@ -81,9 +81,10 @@ export class AnimalsTable1717017941622 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()"
                     },
-                    {
+  {
                         name: "updated_at",
                         type: "timestamp",
+                        default: 'now()'
                     }
                 ]
             })
@@ -132,9 +133,10 @@ export class AnimalsTable1717017941622 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()"
                     },
-                    {
+  {
                         name: "updated_at",
                         type: "timestamp",
+                        default: 'now()'
                     }
                 ]
             })
@@ -174,9 +176,10 @@ export class AnimalsTable1717017941622 implements MigrationInterface {
                         isNullable: true,
                         default: -1
                     },
-                    {
+  {
                         name: "updated_at",
                         type: "timestamp",
+                        default: 'now()'
                     }
                 ]
             })

@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class AddressStateCityTable1717017184497 implements MigrationInterface {
 
@@ -11,7 +11,9 @@ export class AddressStateCityTable1717017184497 implements MigrationInterface {
                     {
                         name: "id",
                         type: "int",
-                        isPrimary: true
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: "increment"
                     },
                     {
                         name: "acronyms",
@@ -33,7 +35,9 @@ export class AddressStateCityTable1717017184497 implements MigrationInterface {
                     {
                         name: "id",
                         type: "int",
-                        isPrimary: true
+                        isPrimary: true,
+                        isGenerated: true,
+                        generationStrategy: "increment"
                     },
                     {
                         name: "name",
@@ -99,6 +103,7 @@ export class AddressStateCityTable1717017184497 implements MigrationInterface {
                     {
                         name: "updated_at",
                         type: "timestamp",
+                        default: 'now()'
                     }
                 ]
             })

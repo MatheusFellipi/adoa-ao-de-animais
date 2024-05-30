@@ -12,16 +12,9 @@ export class UsersRepository implements IUsersRepository {
   constructor() {
     this.__repository = dbContext.getRepository(User);
   }
-  
-  async findByEmail(email: string): Promise<User> {
-    return await this.__repository.findOne({
-      where: { email: email },
-    });
-  }
 
   async create({ name, avatar, addresses, contacts, links }: IUserDtos): Promise<User> {
-    const updated_at = new Date().toISOString()
-    const user = this.__repository.create({ name, avatar, addresses, contacts, links, updated_at });
+    const user = this.__repository.create({ name, avatar, addresses, contacts, links });
     return await this.__repository.save(user);
   }
 

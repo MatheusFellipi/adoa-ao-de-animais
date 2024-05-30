@@ -42,6 +42,7 @@ export class AdTable1717025082955 implements MigrationInterface {
                     {
                         name: "updated_at",
                         type: "timestamp",
+                        default: 'now()'
                     }
                 ]
             })

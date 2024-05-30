@@ -20,7 +20,7 @@ export class Contact {
   created_at: Date;
 
   @UpdateDateColumn()
-  update_at: Date;
+  updated_at: Date;
 
   @ManyToOne(() => User, user => user.contacts)
   @JoinColumn({ name: "user_id" })
@@ -29,5 +29,4 @@ export class Contact {
   @ManyToOne(() => Organization, organization => organization.contacts)
   @JoinColumn({ name: "organization_id" })
   organization?: Organization;
-
 }

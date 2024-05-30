@@ -44,9 +44,10 @@ export class PhotoContactsLinksTable1717017485939 implements MigrationInterface 
                         type: "timestamp",
                         default: "now()"
                     },
-                    {
+  {
                         name: "updated_at",
                         type: "timestamp",
+                        default: 'now()'
                     }
                 ]
             })
@@ -89,9 +90,10 @@ export class PhotoContactsLinksTable1717017485939 implements MigrationInterface 
                         type: "timestamp",
                         default: "now()"
                     },
-                    {
+  {
                         name: "updated_at",
                         type: "timestamp",
+                        default: 'now()'
                     }
                 ]
             })
@@ -130,9 +132,10 @@ export class PhotoContactsLinksTable1717017485939 implements MigrationInterface 
                         type: "timestamp",
                         default: "now()"
                     },
-                    {
+  {
                         name: "updated_at",
                         type: "timestamp",
+                        default: 'now()'
                     }
                 ]
             })
