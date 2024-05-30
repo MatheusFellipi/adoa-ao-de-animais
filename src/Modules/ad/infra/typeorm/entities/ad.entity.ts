@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 import { IsNotEmpty } from "class-validator";
+import { AnimalAdType } from "@modules/ad/enums/animalAd.enum";
 
-import { AnimalAdType } from "../../enums/animalAd.enum";
 
 @Entity("animal_ad")
 export class AnimalAd {

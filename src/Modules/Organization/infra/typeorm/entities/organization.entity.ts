@@ -1,12 +1,11 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-import { OrganizationType } from "@modules/organization/enums/organization.enum";
 import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 import { Address } from "@modules/address/infra/typeorm/entities/address.entity";
-import { Account } from "@modules/account/entities/infra/typeorm/Account.Entity";
 import { Animal } from "@modules/animal/infra/typeorm/entities/animal.entity";
-import { Contact } from "@modules/contacts/entities/infra/typeorm/contact.entity";
-import { Link } from "@modules/contacts/entities/infra/typeorm/link.entity";
+import { Account } from "@modules/account/infra/typeorm/entities/Account.Entity";
+import { Contact } from "@modules/contacts/infra/typeorm/entities/contact.entity";
+import { Link } from "@modules/contacts/infra/typeorm/entities/link.entity";
 
 
 @Entity("organizations")
@@ -20,13 +19,10 @@ export class Organization {
   @Column({ nullable: false })
   description: string;
 
-  @Column({ unique: true, nullable: false })
-  email: string;
+  @Column({ nullable: false })
+  type: number;
 
-  @Column({ enum: OrganizationType, nullable: false })
-  type: OrganizationType;
-
-  @Column("varchar", { unique: true, nullable: false, length: 14 })
+  @Column({ unique: true, nullable: false, length: 14 })
   cnpj_cpf: string;
 
   @Column({ nullable: true })

@@ -21,12 +21,13 @@ export class Contact {
 
   @UpdateDateColumn()
   update_at: Date;
-  
-  @ManyToOne(() => Organization, organization => organization.contacts)
-  @JoinColumn({ name: "organization_id" })
-  organization: Organization;
 
   @ManyToOne(() => User, user => user.contacts)
   @JoinColumn({ name: "user_id" })
-  user: User;
+  user?: User;
+  
+  @ManyToOne(() => Organization, organization => organization.contacts)
+  @JoinColumn({ name: "organization_id" })
+  organization?: Organization;
+
 }

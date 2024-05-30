@@ -24,9 +24,6 @@ export class AddressModelView {
     const instance = new AddressModelView();
     Object.assign(instance, data)
     validate(this).then((errors) => {
-      console.log('====================================');
-      console.log(errors);
-      console.log('====================================');
       if (errors.length > 0)
         throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 401);
     });

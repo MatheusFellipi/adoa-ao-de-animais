@@ -13,7 +13,7 @@ class DbContext {
     this.__connection = new DataSource(
       {
         ...db,
-        entities: [`${__dirname}/../../../../modules/**/entities/**.entity.ts`],
+        entities: [`src/modules/**/entities/**.entity.ts`],
         migrations: [`${__dirname}/migrations/*{.ts,.js}`],
       } as DataSourceOptions
     )

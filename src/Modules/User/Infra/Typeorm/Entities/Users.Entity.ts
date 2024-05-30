@@ -1,11 +1,10 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany, } from "typeorm";
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany, OneToOne, } from "typeorm";
 
-import { Link } from "@modules/contacts/entities/infra/typeorm/link.entity";
 import { Address } from "@modules/address/infra/typeorm/entities/address.entity";
-import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
-import { Account } from "@modules/account/entities/infra/typeorm/Account.Entity";
 import { Animal } from "@modules/animal/infra/typeorm/entities/animal.entity";
-import { Contact } from "@modules/contacts/entities/infra/typeorm/contact.entity";
+import { Account } from "@modules/account/infra/typeorm/entities/Account.Entity";
+import { Contact } from "@modules/contacts/infra/typeorm/entities/contact.entity";
+import { Link } from "@modules/contacts/infra/typeorm/entities/link.entity";
 
 @Entity({ name: "users" })
 export class User {
@@ -16,9 +15,6 @@ export class User {
     nullable: false,
   })
   name: string;
-
-  @Column({ unique: true, nullable: false })
-  email: string;
 
   @Column({ nullable: false, })
   avatar?: string;
@@ -32,8 +28,8 @@ export class User {
   @OneToMany(() => Address, address => address.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
   addresses: Address[];
 
-  @OneToMany(() => Account, account => account.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
-  accounts: Account[];
+  @OneToOne(() => Account, account => account.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
+  account: Account;
 
   @OneToMany(() => Animal, animal => animal.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
   animals: Animal[];

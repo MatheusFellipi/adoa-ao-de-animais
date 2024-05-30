@@ -1,25 +1,24 @@
+import { IsArray, IsUrl, IsNotEmpty, validate } from "class-validator";
 
 import { AddressModelView } from "@modules/address/modelView/address";
 import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
 import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
 import { AppError } from "@shared/infra/errors/AppError";
-import { IsArray, IsEmail, IsNotEmpty, validate } from "class-validator";
 
 export class UserModalView {
   id?: number;
+
   @IsNotEmpty()
   name: string;
-  @IsNotEmpty()
-  @IsEmail()
-  email: string;
-  
+
+  @IsUrl()
   avatar?: string;
   
   @IsArray()
   links?: ILinkDtos[];
   
   @IsArray()
-  contacts?: IContactDtos[];
+  contacts: IContactDtos[];
   
   @IsArray()
   addresses: AddressModelView[];
@@ -27,7 +26,7 @@ export class UserModalView {
   @IsArray()
   animals?: object[];
 
-  static validade(data: Partial<UserModalView>) {
+  static validade(data: UserModalView) {
     const instance = new UserModalView();
     data.addresses.forEach(element => {
       AddressModelView.validade(element)
