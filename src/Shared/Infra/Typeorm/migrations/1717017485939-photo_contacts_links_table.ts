@@ -38,6 +38,15 @@ export class PhotoContactsLinksTable1717017485939 implements MigrationInterface 
                     {
                         name: "phone",
                         type: "varchar"
+                    },
+                    {
+                        name: "created_at",
+                        type: "timestamp",
+                        default: "now()"
+                    },
+                    {
+                        name: "updated_at",
+                        type: "timestamp",
                     }
                 ]
             })
@@ -74,6 +83,15 @@ export class PhotoContactsLinksTable1717017485939 implements MigrationInterface 
                     {
                         name: "link",
                         type: "varchar"
+                    },
+                    {
+                        name: "created_at",
+                        type: "timestamp",
+                        default: "now()"
+                    },
+                    {
+                        name: "updated_at",
+                        type: "timestamp",
                     }
                 ]
             })
@@ -106,6 +124,15 @@ export class PhotoContactsLinksTable1717017485939 implements MigrationInterface 
                     {
                         name: "url",
                         type: "varchar"
+                    },
+                    {
+                        name: "created_at",
+                        type: "timestamp",
+                        default: "now()"
+                    },
+                    {
+                        name: "updated_at",
+                        type: "timestamp",
                     }
                 ]
             })

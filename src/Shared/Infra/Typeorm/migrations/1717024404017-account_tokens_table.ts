@@ -40,6 +40,15 @@ export class AccountTokensTable1717024404017 implements MigrationInterface {
                     name: "last_login",
                     type: "timestamp",
                     isNullable: true
+                },
+                {
+                    name: "created_at",
+                    type: "timestamp",
+                    default: "now()"
+                },
+                {
+                    name: "updated_at",
+                    type: "timestamp",
                 }
             ]
         }), true);
