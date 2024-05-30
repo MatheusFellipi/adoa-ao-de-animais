@@ -3,7 +3,6 @@ import { singleton } from "tsyringe"
 
 import { db } from "@config/db"
 
-
 @singleton()
 class DbContext {
   private __connection: DataSource | null = null
@@ -14,8 +13,8 @@ class DbContext {
     this.__connection = new DataSource(
       {
         ...db,
-        entities: [`${__dirname}/modules/**/entities/**.entity.ts`],
-        migrations: [`${__dirname}../typeorm/migrations/*{.ts,.js}`],
+        entities: [`${__dirname}/../../../../modules/**/entities/**.entity.ts`],
+        migrations: [`${__dirname}/migrations/*{.ts,.js}`],
       } as DataSourceOptions
     )
     return this.__connection

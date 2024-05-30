@@ -1,9 +1,11 @@
-import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { IsNotEmpty } from "class-validator";
 
-import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 import { VaccinationCard } from "./vaccinationCard.entity";
 import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
+import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
+import { User } from "@modules/user/infra/typeorm/entities/users.entity";
+import { RelationshipVaccination } from "./relationshipVaccination.entity";
 
 @Entity("animals")
 export class Animal {
@@ -38,15 +40,21 @@ export class Animal {
   @Column({ name: "microchip_code", nullable: true, default: "" })
   microchipCode?: string;
 
-  @OneToOne( () => VaccinationCard, (vaccinationCard) => vaccinationCard.animal, {cascade: true, onDelete: "CASCADE", nullable: true })
-  vaccinationCard?: VaccinationCard;
-
-  @OneToMany(() => Photo, (photo) => photo.animal, { cascade: true, onDelete: "CASCADE", nullable: true, })
-  photos: Photo[];
-
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   update_at: Date;
+
+  @ManyToOne(() => Organization, organization => organization.animals)
+  @JoinColumn({ name: "organization_id" })
+  organization: Organization;
+
+  @ManyToOne(() => User, user => user.animals)
+  @JoinColumn({ name: "user_id" })
+  user: User;
+
+  @OneToOne(() => VaccinationCard, vaccinations => vaccinations.animal)
+  @JoinColumn({ name: "vaccination_card_id" })
+  vaccinationCard: VaccinationCard
 }

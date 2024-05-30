@@ -11,7 +11,7 @@ import { AnimalRepositoryInMemory } from "@modules/animal/infra/repositories/in-
 import { OrganizationRepositoryInMemory } from "@modules/organization/infra/repositories/in-memory/OrganizationRepositoryInMemory";
 
 
-const ENV_TEST = process.env.NODE_ENV === 'TEST';
+const ENV_TEST = process.env.NODE_ENV === 'test';
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",

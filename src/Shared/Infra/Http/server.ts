@@ -1,7 +1,6 @@
 import app from "./config/app";
 import { dbContext } from "../typeorm";
 
-import "@shared/container"
 
 const port = process.env.PORT || "3333";
 

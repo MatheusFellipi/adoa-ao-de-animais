@@ -1,9 +1,9 @@
-import { IUserRepository } from "../IUserRepository";
 import { User } from "../../typeorm/entities/users.entity";
 import { IUserDtos } from "@modules/user/dtos/IUserDtos";
+import { IUsersRepository } from "../IUsersRepository";
 
 
-class UserRepositoryInMemory implements IUserRepository {
+class UserRepositoryInMemory implements IUsersRepository {
   private _user: User[] = [];
   async create(form: IUserDtos): Promise<User> {
     const users = new User();

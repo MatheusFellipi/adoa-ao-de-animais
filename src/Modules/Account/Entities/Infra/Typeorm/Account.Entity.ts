@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToOne } from "typeorm";
-
-import { User } from "@modules/user/infra/typeorm/entities/users.entity";
 import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
+import { User } from "@modules/user/infra/typeorm/entities/users.entity";
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from "typeorm";
+
 
 @Entity("accounts")
 export class Account {
@@ -11,16 +11,16 @@ export class Account {
   @Column({ unique: true, nullable: false })
   email: string;
 
+  @ManyToOne(() => Organization, organization => organization.accounts)
+  @JoinColumn({ name: "organization_id" })
+  organization: Organization;
+
+  @ManyToOne(() => User, user => user.accounts)
+  @JoinColumn({ name: "user_id" })
+  user: User;
+  
   @Column()
   password: string;
-
-  @OneToOne(() => User, (user) => user.account, { nullable: true, cascade: true })
-  @JoinColumn({ name: "user_id" })
-  user?: User;
-
-  @ManyToOne(() => User, (organization) => organization.account, { nullable: true, cascade: true })
-  @JoinColumn({ name: "organization_id" })
-  organization?: Organization;
 
   @Column({ name: "last_login", nullable: true })
   last_login: Date;

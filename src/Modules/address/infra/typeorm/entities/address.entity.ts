@@ -14,14 +14,15 @@ export class Address {
   @JoinColumn({ name: "city_id", referencedColumnName: "id" })
   city: City;
 
-  @ManyToOne(() => User, (user) => user.addresses)
-  @JoinColumn({ name: "user_id", referencedColumnName: "id" })
+  
+  @ManyToOne(() => Organization, organization => organization.addresses)
+  @JoinColumn({ name: "organization_id" })
+  organization: Organization;
+
+  @ManyToOne(() => User, user => user.addresses)
+  @JoinColumn({ name: "user_id" })
   user: User;
 
-  @ManyToOne(() => Organization, (organization) => organization.addresses)
-  @JoinColumn({ name: "organization_id", referencedColumnName: "id" })
-  organization: Organization;
-  
   @Column()
   street: string;
 

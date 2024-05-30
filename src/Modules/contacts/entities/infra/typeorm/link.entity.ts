@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "@modules/user/infra/typeorm/entities/users.entity";
 import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
 
@@ -7,15 +7,23 @@ export class Link {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => User, (user) => user.links, { nullable: true })
-  user?: User;
-
-  @OneToMany(() => Organization, (organization) => organization.links, { nullable: true })
-  organization?: Organization;
-
   @Column()
   name: string
 
   @Column()
   link: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  update_at: Date;
+
+  @ManyToOne(() => Organization, organization => organization.links)
+  @JoinColumn({ name: "organization_id" })
+  organization: Organization;
+
+  @ManyToOne(() => User, user => user.links)
+  @JoinColumn({ name: "user_id" })
+  user: User;
 }

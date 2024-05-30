@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import "express-async-errors";
+import "@shared/container"
 require("dotenv").config({ path: __dirname + "/.env" });
 
 import express from 'express'

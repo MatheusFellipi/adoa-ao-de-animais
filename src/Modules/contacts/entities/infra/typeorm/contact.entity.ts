@@ -1,18 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-
 import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
 import { User } from "@modules/user/infra/typeorm/entities/users.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity("contacts")
 export class Contact {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @OneToMany(() => User, (user) => user.contacts, { nullable: true })
-  user?: User;
-
-  @OneToMany(() => Organization, (organization) => organization.contacts, { nullable: true })
-  organization?: Organization;
 
   @Column()
   type: number
@@ -22,4 +15,18 @@ export class Contact {
 
   @Column()
   phone: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  update_at: Date;
+  
+  @ManyToOne(() => Organization, organization => organization.contacts)
+  @JoinColumn({ name: "organization_id" })
+  organization: Organization;
+
+  @ManyToOne(() => User, user => user.contacts)
+  @JoinColumn({ name: "user_id" })
+  user: User;
 }
