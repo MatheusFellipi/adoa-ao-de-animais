@@ -71,13 +71,11 @@ export class AddressStateCityTable1717017184497 implements MigrationInterface {
                         name: "user_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
                     },
                     {
                         name: "organization_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
                     },
                     {
                         name: "street",

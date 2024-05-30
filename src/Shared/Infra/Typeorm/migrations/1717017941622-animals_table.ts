@@ -19,19 +19,19 @@ export class AnimalsTable1717017941622 implements MigrationInterface {
                         name: "user_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
+
                     },
                     {
                         name: "organization_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
+
                     },
                     {
                         name: "vaccination_card_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
+
                     },
                     {
                         name: "name",
@@ -81,7 +81,7 @@ export class AnimalsTable1717017941622 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()"
                     },
-  {
+                    {
                         name: "updated_at",
                         type: "timestamp",
                         default: 'now()'
@@ -133,7 +133,7 @@ export class AnimalsTable1717017941622 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()"
                     },
-  {
+                    {
                         name: "updated_at",
                         type: "timestamp",
                         default: 'now()'
@@ -174,9 +174,9 @@ export class AnimalsTable1717017941622 implements MigrationInterface {
                         name: "vaccination_card_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
+
                     },
-  {
+                    {
                         name: "updated_at",
                         type: "timestamp",
                         default: 'now()'

@@ -1,5 +1,4 @@
-import { IsArray, IsUrl, IsNotEmpty, validate } from "class-validator";
-
+import { IsArray, IsUrl, IsNotEmpty, validate, IsNotEmptyObject, ValidateIf } from "class-validator";
 import { AddressModelView } from "@modules/address/modelView/address";
 import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
 import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
@@ -11,31 +10,33 @@ export class UserModalView {
   @IsNotEmpty()
   name: string;
 
+  @ValidateIf((o) => o.avatar !== undefined)
   @IsUrl()
   avatar?: string;
   
+  @ValidateIf((o) => o.links !== undefined)
   @IsArray()
   links?: ILinkDtos[];
   
   @IsArray()
+  @IsNotEmptyObject({}, { each: true })
   contacts: IContactDtos[];
   
   @IsArray()
+  @IsNotEmptyObject({}, { each: true })
   addresses: AddressModelView[];
 
+  @ValidateIf((o) => o.animals !== undefined)
   @IsArray()
   animals?: object[];
 
-  static validade(data: UserModalView) {
+  static async validate(data: UserModalView) {
     const instance = new UserModalView();
-    data.addresses.forEach(element => {
-      AddressModelView.validade(element)
-    });
-    Object.assign(instance, data)
-    validate(this).then((errors) => {
-      if (errors.length > 0)
-        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 401);
-    });
-    return data
+    Object.assign(instance, data);
+    const errors = await validate(instance);
+    if (errors.length > 0) {
+      throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString());
+    }
+    return instance;
   }
 }

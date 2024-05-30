@@ -21,7 +21,7 @@ export class UsersRepository implements IUsersRepository {
   async findById(id: number): Promise<User> {
     return await this.__repository.findOne({
       where: { id: id },
-      relations:{ addresses: true }
+      relations: { addresses: true }
     });
   }
 }

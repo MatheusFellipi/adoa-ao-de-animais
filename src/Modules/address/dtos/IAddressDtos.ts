@@ -1,4 +1,6 @@
+import { IOrganizationDtos } from "@modules/organization/dtos/IOrganizationDtos";
 import { ICityDtos } from "./ICityDtos";
+import { IUserDtos } from "@modules/user/dtos/IUserDtos";
 
 export interface IAddressDtos {
   id?: number;
@@ -7,6 +9,8 @@ export interface IAddressDtos {
   district: string;
   complement: string;
   city: ICityDtos;
+  organization?: IOrganizationDtos,
+  user?: IUserDtos,
   created_at?: Date;
   update_at?: Date;
 }

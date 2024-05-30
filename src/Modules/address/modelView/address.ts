@@ -1,12 +1,18 @@
 import { IsNotEmpty, IsNotEmptyObject, Length, validate } from "class-validator";
 import { CityModelView } from "./city";
 import { AppError } from "@shared/infra/errors/AppError";
+import { OrganizationModelView } from "@modules/organization/modelView/organization";
+import { UserModalView } from "@modules/user/modelView/user";
 
 export class AddressModelView {
   @IsNotEmptyObject({
     nullable: false,
   })
   city: CityModelView;
+
+  organization?: OrganizationModelView
+
+  user?: UserModalView
 
   @IsNotEmpty()
   street: string;

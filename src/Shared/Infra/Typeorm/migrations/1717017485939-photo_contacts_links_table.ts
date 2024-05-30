@@ -19,13 +19,11 @@ export class PhotoContactsLinksTable1717017485939 implements MigrationInterface 
                         name: "user_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
                     },
                     {
                         name: "organization_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
                     },
                     {
                         name: "type",
@@ -69,13 +67,11 @@ export class PhotoContactsLinksTable1717017485939 implements MigrationInterface 
                         name: "user_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
                     },
                     {
                         name: "organization_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
                     },
                     {
                         name: "name",
@@ -115,13 +111,11 @@ export class PhotoContactsLinksTable1717017485939 implements MigrationInterface 
                         name: "animal_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
                     },
                     {
                         name: "organization_id",
                         type: "int",
                         isNullable: true,
-                        default: -1
                     },
                     {
                         name: "url",

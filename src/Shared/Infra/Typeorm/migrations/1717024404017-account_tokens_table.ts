@@ -17,13 +17,11 @@ export class AccountTokensTable1717024404017 implements MigrationInterface {
                     name: "organization_id",
                     type: "int",
                     isNullable:true,
-                    default: -1
                 },
                 {
                     name: "user_id",
                     type: "int",
                     isNullable:true,
-                    default: -1
                 },
                 {
                     name: "email",

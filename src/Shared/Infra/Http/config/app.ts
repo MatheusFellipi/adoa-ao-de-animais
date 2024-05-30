@@ -1,5 +1,5 @@
-import "reflect-metadata";
 import "express-async-errors";
+import "reflect-metadata";
 import "@shared/container"
 require("dotenv").config({ path: __dirname + "/.env" });
 

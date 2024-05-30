@@ -22,9 +22,9 @@ export class Link {
 
   @ManyToOne(() => Organization, organization => organization.links)
   @JoinColumn({ name: "organization_id" })
-  organization: Organization;
+  organization?: Organization;
 
   @ManyToOne(() => User, user => user.links)
   @JoinColumn({ name: "user_id" })
-  user: User;
+  user?: User;
 }

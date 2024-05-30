@@ -9,15 +9,25 @@ import { UsersRepository } from "@modules/user/infra/typeorm/repositories/UsersR
 import { UserRepositoryInMemory } from "@modules/user/infra/repositories/in-memory/UserRepositoryInMemory";
 import { AnimalRepositoryInMemory } from "@modules/animal/infra/repositories/in-memory/AnimalRepositoryInMemory";
 import { OrganizationRepositoryInMemory } from "@modules/organization/infra/repositories/in-memory/OrganizationRepositoryInMemory";
+import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
+import { AddressRepository } from "@modules/address/infra/typeorm/repositories/addressRepository";
+import { AddressRepositoryInMemory } from "@modules/address/infra/repositories/in-memory/AddressRepositoryInMemory";
 
 
 const ENV_TEST = process.env.NODE_ENV === 'test';
 
 container.registerSingleton<IUsersRepository>(
-  "UsersRepository",
+  "IUsersRepository",
   ENV_TEST ? UserRepositoryInMemory : UsersRepository
   
 );
+
+container.registerSingleton<IAddressRepository>(
+  "IAddressRepository",
+  ENV_TEST ? AddressRepositoryInMemory : AddressRepository
+  
+);
+
 container.registerSingleton<IAnimalRepository>(
   "IAnimalRepository",
   ENV_TEST ? AnimalRepositoryInMemory : AnimalRepository
