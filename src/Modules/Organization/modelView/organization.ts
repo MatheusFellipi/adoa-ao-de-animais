@@ -7,6 +7,8 @@ import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
 import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
 import { AddressModelView } from "@modules/address/modelView/address";
 import { CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { LinkModelView } from "@modules/contacts/modelView/link";
+import { ContactModelView } from "@modules/contacts/modelView/contact";
 
 export class OrganizationModelView {
   id?: number;
@@ -21,11 +23,11 @@ export class OrganizationModelView {
 
   @ValidateIf((o) => o.animals !== undefined)
   @IsArray()
-  contacts?: IContactDtos[];
+  contacts?: ContactModelView[];
 
   @ValidateIf((o) => o.animals !== undefined)
   @IsArray()
-  links?: ILinkDtos[];
+  links?: LinkModelView[];
   
   @IsArray()
   @IsNotEmptyObject({}, { each: true })

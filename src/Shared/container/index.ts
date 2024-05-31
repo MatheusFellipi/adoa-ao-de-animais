@@ -13,6 +13,10 @@ import { AddressRepositoryInMemory } from "@modules/address/infra/repositories/i
 import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
 import { OrganizationRepository } from "@modules/organization/infra/typeorm/repositories/OrganizationRepository";
 import { OrganizationRepositoryInMemory } from "@modules/organization/infra/repositories/in-memory/OrganizationRepositoryInMemory";
+import { ILinkRepository } from "@modules/contacts/infra/repositories/ILinksRepository";
+import { LinkRepository } from "@modules/contacts/infra/typeorm/repositories/link.repository";
+import { IContactRepository } from "@modules/contacts/infra/repositories/IContactRepository";
+import { ContactRepository } from "@modules/contacts/infra/typeorm/repositories/contact.repository";
 
 
 const ENV_TEST = process.env.NODE_ENV === 'test';
@@ -35,4 +39,14 @@ container.registerSingleton<IAnimalRepository>(
 container.registerSingleton<IOrganizationRepository>(
   "IOrganizationRepository",
   ENV_TEST ? OrganizationRepositoryInMemory : OrganizationRepository
+);
+
+container.registerSingleton<ILinkRepository>(
+  "ILinkRepository",
+  LinkRepository
+);
+
+container.registerSingleton<IContactRepository>(
+  "IContactRepository",
+  ContactRepository
 );

@@ -1,4 +1,4 @@
-import { CreateAnimalController } from "@modules/animal/useCases/createAnimal/CreateAnimalsController";
+import { CreateAnimalController } from "@modules/animal/useCases/create/CreateAnimalsController";
 import { Router } from "express";
 
 
