@@ -4,6 +4,7 @@ import { IAddressDtos } from "@modules/address/dtos/IAddressDtos";
 
 
 export class AddressRepositoryInMemory implements IAddressRepository {
+
   private _addresses: Address[] = [];
 
   async create({street, district, complement, city, postal_code}: IAddressDtos): Promise<Address> {
@@ -13,12 +14,12 @@ export class AddressRepositoryInMemory implements IAddressRepository {
     return addresses
   }
 
-  createMulti(data: IAddressDtos[]): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
-  
   async findById(id: number): Promise<Address> {
     return this._addresses.find((address) => address.id === id );
+  }
+
+  createMulti(data: IAddressDtos[]): Promise<Address[]> {
+    throw new Error("Method not implemented.");
   }
 
 }

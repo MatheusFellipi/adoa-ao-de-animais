@@ -8,8 +8,11 @@ import { UsersRepository } from "@modules/user/infra/typeorm/repositories/UsersR
 import { UserRepositoryInMemory } from "@modules/user/infra/repositories/in-memory/UserRepositoryInMemory";
 import { AnimalRepositoryInMemory } from "@modules/animal/infra/repositories/in-memory/AnimalRepositoryInMemory";
 import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
-import { AddressRepository } from "@modules/address/infra/typeorm/repositories/addressRepository";
+import { AddressRepository } from "@modules/address/infra/typeorm/repositories/address.repository";
 import { AddressRepositoryInMemory } from "@modules/address/infra/repositories/in-memory/AddressRepositoryInMemory";
+import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
+import { OrganizationRepository } from "@modules/organization/infra/typeorm/repositories/OrganizationRepository";
+import { OrganizationRepositoryInMemory } from "@modules/organization/infra/repositories/in-memory/OrganizationRepositoryInMemory";
 
 
 const ENV_TEST = process.env.NODE_ENV === 'test';
@@ -27,5 +30,9 @@ container.registerSingleton<IAddressRepository>(
 container.registerSingleton<IAnimalRepository>(
   "IAnimalRepository",
   ENV_TEST ? AnimalRepositoryInMemory : AnimalRepository
+);
 
+container.registerSingleton<IOrganizationRepository>(
+  "IOrganizationRepository",
+  ENV_TEST ? OrganizationRepositoryInMemory : OrganizationRepository
 );

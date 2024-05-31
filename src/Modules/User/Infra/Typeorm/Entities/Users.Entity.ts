@@ -11,9 +11,7 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column("varchar", {
-    nullable: false,
-  })
+  @Column({nullable: false})
   name: string;
 
   @Column({ nullable: false, })

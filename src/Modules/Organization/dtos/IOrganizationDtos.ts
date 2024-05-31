@@ -7,7 +7,6 @@ export interface IOrganizationDtos {
   id?: number;
   name: string;
   description?: string;
-  email: string;
   type: OrganizationType;
   contacts?: IContactDtos[];
   links?: ILinkDtos[];

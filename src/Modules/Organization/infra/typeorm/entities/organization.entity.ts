@@ -32,7 +32,7 @@ export class Organization {
   created_at: Date;
 
   @UpdateDateColumn()
-  update_at: Date;
+  updated_at: Date;
 
   @OneToMany(() => Photo, photo => photo.organization, { cascade: true, nullable: true, onDelete: "CASCADE" })
   photos: Photo[];
