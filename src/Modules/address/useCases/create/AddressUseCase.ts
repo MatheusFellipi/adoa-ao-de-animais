@@ -11,8 +11,7 @@ import { AddressModelView } from "@modules/address/modelView/address";
 @injectable()
 export class AddressUseCase {
   constructor(
-    @inject("AddressRepository")
-    private _address_repository: IAddressRepository
+    @inject("IAddressRepository") private _address_repository: IAddressRepository
   ) { }
   async execute(form: AddressModelView): Promise<Address> {
     const address = new AddressModelView()

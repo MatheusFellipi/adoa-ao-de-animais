@@ -14,14 +14,13 @@ export class Address {
   @JoinColumn({ name: "city_id", referencedColumnName: "id" })
   city: City;
 
-  
-  @ManyToOne(() => Organization, organization => organization.addresses)
-  @JoinColumn({ name: "organization_id" })
-  organization: Organization;
+  @ManyToOne(() => User, user => user.addresses)
+  @JoinColumn({ name: "user_id", referencedColumnName: "id" })
+  user?: User;
 
   @ManyToOne(() => User, user => user.addresses)
-  @JoinColumn({ name: "user_id" })
-  user: User;
+  @JoinColumn({ name: "organization_id", referencedColumnName: "id" })
+  organization?: Organization;
 
   @Column()
   street: string;
@@ -32,7 +31,7 @@ export class Address {
   @Column()
   district: string;
 
-  @Column("text")
+  @Column()
   complement: string;
 
   @CreateDateColumn()

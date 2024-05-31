@@ -1,24 +1,29 @@
 import { Repository } from "typeorm";
-import { autoInjectable } from "tsyringe";
 
 import { dbContext } from "@shared/infra/typeorm"
-import { Address } from "../entities/address.entity";
 import { IAddressRepository } from "../../repositories/IAddressRepository";
+
+import { Address } from "../entities/address.entity";
 import { IAddressDtos } from "@modules/address/dtos/IAddressDtos";
 
-
-
-
-@autoInjectable()
 export class AddressRepository implements IAddressRepository {
   private __repository: Repository<Address>;
 
-  constructor(private context: typeof dbContext) {
-    this.__repository = context.getRepository(Address);
+  constructor() {
+    this.__repository = dbContext.getRepository(Address);
   }
 
-  async create({ street, complement, district, postal_code, city, organization, user, }: IAddressDtos): Promise<Address> {
-    const address = this.__repository.create({ user, street, complement, district, postal_code, city });
+  async createMulti(data: IAddressDtos[]): Promise<Address[]> {
+    const addresses: Address[] = [];
+    for (const item of data) {
+      const address = this.__repository.create(item);
+      addresses.push(await this.__repository.save(address));
+    }
+    return addresses;
+  }
+
+  async create(data: IAddressDtos): Promise<Address> {
+    const address = this.__repository.create(data);
     return await this.__repository.save(address);
   }
 

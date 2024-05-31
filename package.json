@@ -10,7 +10,7 @@
     "typeorm:drop": "npm run typeorm schema:drop",
     "typeorm:reset": "npm run typeorm:drop && npm run typeorm:sync",
     "typeorm:migrate": "env NODE_ENV=development npm run typeorm migration:generate -- -n",
-    "typeorm:create": "env NODE_ENV=development npm run typeorm migration:create",
+    "typeorm:create": "env NODE_ENV=development npm run typeorm migration:create src/shared/infra/typeorm/migrations/",
     "typeorm:run": "yarn typeorm migration:run -d src/shared/infra/typeorm/index.ts",
     "test": "jest"
   },
