@@ -1,13 +1,15 @@
-import { Address } from "@modules/address/infra/typeorm/entities/address.entity";
 import { User } from "../infra/typeorm/entities/users.entity";
 import { UserModalView } from "../modelView/user";
+import { AddressModelView } from "@modules/address/modelView/address";
 
 
 export class AdaptarUser {
-  static userReturn(address: Address[], user: User): UserModalView {
+  static userReturn(addresses: AddressModelView[], user: User, links, contacts): UserModalView {
     return {
       ...user,
-      addresses: address
+      addresses,
+      links, 
+      contacts
     }
   }
 }

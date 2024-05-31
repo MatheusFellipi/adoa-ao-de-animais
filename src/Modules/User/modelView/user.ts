@@ -1,8 +1,8 @@
 import { IsArray, IsUrl, IsNotEmpty, validate, IsNotEmptyObject, ValidateIf } from "class-validator";
 import { AddressModelView } from "@modules/address/modelView/address";
-import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
-import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
 import { AppError } from "@shared/infra/errors/AppError";
+import { LinkModelView } from "@modules/contacts/modelView/link";
+import { ContactModelView } from "@modules/contacts/modelView/contact";
 
 export class UserModalView {
   id?: number;
@@ -16,14 +16,15 @@ export class UserModalView {
   
   @ValidateIf((o) => o.links !== undefined)
   @IsArray()
-  links?: ILinkDtos[];
+  links?: LinkModelView[];
   
   @IsArray()
   @IsNotEmptyObject({}, { each: true })
-  contacts: IContactDtos[];
+  contacts: ContactModelView[];
   
   @IsArray()
   @IsNotEmptyObject({}, { each: true })
+  @ValidateIf((o) => o.links !== undefined)
   addresses: AddressModelView[];
 
   @ValidateIf((o) => o.animals !== undefined)
