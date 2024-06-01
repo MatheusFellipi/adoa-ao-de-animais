@@ -1,8 +1,7 @@
 import { VaccinationCardModelView } from "./vaccinationCard";
 import { AnimalGender, AnimalSize } from "../enum/animal.enum";
-import { IsNotEmpty, validate } from "class-validator";
+import { IsArray, IsNotEmpty, validate, ValidateIf } from "class-validator";
 import { PhotoModelView } from "@modules/photos/modelView/photos";
-import { UserModalView } from "@modules/user/modelView/user";
 import { AppError } from "@shared/infra/errors/AppError";
 
 export class AnimalModelView {
@@ -25,12 +24,16 @@ export class AnimalModelView {
 
   birthDate?: Date;
 
+  @IsNotEmpty()
   age: string;
 
   microchipCode?: string;
 
+  @ValidateIf((o) => o.links !== undefined)
   vaccinationCard?: VaccinationCardModelView;
 
+  @ValidateIf((o) => o.links !== undefined)
+  @IsArray()
   photos?: PhotoModelView[];
 
   static validade(data: AnimalModelView) {

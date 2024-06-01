@@ -1,8 +1,8 @@
-import { IRelationshipVaccinationDtos } from "./IRelationshipVaccinationDtos";
+import { IDoseDtos } from "./IDoseDtos";
 
 
 export interface IVaccinationCardDtos {
   id?: number;
-  vaccination: IRelationshipVaccinationDtos[];
+  dose: IDoseDtos[];
 }
 

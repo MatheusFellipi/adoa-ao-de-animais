@@ -1,7 +1,7 @@
 import { IVaccinationDtos } from "./IVaccinationDtos";
 
 
-export interface IRelationshipVaccinationDtos {
+export interface IDoseDtos {
   id?: number;
   dose: string;
   crmv: string;

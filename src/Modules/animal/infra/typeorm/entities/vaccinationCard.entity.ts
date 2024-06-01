@@ -9,7 +9,7 @@ export class VaccinationCard {
   id: number;
 
   @OneToMany(() => RelationshipVaccination, (relationship) => relationship.vaccinationCard, { cascade: true, onDelete: "CASCADE", nullable: true})
-  vaccination: RelationshipVaccination[];
+  dose: RelationshipVaccination[];
   
   @OneToOne(() => Animal, (animal) => animal.vaccinationCard, { cascade: true, onDelete: "CASCADE", nullable: true})
   animal: Animal;

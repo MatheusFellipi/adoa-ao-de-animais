@@ -6,7 +6,7 @@ import { VaccinationCard } from "./vaccinationCard.entity";
 @Entity("relationship_vaccinations")
 export class RelationshipVaccination {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   dose: string;
@@ -20,6 +20,6 @@ export class RelationshipVaccination {
   @OneToMany(() => Vaccination, (vaccination) => vaccination)
   vaccination: Vaccination;
 
-  @ManyToOne(() => VaccinationCard, (vaccination) => vaccination.vaccination)
+  @ManyToOne(() => VaccinationCard, (vaccination) => vaccination.dose)
   vaccinationCard: VaccinationCard;
 }
