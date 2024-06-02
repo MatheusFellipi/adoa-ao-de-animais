@@ -168,7 +168,8 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                     },
                     {
                         name: "vaccination_id",
-                        type: "int"
+                        type: "int",
+                        isNullable: true,
                     },
                     {
                         name: "vaccination_card_id",

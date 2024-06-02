@@ -8,7 +8,7 @@ import { CreateVaccinationCardController } from "../../vaccinationCard/create/Cr
 @injectable()
 export class CreateAnimalsUseCase {
   constructor(
-    @inject("IAnimalRepository") private __repository: IAnimalRepository
+    @inject("IAnimalRepository") private __repository: IAnimalRepository,
   ) { }
 
   async execute(form: AnimalModelView): Promise<Animal> {

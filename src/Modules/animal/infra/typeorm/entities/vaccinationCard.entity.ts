@@ -8,15 +8,15 @@ export class VaccinationCard {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => RelationshipVaccination, (relationship) => relationship.vaccinationCard, { cascade: true, onDelete: "CASCADE", nullable: true})
-  dose: RelationshipVaccination[];
-  
-  @OneToOne(() => Animal, (animal) => animal.vaccinationCard, { cascade: true, onDelete: "CASCADE", nullable: true})
+  @OneToOne(() => Animal, (animal) => animal.vaccinationCard, { cascade: true, onDelete: "CASCADE", nullable: true })
   animal: Animal;
+
+  @OneToMany(() => RelationshipVaccination, (relationship) => relationship.vaccinationCard, { onDelete: "CASCADE", nullable: true })
+  dose: RelationshipVaccination[];
 
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
-  update_at: Date;
+  updated_at: Date;
 }

@@ -7,15 +7,15 @@ import { VaccinationCard } from "../entities/vaccinationCard.entity";
 
 export class VaccinationCardRepository implements IVaccinationCardRepository {
   private __repository: Repository<VaccinationCard>;
-  
+
   constructor() {
     this.__repository = dbContext.getRepository(VaccinationCard);
   }
-  
-  create(data: IVaccinationCardDtos): Promise<VaccinationCard> {
-    throw new Error("Method not implemented.");
+
+  async create(data: IVaccinationCardDtos): Promise<VaccinationCard> {
+    return await this.__repository.save(this.__repository.create(data))
   }
-  
+
   findById(id: number): Promise<VaccinationCard> {
     throw new Error("Method not implemented.");
   }

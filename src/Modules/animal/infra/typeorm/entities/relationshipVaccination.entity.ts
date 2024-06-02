@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, ManyToOne, Column, JoinColumn, OneToOne } from "typeorm";
 
 import { Vaccination } from "./vaccination.entity";
 import { VaccinationCard } from "./vaccinationCard.entity";
@@ -17,9 +17,11 @@ export class RelationshipVaccination {
   @Column()
   crmv: string;
 
-  @OneToMany(() => Vaccination, (vaccination) => vaccination)
+  @OneToOne(() => Vaccination)
+  @JoinColumn({ name: "vaccination_id" })
   vaccination: Vaccination;
 
   @ManyToOne(() => VaccinationCard, (vaccination) => vaccination.dose)
+  @JoinColumn({ name: "vaccination_card_id" })
   vaccinationCard: VaccinationCard;
 }

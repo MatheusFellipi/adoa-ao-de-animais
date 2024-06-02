@@ -11,14 +11,11 @@ export class DoseRepository implements IDoseRepository {
   constructor() {
     this.__repository = dbContext.getRepository(RelationshipVaccination);
   }
-  create(data: IDoseDtos): Promise<RelationshipVaccination> {
-    throw new Error("Method not implemented.");
+
+  async create(data: IDoseDtos): Promise<RelationshipVaccination> {
+    return await this.__repository.save(this.__repository.create(data))
   }
 
-  createMulti(data: IDoseDtos[]): Promise<RelationshipVaccination[]> {
-    throw new Error("Method not implemented.");
-  }
-  
   findById(id: number): Promise<RelationshipVaccination> {
     throw new Error("Method not implemented.");
   }

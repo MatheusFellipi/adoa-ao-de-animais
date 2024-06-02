@@ -44,7 +44,7 @@ export class Animal {
   created_at: Date;
 
   @UpdateDateColumn()
-  update_at: Date;
+  updated_at: Date;
 
   @ManyToOne(() => Organization, organization => organization.animals)
   @JoinColumn({ name: "organization_id" })
@@ -54,7 +54,7 @@ export class Animal {
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @OneToOne(() => VaccinationCard, vaccinations => vaccinations.animal)
+  @OneToOne(() => VaccinationCard, vaccinations => vaccinations.animal,)
   @JoinColumn({ name: "vaccination_card_id" })
   vaccinationCard: VaccinationCard
 }

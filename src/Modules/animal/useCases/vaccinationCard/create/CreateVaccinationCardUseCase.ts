@@ -11,8 +11,8 @@ export class CreateVaccinationCardUseCase {
   ) { }
   async execute(form: VaccinationCardModelView): Promise<VaccinationCardModelView> {
     const instancia = VaccinationCardModelView.validade(form);
-    const card =  await this._vaccination_card_repository.create(instancia)
-    instancia.dose = instancia.dose.map(item=>({
+    const card = await this._vaccination_card_repository.create(instancia)
+    instancia.dose = instancia.dose.map(item => ({
       ...item,
       vaccinationCard: card
     }))

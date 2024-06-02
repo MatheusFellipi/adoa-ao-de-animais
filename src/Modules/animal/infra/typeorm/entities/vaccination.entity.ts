@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { RelationshipVaccination } from "./relationshipVaccination.entity";
 
 @Entity("vaccinations")
 export class Vaccination {
@@ -10,4 +11,7 @@ export class Vaccination {
 
   @Column("varchar")
   description: string;
+
+  @OneToOne(() => RelationshipVaccination)
+  doses: RelationshipVaccination;
 }
