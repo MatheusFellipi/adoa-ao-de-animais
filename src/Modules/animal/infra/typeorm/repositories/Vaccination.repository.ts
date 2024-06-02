@@ -1,23 +1,27 @@
 import { Repository } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm"
 
-import { Animal } from "../entities/animal.entity";
-import { IAnimalRepository } from "../../repositories/IAnimalRepository";
-import { IAnimalDtos } from "@modules/animal/dtos/IAnimalDtos";
+import { VaccinationCard } from "../entities/vaccinationCard.entity";
+import { IVaccinationRepository } from "../../repositories/IVaccinationRepository";
+import { IVaccinationDtos } from "@modules/animal/dtos/IVaccinationDtos";
+import { Vaccination } from "../entities/vaccination.entity";
 
-export class AnimalRepository implements IAnimalRepository {
-  private __repository: Repository<Animal>;
+export class VaccinationRepository implements IVaccinationRepository {
+  private __repository: Repository<VaccinationCard>;
+  
   constructor() {
-    this.__repository = dbContext.getRepository(Animal);
+    this.__repository = dbContext.getRepository(VaccinationCard);
   }
-  async create(data: IAnimalDtos): Promise<Animal> {
-    const user = this.__repository.create(data);
-    return await this.__repository.save(user);
+  create(data: IVaccinationDtos): Promise<Vaccination> {
+    throw new Error("Method not implemented.");
   }
-  async findById(id: number): Promise<Animal> {
-    return await this.__repository.findOne({
-      where: { id: id },
-      relations: { vaccinationCard: true }
-    });
+  createMulti(data: IVaccinationDtos[]): Promise<Vaccination[]> {
+    throw new Error("Method not implemented.");
+  }
+  findById(id: number): Promise<Vaccination> {
+    throw new Error("Method not implemented.");
+  }
+  findExist(found: string): Promise<Vaccination> {
+    throw new Error("Method not implemented.");
   }
 }

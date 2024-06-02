@@ -1,23 +1,26 @@
 import { Repository } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm"
 
-import { Animal } from "../entities/animal.entity";
-import { IAnimalRepository } from "../../repositories/IAnimalRepository";
-import { IAnimalDtos } from "@modules/animal/dtos/IAnimalDtos";
+import { IDoseRepository } from "../../repositories/IDoseRepository";
+import { IDoseDtos } from "@modules/animal/dtos/IDoseDtos";
+import { RelationshipVaccination } from "../entities/relationshipVaccination.entity";
 
-export class AnimalRepository implements IAnimalRepository {
-  private __repository: Repository<Animal>;
+export class DoseRepository implements IDoseRepository {
+  private __repository: Repository<RelationshipVaccination>;
+
   constructor() {
-    this.__repository = dbContext.getRepository(Animal);
+    this.__repository = dbContext.getRepository(RelationshipVaccination);
   }
-  async create(data: IAnimalDtos): Promise<Animal> {
-    const user = this.__repository.create(data);
-    return await this.__repository.save(user);
+  create(data: IDoseDtos): Promise<RelationshipVaccination> {
+    throw new Error("Method not implemented.");
   }
-  async findById(id: number): Promise<Animal> {
-    return await this.__repository.findOne({
-      where: { id: id },
-      relations: { vaccinationCard: true }
-    });
+
+  createMulti(data: IDoseDtos[]): Promise<RelationshipVaccination[]> {
+    throw new Error("Method not implemented.");
   }
+  
+  findById(id: number): Promise<RelationshipVaccination> {
+    throw new Error("Method not implemented.");
+  }
+ 
 }

@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 
 import { IAnimalRepository } from "@modules/animal/infra/repositories/IAnimalRepository";
-import { AnimalRepository } from "@modules/animal/infra/typeorm/repositories/AnimalRepository";
+import { AnimalRepository } from "@modules/animal/infra/typeorm/repositories/Animal.repository";
 
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";
 import { UsersRepository } from "@modules/user/infra/typeorm/repositories/UsersRepository";
@@ -17,6 +17,12 @@ import { ILinkRepository } from "@modules/contacts/infra/repositories/ILinksRepo
 import { LinkRepository } from "@modules/contacts/infra/typeorm/repositories/link.repository";
 import { IContactRepository } from "@modules/contacts/infra/repositories/IContactRepository";
 import { ContactRepository } from "@modules/contacts/infra/typeorm/repositories/contact.repository";
+import { IVaccinationRepository } from "@modules/animal/infra/repositories/IVaccinationRepository";
+import { VaccinationRepository } from "@modules/animal/infra/typeorm/repositories/Vaccination.repository";
+import { IVaccinationCardRepository } from "@modules/animal/infra/repositories/IVaccinationCardRepository";
+import { VaccinationCardRepository } from "@modules/animal/infra/typeorm/repositories/Vaccinationcard.repository";
+import { IDoseRepository } from "@modules/animal/infra/repositories/IDoseRepository";
+import { DoseRepository } from "@modules/animal/infra/typeorm/repositories/RelationshipVaccination.repository";
 
 
 const ENV_TEST = process.env.NODE_ENV === 'test';
@@ -50,3 +56,24 @@ container.registerSingleton<IContactRepository>(
   "IContactRepository",
   ContactRepository
 );
+
+container.registerSingleton<IAnimalRepository>(
+  "IAnimalRepository",
+  ENV_TEST ? AnimalRepositoryInMemory : AnimalRepository
+);
+
+container.registerSingleton<IVaccinationRepository>(
+  "IVaccinationRepository",
+  VaccinationRepository
+);
+
+container.registerSingleton<IVaccinationCardRepository>(
+  "IVaccinationCardRepository",
+  VaccinationCardRepository
+);
+
+container.registerSingleton<IDoseRepository>(
+  "IDoseRepository",
+  DoseRepository
+);
+

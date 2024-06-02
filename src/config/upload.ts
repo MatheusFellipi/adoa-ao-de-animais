@@ -27,10 +27,12 @@ export default {
         acl: 'public-read',
         bucket: 'some-bucket',
         key: (req, file, cb) => {
-            randomBytes(16, (err, hash) => {
+          randomBytes(16, (err, hash) => {
             if (err) cb(err);
             const fileName = `${hash.toString("hex")}-${file.originalname}`;
             cb(null, fileName);
+          })
+        }
       })
     })
   }
