@@ -8,8 +8,7 @@ export class CreateVaccinationController {
   static async handle(request: Request, response: Response) {}
   static async handleInternal(form: VaccinationModelView): Promise<VaccinationModelView> {
     const createVaccinationUserUseCase = container.resolve(CreateVaccinationUseCase);
-    const vaccination = await createVaccinationUserUseCase.execute(form);
-    return vaccination
+    return await createVaccinationUserUseCase.execute(form);
   }
 }
 
