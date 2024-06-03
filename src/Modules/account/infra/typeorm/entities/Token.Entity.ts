@@ -1,24 +1,22 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { Account } from './Account.Entity';
+import { Account } from './Account.entity';
 
 
-@Entity()
+@Entity("tokens")
 export class Token {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({
-    nullable:true
-  })
+  @Column()
   token: string;
 
   @ManyToOne(() => Account)
   @JoinColumn({ name: 'account_id' })
   account: Account;
 
-  @Column({ name: 'created_at', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  @Column({ name: 'created_at', default: () => 'now' })
+  created_at: Date;
 
   @Column({ name: 'expires_at' })
-  expiresAt: Date;
+  expires_at: Date;
 }

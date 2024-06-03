@@ -10,17 +10,16 @@
     "typeorm:drop": "npm run typeorm schema:drop",
     "typeorm:reset": "npm run typeorm:drop && npm run typeorm:sync",
     "typeorm:migrate": "env NODE_ENV=development npm run typeorm migration:generate -- -n",
-    "typeorm:create": "env NODE_ENV=development npm run typeorm migration:create src/shared/infra/typeorm/migrations/",
+    "typeorm:create": "yarn typeorm migration:create src/shared/infra/typeorm/migrations/",
     "typeorm:run": "yarn typeorm migration:run -d src/shared/infra/typeorm/index.ts",
     "test": "jest"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.588.0",
-    "@types/express": "^4.17.21",
     "aws-sdk": "^2.1632.0",
     "bcrypt": "^5.1.1",
     "class-validator": "^0.14.1",
     "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
     "helmet": "^7.1.0",
@@ -35,8 +34,12 @@
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.588.0",
+    "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/mocha": "^10.0.6",
     "@types/multer": "^1.4.11",
     "@types/multer-s3": "^3.0.3",

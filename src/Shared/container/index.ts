@@ -23,6 +23,10 @@ import { IVaccinationCardRepository } from "@modules/animal/infra/repositories/I
 import { VaccinationCardRepository } from "@modules/animal/infra/typeorm/repositories/Vaccinationcard.repository";
 import { IDoseRepository } from "@modules/animal/infra/repositories/IDoseRepository";
 import { DoseRepository } from "@modules/animal/infra/typeorm/repositories/RelationshipVaccination.repository";
+import { IAccountRepository } from "@modules/account/infra/repositories/IAccountRepository";
+import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepository";
+import { AccountRepository } from "@modules/account/infra/typeorm/repositories/account.repository";
+import { TokenRepository } from "@modules/account/infra/typeorm/repositories/Token.repository";
 
 
 const ENV_TEST = process.env.NODE_ENV === 'test';
@@ -77,3 +81,12 @@ container.registerSingleton<IDoseRepository>(
   DoseRepository
 );
 
+container.registerSingleton<IAccountRepository>(
+  "IAccountRepository",
+  AccountRepository
+);
+
+container.registerSingleton<ITokenRepository>(
+  "ITokenRepository",
+  TokenRepository
+);

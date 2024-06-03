@@ -3,7 +3,7 @@ import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Up
 import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 import { Address } from "@modules/address/infra/typeorm/entities/address.entity";
 import { Animal } from "@modules/animal/infra/typeorm/entities/animal.entity";
-import { Account } from "@modules/account/infra/typeorm/entities/Account.Entity";
+import { Account } from "@modules/account/infra/typeorm/entities/Account.entity";
 import { Contact } from "@modules/contacts/infra/typeorm/entities/contact.entity";
 import { Link } from "@modules/contacts/infra/typeorm/entities/link.entity";
 
