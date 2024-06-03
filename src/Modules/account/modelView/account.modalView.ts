@@ -1,4 +1,4 @@
-import { IsEmail, IsStrongPassword, validate } from "class-validator";
+import { IsArray, IsEmail, IsStrongPassword, validate, ValidateIf } from "class-validator";
 import { hash, compare } from "bcrypt";
 
 import { AppError } from "@shared/infra/errors/AppError";
@@ -15,12 +15,18 @@ export class AccountModelView {
   @IsEmail()
   email: string;
 
+  @ValidateIf((o) => o.avatar !== undefined)
+  @IsArray()
   organization?: OrganizationModelView;
 
+  @ValidateIf((o) => o.links !== undefined)
+  @IsArray()
   user?: UserModalView;
 
   @IsStrongPassword()
   password: string;
+
+  token?: string | any[];
 
   static validade(data: AccountModelView) {
     const instance = new AccountModelView();

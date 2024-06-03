@@ -6,6 +6,8 @@ import { AccountModelView } from "@modules/account/modelView/account.modalView";
 import { IAccountRepository } from "@modules/account/infra/repositories/IAccountRepository";
 import { TokenModelView } from "@modules/account/modelView/Token.modal";
 import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepository";
+import { CreateUserController } from "@modules/user/useCases/create/CreateUserController";
+import { CreateOrganizationController } from "@modules/organization/useCases/create/CreateOrganizationController";
 
 
 
@@ -16,17 +18,21 @@ export class CreateAccountUseCase {
     @inject("ITokenRepository") private _account_repository: ITokenRepository
   ) { }
 
-  async execute(data: AccountModelView): Promise<AccountModelView> {
-    const instance = AccountModelView.validade(data);
+  async execute(form: AccountModelView, type: "user" | "org"): Promise<AccountModelView> {
+    const instance = AccountModelView.validade(form);
 
     const existe = await this.__repository.findExistsBy(instance.email)
     if (existe) throw new AppError("A conta ja exite come esse e-mail")
+    if (type === "org")
+      form.organization = await CreateOrganizationController.handleInternal(form.organization)
+    else if (type === "user")
+      form.user = await CreateUserController.handleInternal(form.user)
 
     instance.password = await AccountModelView.crypto_password(instance.password)
-    
+
     const account = await this.__repository.create(instance)
     const token_instancia = await TokenModelView.create_token(account)
-    
+
     this._account_repository.create({
       account: account,
       token: token_instancia,
