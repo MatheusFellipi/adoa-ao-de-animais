@@ -17,9 +17,13 @@ export class OrganizationRepository implements IOrganizationRepository {
     return await this.__repository.existsBy({ cnpj_cpf: found });
   }
   
+  async update(data: Organization): Promise<Organization> {
+    return await this.__repository.save(data);
+  }
+  
   async create(data: IOrganizationDtos): Promise<Organization> {
-    const user = this.__repository.create(data);
-    return await this.__repository.save(user);
+    const orgs = this.__repository.create(data);
+    return await this.__repository.save(orgs);
   }
 
   async findById(id: number): Promise<Organization> {

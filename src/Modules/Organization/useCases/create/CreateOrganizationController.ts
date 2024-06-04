@@ -9,7 +9,7 @@ export class CreateOrganizationController {
     const { addresses, cnpj_cpf, name, operation_at, type, contacts, description, links } = request.body;
     const createUserUseCase = container.resolve(CreateOrganizationUseCase);
     const token = await createUserUseCase.execute({ name, addresses, cnpj_cpf, operation_at, type, contacts, description, links });
-    return response.status(200).json(token);
+    return response.status(201).json(token);
   }
   static async handleInternal(data: OrganizationModelView): Promise<OrganizationModelView> {
     const createUserUseCase = container.resolve(CreateOrganizationUseCase);

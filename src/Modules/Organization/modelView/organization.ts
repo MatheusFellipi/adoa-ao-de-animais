@@ -30,7 +30,7 @@ export class OrganizationModelView {
   @ValidateIf((o) => o.animals !== undefined)
   @IsArray()
   links?: LinkModelView[];
-  
+
   @IsArray()
   @IsNotEmptyObject({}, { each: true })
   addresses: AddressModelView[];
@@ -50,6 +50,45 @@ export class OrganizationModelView {
 
   static validade(data: OrganizationModelView) {
     const instance = new OrganizationModelView();
+    Object.assign(instance, data)
+    validate(this).then((errors) => {
+      if (errors.length > 0)
+        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 400);
+    });
+    return data
+  }
+}
+
+export class OrganizationUpdateModelView {
+  id?: number;
+
+  @ValidateIf((o) => o.avatar !== undefined)
+  @IsNotEmpty()
+  name?: string;
+
+  @ValidateIf((o) => o.avatar !== undefined)
+  @IsUrl()
+  avatar?: string;
+
+  @ValidateIf((o) => o.avatar !== undefined)
+  @IsNotEmpty()
+  description?: string;
+
+  @ValidateIf((o) => o.avatar !== undefined)
+  @IsNotEmpty()
+  type: OrganizationType | string;
+
+  @ValidateIf((o) => o.avatar !== undefined)
+  @IsNotEmpty()
+  cnpj_cpf: string;
+
+  @ValidateIf((o) => o.avatar !== undefined)
+  @IsNotEmpty()
+  @IsDate()
+  operation_at: Date;
+
+  static validade(data: OrganizationUpdateModelView) {
+    const instance = new OrganizationUpdateModelView();
     Object.assign(instance, data)
     validate(this).then((errors) => {
       if (errors.length > 0)

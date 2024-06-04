@@ -16,17 +16,13 @@ export class CreateUserUseCase {
   async execute(data: UserModalView): Promise<UserModalView> {
     const instance = await UserModalView.validate(data)
     const user = await this.__user_repository.create(instance);
-    
     const address = await AddressCreateMultiUseCaseController.handle(instance.addresses, user, "user")
-
      let link = []
      if (instance.links) 
        link = await LinkCreateUseCaseController.handleInternal(instance.links, user, "user")
-     
      let contacts = []
      if (instance.contacts) 
        contacts = await ContactCreateUseCaseController.handleInternal(instance.contacts, user, "user")
-
     return AdaptarUser.userReturn(address, user, link, contacts)
   }
 }

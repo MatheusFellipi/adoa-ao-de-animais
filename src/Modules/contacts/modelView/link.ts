@@ -10,7 +10,7 @@ export class LinkModelView {
 
   name: string
 
-  link: string;
+  url: string;
 
   created_at?: Date;
 

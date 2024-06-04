@@ -14,8 +14,22 @@ export class UsersRepository implements IUsersRepository {
   }
 
   async create({ name, avatar, addresses, contacts, links }: IUserDtos): Promise<User> {
-    const user = this.__repository.create({ name, avatar});
+    const user = this.__repository.create({ name, avatar, addresses, contacts, links });
     return await this.__repository.save(user);
+  }
+
+  async update(data: User): Promise<User> {
+    return await this.__repository.save(data);
+  }
+
+  async findByAccountId(id: number): Promise<User> {
+    return await this.__repository.findOne({
+      where: {
+        account: {
+          id: id
+        }
+      },
+    });
   }
 
   async findById(id: number): Promise<User> {

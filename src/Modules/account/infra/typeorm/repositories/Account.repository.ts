@@ -21,6 +21,9 @@ export class AccountRepository implements IAccountRepository {
     return await this.__repository.findOne({
       where: {
         id: id
+      },
+      relations:{
+        organization:true, user: true
       }
     })
   }

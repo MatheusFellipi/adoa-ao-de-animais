@@ -1,9 +1,9 @@
 import "reflect-metadata";
+require("dotenv").config();
 import "@shared/container"
 
 import "express-async-errors";
 
-require("dotenv").config({ path: __dirname + "/.env" });
 
 import express from 'express'
 import setupMiddleware from './middleware'

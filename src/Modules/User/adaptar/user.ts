@@ -1,5 +1,5 @@
 import { User } from "../infra/typeorm/entities/users.entity";
-import { UserModalView } from "../modelView/user";
+import { UserModalView, UserUpdateModalView } from "../modelView/user";
 import { AddressModelView } from "@modules/address/modelView/address";
 
 
@@ -10,6 +10,12 @@ export class AdaptarUser {
       addresses,
       links, 
       contacts
+    }
+  }
+  static userUpdateReturn( user: User): UserUpdateModalView {
+    return {
+      name: user.name,
+      avatar: user.avatar,
     }
   }
 }
