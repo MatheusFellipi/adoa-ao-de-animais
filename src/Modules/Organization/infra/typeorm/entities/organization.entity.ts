@@ -16,6 +16,9 @@ export class Organization {
   @Column({ nullable: false })
   name: string;
 
+  @Column({ nullable: false, })
+  avatar?: string;
+
   @Column({ nullable: false })
   description: string;
 
