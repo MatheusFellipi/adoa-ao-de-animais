@@ -19,6 +19,7 @@ export class CreateAccountUseCase {
 
   async execute(form: AccountModelView, type: "user" | "organization"): Promise<AccountReturnNotPasswordModelView> {
     const instance = AccountModelView.validade(form);
+    
     const existe = await this.__repository.findExistsBy(instance.email)
     if (existe) throw new AppError("A conta ja exite come esse e-mail")
 

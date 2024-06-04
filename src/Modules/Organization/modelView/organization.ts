@@ -7,6 +7,7 @@ import { AddressModelView } from "@modules/address/modelView/address";
 import { CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { LinkModelView } from "@modules/contacts/modelView/link";
 import { ContactModelView } from "@modules/contacts/modelView/contact";
+import { PhotoModelView } from "@modules/photos/modelView/photos";
 
 export class OrganizationModelView {
   id?: number;
@@ -23,18 +24,6 @@ export class OrganizationModelView {
   @IsNotEmpty()
   type: OrganizationType;
 
-  @ValidateIf((o) => o.animals !== undefined)
-  @IsArray()
-  contacts?: ContactModelView[];
-
-  @ValidateIf((o) => o.animals !== undefined)
-  @IsArray()
-  links?: LinkModelView[];
-
-  @IsArray()
-  @IsNotEmptyObject({}, { each: true })
-  addresses: AddressModelView[];
-
   @IsNotEmpty()
   cnpj_cpf: string;
 
@@ -47,6 +36,22 @@ export class OrganizationModelView {
 
   @UpdateDateColumn()
   updated_at?: Date;
+
+  @ValidateIf((o) => o.animals !== undefined)
+  @IsArray()
+  contacts?: ContactModelView[];
+
+  @ValidateIf((o) => o.animals !== undefined)
+  @IsArray()
+  links?: LinkModelView[];
+
+  @ValidateIf((o) => o.animals !== undefined)
+  @IsArray()
+  photos?: PhotoModelView[];
+
+  @IsArray()
+  @IsNotEmptyObject({}, { each: true })
+  addresses: AddressModelView[];
 
   static validade(data: OrganizationModelView) {
     const instance = new OrganizationModelView();
