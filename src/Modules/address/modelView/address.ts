@@ -30,7 +30,7 @@ export class AddressModelView {
 
   organization?: OrganizationModelView
 
-  static validade(data: Partial<AddressModelView>) {
+  static validade(data: AddressModelView) {
     const instance = new AddressModelView();
     Object.assign(instance, data)
     validate(this).then((errors) => {

@@ -19,6 +19,6 @@ export class CreateMultiUseCase {
         ...item
       }
     ))
-    return AdaptarAddress.addressReturn(await this._address_repository.createMulti(address))
+    return AdaptarAddress.addressMultiReturn(await this._address_repository.createMulti(address))
   }
 }

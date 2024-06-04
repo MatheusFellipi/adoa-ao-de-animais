@@ -2,8 +2,8 @@ import { Address } from "@modules/address/infra/typeorm/entities/address.entity"
 import { AddressModelView } from "../modelView/address";
 
 export class AdaptarAddress {
-  static addressReturn(address: Address[]): AddressModelView[] {
-    return address.map((item)=>(
+  static addressMultiReturn(address: Address[]): AddressModelView[] {
+    return address.map((item) => (
       {
         id: item.id,
         street: item.street,
@@ -15,5 +15,17 @@ export class AdaptarAddress {
         updated_at: item.updated_at,
       }
     ))
+  }
+  static addressReturn(address: Address): AddressModelView {
+    return {
+      id: address.id,
+      street: address.street,
+      postal_code: address.postal_code,
+      district: address.district,
+      complement: address.complement,
+      city: address.city,
+      created_at: address.created_at,
+      updated_at: address.updated_at,
+    }
   }
 }

@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 import { UpdateOrganizationUseCase } from "./UpdateOrganizationUseCase";
 
-export class CreateOrganizationController {
+export class UpdateOrganizationController {
   static async handle(request: Request, response: Response): Promise<Response> {
     const { cnpj_cpf, name, operation_at, type, description } = request.body;
     const createUserUseCase = container.resolve(UpdateOrganizationUseCase);

@@ -26,6 +26,11 @@ export class AddressRepository implements IAddressRepository {
     return await this.__repository.save(address);
   }
 
+  async update(address: Address, change_data: IAddressDtos): Promise<Address> {
+    this.__repository.merge(address, change_data);
+    return await this.__repository.save(address);
+  }
+
   async findById(id: number): Promise<Address> {
     return await this.__repository.findOne({
       where: { id: id },
