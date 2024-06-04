@@ -1,4 +1,4 @@
-import { IsArray, IsDate, IsNotEmpty, IsNotEmptyObject, validate, ValidateIf } from "class-validator";
+import { IsArray, IsDate, IsNotEmpty, IsNotEmptyObject, IsUrl, validate, ValidateIf } from "class-validator";
 import { AppError } from "@shared/infra/errors/AppError";
 
 
@@ -13,6 +13,10 @@ export class OrganizationModelView {
 
   @IsNotEmpty()
   name: string;
+
+  @ValidateIf((o) => o.avatar !== undefined)
+  @IsUrl()
+  avatar?: string;
 
   description?: string;
 

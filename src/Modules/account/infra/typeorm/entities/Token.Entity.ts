@@ -12,7 +12,7 @@ export class Tokens {
 
   @ManyToOne(() => Account)
   @JoinColumn({ name: 'account_id' })
-  account: Account;
+  account?: Account;
 
   @Column({ name: 'created_at', default: () => 'now' })
   created_at: Date;
