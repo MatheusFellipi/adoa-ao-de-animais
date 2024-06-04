@@ -10,18 +10,6 @@ export class Address {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => City, (city) => city.addresses)
-  @JoinColumn({ name: "city_id", referencedColumnName: "id" })
-  city: City;
-
-  @ManyToOne(() => User, user => user.addresses)
-  @JoinColumn({ name: "user_id", referencedColumnName: "id" })
-  user?: User;
-
-  @ManyToOne(() => User, user => user.addresses)
-  @JoinColumn({ name: "organization_id", referencedColumnName: "id" })
-  organization?: Organization;
-
   @Column()
   street: string;
 
@@ -39,4 +27,16 @@ export class Address {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @ManyToOne(() => City, (city) => city.addresses)
+  @JoinColumn({ name: "city_id", referencedColumnName: "id" })
+  city: City;
+
+  @ManyToOne(() => User, user => user.addresses)
+  @JoinColumn({ name: "user_id", referencedColumnName: "id" })
+  user?: User;
+
+  @ManyToOne(() => User, user => user.addresses)
+  @JoinColumn({ name: "organization_id", referencedColumnName: "id" })
+  organization?: Organization;
 }

@@ -12,7 +12,7 @@ export class Link {
   name: string
 
   @Column()
-  link: string;
+  url: string;
 
   @CreateDateColumn()
   created_at: Date;

@@ -3,7 +3,7 @@ import { Account } from './Account.entity';
 
 
 @Entity("tokens")
-export class Token {
+export class Tokens {
   @PrimaryGeneratedColumn()
   id: number;
 

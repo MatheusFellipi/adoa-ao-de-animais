@@ -1,7 +1,7 @@
 import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
 import { User } from "@modules/user/infra/typeorm/entities/users.entity";
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, OneToOne, OneToMany } from "typeorm";
-import { Token } from "./Token.Entity";
+import { Tokens } from "./Token.Entity";
 
 
 @Entity("accounts")
@@ -20,8 +20,8 @@ export class Account {
   @JoinColumn({ name: "user_id" })
   user?: User;
 
-  @OneToMany(() => Token, t => t.account)
-  token: Token[];
+  @OneToMany(() => Tokens, t => t.account)
+  token: Tokens[];
   
   @Column()
   password: string;

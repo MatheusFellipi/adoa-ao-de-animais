@@ -7,13 +7,6 @@ import { OrganizationModelView } from "@modules/organization/modelView/organizat
 export class AddressModelView {
   id?: number
 
-  @IsNotEmptyObject()
-  city: CityModelView;
-
-  user?: UserModalView
-  
-  organization?: OrganizationModelView
-
   @IsNotEmpty()
   street: string;
 
@@ -29,6 +22,13 @@ export class AddressModelView {
   created_at?: Date
 
   updated_at?: Date
+
+  @IsNotEmptyObject()
+  city: CityModelView;
+
+  user?: UserModalView
+
+  organization?: OrganizationModelView
 
   static validade(data: Partial<AddressModelView>) {
     const instance = new AddressModelView();

@@ -78,7 +78,7 @@ export class PhotoContactsLinksTable1717179934885 implements MigrationInterface 
                         type: "varchar"
                     },
                     {
-                        name: "link",
+                        name: "url",
                         type: "varchar"
                     },
                     {

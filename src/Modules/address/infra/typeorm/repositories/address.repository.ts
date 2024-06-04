@@ -16,8 +16,7 @@ export class AddressRepository implements IAddressRepository {
   async createMulti(data: IAddressDtos[]): Promise<Address[]> {
     const addresses: Address[] = [];
     for (const item of data) {
-      const address = this.__repository.create(item);
-      addresses.push(await this.__repository.save(address));
+      addresses.push(await this.__repository.save(this.__repository.create(item)));
     }
     return addresses;
   }

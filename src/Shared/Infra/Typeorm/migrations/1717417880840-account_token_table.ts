@@ -59,7 +59,7 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                         generationStrategy: 'increment',
                     },
                     {
-                        name: 'tokens',
+                        name: 'token',
                         type: 'varchar',
                         isNullable: false,
                     },

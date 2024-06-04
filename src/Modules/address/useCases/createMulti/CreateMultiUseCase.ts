@@ -11,6 +11,8 @@ export class CreateMultiUseCase {
     @inject("IAddressRepository") private _address_repository: IAddressRepository
   ) { }
   async execute(form: AddressModelView[], relation: Object, key: "user" | "organization" ): Promise<AddressModelView[]> {
+
+
     const address = form.map(item => (
       {
         [key]: relation,

@@ -1,14 +1,9 @@
 import { inject, injectable } from "tsyringe";
-
 import { AddressCreateMultiUseCaseController } from "@modules/address/useCases/createMulti/CreateMultiUseCaseController";
-
 import { AdaptarOrgs } from "@modules/organization/adaptar/organization";
-
 import { OrganizationModelView } from "@modules/organization/modelView/organization";
 import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
-
 import { AppError } from "@shared/infra/errors/AppError";
-
 import { LinkCreateUseCaseController } from "@modules/contacts/controllers/link/create/LinksUseCaseController";
 import { ContactCreateUseCaseController } from "@modules/contacts/controllers/contact/create/ContactsCreateUseCaseController";
 
@@ -25,7 +20,7 @@ export class CreateOrganizationUseCase {
     
     if (exists) throw new AppError("O cnpj/cpf ja esta em cadastrado.", 400);
     const org = await this.__repository.create(instance);
-    
+
     const address = await AddressCreateMultiUseCaseController.handle(instance.addresses, org, "organization")
 
     let link = []

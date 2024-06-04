@@ -5,20 +5,20 @@ import { dbContext } from "@shared/infra/typeorm"
 
 import { ITokenRepository } from "../../repositories/ITokenRepository";
 import { ITokenDtos } from "@modules/account/dtos/token.dtos";
-import { Token } from "../entities/Token.Entity";
+import { Tokens } from "../entities/Token.Entity";
 
 export class TokenRepository implements ITokenRepository {
-  private __repository: Repository<Token>;
+  private __repository: Repository<Tokens>;
 
   constructor() {
-    this.__repository = dbContext.getRepository(Token);
+    this.__repository = dbContext.getRepository(Tokens);
   }
 
-  async create(data: ITokenDtos): Promise<Token> {
+  async create(data: ITokenDtos): Promise<Tokens> {
     return await this.__repository.save(this.__repository.create(data))
   }
 
-  async findByAccountID(found: number): Promise<Token[]> {
+  async findByAccountID(found: number): Promise<Tokens[]> {
     return await this.__repository.find({
       where: {
         account: {

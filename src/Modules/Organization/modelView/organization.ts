@@ -3,8 +3,6 @@ import { AppError } from "@shared/infra/errors/AppError";
 
 
 import { OrganizationType } from "../enums/organization.enum";
-import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
-import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
 import { AddressModelView } from "@modules/address/modelView/address";
 import { CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { LinkModelView } from "@modules/contacts/modelView/link";
