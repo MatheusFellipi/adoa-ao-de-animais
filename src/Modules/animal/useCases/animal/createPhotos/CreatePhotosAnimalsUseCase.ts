@@ -1,25 +1,25 @@
 import { inject, injectable } from "tsyringe";
 
-import { AnimalModelView } from "@modules/animal/modelView/animal";
+import { AnimalPhotoModelView } from "@modules/animal/modelView/animal";
 import { Animal } from "@modules/animal/infra/typeorm/entities/animal.entity";
 import { IAnimalRepository } from "@modules/animal/infra/repositories/IAnimalRepository";
-import { CreateVaccinationCardController } from "../../vaccinationCard/create/CreateVaccinationCardController";
+import { AppError } from "@shared/infra/errors/AppError";
+import { CreatePhotosController } from "@modules/photos/useCases/create/CreatePhotosController";
 
 @injectable()
-export class CreateAnimalsUseCase {
+export class CreatePhotosAnimalsUseCase {
   constructor(
     @inject("IAnimalRepository") private __repository: IAnimalRepository,
   ) { }
 
-  async execute(form: AnimalModelView): Promise<Animal> {
-    const instancia = AnimalModelView.validade(form);
+  async execute(form: AnimalPhotoModelView): Promise<Animal> {
+    const instancia = AnimalPhotoModelView.validade(form);
     
-    if (instancia.vaccinationCard) {
-      const card = await CreateVaccinationCardController.handleInternal(instancia.vaccinationCard)
-      instancia.vaccinationCard = card
-  }
-
-    const animal = await this.__repository.create(instancia);
+    const animal = await this.__repository.findById(instancia.animal_id)
+    if (animal) throw new AppError("O animal nao se encontra no banco de dados")
+    instancia.animal = animal  
+    
+    const photos = CreatePhotosController.handleInternal(instancia, "animal")
 
     return animal
   }

@@ -1,11 +1,11 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { IsNotEmpty } from "class-validator";
 
 import { VaccinationCard } from "./vaccinationCard.entity";
 import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
 import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
 import { User } from "@modules/user/infra/typeorm/entities/users.entity";
-import { RelationshipVaccination } from "./relationshipVaccination.entity";
+import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 
 @Entity("animals")
 export class Animal {
@@ -48,13 +48,16 @@ export class Animal {
 
   @ManyToOne(() => Organization, organization => organization.animals)
   @JoinColumn({ name: "organization_id" })
-  organization: Organization;
+  organization?: Organization;
 
   @ManyToOne(() => User, user => user.animals)
   @JoinColumn({ name: "user_id" })
-  user: User;
+  user?: User;
 
   @OneToOne(() => VaccinationCard, vaccinations => vaccinations.animal,)
   @JoinColumn({ name: "vaccination_card_id" })
   vaccinationCard: VaccinationCard
+
+  @OneToMany(() => Organization, organization => organization.animals)
+  photos?: Photo[];
 }

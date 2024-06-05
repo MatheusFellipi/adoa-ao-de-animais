@@ -50,8 +50,8 @@ export class Organization {
   animals: Animal[];
   
   @OneToMany(() => Contact, contact => contact.organization, { cascade: true, nullable: true, onDelete: "CASCADE" })
-  contacts: Contact[];
+  contacts?: Contact[];
 
   @OneToMany(() => Link, link => link.organization, { cascade: true, nullable: true, onDelete: "CASCADE" })
-  links: Link[];
+  links?: Link[];
 }

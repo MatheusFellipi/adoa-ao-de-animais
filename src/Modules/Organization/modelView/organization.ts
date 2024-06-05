@@ -45,9 +45,10 @@ export class OrganizationModelView {
   @IsArray()
   links?: LinkModelView[];
 
-  @ValidateIf((o) => o.animals !== undefined)
+  @ValidateIf((o) => o.photos !== undefined)
   @IsArray()
-  photos?: PhotoModelView[];
+  @IsUrl()
+  photos?: string[];
 
   @IsArray()
   @IsNotEmptyObject({}, { each: true })

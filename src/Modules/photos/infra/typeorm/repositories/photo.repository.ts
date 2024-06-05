@@ -1,30 +1,36 @@
 import { Repository } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm"
-import { Contact } from "../entities/contact.entity";
 
+import { IPhotosRepository } from "../../repositories/IPhotosRepository";
+import { IAnimalDtos } from "@modules/animal/dtos/IAnimalDtos";
+import { Photo } from "../entities/photos.entity";
 
-import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
-import { IContactRepository } from "../../repositories/IContactRepository";
-
-export class ContactRepository implements IContactRepository {
-  private __repository: Repository<Contact>;
+export class PhotoRepository implements IPhotosRepository {
+  
+  private __repository: Repository<Photo>;
 
   constructor() {
-    this.__repository = dbContext.getRepository(Contact);
+    this.__repository = dbContext.getRepository(Photo);
   }
 
-  async createMulti(data: IContactDtos[]): Promise<Contact[]> {
-    const contacts: Contact[] = [];
-    for (const item of data) {
-      const contact = this.__repository.create(item);
-      contacts.push(await this.__repository.save(contact));
-    }
-    return contacts;
+  create(data: IAnimalDtos): Promise<Photo> {
+    throw new Error("Method not implemented.");
   }
-
-  async create(data: IContactDtos): Promise<Contact> {
-    const user = this.__repository.create(data);
-    return await this.__repository.save(user);
+  
+  update(data: Photo, change_data: IAnimalDtos): Promise<Photo> {
+    throw new Error("Method not implemented.");
+  }
+  
+  delete(data: Photo): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
+  
+  findById(id: number): Promise<Photo> {
+    throw new Error("Method not implemented.");
+  }
+  
+  findByIdFullReturn(id: number): Promise<Photo> {
+    throw new Error("Method not implemented.");
   }
 
 }

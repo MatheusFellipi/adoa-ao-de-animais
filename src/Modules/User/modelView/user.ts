@@ -3,6 +3,7 @@ import { AddressModelView } from "@modules/address/modelView/address";
 import { AppError } from "@shared/infra/errors/AppError";
 import { LinkModelView } from "@modules/contacts/modelView/link";
 import { ContactModelView } from "@modules/contacts/modelView/contact";
+import { AnimalModelView } from "@modules/animal/modelView/animal";
 
 export class UserModalView {
   id?: number;
@@ -10,14 +11,6 @@ export class UserModalView {
   @IsNotEmpty()
   name: string;
 
-  @ValidateIf((o) => o.avatar !== undefined)
-  @IsUrl()
-  avatar?: string;
-  
-  @ValidateIf((o) => o.links !== undefined)
-  @IsArray()
-  links?: LinkModelView[];
-  
   @IsArray()
   @IsNotEmptyObject({}, { each: true })
   contacts: ContactModelView[];
@@ -27,9 +20,17 @@ export class UserModalView {
   @ValidateIf((o) => o.links !== undefined)
   addresses: AddressModelView[];
 
+  @ValidateIf((o) => o.avatar !== undefined)
+  @IsUrl()
+  avatar?: string;
+  
+  @ValidateIf((o) => o.links !== undefined)
+  @IsArray()
+  links?: LinkModelView[];
+  
   @ValidateIf((o) => o.animals !== undefined)
   @IsArray()
-  animals?: object[];
+  animals?: AnimalModelView[];
 
   static async validate(data: UserModalView) {
     const instance = new UserModalView();

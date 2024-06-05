@@ -1,15 +1,16 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
+import { CreatePhotosAnimalsUseCase } from "./CreatePhotosAnimalsUseCase";
 
-import { CreateAnimalsUseCase } from "./CreateAnimalsUseCase";
 
-export class CreateAnimalController {
+export class CreatePhotosAnimalController {
   static async handle(request: Request, response: Response): Promise<Response> {
     const { age, gender, name, size, birthDate, description, microchipCode, origin, vaccinationCard, weight } = request.body;
-    const photos = request.files.keys
-    const createUserUseCase = container.resolve(CreateAnimalsUseCase);
-    await createUserUseCase.execute({ age, gender, name, size, birthDate, description, microchipCode, origin, photos, vaccinationCard, weight });
-    return response.status(201).send()
+    const files: any = request.files
+    const photos = files.map(item=>({ url: item.key }))
+    const use_case = container.resolve(CreatePhotosAnimalsUseCase);
+    const animal = await use_case.execute({ age, gender, name, size, birthDate, description, microchipCode, origin, photos, vaccinationCard, weight });
+    return response.status(201).json(animal)
   }
 }
 
