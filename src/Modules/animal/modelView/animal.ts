@@ -3,6 +3,8 @@ import { AnimalGender, AnimalSize } from "../enum/animal.enum";
 import { IsArray, IsNotEmpty, validate, ValidateIf } from "class-validator";
 import { PhotoModelView } from "@modules/photos/modelView/photos";
 import { AppError } from "@shared/infra/errors/AppError";
+import { UserModalView } from "@modules/user/modelView/user";
+import { OrganizationModelView } from "@modules/organization/modelView/organization";
 
 export class AnimalModelView {
   id?: number;
@@ -35,6 +37,9 @@ export class AnimalModelView {
   @ValidateIf((o) => o.links !== undefined)
   @IsArray()
   photos?: PhotoModelView[];
+
+  organization?: OrganizationModelView;
+  user?: UserModalView;
 
   static validade(data: AnimalModelView) {
     const instance = new AnimalModelView();

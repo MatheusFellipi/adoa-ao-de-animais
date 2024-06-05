@@ -5,12 +5,10 @@ import { CreateAnimalsUseCase } from "./CreateAnimalsUseCase";
 
 export class CreateAnimalController {
   static async handle(request: Request, response: Response): Promise<Response> {
-    const { age, gender, name, size, birthDate, description, microchipCode, origin, photos, vaccinationCard, weight } = request.body;
-    const type = request.type
-    const account = request.account[type]
+    const { age, gender, name, size, birthDate, description, microchipCode, origin, vaccinationCard, weight } = request.body;
+    const photos = request.files.keys
     const createUserUseCase = container.resolve(CreateAnimalsUseCase);
-    await createUserUseCase.execute(
-      { age, gender, name, size, birthDate, description, microchipCode, origin, photos, vaccinationCard, weight, [type]: account });
+    await createUserUseCase.execute({ age, gender, name, size, birthDate, description, microchipCode, origin, photos, vaccinationCard, weight });
     return response.status(201).send()
   }
 }

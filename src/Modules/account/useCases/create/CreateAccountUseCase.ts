@@ -14,7 +14,7 @@ import { AccountReturnNotPasswordModelView } from "@modules/account/modelView/ac
 export class CreateAccountUseCase {
   constructor(
     @inject("IAccountRepository") private __repository: IAccountRepository,
-    @inject("ITokenRepository") private _account_repository: ITokenRepository
+    @inject("ITokenRepository") private _token_repository: ITokenRepository
   ) { }
 
   async execute(form: AccountModelView, type: "user" | "organization"): Promise<AccountReturnNotPasswordModelView> {
@@ -37,7 +37,7 @@ export class CreateAccountUseCase {
       id: account.id,
     })
 
-    const token = await this._account_repository.create({
+    const token = await this._token_repository.create({
       account: account,
       token: token_instancia,
       expires_at: addDays(Date.now(), 1)

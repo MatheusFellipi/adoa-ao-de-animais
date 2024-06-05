@@ -31,6 +31,7 @@ export class AccountModelView {
   static validade(data: AccountModelView) {
     const instance = new AccountModelView();
     Object.assign(instance, data)
+    instance.email.toLowerCase()
     validate(this).then((errors) => {
       if (errors.length > 0)
         throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 400);

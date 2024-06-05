@@ -6,17 +6,16 @@ import { IAnimalRepository } from "@modules/animal/infra/repositories/IAnimalRep
 import { AppError } from "@shared/infra/errors/AppError";
 
 @injectable()
-export class UpdateAnimalsUseCase {
+export class DeleteAnimalsUseCase {
   constructor(
     @inject("IAnimalRepository") private __repository: IAnimalRepository,
   ) { }
 
-  async execute(form: AnimalModelView): Promise<Animal> {
-    const instancia = AnimalModelView.validade(form);
-    const animal = await this.__repository.findById(instancia.id)
+  async execute(id_animal: number): Promise<void> {
+    const animal = await this.__repository.findById(id_animal)
     if (!animal) {
-      throw new AppError("o animal nao exitem no banco de dados", 400)
+      throw new AppError("o animal noa exitem no banco de dados", 400)
     }
-    return await this.__repository.update(animal, instancia);
+    await this.__repository.delete(animal);
   }
 }

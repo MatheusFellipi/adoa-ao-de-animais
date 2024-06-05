@@ -6,10 +6,13 @@ import { UpdateAnimalsUseCase } from "./UpdateAnimalsUseCase";
 
 export class UpdateAnimalController {
   static async handle(request: Request, response: Response): Promise<Response> {
-    const { age, gender, name, size, birthDate, description, microchipCode, origin, photos, vaccinationCard, weight } = request.body;
+    const { age, gender, name, size, birthDate, description, microchipCode, origin, photos, weight } = request.body;
+    const { id } = request.params
     const createUserUseCase = container.resolve(UpdateAnimalsUseCase);
-    await createUserUseCase.execute({ age, gender, name, size, birthDate, description, microchipCode, origin, photos, vaccinationCard, weight });
-    return response.status(201).send()
+    const animal = await createUserUseCase.execute(
+      { id: parseInt(id), age, gender, name, size, birthDate, description, microchipCode, origin, photos, weight }
+    );
+    return response.status(201).json(animal)
   }
 }
 

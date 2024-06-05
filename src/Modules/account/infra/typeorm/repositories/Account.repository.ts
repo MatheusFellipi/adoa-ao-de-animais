@@ -32,6 +32,10 @@ export class AccountRepository implements IAccountRepository {
     return await this.__repository.findOne({
       where: {
         email: email
+      },
+      relations:{
+        organization: true,
+        user: true
       }
     })
   }

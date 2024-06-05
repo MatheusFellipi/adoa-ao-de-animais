@@ -13,6 +13,13 @@ export class TokenRepository implements ITokenRepository {
   constructor() {
     this.__repository = dbContext.getRepository(Tokens);
   }
+  async deleteAll(id: number): Promise<void> {
+    await this.__repository.delete({
+      account: {
+        id: id
+      }
+    });
+  }
 
   async create(data: ITokenDtos): Promise<Tokens> {
     return await this.__repository.save(this.__repository.create(data))
