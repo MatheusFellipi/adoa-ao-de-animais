@@ -7,7 +7,7 @@ export class UpdateUserController {
     const { name } = request.body;
     const avatar = request?.file?.key;
     const updateUserUseCase = container.resolve(UpdateUserUseCase);
-    const token = await updateUserUseCase.execute({name, avatar}, request.account.user);
+    const token = await updateUserUseCase.execute({name, avatar}, request.account.user as any);
     return response.status(200).json(token);
   }
 }

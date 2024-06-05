@@ -22,8 +22,8 @@ export class AccountRepository implements IAccountRepository {
       where: {
         id: id
       },
-      relations:{
-        organization:true, user: true
+      relations: {
+        organization: true, user: true
       }
     })
   }

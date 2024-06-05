@@ -17,8 +17,9 @@ export class OrganizationRepository implements IOrganizationRepository {
     return await this.__repository.existsBy({ cnpj_cpf: found });
   }
   
-  async update(data: Organization): Promise<Organization> {
-    return await this.__repository.save(data);
+  async update(org: Organization, change_data): Promise<Organization> {
+    this.__repository.merge(org, change_data);
+    return await this.__repository.save(org);
   }
   
   async create(data: IOrganizationDtos): Promise<Organization> {

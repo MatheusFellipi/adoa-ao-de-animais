@@ -44,13 +44,14 @@ export class UserModalView {
 
 
 export class UserUpdateModalView {
+  
   @ValidateIf((o) => o.avatar !== undefined)
   @IsNotEmpty()
-  name?: string;
+  name: string;
 
   @ValidateIf((o) => o.avatar !== undefined)
   @IsUrl()
-  avatar?: string;
+  avatar: string;
   
   static async validate(data: UserUpdateModalView) {
     const instance = new UserUpdateModalView();

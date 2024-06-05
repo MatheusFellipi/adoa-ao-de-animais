@@ -5,6 +5,5 @@ export interface ITokenDtos {
   token: string;
   account?: IAccountDtos;
   expires_at: Date;
-
 }
 

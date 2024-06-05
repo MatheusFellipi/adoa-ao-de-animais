@@ -34,7 +34,10 @@ export class AddressRepository implements IAddressRepository {
   async findById(id: number): Promise<Address> {
     return await this.__repository.findOne({
       where: { id: id },
-      relations: { city: { state: true } }
+      relations: {
+        city: { state: true },
+        organization: true, user: true
+      }
     });
   }
 }

@@ -12,3 +12,9 @@ export interface IUserDtos {
   links?: ILinkDtos[]
 }
 
+export interface IUserUpdateDtos {
+  id?: number;
+  name: string;
+  avatar?: string;
+}
+

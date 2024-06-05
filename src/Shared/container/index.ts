@@ -4,7 +4,6 @@ import { IAnimalRepository } from "@modules/animal/infra/repositories/IAnimalRep
 import { AnimalRepository } from "@modules/animal/infra/typeorm/repositories/Animal.repository";
 
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";
-import { UsersRepository } from "@modules/user/infra/typeorm/repositories/UsersRepository";
 import { UserRepositoryInMemory } from "@modules/user/infra/repositories/in-memory/UserRepositoryInMemory";
 import { AnimalRepositoryInMemory } from "@modules/animal/infra/repositories/in-memory/AnimalRepositoryInMemory";
 import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
@@ -25,8 +24,9 @@ import { IDoseRepository } from "@modules/animal/infra/repositories/IDoseReposit
 import { DoseRepository } from "@modules/animal/infra/typeorm/repositories/RelationshipVaccination.repository";
 import { IAccountRepository } from "@modules/account/infra/repositories/IAccountRepository";
 import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepository";
-import { AccountRepository } from "@modules/account/infra/typeorm/repositories/account.repository";
 import { TokenRepository } from "@modules/account/infra/typeorm/repositories/Token.repository";
+import { UsersRepository } from "@modules/user/infra/typeorm/repositories/Users.repository";
+import { AccountRepository } from "@modules/account/infra/typeorm/repositories/Account.repository";
 
 
 const ENV_TEST = process.env.NODE_ENV === 'test';
