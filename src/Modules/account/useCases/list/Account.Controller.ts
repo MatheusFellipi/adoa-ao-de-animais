@@ -8,7 +8,7 @@ export class ListAccountController {
     const type = request.type
     const account = request.account[type]
     const createUserUseCase = container.resolve(ListAccountUseCase);
-    const token = await createUserUseCase.execute(parseInt(account[type].id));
-    return response.status(201).json(token);
+    const token = await createUserUseCase.execute(account.id);
+    return response.status(200).json(token);
   }
 }

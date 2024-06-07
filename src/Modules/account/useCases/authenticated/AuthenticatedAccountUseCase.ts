@@ -8,8 +8,8 @@ import { IAccountRepository } from "@modules/account/infra/repositories/IAccount
 import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepository";
 
 import { AdaptarAccount } from "@modules/account/adaptar/account";
-import { AccountModelView } from "@modules/account/model/account.modal";
-import { AccountReturnNotPasswordModelView } from "@modules/account/model/accountReturnNotPassword.modal";
+import { AccountModel } from "@modules/account/model/account.modal";
+import { AccountReturnNotPasswordModel } from "@modules/account/model/accountReturnNotPassword.modal";
 
 
 @injectable()
@@ -20,17 +20,18 @@ export class AuthenticatedAccountUseCase {
   ) {}
 
   async execute(
-    form: AccountModelView
-  ): Promise<AccountReturnNotPasswordModelView> {
-    const instance = AccountModelView.validade(form);
+    form: AccountModel
+  ): Promise<AccountReturnNotPasswordModel> {
+    const instance = AccountModel.validade(form);
     const account = await this.__repository.findByEmail(instance.email);
 
     if (!account) throw new AppError("o email ou a senha esta incorreta");
 
-    const passwordMatch = await AccountModelView.equals_password(
+    const passwordMatch = await AccountModel.equals_password(
       instance.password,
       account.password
     );
+
     if (!passwordMatch) throw new AppError("Email or password incorrect!");
 
     const token_instancia = await TokenModelView.create_token({

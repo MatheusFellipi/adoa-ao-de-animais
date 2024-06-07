@@ -1,12 +1,16 @@
 declare namespace Express {
   export interface Request {
-    type: "user" | "organization"
+    type: "user" | "organization";
     account: {
-      user: object
-      organization: object
-    },
-    file:{
-      key:string
-    }
+      user: {
+        id: number;
+      };
+      organization: {
+        id: number;
+      };
+    };
+    file: {
+      key: string;
+    };
   }
 }

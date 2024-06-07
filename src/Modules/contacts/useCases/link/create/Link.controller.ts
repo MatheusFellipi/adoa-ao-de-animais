@@ -13,6 +13,6 @@ export class CreateLinkController {
       url,
       [type]: account,
     });
-    return response.status(200).json(data);
+    return response.status(201).json(data);
   }
 }

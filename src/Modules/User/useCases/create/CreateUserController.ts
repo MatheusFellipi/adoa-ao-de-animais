@@ -11,6 +11,7 @@ import { UserModalView } from "@modules/user/model/user";
     const token = await createUserUseCase.execute({ name, avatar, addresses, animals, contacts, links });
     return response.status(200).json(token);
   }
+  
   static async handleInternal(data: UserModalView): Promise<UserModalView> {
     const createUserUseCase = container.resolve(CreateUserUseCase);
     const token = await createUserUseCase.execute(data);
