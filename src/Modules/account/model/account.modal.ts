@@ -24,8 +24,8 @@ export class AccountModel {
   @IsStrongPassword()
   password: string;
 
-  static validade(data: AccountModelView) {
-    const instance = new AccountModelView();
+  static validade(data: AccountModel) {
+    const instance = new AccountModel();
     Object.assign(instance, data)
     instance.email.toLowerCase()
     validate(this).then((errors) => {
