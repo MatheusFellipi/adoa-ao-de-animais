@@ -6,23 +6,19 @@ import { IUsersRepository } from "@modules/user/infra/repositories/IUsersReposit
 
 import { AddressCreateMultiUseCaseController } from "@modules/address/useCases/createMulti/CreateMultiUseCaseController";
 import { LinkCreateUseCaseController } from "@modules/contacts/controllers/link/create/LinksUseCaseController";
-import { ContactCreateUseCaseController } from "@modules/contacts/controllers/contact/create/ContactsCreateUseCaseController";
+import { CreateInternalContactController } from "@modules/contacts/useCases/contact/createInternal/CreateContactsInternalController";
 
 @injectable()
 export class CreateUserUseCase {
   constructor(
-    @inject("IUsersRepository") private __user_repository: IUsersRepository,
-  ) { }
+    @inject("IUsersRepository") private __user_repository: IUsersRepository
+  ) {}
   async execute(data: UserModalView): Promise<UserModalView> {
-    const instance = await UserModalView.validate(data)
+    const instance = await UserModalView.validate(data);
+    console.log('====================================');
+    console.log(instance);
+    console.log('====================================');
     const user = await this.__user_repository.create(instance);
-    const address = await AddressCreateMultiUseCaseController.handle(instance.addresses, user, "user")
-     let link = []
-     if (instance.links) 
-       link = await LinkCreateUseCaseController.handleInternal(instance.links, user, "user")
-     let contacts = []
-     if (instance.contacts) 
-       contacts = await ContactCreateUseCaseController.handleInternal(instance.contacts, user, "user")
-    return AdaptarUser.userReturn(address, user, link, contacts)
+    return AdaptarUser.userReturn(user);
   }
 }

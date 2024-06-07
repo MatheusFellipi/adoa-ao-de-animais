@@ -5,17 +5,12 @@ import { AnimalRepository } from "@modules/animal/infra/typeorm/repositories/Ani
 
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";
 import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
-import { AddressRepository } from "@modules/address/infra/typeorm/repositories/address.repository";
 import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
-import { OrganizationRepository } from "@modules/organization/infra/typeorm/repositories/OrganizationRepository";
 import { ILinkRepository } from "@modules/contacts/infra/repositories/ILinksRepository";
-import { LinkRepository } from "@modules/contacts/infra/typeorm/repositories/link.repository";
 import { IContactRepository } from "@modules/contacts/infra/repositories/IContactRepository";
-import { ContactRepository } from "@modules/contacts/infra/typeorm/repositories/contact.repository";
 import { IVaccinationRepository } from "@modules/animal/infra/repositories/IVaccinationRepository";
 import { VaccinationRepository } from "@modules/animal/infra/typeorm/repositories/Vaccination.repository";
 import { IVaccinationCardRepository } from "@modules/animal/infra/repositories/IVaccinationCardRepository";
-import { VaccinationCardRepository } from "@modules/animal/infra/typeorm/repositories/Vaccinationcard.repository";
 import { IDoseRepository } from "@modules/animal/infra/repositories/IDoseRepository";
 import { DoseRepository } from "@modules/animal/infra/typeorm/repositories/RelationshipVaccination.repository";
 import { IAccountRepository } from "@modules/account/infra/repositories/IAccountRepository";
@@ -24,7 +19,12 @@ import { TokenRepository } from "@modules/account/infra/typeorm/repositories/Tok
 import { UsersRepository } from "@modules/user/infra/typeorm/repositories/Users.repository";
 import { AccountRepository } from "@modules/account/infra/typeorm/repositories/Account.repository";
 import { IPhotosRepository } from "@modules/photos/infra/repositories/IPhotosRepository";
-import { PhotoRepository } from "@modules/photos/infra/typeorm/repositories/photo.repository";
+import { AddressRepository } from "@modules/address/infra/typeorm/repositories/Address.repository";
+import { OrganizationRepository } from "@modules/organization/infra/typeorm/repositories/Organization.repository";
+import { LinkRepository } from "@modules/contacts/infra/typeorm/repositories/Link.repository";
+import { ContactRepository } from "@modules/contacts/infra/typeorm/repositories/Contact.repository";
+import { VaccinationCardRepository } from "@modules/animal/infra/typeorm/repositories/VaccinationCard.repository";
+import { PhotoRepository } from "@modules/photos/infra/typeorm/repositories/Photo.repository";
 
 
 const ENV_TEST = process.env.NODE_ENV === 'test';

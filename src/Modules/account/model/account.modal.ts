@@ -7,8 +7,6 @@ import { AppError } from "@shared/infra/errors/AppError";
 import { OrganizationModelView } from "@modules/organization/model/organization";
 import { UserModalView } from "@modules/user/model/user";
 
-
-
 export class AccountModelView {
   id?: number;
 
@@ -25,8 +23,6 @@ export class AccountModelView {
 
   @IsStrongPassword()
   password: string;
-
-  token?: string | any[];
 
   static validade(data: AccountModelView) {
     const instance = new AccountModelView();

@@ -1,5 +1,5 @@
-import { AccountModelView } from "./account.modalView";
 import { sign } from 'jsonwebtoken';
+import { AccountModelView } from './account.modal';
 
 export class TokenModelView {
   id?: number;
@@ -13,6 +13,5 @@ export class TokenModelView {
       expiresIn: "1d",
     });
   }
-
 }
 

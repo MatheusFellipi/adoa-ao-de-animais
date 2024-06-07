@@ -42,7 +42,7 @@ export class OrganizationModelView {
   @IsArray()
   contacts?: ContactModelView[];
 
-  @ValidateIf((o) => o.animals !== undefined)
+  @ValidateIf((o) => o.links !== undefined)
   @IsArray()
   links?: LinkModelView[];
 

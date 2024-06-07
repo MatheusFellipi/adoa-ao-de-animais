@@ -1,7 +1,6 @@
 import { Repository } from "typeorm";
-import { dbContext } from "@shared/infra/typeorm"
+import { dbContext } from "@shared/infra/typeorm";
 import { Contact } from "../entities/contact.entity";
-
 
 import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
 import { IContactRepository } from "../../repositories/IContactRepository";
@@ -13,18 +12,39 @@ export class ContactRepository implements IContactRepository {
     this.__repository = dbContext.getRepository(Contact);
   }
 
-  async createMulti(data: IContactDtos[]): Promise<Contact[]> {
-    const contacts: Contact[] = [];
-    for (const item of data) {
-      const contact = this.__repository.create(item);
-      contacts.push(await this.__repository.save(contact));
-    }
-    return contacts;
-  }
-
   async create(data: IContactDtos): Promise<Contact> {
-    const user = this.__repository.create(data);
-    return await this.__repository.save(user);
+    return await this.__repository.save(data);
   }
 
+  async update(data: Contact, change_data: IContactDtos): Promise<Contact> {
+    this.__repository.merge(data, change_data);
+    return await this.__repository.save(data);
+  }
+
+  async delete(data: IContactDtos): Promise<void> {
+    await this.__repository.delete(data);
+  }
+
+  async listAllByAccountID(account_id: number): Promise<Contact[]> {
+    return await this.__repository.find({
+      where: [
+        {
+          organization: {
+            id: account_id,
+          },
+        },
+        {
+          user: {
+            id: account_id,
+          },
+        },
+      ],
+    });
+  }
+
+  async listByID(id: number): Promise<Contact> {
+    return await this.__repository.findOne({
+      where: { id: id },
+    });
+  }
 }

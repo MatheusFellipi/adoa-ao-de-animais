@@ -2,20 +2,19 @@ import { User } from "../infra/typeorm/entities/users.entity";
 import { UserModalView, UserUpdateModalView } from "../model/user";
 import { AddressModelView } from "@modules/address/model/address";
 
-
 export class AdaptarUser {
-  static userReturn(addresses: AddressModelView[], user: User, links, contacts): UserModalView {
+  static userReturn(user: User): UserModalView {
     return {
       ...user,
-      addresses,
-      links, 
-      contacts
-    }
+      addresses: user.addresses,
+      links: user.links,
+      contacts: user.contacts,
+    };
   }
-  static userUpdateReturn( user: User): UserUpdateModalView {
+  static userUpdateReturn(user: User): UserUpdateModalView {
     return {
       name: user.name,
       avatar: user.avatar,
-    }
+    };
   }
 }

@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { dbContext } from "@shared/infra/typeorm"
+import { dbContext } from "@shared/infra/typeorm";
 
 import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
 
@@ -12,19 +12,40 @@ export class LinkRepository implements ILinkRepository {
   constructor() {
     this.__repository = dbContext.getRepository(Link);
   }
-
-  async createMulti(data: ILinkDtos[]): Promise<Link[]> {
-    const links: Link[] = [];
-    for (const item of data) {
-      const link = this.__repository.create(item);
-      links.push(await this.__repository.save(link));
-    }
-    return links;
-  }
-
+  
   async create(data: ILinkDtos): Promise<Link> {
-    const user = this.__repository.create(data);
-    return await this.__repository.save(user);
+    return await this.__repository.save(data);
+  }
+  
+  async update(data: Link, change_data: ILinkDtos): Promise<Link> {
+    this.__repository.merge(data, change_data);
+    return await this.__repository.save(data);
+  }
+  
+  async delete(data: ILinkDtos): Promise<void> {
+    await this.__repository.delete(data);
   }
 
+  async listAllByAccountID(account_id: number): Promise<Link[]> {
+    return await this.__repository.find({
+      where: [
+        {
+          organization: {
+            id: account_id,
+          },
+        },
+        {
+          user: {
+            id: account_id,
+          },
+        },
+      ],
+    });
+  }
+
+  async listByID(id: number): Promise<Link> {
+    return await this.__repository.findOne({
+      where: { id: id },
+    });
+  }
 }

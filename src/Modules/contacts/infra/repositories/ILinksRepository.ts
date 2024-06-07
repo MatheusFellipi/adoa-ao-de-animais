@@ -3,6 +3,8 @@ import { Link } from "../typeorm/entities/link.entity";
 
 export interface ILinkRepository {
   create(data: ILinkDtos): Promise<Link>;
-  createMulti(data: ILinkDtos[]): Promise<Link[]>;
+  update(data: Link, change_data: ILinkDtos): Promise<Link>;
+  delete(data: ILinkDtos): Promise<void>;
+  listAllByAccountID(account_id: number): Promise<Link[]>;
+  listByID(id: number): Promise<Link>;
 }
-

@@ -1,26 +1,39 @@
 import { UserModalView } from "@modules/user/model/user";
 import { OrganizationModelView } from "@modules/organization/model/organization";
+import { AppError } from "@shared/infra/errors/AppError";
+import { IsNotEmpty, validate } from "class-validator";
+import { ContactType } from "../enum/contact.enum";
 
-export class ContactModelView {
+export class ContactModel {
   id?: number;
 
-  organization?: OrganizationModelView;
+  @IsNotEmpty()
+  type: ContactType;
 
-  user?: UserModalView;
+  @IsNotEmpty()
+  name: string;
 
-  type: number
-
-  name: string
-
+  @IsNotEmpty()
   phone: string;
 
-  created_at?: Date
-  
-  updated_at?: Date
+  created_at?: Date;
+  updated_at?: Date;
+  organization?: OrganizationModelView;
+  user?: UserModalView;
 
-  static validade(data: ContactModelView) {
-    const instance = new ContactModelView();
-    return instance
+  static validade(data: ContactModel) {
+    const instance = new ContactModel();
+    Object.assign(instance, data);
+    validate(this).then((errors) => {
+      if (errors.length > 0)
+        throw new AppError(
+          errors
+            .map((error) => Object.values(error.constraints))
+            .join(", ")
+            .toString(),
+          400
+        );
+    });
+    return data;
   }
-
 }
