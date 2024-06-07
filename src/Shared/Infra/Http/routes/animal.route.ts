@@ -3,8 +3,6 @@ import uploadConfig from "@config/upload";
 
 import { authenticated } from "../middleware/authenticated.middleware";
 
-import { CreatePhotosController } from "@modules/photos/useCases/create/CreatePhotosController";
-
 import { CreateAnimalController } from "@modules/animal/useCases/animal/create/CreateAnimalsController";
 import { UpdateAnimalController } from "@modules/animal/useCases/animal/update/UpdateAnimalController";
 import { DeleteAnimalController } from "@modules/animal/useCases/animal/delete/DeleteAnimalController";
@@ -19,6 +17,6 @@ export default (router: Router): void => {
   router.put("/animal/:id", authenticated, UpdateAnimalController.handle);
   router.delete("/animal/:id", authenticated, DeleteAnimalController.handle);
 
-  router.post("/animal/photos/:id_animal", authenticated, avatar.array("photos"), CreatePhotosController.handle);
+  router.post("/animal/photos/:animal_id", authenticated, avatar.array("photos"), CreatePhotosAnimalController.handle);
   router.delete("/animal/photo/:id_photo", authenticated, UpdateAnimalController.handle);
 }

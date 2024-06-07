@@ -8,6 +8,7 @@ import { CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { LinkModelView } from "@modules/contacts/modelView/link";
 import { ContactModelView } from "@modules/contacts/modelView/contact";
 import { PhotoModelView } from "@modules/photos/modelView/photos";
+import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 
 export class OrganizationModelView {
   id?: number;
@@ -48,7 +49,7 @@ export class OrganizationModelView {
   @ValidateIf((o) => o.photos !== undefined)
   @IsArray()
   @IsUrl()
-  photos?: string[];
+  photos?: Photo[];
 
   @IsArray()
   @IsNotEmptyObject({}, { each: true })

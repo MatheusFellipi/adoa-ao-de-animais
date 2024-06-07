@@ -1,12 +1,12 @@
 import { container } from "tsyringe";
 
 import { CreatePhotosAnimalsUseCase } from "./CreatePhotosUseCase";
-import { PhotoModelView } from "@modules/photos/modelView/photos";
+import { PhotoModelView,PhotoCreateInternalModelView } from "@modules/photos/modelView/photos";
 
 export class CreatePhotosController {
-  static async handleInternal(form: PhotoModelView, type: "animal" | "organization"): Promise<PhotoModelView[]> {
+  static async handleInternal(form: PhotoCreateInternalModelView, type: "animal" | "organization"): Promise<PhotoModelView[]> {
     const use_case = container.resolve(CreatePhotosAnimalsUseCase);
-    const photos = await use_case.execute({ url: form.url,  [type]: form.animal });
+    const photos = await use_case.execute({ photos: form.photos,  [type]: form.animal });
     return photos
   }
 }

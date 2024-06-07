@@ -1,3 +1,4 @@
+import { IPhotoDtos } from "@modules/photos/dtos/IPhotoDtos";
 import { AnimalGender, AnimalSize } from "../enum/animal.enum";
 import { IVaccinationCardDtos } from "./IVaccinationCardDtos";
 
@@ -14,6 +15,6 @@ export interface IAnimalDtos {
   age?: string;
   microchipCode?: string;
   vaccinationCard?: IVaccinationCardDtos;
-  photos?: string[];
+  photos?: IPhotoDtos[];
 }
 

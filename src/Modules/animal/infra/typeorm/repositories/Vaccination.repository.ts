@@ -11,6 +11,9 @@ export class VaccinationRepository implements IVaccinationRepository {
   constructor() {
     this.__repository = dbContext.getRepository(Vaccination);
   }
+  delete(data: IVaccinationDtos): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
   async create(data: IVaccinationDtos): Promise<Vaccination> {
     return await this.__repository.save(this.__repository.create(data))
   }

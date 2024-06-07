@@ -14,12 +14,13 @@ export class CreatePhotosAnimalsUseCase {
 
   async execute(form: AnimalPhotoModelView): Promise<Animal> {
     const instancia = AnimalPhotoModelView.validade(form);
-    
     const animal = await this.__repository.findById(instancia.animal_id)
-    if (animal) throw new AppError("O animal nao se encontra no banco de dados")
-    instancia.animal = animal  
-    
-    const photos = CreatePhotosController.handleInternal(instancia, "animal")
+
+    if (!animal) throw new AppError("O animal nao se encontra no banco de dados")
+    animal.photos =  await CreatePhotosController.handleInternal({
+      photos: instancia.photos,
+      animal: animal
+    }, "animal")
 
     return animal
   }

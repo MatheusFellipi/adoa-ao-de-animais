@@ -4,14 +4,10 @@ import { IAnimalRepository } from "@modules/animal/infra/repositories/IAnimalRep
 import { AnimalRepository } from "@modules/animal/infra/typeorm/repositories/Animal.repository";
 
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";
-import { UserRepositoryInMemory } from "@modules/user/infra/repositories/in-memory/UserRepositoryInMemory";
-import { AnimalRepositoryInMemory } from "@modules/animal/infra/repositories/in-memory/AnimalRepositoryInMemory";
 import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
 import { AddressRepository } from "@modules/address/infra/typeorm/repositories/address.repository";
-import { AddressRepositoryInMemory } from "@modules/address/infra/repositories/in-memory/AddressRepositoryInMemory";
 import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
 import { OrganizationRepository } from "@modules/organization/infra/typeorm/repositories/OrganizationRepository";
-import { OrganizationRepositoryInMemory } from "@modules/organization/infra/repositories/in-memory/OrganizationRepositoryInMemory";
 import { ILinkRepository } from "@modules/contacts/infra/repositories/ILinksRepository";
 import { LinkRepository } from "@modules/contacts/infra/typeorm/repositories/link.repository";
 import { IContactRepository } from "@modules/contacts/infra/repositories/IContactRepository";
@@ -27,28 +23,30 @@ import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepo
 import { TokenRepository } from "@modules/account/infra/typeorm/repositories/Token.repository";
 import { UsersRepository } from "@modules/user/infra/typeorm/repositories/Users.repository";
 import { AccountRepository } from "@modules/account/infra/typeorm/repositories/Account.repository";
+import { IPhotosRepository } from "@modules/photos/infra/repositories/IPhotosRepository";
+import { PhotoRepository } from "@modules/photos/infra/typeorm/repositories/photo.repository";
 
 
 const ENV_TEST = process.env.NODE_ENV === 'test';
 
 container.registerSingleton<IUsersRepository>(
   "IUsersRepository",
-  ENV_TEST ? UserRepositoryInMemory : UsersRepository
+  UsersRepository
 );
 
 container.registerSingleton<IAddressRepository>(
   "IAddressRepository",
-  ENV_TEST ? AddressRepositoryInMemory : AddressRepository
+   AddressRepository
 );
 
 container.registerSingleton<IAnimalRepository>(
   "IAnimalRepository",
-  ENV_TEST ? AnimalRepositoryInMemory : AnimalRepository
+ AnimalRepository
 );
 
 container.registerSingleton<IOrganizationRepository>(
   "IOrganizationRepository",
-  ENV_TEST ? OrganizationRepositoryInMemory : OrganizationRepository
+ OrganizationRepository
 );
 
 container.registerSingleton<ILinkRepository>(
@@ -63,7 +61,7 @@ container.registerSingleton<IContactRepository>(
 
 container.registerSingleton<IAnimalRepository>(
   "IAnimalRepository",
-  ENV_TEST ? AnimalRepositoryInMemory : AnimalRepository
+   AnimalRepository
 );
 
 container.registerSingleton<IVaccinationRepository>(
@@ -89,4 +87,9 @@ container.registerSingleton<IAccountRepository>(
 container.registerSingleton<ITokenRepository>(
   "ITokenRepository",
   TokenRepository
+);
+
+container.registerSingleton<IPhotosRepository>(
+  "IPhotosRepository",
+  PhotoRepository
 );

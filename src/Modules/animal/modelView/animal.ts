@@ -5,6 +5,7 @@ import { PhotoModelView } from "@modules/photos/modelView/photos";
 import { AppError } from "@shared/infra/errors/AppError";
 import { UserModalView } from "@modules/user/modelView/user";
 import { OrganizationModelView } from "@modules/organization/modelView/organization";
+import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 
 export class AnimalModelView {
   id?: number;
@@ -37,7 +38,7 @@ export class AnimalModelView {
   @ValidateIf((o) => o.photos !== undefined)
   @IsArray()
   @IsUrl()
-  photos?: string[];
+  photos?: Photo[];
 
   @ValidateIf((o) => o.organization !== undefined)
   @IsNotEmpty()
@@ -60,11 +61,7 @@ export class AnimalModelView {
 
 export class AnimalPhotoModelView {
   animal_id?: number;
-
-  photos?: PhotoModelView[];
-
-  organization?: OrganizationModelView;
-  animal?: AnimalModelView;
+  photos: PhotoModelView[];
 
   static validade(data: AnimalPhotoModelView) {
     const instance = new AnimalPhotoModelView();

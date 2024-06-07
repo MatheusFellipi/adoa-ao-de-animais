@@ -11,6 +11,9 @@ export class DoseRepository implements IDoseRepository {
   constructor() {
     this.__repository = dbContext.getRepository(RelationshipVaccination);
   }
+  delete(data: RelationshipVaccination): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
 
   async create(data: IDoseDtos): Promise<RelationshipVaccination> {
     return await this.__repository.save(this.__repository.create(data))
