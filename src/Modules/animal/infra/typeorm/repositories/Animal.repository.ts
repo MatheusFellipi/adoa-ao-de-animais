@@ -25,12 +25,22 @@ export class AnimalRepository implements IAnimalRepository {
     await this.__repository.delete(data)
   }
 
+  async find(criteria: object): Promise<Animal> {
+    return await this.__repository.findAndCount({
+      where: criteria,
+      relations: ['organization', 'user', 'vaccinationCard', 'photos'],
+      order: criteria.sortField ? { [criteria.sortField]: criteria.sortOrder } : undefined,
+    }).paginate();
+  }
+
+
   async findById(id: number): Promise<Animal> {
     return await this.__repository.findOne({
       where: { id: id },
     });
   }
 
+  
   async findByIdFullReturn(id: number): Promise<Animal> {
     return await this.__repository.findOne({
       where: { id: id },

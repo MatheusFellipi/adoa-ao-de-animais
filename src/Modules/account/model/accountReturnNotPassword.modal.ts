@@ -1,4 +1,4 @@
-export class AccountReturnNotPasswordModelView {
+export class AccountReturnNotPasswordModel{
   email: string;
   name: string
   token: {
