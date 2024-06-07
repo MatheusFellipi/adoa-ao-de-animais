@@ -1,4 +1,4 @@
-import { AddressModelView } from "@modules/address/modelView/address";
+import { AddressModelView } from "@modules/address/model/address";
 import { IAddressDtos } from "../../dtos/IAddressDtos";
 import { Address } from "../typeorm/entities/address.entity";
 

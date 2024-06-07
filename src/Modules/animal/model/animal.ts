@@ -1,10 +1,10 @@
 import { VaccinationCardModelView } from "./vaccinationCard";
 import { AnimalGender, AnimalSize } from "../enum/animal.enum";
 import { IsArray, IsNotEmpty, IsUrl, validate, ValidateIf } from "class-validator";
-import { PhotoModelView } from "@modules/photos/modelView/photos";
+import { PhotoModelView } from "@modules/photos/model/photos";
 import { AppError } from "@shared/infra/errors/AppError";
-import { UserModalView } from "@modules/user/modelView/user";
-import { OrganizationModelView } from "@modules/organization/modelView/organization";
+import { UserModalView } from "@modules/user/model/user";
+import { OrganizationModelView } from "@modules/organization/model/organization";
 import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 
 export class AnimalModelView {
@@ -48,7 +48,7 @@ export class AnimalModelView {
   @IsNotEmpty()
   user?: UserModalView;
 
-  static validade(data: AnimalModelView) {
+  static validate(data: AnimalModelView) {
     const instance = new AnimalModelView();
     Object.assign(instance, data)
     validate(this).then((errors) => {

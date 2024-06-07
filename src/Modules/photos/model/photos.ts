@@ -1,5 +1,5 @@
-import { AnimalModelView } from "@modules/animal/modelView/animal";
-import { OrganizationModelView } from "@modules/organization/modelView/organization";
+import { AnimalModelView } from "@modules/animal/model/animal";
+import { OrganizationModelView } from "@modules/organization/model/organization";
 
 import { AppError } from "@shared/infra/errors/AppError";
 import { validate } from "class-validator";

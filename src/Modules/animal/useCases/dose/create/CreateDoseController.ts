@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
 
-import { DoseModelView } from "@modules/animal/modelView/doseModelView";
+import { DoseModelView } from "@modules/animal/model/doseModelView";
 import { CreateDoseUseCase } from "./CreateDoseUseCase";
 
 export class CreateDoseController {

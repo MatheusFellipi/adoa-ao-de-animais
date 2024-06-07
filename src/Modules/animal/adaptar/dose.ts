@@ -1,5 +1,5 @@
 import { RelationshipVaccination } from "../infra/typeorm/entities/relationshipVaccination.entity";
-import { DoseModelView } from "../modelView/doseModelView";
+import { DoseModelView } from "../model/doseModelView";
 
 export class AdaptarDose {
   static doseReturn(address: RelationshipVaccination[]): DoseModelView[] {

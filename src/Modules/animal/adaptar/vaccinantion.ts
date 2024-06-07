@@ -1,5 +1,5 @@
 
-import { VaccinationCardModelView } from "../modelView/vaccinationCard";
+import { VaccinationCardModelView } from "../model/vaccinationCard";
 
 export class AdaptarVaccination {
   static vaccinationReturn(address: VaccinationCardModelView[]): VaccinationCardModelView[] {

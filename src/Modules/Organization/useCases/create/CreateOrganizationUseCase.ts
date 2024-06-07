@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { AddressCreateMultiUseCaseController } from "@modules/address/useCases/createMulti/CreateMultiUseCaseController";
 import { AdaptarOrgs } from "@modules/organization/adaptar/organization";
-import { OrganizationModelView } from "@modules/organization/modelView/organization";
+import { OrganizationModelView } from "@modules/organization/model/organization";
 import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
 import { AppError } from "@shared/infra/errors/AppError";
 import { LinkCreateUseCaseController } from "@modules/contacts/controllers/link/create/LinksUseCaseController";

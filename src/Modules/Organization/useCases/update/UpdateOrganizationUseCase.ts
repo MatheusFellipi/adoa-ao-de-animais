@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import configAws from "@config/aws"
 import { AdaptarOrgs } from "@modules/organization/adaptar/organization";
-import { OrganizationUpdateModelView } from "@modules/organization/modelView/organization";
+import { OrganizationUpdateModelView } from "@modules/organization/model/organization";
 import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
 
 

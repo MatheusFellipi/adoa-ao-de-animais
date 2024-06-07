@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { AnimalModelView } from "@modules/animal/modelView/animal";
+import { AnimalModelView } from "@modules/animal/model/animal";
 import { Animal } from "@modules/animal/infra/typeorm/entities/animal.entity";
 import { IAnimalRepository } from "@modules/animal/infra/repositories/IAnimalRepository";
 import { CreateVaccinationCardController } from "../../vaccinationCard/create/CreateVaccinationCardController";
@@ -12,14 +12,14 @@ export class CreateAnimalsUseCase {
   ) { }
 
   async execute(form: AnimalModelView): Promise<Animal> {
-    const instancia = AnimalModelView.validade(form);
+    const instance = AnimalModelView.validate(form);
     
-    if (instancia.vaccinationCard) {
-      const card = await CreateVaccinationCardController.handleInternal(instancia.vaccinationCard)
-      instancia.vaccinationCard = card
+    if (instance.vaccinationCard) {
+      const card = await CreateVaccinationCardController.handleInternal(instance.vaccinationCard)
+      instance.vaccinationCard = card
   }
 
-    const animal = await this.__repository.create(instancia);
+    const animal = await this.__repository.create(instance);
 
     return animal
   }

@@ -1,4 +1,4 @@
-import { AccountReturnNotPasswordModelView } from "../modelView/accountReturnNotPassword.modalView";
+import { AccountReturnNotPasswordModelView } from "../model/accountReturnNotPassword.modalView";
 
 type Adaptar = {
   email: string, name: string, avatar: string, token: {

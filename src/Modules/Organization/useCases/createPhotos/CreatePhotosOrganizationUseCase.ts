@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { OrganizationModelView } from "@modules/organization/modelView/organization";
+import { OrganizationModelView } from "@modules/organization/model/organization";
 import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
 
 

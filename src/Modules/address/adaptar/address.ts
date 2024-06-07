@@ -1,5 +1,5 @@
 import { Address } from "@modules/address/infra/typeorm/entities/address.entity";
-import { AddressModelView } from "../modelView/address";
+import { AddressModelView } from "../model/address";
 
 export class AdaptarAddress {
   static addressMultiReturn(address: Address[]): AddressModelView[] {

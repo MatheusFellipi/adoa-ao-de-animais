@@ -2,15 +2,15 @@ import { inject, injectable } from "tsyringe";
 import { addDays } from "date-fns";
 import { AppError } from "@shared/infra/errors/AppError";
 
-import { AccountModelView } from "@modules/account/modelView/account.modalView";
-import { TokenModelView } from "@modules/account/modelView/Token.modal";
+import { AccountModelView } from "@modules/account/model/account.modalView";
+import { TokenModelView } from "@modules/account/model/Token.modal";
 
 import { IAccountRepository } from "@modules/account/infra/repositories/IAccountRepository";
 import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepository";
 
 import { AdaptarAccount } from "@modules/account/adaptar/account";
 
-import { AccountReturnNotPasswordModelView } from "@modules/account/modelView/accountReturnNotPassword.modalView";
+import { AccountReturnNotPasswordModelView } from "@modules/account/model/accountReturnNotPassword.modalView";
 
 @injectable()
 export class AuthenticatedAccountUseCase {

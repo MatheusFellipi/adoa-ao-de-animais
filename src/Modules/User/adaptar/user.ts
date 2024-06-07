@@ -1,6 +1,6 @@
 import { User } from "../infra/typeorm/entities/users.entity";
-import { UserModalView, UserUpdateModalView } from "../modelView/user";
-import { AddressModelView } from "@modules/address/modelView/address";
+import { UserModalView, UserUpdateModalView } from "../model/user";
+import { AddressModelView } from "@modules/address/model/address";
 
 
 export class AdaptarUser {

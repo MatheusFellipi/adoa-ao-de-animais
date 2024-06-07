@@ -3,11 +3,11 @@ import { AppError } from "@shared/infra/errors/AppError";
 
 
 import { OrganizationType } from "../enums/organization.enum";
-import { AddressModelView } from "@modules/address/modelView/address";
+import { AddressModelView } from "@modules/address/model/address";
 import { CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { LinkModelView } from "@modules/contacts/modelView/link";
-import { ContactModelView } from "@modules/contacts/modelView/contact";
-import { PhotoModelView } from "@modules/photos/modelView/photos";
+import { LinkModelView } from "@modules/contacts/model/link";
+import { ContactModelView } from "@modules/contacts/model/contact";
+import { PhotoModelView } from "@modules/photos/model/photos";
 import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 
 export class OrganizationModelView {

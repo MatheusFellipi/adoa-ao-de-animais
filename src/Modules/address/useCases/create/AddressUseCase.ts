@@ -5,7 +5,7 @@ import { Address } from "../../infra/typeorm/entities/address.entity";
 
 import { AppError } from "@shared/infra/errors/AppError";
 import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
-import { AddressModelView } from "@modules/address/modelView/address";
+import { AddressModelView } from "@modules/address/model/address";
 
 
 @injectable()

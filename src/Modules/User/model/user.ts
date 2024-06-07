@@ -1,9 +1,9 @@
 import { IsArray, IsUrl, IsNotEmpty, validate, IsNotEmptyObject, ValidateIf } from "class-validator";
-import { AddressModelView } from "@modules/address/modelView/address";
+import { AddressModelView } from "@modules/address/model/address";
 import { AppError } from "@shared/infra/errors/AppError";
-import { LinkModelView } from "@modules/contacts/modelView/link";
-import { ContactModelView } from "@modules/contacts/modelView/contact";
-import { AnimalModelView } from "@modules/animal/modelView/animal";
+import { LinkModelView } from "@modules/contacts/model/link";
+import { ContactModelView } from "@modules/contacts/model/contact";
+import { AnimalModelView } from "@modules/animal/model/animal";
 
 export class UserModalView {
   id?: number;

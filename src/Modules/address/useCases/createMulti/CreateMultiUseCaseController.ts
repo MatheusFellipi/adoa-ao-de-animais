@@ -1,6 +1,6 @@
 import { container } from "tsyringe";
 
-import { AddressModelView } from "@modules/address/modelView/address";
+import { AddressModelView } from "@modules/address/model/address";
 import { CreateMultiUseCase } from "./CreateMultiUseCase";
 
 export class AddressCreateMultiUseCaseController {

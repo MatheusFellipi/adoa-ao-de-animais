@@ -1,5 +1,5 @@
 import { Link } from "../infra/typeorm/entities/link.entity";
-import { LinkModelView } from "../modelView/link";
+import { LinkModelView } from "../model/link";
 
 
 export class AdaptarLink {

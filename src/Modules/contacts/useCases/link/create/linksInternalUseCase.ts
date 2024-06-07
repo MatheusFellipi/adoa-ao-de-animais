@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { ILinkRepository } from "@modules/contacts/infra/repositories/ILinksRepository";
-import { LinkModelView } from "@modules/contacts/modelView/link";
+import { LinkModelView } from "@modules/contacts/model/link";
 import { AdaptarLink } from "@modules/contacts/adaptar/link";
 
 

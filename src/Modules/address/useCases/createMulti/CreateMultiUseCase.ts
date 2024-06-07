@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
-import { AddressModelView } from "@modules/address/modelView/address";
+import { AddressModelView } from "@modules/address/model/address";
 import { AdaptarAddress } from "@modules/address/adaptar/address";
 
 

@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { AdaptarUser } from "@modules/user/adaptar/user";
-import { UserModalView } from "@modules/user/modelView/user";
+import { UserModalView } from "@modules/user/model/user";
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";
 
 import { AddressCreateMultiUseCaseController } from "@modules/address/useCases/createMulti/CreateMultiUseCaseController";

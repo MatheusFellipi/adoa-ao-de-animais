@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
 
-import { VaccinationCardModelView } from "@modules/animal/modelView/vaccinationCard";
+import { VaccinationCardModelView } from "@modules/animal/model/vaccinationCard";
 import { CreateVaccinationCardUseCase } from "./CreateVaccinationCardUseCase";
 
 export class CreateVaccinationCardController {

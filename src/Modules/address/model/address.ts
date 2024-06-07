@@ -1,8 +1,8 @@
 import { IsNotEmpty, IsNotEmptyObject, Length, validate } from "class-validator";
 import { CityModelView } from "./city";
 import { AppError } from "@shared/infra/errors/AppError";
-import { UserModalView } from "@modules/user/modelView/user";
-import { OrganizationModelView } from "@modules/organization/modelView/organization";
+import { UserModalView } from "@modules/user/model/user";
+import { OrganizationModelView } from "@modules/organization/model/organization";
 
 export class AddressModelView {
   id?: number

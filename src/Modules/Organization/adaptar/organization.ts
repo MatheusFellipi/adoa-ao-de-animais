@@ -1,7 +1,7 @@
 import { OrganizationType } from "../enums/organization.enum";
 import { Organization } from "../infra/typeorm/entities/organization.entity";
-import { OrganizationModelView, OrganizationUpdateModelView } from "../modelView/organization";
-import { AddressModelView } from "@modules/address/modelView/address";
+import { OrganizationModelView, OrganizationUpdateModelView } from "../model/organization";
+import { AddressModelView } from "@modules/address/model/address";
 
 
 export class AdaptarOrgs {

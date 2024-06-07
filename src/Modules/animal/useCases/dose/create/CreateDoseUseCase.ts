@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { DoseModelView } from "@modules/animal/modelView/doseModelView";
+import { DoseModelView } from "@modules/animal/model/doseModelView";
 import { IDoseRepository } from "@modules/animal/infra/repositories/IDoseRepository";
 import { AdaptarDose } from "@modules/animal/adaptar/dose";
 

@@ -4,8 +4,8 @@ import { hash, compare } from "bcrypt";
 import { AppError } from "@shared/infra/errors/AppError";
 
 
-import { OrganizationModelView } from "@modules/organization/modelView/organization";
-import { UserModalView } from "@modules/user/modelView/user";
+import { OrganizationModelView } from "@modules/organization/model/organization";
+import { UserModalView } from "@modules/user/model/user";
 
 
 

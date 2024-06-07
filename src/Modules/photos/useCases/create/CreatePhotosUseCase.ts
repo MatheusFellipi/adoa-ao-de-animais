@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { PhotoCreateInternalModelView, PhotoModelView } from "@modules/photos/modelView/photos";
+import { PhotoCreateInternalModelView, PhotoModelView } from "@modules/photos/model/photos";
 
 import { IPhotosRepository } from "@modules/photos/infra/repositories/IPhotosRepository";
 

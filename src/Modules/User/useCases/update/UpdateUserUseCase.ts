@@ -4,7 +4,7 @@ import configAws from "@config/aws"
 import { User } from "@modules/user/infra/typeorm/entities/users.entity";
 
 import { AdaptarUser } from "@modules/user/adaptar/user";
-import { UserUpdateModalView } from "@modules/user/modelView/user";
+import { UserUpdateModalView } from "@modules/user/model/user";
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";
 
 

@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
 
-import { ContactModelView } from "@modules/contacts/modelView/contact";
+import { ContactModelView } from "@modules/contacts/model/contact";
 import { ContactCreateInternalUseCase } from "@modules/contacts/useCases/contact/ContactInternalUseCase";
 import { LinkCreateUseCase } from "@modules/contacts/useCases/link/create/linksUseCase";
 

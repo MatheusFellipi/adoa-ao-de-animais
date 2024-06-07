@@ -1,5 +1,5 @@
-import { UserModalView } from "@modules/user/modelView/user";
-import { OrganizationModelView } from "@modules/organization/modelView/organization";
+import { UserModalView } from "@modules/user/model/user";
+import { OrganizationModelView } from "@modules/organization/model/organization";
 
 export class LinkModelView {
   id: number;

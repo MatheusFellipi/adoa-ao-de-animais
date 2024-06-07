@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { AdaptarContact } from "@modules/contacts/adaptar/contacts";
-import { ContactModelView } from "@modules/contacts/modelView/contact";
+import { ContactModelView } from "@modules/contacts/model/contact";
 import { IContactRepository } from "@modules/contacts/infra/repositories/IContactRepository";
 
 

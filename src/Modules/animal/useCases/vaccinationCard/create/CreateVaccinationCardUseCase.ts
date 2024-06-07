@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { VaccinationCardModelView } from "@modules/animal/modelView/vaccinationCard";
+import { VaccinationCardModelView } from "@modules/animal/model/vaccinationCard";
 import { CreateDoseController } from "../../dose/create/CreateDoseController";
 import { IVaccinationCardRepository } from "@modules/animal/infra/repositories/IVaccinationCardRepository";
 

@@ -1,4 +1,4 @@
-import { UserModalView } from "@modules/user/modelView/user";
+import { UserModalView } from "@modules/user/model/user";
 import { ICityDtos } from "./ICityDtos";
 import { IUserDtos } from "@modules/user/dtos/IUserDtos";
 

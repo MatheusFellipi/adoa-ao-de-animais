@@ -1,5 +1,5 @@
 
-import { ContactModelView } from "../modelView/contact";
+import { ContactModelView } from "../model/contact";
 
 
 export class AdaptarContact {
