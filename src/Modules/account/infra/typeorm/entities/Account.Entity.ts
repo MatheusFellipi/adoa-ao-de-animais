@@ -1,7 +1,9 @@
-import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
-import { User } from "@modules/user/infra/typeorm/entities/users.entity";
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, OneToOne, OneToMany } from "typeorm";
+
 import { Tokens } from "./Token.Entity";
+
+import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
+import { User } from "@modules/user/infra/typeorm/entities/Users.Entity";
 
 
 @Entity("accounts")

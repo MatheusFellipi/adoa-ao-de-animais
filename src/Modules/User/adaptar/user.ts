@@ -1,4 +1,4 @@
-import { User } from "../infra/typeorm/entities/users.entity";
+import { User } from "../infra/typeorm/entities/Users.Entity";
 import { UserModalView, UserUpdateModalView } from "../model/user";
 import { AddressModelView } from "@modules/address/model/address";
 

@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import configAws from "@config/aws"
 
-import { User } from "@modules/user/infra/typeorm/entities/users.entity";
+import { User } from "@modules/user/infra/typeorm/entities/Users.Entity";
 
 import { AdaptarUser } from "@modules/user/adaptar/user";
 import { UserUpdateModalView } from "@modules/user/model/user";

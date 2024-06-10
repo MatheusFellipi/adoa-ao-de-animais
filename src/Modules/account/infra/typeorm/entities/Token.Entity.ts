@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { Account } from './Account.entity';
+
+import { Account } from './Account.Entity';
 
 
 @Entity("tokens")

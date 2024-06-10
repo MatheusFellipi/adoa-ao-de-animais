@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-import { User } from "@modules/user/infra/typeorm/entities/users.entity";
+import { User } from "@modules/user/infra/typeorm/entities/Users.Entity";
 import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
 
 @Entity("links")

@@ -4,7 +4,7 @@ import { IsNotEmpty } from "class-validator";
 import { VaccinationCard } from "./vaccinationCard.entity";
 import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
 import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
-import { User } from "@modules/user/infra/typeorm/entities/users.entity";
+import { User } from "@modules/user/infra/typeorm/entities/Users.Entity";
 import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 
 @Entity("animals")
