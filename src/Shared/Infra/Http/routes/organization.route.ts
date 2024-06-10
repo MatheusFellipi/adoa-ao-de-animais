@@ -11,4 +11,5 @@ const avatar = uploadConfig.uploadS3("./tmp/avatar");
 export default (router: Router): void => {
   router.put( "/organization/:id", authenticated, avatar.single("avatar"), UpdateOrganizationController.handle);
   router.post("/organization/photo/:id", authenticated, avatar.array("photos"), CreatePhotosOrganizationController.handle);
+  router.delete("/organization/photo/:id", authenticated, avatar.array("photos"), CreatePhotosOrganizationController.handle);
 }

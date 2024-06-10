@@ -12,6 +12,10 @@ export class OrganizationRepository implements IOrganizationRepository {
   constructor() {
     this.__repository = dbContext.getRepository(Organization);
   }
+
+  async delete(org: IOrganizationDtos): Promise<void> {
+   await this.__repository.delete(org)
+  }
   
   async findExistsBy(found: string): Promise<boolean> {
     return await this.__repository.existsBy({ cnpj_cpf: found });

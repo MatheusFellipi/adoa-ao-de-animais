@@ -4,6 +4,7 @@ import { User } from "@modules/user/infra/typeorm/entities/Users.Entity";
 export interface IUsersRepository {
   create(data: IUserDtos): Promise<User>;
   update(user: User, change_date: IUserUpdateDtos): Promise<User>;
+  delete(user: IUserDtos): Promise<void>;
   findById(id: number): Promise<User>;
 }
 

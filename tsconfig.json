@@ -12,12 +12,12 @@
       "@utils/*": ["utils/*"],
       "@validation": ["validation/*"]
     },
+
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    
-  }
+  },
 }

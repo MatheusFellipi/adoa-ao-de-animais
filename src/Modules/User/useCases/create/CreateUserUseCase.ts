@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { AdaptarUser } from "@modules/user/adaptar/user";
+import { AdaptarUser } from "@modules/user/adapter/user";
 import { UserModalView } from "@modules/user/model/user";
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";
 

@@ -1,16 +1,16 @@
 import { IsArray, IsDate, IsNotEmpty, IsNotEmptyObject, IsUrl, validate, ValidateIf } from "class-validator";
+
 import { AppError } from "@shared/infra/errors/AppError";
 
 
 import { OrganizationType } from "../enums/organization.enum";
 import { AddressModelView } from "@modules/address/model/address";
-import { CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { LinkModelView } from "@modules/contacts/model/link";
-import { ContactModelView } from "@modules/contacts/model/contact";
-import { PhotoModelView } from "@modules/photos/model/photos";
+import { ContactModel } from "@modules/contacts/model/contact";
+
 import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 
-export class OrganizationModelView {
+export class OrganizationModel {
   id?: number;
 
   @IsNotEmpty()
@@ -32,15 +32,9 @@ export class OrganizationModelView {
   @IsDate()
   operation_at: Date;
 
-  @CreateDateColumn()
-  created_at?: Date;
-
-  @UpdateDateColumn()
-  updated_at?: Date;
-
   @ValidateIf((o) => o.animals !== undefined)
   @IsArray()
-  contacts?: ContactModelView[];
+  contacts?: ContactModel[];
 
   @ValidateIf((o) => o.links !== undefined)
   @IsArray()
@@ -55,8 +49,8 @@ export class OrganizationModelView {
   @IsNotEmptyObject({}, { each: true })
   addresses: AddressModelView[];
 
-  static validade(data: OrganizationModelView) {
-    const instance = new OrganizationModelView();
+  static validade(data: OrganizationModel) {
+    const instance = new OrganizationModel();
     Object.assign(instance, data)
     validate(this).then((errors) => {
       if (errors.length > 0)

@@ -13,6 +13,10 @@ export class UsersRepository implements IUsersRepository {
     this.__repository = dbContext.getRepository(User);
   }
 
+  async delete(user: User): Promise<void> {
+      this.__repository.delete(user)
+  }
+
   async create({ name, avatar, addresses, contacts, links }: IUserDtos): Promise<User> {
     const user = this.__repository.create({ name, avatar, addresses, contacts, links });
     return await this.__repository.save(user);
