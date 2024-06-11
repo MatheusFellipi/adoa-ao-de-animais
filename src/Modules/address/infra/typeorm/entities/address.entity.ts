@@ -1,9 +1,9 @@
 import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 
-import { City } from "./city.entity";
+import { City } from "./City.entity";
 
-import { User } from "@modules/user/infra/typeorm/entities/Users.Entity";
-import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
+import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
+import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
 
 @Entity("addresses")
 export class Address {

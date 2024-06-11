@@ -1,6 +1,6 @@
 import { IsNotEmpty, validate } from "class-validator";
 import { AnimalAdType } from "@modules/ad/enums/animalAd.enum";
-import { Animal } from "@modules/animal/infra/typeorm/entities/animal.entity";
+import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
 import { AppError } from "@shared/infra/errors/AppError";
 import { AnimalModel } from "@modules/animal/model/animal";
 

@@ -1,4 +1,4 @@
-import { VaccinationCard } from "../typeorm/entities/vaccinationCard.entity";
+import { VaccinationCard } from "../typeorm/entities/VaccinationCard.entity";
 import { IVaccinationCardDtos } from "@modules/animal/dtos/IVaccinationCardDtos";
 
 export interface IVaccinationCardRepository {

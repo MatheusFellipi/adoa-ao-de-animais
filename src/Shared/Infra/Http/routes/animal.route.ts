@@ -20,5 +20,5 @@ export default (router: Router): void => {
   router.delete("/animal/:id", authenticated, DeleteAnimalController.handle);
 
   router.post("/animal/photos/:animal_id", authenticated, avatar.array("photos"), CreatePhotosAnimalController.handle);
-  router.delete("/animal/photo/:id_photo", authenticated, UpdateAnimalController.handle);
+  // router.delete("/animal/photo/:id_photo", authenticated, UpdateAnimalController.handle);
 }

@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm"
 
-import { Animal } from "../entities/animal.entity";
+import { Animal } from "../entities/Animal.entity";
 import { IAnimalRepository } from "../../repositories/IAnimalRepository";
 import { IAnimalDtos } from "@modules/animal/dtos/IAnimalDtos";
 

@@ -3,7 +3,7 @@ import { dbContext } from "@shared/infra/typeorm";
 
 import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
 
-import { Link } from "../entities/link.entity";
+import { Link } from "../entities/Link.entity";
 import { ILinkRepository } from "../../repositories/ILinksRepository";
 
 export class LinkRepository implements ILinkRepository {

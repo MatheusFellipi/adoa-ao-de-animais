@@ -1,0 +1,38 @@
+{
+  "account": {
+    "id": 1,
+    "email": "johndoe@example.com",
+    "password": "password123",
+    "user": {
+      "id": 1,
+      "name": "John Doe",
+      "addresses": [
+        {
+          "id": 1,
+          "street": "123 Main St",
+          "district": "bairro",
+          "state": "CA",
+          "postal_code": "12345",
+          "complement": "complement",
+          "city": {
+            "id": 1,
+            "name": "Acrelândia"
+          }
+        }
+      ],
+      "contacts": [
+        {
+          "type": 1,
+          "name": "nome contato",
+          "value": "555-1234"
+        }
+      ],
+      "links": [
+        {
+          "url": "https://example.com",
+          "name": "Personal website"
+        }
+      ]
+    }
+  }
+}

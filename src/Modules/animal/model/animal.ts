@@ -18,8 +18,8 @@ import { PhotoModelView } from "@modules/photos/model/photos";
 import { AppError } from "@shared/infra/errors/AppError";
 import { UserModalView } from "@modules/user/model/user";
 import { OrganizationModel } from "@modules/organization/model/organization";
-import { SortOrder } from "../../../shared/enums/query.enum";
-import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
+import { SortOrderEnum } from "../../../shared/enums/query.enum";
+import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";
 
 export class AnimalModel {
   id?: number;
@@ -150,8 +150,8 @@ export class AnimalQueryModel {
 
   @IsOptional()
   @IsString()
-  @IsEnum(SortOrder, { message: "Sort order must be either ASC or DESC" })
-  sortOrder: SortOrder = 1;
+  @IsEnum(SortOrderEnum, { message: "Sort order must be either ASC or DESC" })
+  SortOrderEnum: SortOrderEnum = 1;
 
   static validade(data: AnimalQueryModel) {
     const instance = new AnimalQueryModel();

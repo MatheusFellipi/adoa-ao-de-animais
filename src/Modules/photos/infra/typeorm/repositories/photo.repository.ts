@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm"
 
 import { IPhotosRepository } from "../../repositories/IPhotosRepository";
-import { Photo } from "../entities/photos.entity";
+import { Photo } from "../entities/Photos.entity";
 import { IPhotoDtos } from "@modules/photos/dtos/IPhotoDtos";
 
 export class PhotoRepository implements IPhotosRepository {

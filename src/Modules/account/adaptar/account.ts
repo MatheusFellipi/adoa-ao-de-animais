@@ -1,4 +1,4 @@
-import { AccountReturnNotPasswordModelView } from "../model/accountReturnNotPassword.modalView";
+import { AccountReturnNotPasswordModel } from "../model/accountReturnNotPassword.modal"
 
 type Adaptar = {
   email: string, name: string, avatar: string, token: {
@@ -8,7 +8,7 @@ type Adaptar = {
 }
 
 export class AdaptarAccount {
-  static accountReturn(account: Adaptar): AccountReturnNotPasswordModelView {
+  static accountReturn(account: Adaptar): AccountReturnNotPasswordModel {
     return {
       token: {
         token: account.token.token,

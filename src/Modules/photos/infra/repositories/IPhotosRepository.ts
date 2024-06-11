@@ -1,4 +1,4 @@
-import { Photo } from "../typeorm/entities/photos.entity";
+import { Photo } from "../typeorm/entities/Photos.entity";
 import { IPhotoDtos } from "@modules/photos/dtos/IPhotoDtos";
 
 export interface IPhotosRepository {

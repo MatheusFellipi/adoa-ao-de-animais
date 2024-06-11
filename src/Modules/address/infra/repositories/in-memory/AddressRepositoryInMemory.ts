@@ -1,5 +1,5 @@
 import { IAddressRepository } from "../IAddressRepository";
-import { Address } from "../../typeorm/entities/address.entity";
+import { Address } from "../../typeorm/entities/Address.entity";
 import { IAddressDtos } from "@modules/address/dtos/IAddressDtos";
 
 

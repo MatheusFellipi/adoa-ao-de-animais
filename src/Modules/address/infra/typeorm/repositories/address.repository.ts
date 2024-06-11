@@ -3,7 +3,7 @@ import { Repository } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm"
 import { IAddressRepository } from "../../repositories/IAddressRepository";
 
-import { Address } from "../entities/address.entity";
+import { Address } from "../entities/Address.entity";
 import { IAddressDtos } from "@modules/address/dtos/IAddressDtos";
 
 export class AddressRepository implements IAddressRepository {

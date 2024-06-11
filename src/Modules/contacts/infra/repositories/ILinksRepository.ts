@@ -1,5 +1,5 @@
 import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
-import { Link } from "../typeorm/entities/link.entity";
+import { Link } from "../typeorm/entities/Link.entity";
 
 export interface ILinkRepository {
   create(data: ILinkDtos): Promise<Link>;

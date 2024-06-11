@@ -1,11 +1,11 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { IsNotEmpty } from "class-validator";
 
-import { VaccinationCard } from "./vaccinationCard.entity";
+import { VaccinationCard } from "./VaccinationCard.entity";
 import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
-import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
-import { User } from "@modules/user/infra/typeorm/entities/Users.Entity";
-import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
+import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
+import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
+import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";
 
 @Entity("animals")
 export class Animal {

@@ -1,9 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, OneToOne, OneToMany } from "typeorm";
 
-import { Tokens } from "./Token.Entity";
+import { Tokens } from "./Token.entity";
 
-import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
-import { User } from "@modules/user/infra/typeorm/entities/Users.Entity";
+import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
+import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
 
 
 @Entity("accounts")

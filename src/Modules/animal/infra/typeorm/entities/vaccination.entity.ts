@@ -1,5 +1,5 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { RelationshipVaccination } from "./relationshipVaccination.entity";
+import { RelationshipVaccination } from "./RelationshipVaccination.entity";
 
 @Entity("vaccinations")
 export class Vaccination {

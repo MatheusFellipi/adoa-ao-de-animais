@@ -3,7 +3,7 @@ import { Repository } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm"
 
 import { IOrganizationRepository } from "../../repositories/IOrganizationsRepository";
-import { Organization } from "../entities/organization.entity";
+import { Organization } from "../entities/Organization.entity";
 import { IOrganizationDtos } from "@modules/organization/dtos/IOrganizationDtos";
 
 export class OrganizationRepository implements IOrganizationRepository {

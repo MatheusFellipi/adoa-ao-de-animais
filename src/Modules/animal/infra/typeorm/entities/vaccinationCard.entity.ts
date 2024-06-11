@@ -1,7 +1,7 @@
 import { CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-import { RelationshipVaccination } from "./relationshipVaccination.entity";
-import { Animal } from "./animal.entity";
+import { RelationshipVaccination } from "./RelationshipVaccination.entity";
+import { Animal } from "./Animal.entity";
 
 @Entity("vaccination_cards")
 export class VaccinationCard {

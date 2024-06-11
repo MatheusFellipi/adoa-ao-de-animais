@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 
 import { dbContext } from "@shared/infra/typeorm"
 
-import { User } from "../entities/Users.Entity";
+import { User } from "../entities/Users.entity";
 import { IUserDtos, IUserUpdateDtos } from "@modules/user/dtos/IUserDtos";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 

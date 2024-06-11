@@ -1,4 +1,4 @@
-import { Address } from "@modules/address/infra/typeorm/entities/address.entity";
+import { Address } from "@modules/address/infra/typeorm/entities/Address.entity";
 import { AddressModelView } from "../model/address";
 
 export class AdaptarAddress {

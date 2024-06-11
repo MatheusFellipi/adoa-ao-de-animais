@@ -1,6 +1,6 @@
 import { IAdDtos } from "@modules/ad/dtos/IAdDtos";
-import { Animal } from "@modules/animal/infra/typeorm/entities/animal.entity";
-import { AnimalAd } from "../typeorm/entities/ad.entity";
+import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
+import { AnimalAd } from "../typeorm/entities/Ad.entity";
 import { AnimalAdNModel } from "@modules/ad/model/ad";
 import { IAdQueryDtos } from "@modules/ad/dtos/IAdQueryDtos";
 

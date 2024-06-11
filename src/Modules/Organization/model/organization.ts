@@ -8,7 +8,7 @@ import { AddressModelView } from "@modules/address/model/address";
 import { LinkModelView } from "@modules/contacts/model/link";
 import { ContactModel } from "@modules/contacts/model/contact";
 
-import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
+import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";
 
 export class OrganizationModel {
   id?: number;

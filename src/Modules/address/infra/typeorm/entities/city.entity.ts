@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
-import { State } from "./state.entity";
-import { Address } from "./address.entity";
+import { State } from "./State.entity";
+import { Address } from "./Address.entity";
 
 @Entity("cities")
 export class City {

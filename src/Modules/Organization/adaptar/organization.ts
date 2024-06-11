@@ -1,5 +1,5 @@
 import { OrganizationType } from "../enums/organization.enum";
-import { Organization } from "../infra/typeorm/entities/organization.entity";
+import { Organization } from "../infra/typeorm/entities/Organization.entity";
 import { OrganizationModelView, OrganizationUpdateModelView } from "../model/organization";
 import { AddressModelView } from "@modules/address/model/address";
 

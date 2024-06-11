@@ -1,4 +1,4 @@
-import { Contact } from "../typeorm/entities/contact.entity";
+import { Contact } from "../typeorm/entities/Contact.entity";
 import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
 
 export interface IContactRepository {

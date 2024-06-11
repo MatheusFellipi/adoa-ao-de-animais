@@ -6,7 +6,7 @@ import { DeleteUserController } from "@modules/user/useCases/delete/User.Control
 import { authenticated } from "../middleware/authenticated.middleware";
 
 import uploadConfig from "@config/upload";
-const avatar = uploadConfig.uploadS3("./tmp/avatar");
+const avatar = uploadConfig.upload("./tmp/avatar");
 
 export default (router: Router): void => {
   router.put( "/user", authenticated, avatar.single("avatar"), UpdateUserController.handle);

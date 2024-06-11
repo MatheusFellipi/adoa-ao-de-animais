@@ -1,10 +1,10 @@
 import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany, OneToOne, } from "typeorm";
 
-import { Address } from "@modules/address/infra/typeorm/entities/address.entity";
-import { Animal } from "@modules/animal/infra/typeorm/entities/animal.entity";
-import { Account } from "@modules/account/infra/typeorm/entities/Account.Entity";
-import { Contact } from "@modules/contacts/infra/typeorm/entities/contact.entity";
-import { Link } from "@modules/contacts/infra/typeorm/entities/link.entity";
+import { Address } from "@modules/address/infra/typeorm/entities/Address.entity";
+import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
+import { Account } from "@modules/account/infra/typeorm/entities/Account.entity";
+import { Contact } from "@modules/contacts/infra/typeorm/entities/Contact.entity";
+import { Link } from "@modules/contacts/infra/typeorm/entities/Link.entity";
 
 @Entity({ name: "users" })
 export class User {

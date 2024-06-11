@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm";
-import { Contact } from "../entities/contact.entity";
+import { Contact } from "../entities/Contact.entity";
 
 import { IContactDtos } from "@modules/contacts/dtos/IContactDtos";
 import { IContactRepository } from "../../repositories/IContactRepository";

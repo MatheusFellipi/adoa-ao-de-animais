@@ -1,4 +1,4 @@
-import { Animal } from "../../typeorm/entities/animal.entity";
+import { Animal } from "../../typeorm/entities/Animal.entity";
 import { IAnimalRepository } from "../IAnimalRepository";
 import { IAnimalDtos } from "@modules/animal/dtos/IAnimalDtos";
 

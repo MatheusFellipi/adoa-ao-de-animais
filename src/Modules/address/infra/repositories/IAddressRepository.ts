@@ -1,6 +1,6 @@
 import { AddressModelView } from "@modules/address/model/address";
 import { IAddressDtos } from "../../dtos/IAddressDtos";
-import { Address } from "../typeorm/entities/address.entity";
+import { Address } from "../typeorm/entities/Address.entity";
 
 export interface IAddressRepository {
   create(data: IAddressDtos): Promise<Address>;

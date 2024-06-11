@@ -6,7 +6,7 @@ import { UpdateOrganizationController } from "@modules/organization/useCases/upd
 import { CreatePhotosOrganizationController } from "@modules/organization/useCases/createPhotos/CreatePhotosOrganizationController";
 
 import uploadConfig from "@config/upload";
-const avatar = uploadConfig.uploadS3("./tmp/avatar");
+const avatar = uploadConfig.upload("./tmp/avatar");
 
 export default (router: Router): void => {
   router.put( "/organization/:id", authenticated, avatar.single("avatar"), UpdateOrganizationController.handle);

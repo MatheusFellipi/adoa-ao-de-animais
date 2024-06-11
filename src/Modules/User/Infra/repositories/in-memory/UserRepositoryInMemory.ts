@@ -1,4 +1,4 @@
-import { User } from "../../typeorm/entities/Users.Entity";
+import { User } from "../../typeorm/entities/Users.entity";
 import { IUserDtos } from "@modules/user/dtos/IUserDtos";
 import { IUsersRepository } from "../IUsersRepository";
 

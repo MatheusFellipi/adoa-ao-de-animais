@@ -1,5 +1,5 @@
 import { IOrganizationDtos } from "@modules/organization/dtos/IOrganizationDtos";
-import { Organization } from "../../typeorm/entities/organization.entity";
+import { Organization } from "../../typeorm/entities/Organization.entity";
 import { IOrganizationRepository } from "../IOrganizationsRepository";
 
 

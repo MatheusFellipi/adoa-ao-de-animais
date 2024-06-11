@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-import { User } from "@modules/user/infra/typeorm/entities/Users.Entity";
-import { Organization } from "@modules/organization/infra/typeorm/entities/organization.entity";
+import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
+import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
 
 @Entity("links")
 export class Link {

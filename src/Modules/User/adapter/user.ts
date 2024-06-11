@@ -1,4 +1,4 @@
-import { User } from "../infra/typeorm/entities/Users.Entity";
+import { User } from "../infra/typeorm/entities/Users.entity";
 import { UserModalView, UserUpdateModalView } from "../model/user";
 
 export class AdapterUser {

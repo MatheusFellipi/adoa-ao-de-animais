@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 
 import { AnimalAdNModel } from "@modules/ad/model/ad";
 import { IAdRepository } from "@modules/ad/infra/repositories/IAdRepository";
-import { Animal } from "@modules/animal/infra/typeorm/entities/animal.entity";
+import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
 import { RequestType } from "@shared/type/request.type";
 import { AppError } from "@shared/infra/errors/AppError";
 

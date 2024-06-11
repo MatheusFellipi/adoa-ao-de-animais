@@ -3,7 +3,7 @@ import { container } from "tsyringe";
 
 import { ListLinkUseCase } from "./Links.useCase";
 
-export class ListLinkController {
+export class LinkUpdateController {
   static async handle(request: Request, response: Response): Promise<Response> {
     const { name, url, } = request.body;
     const { id } = request.params;
