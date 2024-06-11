@@ -1,9 +1,9 @@
 import { UserModalView } from "@modules/user/model/user";
-import { OrganizationModelView } from "@modules/organization/model/organization";
+import { OrganizationModel } from "@modules/organization/model/organization";
 import { IsNotEmpty, validate, ValidateIf } from "class-validator";
 import { AppError } from "@shared/infra/errors/AppError";
 
-export class LinkModelView {
+export class LinkModel {
   @ValidateIf(c=>c.id!== undefined)
   @IsNotEmpty()
   id?: number;
@@ -14,13 +14,12 @@ export class LinkModelView {
   @IsNotEmpty()
   url: string;
 
-  created_at?: Date;
-  updated_at?: Date;
-  organization?: OrganizationModelView;
+  organization?: OrganizationModel;
+  
   user?: UserModalView;
 
-  static validade(data: LinkModelView) {
-    const instance = new LinkModelView();
+  static validade(data: LinkModel) {
+    const instance = new LinkModel();
     Object.assign(instance, data);
     validate(this).then((errors) => {
       if (errors.length > 0)

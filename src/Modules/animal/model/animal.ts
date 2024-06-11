@@ -17,11 +17,11 @@ import { AnimalGender, AnimalSize } from "../enum/animal.enum";
 import { PhotoModelView } from "@modules/photos/model/photos";
 import { AppError } from "@shared/infra/errors/AppError";
 import { UserModalView } from "@modules/user/model/user";
-import { OrganizationModelView } from "@modules/organization/model/organization";
-import { SortOrder } from "../enum/query.enum";
+import { OrganizationModel } from "@modules/organization/model/organization";
+import { SortOrder } from "../../../shared/enums/query.enum";
 import { Photo } from "@modules/photos/infra/typeorm/entities/photos.entity";
 
-export class AnimalModelView {
+export class AnimalModel {
   id?: number;
 
   @IsNotEmpty()
@@ -56,14 +56,14 @@ export class AnimalModelView {
 
   @ValidateIf((o) => o.organization !== undefined)
   @IsNotEmpty()
-  organization?: OrganizationModelView;
+  organization?: OrganizationModel;
 
   @ValidateIf((o) => o.user !== undefined)
   @IsNotEmpty()
   user?: UserModalView;
 
-  static validate(data: AnimalModelView) {
-    const instance = new AnimalModelView();
+  static validate(data: AnimalModel) {
+    const instance = new AnimalModel();
     Object.assign(instance, data);
     validate(this).then((errors) => {
       if (errors.length > 0)

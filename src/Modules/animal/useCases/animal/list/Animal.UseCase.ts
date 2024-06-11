@@ -1,12 +1,10 @@
 import { inject, injectable } from "tsyringe";
 
 import {
-  AnimalModelView,
+  AnimalModel,
   AnimalQueryModel,
 } from "@modules/animal/model/animal";
-import { Animal } from "@modules/animal/infra/typeorm/entities/animal.entity";
 import { IAnimalRepository } from "@modules/animal/infra/repositories/IAnimalRepository";
-import { AppError } from "@shared/infra/errors/AppError";
 
 @injectable()
 export class ListAnimalsUseCase {
@@ -14,7 +12,7 @@ export class ListAnimalsUseCase {
     @inject("IAnimalRepository") private __repository: IAnimalRepository
   ) {}
 
-  async execute(query: AnimalQueryModel): Promise<AnimalModelView[]> {
+  async execute(query: AnimalQueryModel): Promise<AnimalModel[]> {
     const instance = AnimalQueryModel.validade(query);
 
     let criteria: any = {};

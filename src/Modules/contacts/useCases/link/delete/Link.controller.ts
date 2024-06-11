@@ -6,8 +6,9 @@ import { DeleteLinkUseCase } from "./Links.useCase";
 export class DeleteLinkController {
   static async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
+    const account = request.account[request.type];
     const link = container.resolve(DeleteLinkUseCase);
-    await link.execute(parseInt(id));
+    await link.execute(parseInt(id), account, request.type);
     return response.status(200).json({
       message: "O site/rede social foi excluída permanentemente",
     });
