@@ -1,21 +1,19 @@
-import { AccountReturnNotPasswordModel } from "../model/accountReturnNotPassword.modal"
+import { TokenReturnModel } from "../model/Token.modal";
 
 type Adaptar = {
-  email: string, name: string, avatar: string, token: {
-    token: string,
-    expires_at: Date,
-  }
-}
+  email: string;
+  name: string;
+  avatar: string;
+  token: string;
+};
 
 export class AdaptarAccount {
-  static accountReturn(account: Adaptar): AccountReturnNotPasswordModel {
+  static accountReturn(account: Adaptar): TokenReturnModel {
     return {
-      token: {
-        token: account.token.token,
-        expires_at: account.token.expires_at,
-      },
+      token: account.token,
+      avatar: account.avatar,
       email: account.email,
-      name: account.name
-    }
+      name: account.name,
+    };
   }
 }

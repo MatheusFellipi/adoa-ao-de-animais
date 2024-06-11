@@ -4,7 +4,7 @@ import { hash, compare } from "bcrypt";
 import { AppError } from "@shared/infra/errors/AppError";
 
 
-import { OrganizationModelView } from "@modules/organization/model/organization";
+import { OrganizationModel } from "@modules/organization/model/organization";
 import { UserModalView } from "@modules/user/model/user";
 
 export class AccountModel {
@@ -15,7 +15,7 @@ export class AccountModel {
 
   @ValidateIf((o) => o.avatar !== undefined)
   @IsArray()
-  organization?: OrganizationModelView;
+  organization?: OrganizationModel;
 
   @ValidateIf((o) => o.links !== undefined)
   @IsArray()

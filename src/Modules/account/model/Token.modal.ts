@@ -1,10 +1,10 @@
 import { sign } from 'jsonwebtoken';
-import { AccountModelView } from './account.modal';
+import { AccountModel } from './account.modal';
 
 export class TokenModelView {
   id?: number;
   token: string;
-  account?: AccountModelView;
+  account?: AccountModel;
   expires_at: Date;
 
   static async create_token(account: { email: string, id: number }) {
@@ -15,3 +15,10 @@ export class TokenModelView {
   }
 }
 
+
+export class TokenReturnModel {
+  email: string;
+  name: string;
+  avatar: string;
+  token: string;
+}

@@ -1,15 +1,15 @@
-import { inject, injectable } from "tsyringe";
 import { addDays } from "date-fns";
+import { inject, injectable } from "tsyringe";
 
 import { AppError } from "@shared/infra/errors/AppError";
 
 import { IAccountRepository } from "@modules/account/infra/repositories/IAccountRepository";
 import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepository";
 
+import { AdaptarAccount } from "@modules/account/adaptar/account";
+import { TokenReturnModel } from "@modules/account/model/Token.modal";
 import { jwtHelpers } from "@shared/utils/helpers/jwt-helpers";
 import { verify } from "jsonwebtoken";
-import { AdaptarAccount } from "@modules/account/adaptar/account";
-import { AccountReturnNotPasswordModel } from "@modules/account/model/accountReturnNotPassword.modal";
 
 interface IPayLoad {
   sub: string;
@@ -24,7 +24,7 @@ export class RefreshTokenUseCase {
 
   async execute(
     token: string
-  ): Promise<{ data: AccountReturnNotPasswordModel; refreshToken: string }> {
+  ): Promise<{ data: TokenReturnModel; refreshToken: string }> {
     if (!token)
       throw new AppError(
         "A sessão do expirou por favor fazer o login novamente"
@@ -48,7 +48,7 @@ export class RefreshTokenUseCase {
         id: account.id,
       });
 
-      const token_save = await this._token_repository.update(storedToken, {
+       await this._token_repository.update(storedToken, {
         account: account,
         token: newRefreshToken,
         expires_at: addDays(Date.now(), 7),
@@ -57,7 +57,7 @@ export class RefreshTokenUseCase {
       return {
         refreshToken: newRefreshToken,
         data: AdaptarAccount.accountReturn({
-          token: token_save,
+          token: newToken,
           avatar: account.organization?.avatar ?? account.user?.avatar,
           email: account.email,
           name: account.organization?.name ?? account.user?.name,

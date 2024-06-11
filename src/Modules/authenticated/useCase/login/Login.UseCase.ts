@@ -1,5 +1,5 @@
-import { inject, injectable } from "tsyringe";
 import { addDays } from "date-fns";
+import { inject, injectable } from "tsyringe";
 
 import { AppError } from "@shared/infra/errors/AppError";
 
@@ -7,7 +7,7 @@ import { IAccountRepository } from "@modules/account/infra/repositories/IAccount
 import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepository";
 
 import { AdaptarAccount } from "@modules/account/adaptar/account";
-import { AccountReturnNotPasswordModel } from "@modules/account/model/accountReturnNotPassword.modal";
+import { TokenReturnModel } from "@modules/account/model/Token.modal";
 import { AuthenticatedModel } from "@modules/authenticated/model/authenticated.modal";
 import { jwtHelpers } from "@shared/utils/helpers/jwt-helpers";
 
@@ -20,7 +20,7 @@ export class LoginUseCase {
 
   async execute(
     form: AuthenticatedModel
-  ): Promise<{ data: AccountReturnNotPasswordModel; refreshToken: string }> {
+  ): Promise<{ data: TokenReturnModel; refreshToken: string }> {
     const instance = AuthenticatedModel.validade(form);
     const account = await this.__repository.findByEmail(instance.email);
     if (!account) throw new AppError("o email ou a senha esta incorreta");
@@ -52,7 +52,7 @@ export class LoginUseCase {
     });
 
     const return_token = AdaptarAccount.accountReturn({
-      token: token_save,
+      token: newRefreshToken,
       avatar: account.organization?.avatar ?? account.user?.avatar,
       email: account.email,
       name: account.organization?.name ?? account.user?.name,

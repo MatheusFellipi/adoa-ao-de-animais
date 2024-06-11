@@ -2,13 +2,16 @@ import { inject, injectable } from "tsyringe";
 import { addDays } from "date-fns";
 import { AppError } from "@shared/infra/errors/AppError";
 import { IAccountRepository } from "@modules/account/infra/repositories/IAccountRepository";
-import { TokenModelView } from "@modules/account/model/Token.modal";
+import {
+  TokenModelView,
+  TokenReturnModel,
+} from "@modules/account/model/Token.modal";
 import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepository";
 import { CreateUserController } from "@modules/user/useCases/create/CreateUserController";
 import { CreateOrganizationController } from "@modules/organization/useCases/create/CreateOrganizationController";
 import { AdaptarAccount } from "@modules/account/adaptar/account";
 import { AccountModel } from "@modules/account/model/account.modal";
-import { AccountReturnNotPasswordModel } from "@modules/account/model/accountReturnNotPassword.modal";
+import { jwtHelpers } from "@shared/utils/helpers/jwt-helpers";
 
 @injectable()
 export class CreateAccountUseCase {
@@ -20,7 +23,7 @@ export class CreateAccountUseCase {
   async execute(
     form: AccountModel,
     type: "user" | "organization"
-  ): Promise<AccountReturnNotPasswordModel> {
+  ): Promise<{ account: TokenReturnModel; refreshToken: string }> {
     const instance = AccountModel.validade(form);
 
     const existe = await this.__repository.findExistsBy(instance.email);
@@ -36,23 +39,25 @@ export class CreateAccountUseCase {
     instance.password = await AccountModel.crypto_password(instance.password);
 
     const account = await this.__repository.create(instance);
-
-    const token_instancia = await TokenModelView.create_token({
+    const { newRefreshToken, newToken } = jwtHelpers.createToken({
       email: account.email,
       id: account.id,
     });
 
-    const token = await this._token_repository.create({
+    await this._token_repository.create({
       account: account,
-      token: token_instancia,
+      token: newRefreshToken,
       expires_at: addDays(Date.now(), 1),
     });
 
-    return AdaptarAccount.accountReturn({
-      token: token,
-      avatar: account[type].avatar,
-      email: account.email,
-      name: account[type].name,
-    });
+    return {
+      refreshToken: newRefreshToken,
+      account: AdaptarAccount.accountReturn({
+        token: newToken,
+        avatar: account[type].avatar,
+        email: account.email,
+        name: account[type].name,
+      }),
+    };
   }
 }
