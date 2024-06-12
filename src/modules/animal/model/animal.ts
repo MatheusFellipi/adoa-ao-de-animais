@@ -15,7 +15,7 @@ import {
 import { VaccinationCardModelView } from "./vaccinationCard";
 import { AnimalGender, AnimalSize } from "../enum/animal.enum";
 import { PhotoModelView } from "@modules/photos/model/photos";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { UserModalView } from "@modules/user/model/user";
 import { OrganizationModel } from "@modules/organization/model/organization";
 import { SortOrderEnum } from "../../../shared/utils/enums/query.enum";

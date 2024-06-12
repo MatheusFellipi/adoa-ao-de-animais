@@ -1,4 +1,4 @@
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { Request, Response, NextFunction } from "express";
 
 export const createAccountMiddleware = (

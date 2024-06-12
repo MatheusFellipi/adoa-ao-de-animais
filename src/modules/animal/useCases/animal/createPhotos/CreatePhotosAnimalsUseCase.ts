@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { AnimalPhotoModelView } from "@modules/animal/model/animal";
 import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
 import { IAnimalRepository } from "@modules/animal/infra/repositories/IAnimalRepository";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { CreatePhotosController } from "@modules/photos/useCases/create/CreatePhotosController";
 
 @injectable()

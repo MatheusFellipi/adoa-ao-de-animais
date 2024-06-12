@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import configAws from "@config/aws"
+import configAws from "@shared/services/aws/delete.s3"
 
 import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
 

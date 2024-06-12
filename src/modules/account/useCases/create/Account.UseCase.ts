@@ -5,7 +5,7 @@ import { AccountModel } from "@modules/account/model/account.modal";
 import { TokenReturnModel } from "@modules/account/model/Token.modal";
 import { CreateOrganizationController } from "@modules/organization/useCases/create/Organization.Controller";
 import { CreateUserController } from "@modules/user/useCases/create/CreateUserController";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { jwtHelpers } from "@shared/utils/helpers/jwt-helpers";
 import { addDays } from "date-fns";
 import { inject, injectable } from "tsyringe";

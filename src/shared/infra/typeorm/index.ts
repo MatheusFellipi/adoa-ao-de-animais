@@ -1,7 +1,8 @@
 import { DataSource, DataSourceOptions,  } from "typeorm"
 import { singleton } from "tsyringe"
 
-import { db } from "@config/db"
+import { db } from "@shared/config/db"
+
 
 @singleton()
 class DbContext {

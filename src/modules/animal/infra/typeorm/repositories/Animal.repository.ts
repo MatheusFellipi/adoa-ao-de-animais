@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { dbContext } from "@shared/infra/typeorm"
+import { dbContext } from "@shared/infra/typeorm";
 
 import { Animal } from "../entities/Animal.entity";
 import { IAnimalRepository } from "../../repositories/IAnimalRepository";
@@ -10,6 +10,14 @@ export class AnimalRepository implements IAnimalRepository {
   constructor() {
     this.__repository = dbContext.getRepository(Animal);
   }
+  
+  find(criteria: object): Promise<Animal[]> {
+    throw new Error("Method not implemented.");
+  }
+
+  listAllByAccount(account_id: number): Promise<Animal[]> {
+    throw new Error("Method not implemented.");
+  }
 
   async create(data: IAnimalDtos): Promise<Animal> {
     const user = this.__repository.create(data);
@@ -17,22 +25,13 @@ export class AnimalRepository implements IAnimalRepository {
   }
 
   async update(data: Animal, change_data: IAnimalDtos): Promise<Animal> {
-    this.__repository.merge(data, change_data)
-    return await this.__repository.save(data)
+    this.__repository.merge(data, change_data);
+    return await this.__repository.save(data);
   }
 
   async delete(data: Animal): Promise<void> {
-    await this.__repository.delete(data)
+    await this.__repository.delete(data);
   }
-
-  async find(criteria: object): Promise<Animal> {
-    return await this.__repository.findAndCount({
-      where: criteria,
-      relations: ['organization', 'user', 'vaccinationCard', 'photos'],
-      order: criteria.sortField ? { [criteria.sortField]: criteria.sortOrder } : undefined,
-    }).paginate();
-  }
-
 
   async findById(id: number): Promise<Animal> {
     return await this.__repository.findOne({
@@ -40,11 +39,10 @@ export class AnimalRepository implements IAnimalRepository {
     });
   }
 
-  
   async findByIdFullReturn(id: number): Promise<Animal> {
     return await this.__repository.findOne({
       where: { id: id },
-      relations: { vaccinationCard: true }
+      relations: { vaccinationCard: true },
     });
   }
 }

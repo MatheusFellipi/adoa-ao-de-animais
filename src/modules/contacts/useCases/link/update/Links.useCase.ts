@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { ILinkRepository } from "@modules/contacts/infra/repositories/ILinksRepository";
 import { LinkModel } from "@modules/contacts/model/link";
 import { RequestType } from "@shared/type/request.type";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 
 @injectable()
 export class ListLinkUseCase {

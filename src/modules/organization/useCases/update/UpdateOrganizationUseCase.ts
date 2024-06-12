@@ -1,9 +1,8 @@
 import { inject, injectable } from "tsyringe";
-import configAws from "@config/aws"
 import { AdaptarOrgs } from "@modules/organization/adaptar/organization";
 import { OrganizationUpdateModelView } from "@modules/organization/model/organization";
 import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
-
+import configAws from "@shared/services/aws/delete.s3"
 
 @injectable()
 export class UpdateOrganizationUseCase {

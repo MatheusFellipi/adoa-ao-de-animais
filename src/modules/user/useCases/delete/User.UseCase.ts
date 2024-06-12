@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
-import configAws from "@config/aws";
+import configAws from "@shared/services/aws/delete.s3"
 
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { UserModalView } from "@modules/user/model/user";
 
 @injectable()

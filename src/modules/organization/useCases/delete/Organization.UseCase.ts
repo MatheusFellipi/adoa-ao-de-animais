@@ -3,7 +3,7 @@ import configAws from "@config/aws";
 import { AdaptarOrgs } from "@modules/organization/adaptar/organization";
 import { OrganizationModel } from "@modules/organization/model/organization";
 import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 
 @injectable()
 export class DeleteOrganizationUseCase {

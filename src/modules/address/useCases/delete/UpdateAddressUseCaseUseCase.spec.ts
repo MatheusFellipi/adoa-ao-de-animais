@@ -3,7 +3,7 @@
 // import app from "@shared/infra/http/config/app";
 // import { AddressRepositoryInMemory } from "../../infra/repositories/in-memory/AddressRepositoryInMemory";
 // import { AddressUseCase } from "./AddressUseCase";
-// import { AppError } from "@shared/infra/errors/AppError";
+// import { AppError } from "@shared/utils/errors/AppError";
 
 // describe("Authenticate User", () => {
 //   let repository: AddressRepositoryInMemory;

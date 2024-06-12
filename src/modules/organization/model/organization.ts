@@ -8,7 +8,7 @@ import {
   ValidateIf,
 } from "class-validator";
 
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 
 import { AddressModel } from "@modules/address/model/address";
 import { ContactModel } from "@modules/contacts/model/contact";

@@ -7,7 +7,7 @@ import {
 } from "class-validator";
 import { sign } from "jsonwebtoken";
 
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { compare } from "bcrypt";
 
 export class AuthenticatedModel {

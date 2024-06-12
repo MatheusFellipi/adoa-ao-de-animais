@@ -5,7 +5,7 @@ import { s3 } from "./config";
 export default {
   storage: multerS3({
     s3: s3,
-    bucket: process.env.BUCKET_NAME,
+    bucket: process.env.BUCKET_NAME || "BUCKET_NAME",
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: "public-read",
     key: function (req, file, cb) {

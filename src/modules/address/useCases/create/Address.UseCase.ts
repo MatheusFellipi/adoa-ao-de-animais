@@ -3,7 +3,7 @@ import { validate } from "class-validator";
 
 import { Address } from "../../infra/typeorm/entities/Address.entity";
 
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
 import { AddressModel } from "@modules/address/model/address";
 

@@ -1,5 +1,5 @@
 import { UserModalView } from "@modules/user/model/user";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { IsNotEmpty, validate } from "class-validator";
 import { ContactType } from "../enum/contact.enum";
 import { OrganizationModel } from "@modules/organization/model/organization";

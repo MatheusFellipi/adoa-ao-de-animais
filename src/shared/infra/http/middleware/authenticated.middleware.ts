@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
 import { AccountRepository } from "@modules/account/infra/typeorm/repositories/Account.repository";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 
 interface IPayLoad {
   sub: string;

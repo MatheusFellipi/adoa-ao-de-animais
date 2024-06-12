@@ -7,7 +7,7 @@ import {
   ValidateIf,
 } from "class-validator";
 import { AddressModelView } from "@modules/address/model/address";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { LinkModelView } from "@modules/contacts/model/link";
 import { ContactModel } from "@modules/contacts/model/contact";
 import { AnimalModelView } from "@modules/animal/model/animal";

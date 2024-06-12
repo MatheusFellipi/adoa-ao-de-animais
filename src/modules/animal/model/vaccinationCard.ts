@@ -1,5 +1,5 @@
 import { validate } from "class-validator";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { DoseModelView } from "./doseModelView";
 
 

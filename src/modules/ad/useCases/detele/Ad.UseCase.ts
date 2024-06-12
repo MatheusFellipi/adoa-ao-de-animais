@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { IAdRepository } from "@modules/ad/infra/repositories/IAdRepository";
 import { RequestType } from "@shared/type/request.type";
 
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 
 @injectable()
 export class AdDeleteUseCase {

@@ -1,7 +1,7 @@
 import { IsArray, IsEmail, IsStrongPassword, validate, ValidateIf } from "class-validator";
 import { hash, compare } from "bcrypt";
 
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 
 
 import { OrganizationModel } from "@modules/organization/model/organization";

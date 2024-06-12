@@ -19,15 +19,14 @@ import { TokenRepository } from "@modules/account/infra/typeorm/repositories/Tok
 import { UsersRepository } from "@modules/user/infra/typeorm/repositories/Users.repository";
 import { AccountRepository } from "@modules/account/infra/typeorm/repositories/Account.repository";
 import { IPhotosRepository } from "@modules/photos/infra/repositories/IPhotosRepository";
-import { AddressRepository } from "@modules/address/infra/typeorm/repositories/Address.repository";
 import { OrganizationRepository } from "@modules/organization/infra/typeorm/repositories/Organization.repository";
-import { LinkRepository } from "@modules/contacts/infra/typeorm/repositories/Link.repository";
-import { ContactRepository } from "@modules/contacts/infra/typeorm/repositories/Contact.repository";
-import { VaccinationCardRepository } from "@modules/animal/infra/typeorm/repositories/VaccinationCard.repository";
 import { PhotoRepository } from "@modules/photos/infra/typeorm/repositories/Photo.repository";
+import { AddressRepository } from "@modules/address/infra/typeorm/repositories/address.repository";
+import { ContactRepository } from "@modules/contacts/infra/typeorm/repositories/contact.repository";
+import { VaccinationCardRepository } from "@modules/animal/infra/typeorm/repositories/Vaccinationcard.repository";
+import { LinkRepository } from "@modules/contacts/infra/typeorm/repositories/link.repository";
 
-
-const ENV_TEST = process.env.NODE_ENV === 'test';
+const ENV_TEST = process.env.NODE_ENV === "test";
 
 container.registerSingleton<IUsersRepository>(
   "IUsersRepository",
@@ -36,32 +35,24 @@ container.registerSingleton<IUsersRepository>(
 
 container.registerSingleton<IAddressRepository>(
   "IAddressRepository",
-   AddressRepository
+  AddressRepository
 );
 
 container.registerSingleton<IAnimalRepository>(
   "IAnimalRepository",
- AnimalRepository
+  AnimalRepository
 );
 
 container.registerSingleton<IOrganizationRepository>(
   "IOrganizationRepository",
- OrganizationRepository
+  OrganizationRepository
 );
 
-container.registerSingleton<ILinkRepository>(
-  "ILinkRepository",
-  LinkRepository
-);
+container.registerSingleton<ILinkRepository>("ILinkRepository", LinkRepository);
 
 container.registerSingleton<IContactRepository>(
   "IContactRepository",
   ContactRepository
-);
-
-container.registerSingleton<IAnimalRepository>(
-  "IAnimalRepository",
-   AnimalRepository
 );
 
 container.registerSingleton<IVaccinationRepository>(
@@ -74,10 +65,7 @@ container.registerSingleton<IVaccinationCardRepository>(
   VaccinationCardRepository
 );
 
-container.registerSingleton<IDoseRepository>(
-  "IDoseRepository",
-  DoseRepository
-);
+container.registerSingleton<IDoseRepository>("IDoseRepository", DoseRepository);
 
 container.registerSingleton<IAccountRepository>(
   "IAccountRepository",

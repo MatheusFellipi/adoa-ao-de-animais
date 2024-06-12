@@ -1,7 +1,7 @@
 import { addDays } from "date-fns";
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 
 import { IAccountRepository } from "@modules/account/infra/repositories/IAccountRepository";
 import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepository";

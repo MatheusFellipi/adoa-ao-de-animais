@@ -1,6 +1,6 @@
 import { IsNotEmpty, validate } from "class-validator";
 import { VaccinationModelView } from "./vaccination";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 import { VaccinationCardModelView } from "./vaccinationCard";
 
 export class DoseModelView {

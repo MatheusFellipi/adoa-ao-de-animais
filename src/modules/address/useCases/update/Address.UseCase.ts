@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { AppError } from "@shared/infra/errors/AppError";
+import { AppError } from "@shared/utils/errors/AppError";
 
 import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
 import { AddressModelView } from "@modules/address/model/address";
