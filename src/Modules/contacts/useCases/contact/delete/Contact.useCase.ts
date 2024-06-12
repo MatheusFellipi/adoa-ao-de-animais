@@ -15,10 +15,8 @@ export class DeleteContactUseCase {
     type: RequestType
   ): Promise<void> {
     const contact = await this._repository.listByID(id);
-
     if (!contact || contact[type].id !== account.id)
       throw new AppError("Não foi possível deletar o contado");
-    
     return await this._repository.delete(contact);
   }
 }

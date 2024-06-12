@@ -10,6 +10,6 @@ import { authenticated } from "../middleware/authenticated.middleware";
 export default (router: Router): void => {
   router.get("/contact", authenticated, ListContactController.handle);
   router.post("/contact", authenticated, CreateContactController.handle);
-  router.put("/contact", authenticated, UpdateContactController.handle);
-  router.delete("/contact", authenticated, DeleteContactController.handle);
+  router.put("/contact/:id/", authenticated, UpdateContactController.handle);
+  router.delete("/contact/:id/", authenticated, DeleteContactController.handle);
 };

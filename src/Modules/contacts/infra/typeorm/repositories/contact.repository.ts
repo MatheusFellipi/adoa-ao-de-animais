@@ -22,7 +22,9 @@ export class ContactRepository implements IContactRepository {
   }
 
   async delete(data: IContactDtos): Promise<void> {
-    await this.__repository.delete(data);
+    await this.__repository.delete({
+      id: data.id,
+    });
   }
 
   async listAllByAccountID(account_id: number): Promise<Contact[]> {
@@ -45,6 +47,10 @@ export class ContactRepository implements IContactRepository {
   async listByID(id: number): Promise<Contact> {
     return await this.__repository.findOne({
       where: { id: id },
+      relations: {
+        organization: true,
+        user: true,
+      },
     });
   }
 }

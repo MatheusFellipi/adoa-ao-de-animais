@@ -23,7 +23,9 @@ export class LinkRepository implements ILinkRepository {
   }
   
   async delete(data: ILinkDtos): Promise<void> {
-    await this.__repository.delete(data);
+    await this.__repository.delete({
+      id: data.id
+    });
   }
 
   async listAllByAccountID(account_id: number): Promise<Link[]> {

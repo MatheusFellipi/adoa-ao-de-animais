@@ -1,8 +1,8 @@
 import { UserModalView } from "@modules/user/model/user";
-import { OrganizationModelView } from "@modules/organization/model/organization";
 import { AppError } from "@shared/infra/errors/AppError";
 import { IsNotEmpty, validate } from "class-validator";
 import { ContactType } from "../enum/contact.enum";
+import { OrganizationModel } from "@modules/organization/model/organization";
 
 export class ContactModel {
   id?: number;
@@ -16,9 +16,8 @@ export class ContactModel {
   @IsNotEmpty()
   phone: string;
 
-  created_at?: Date;
-  updated_at?: Date;
-  organization?: OrganizationModelView;
+  organization?: OrganizationModel;
+
   user?: UserModalView;
 
   static validade(data: ContactModel) {
