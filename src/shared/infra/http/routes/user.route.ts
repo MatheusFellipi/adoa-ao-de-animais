@@ -5,7 +5,7 @@ import { DeleteUserController } from "@modules/user/useCases/delete/User.Control
 
 import { authenticated } from "../middleware/authenticated.middleware";
 
-import uploadConfig from "@config/upload";
+import uploadConfig from "@shared/config/upload";
 const avatar = uploadConfig.upload("./tmp/avatar");
 
 export default (router: Router): void => {

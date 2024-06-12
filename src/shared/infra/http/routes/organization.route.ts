@@ -5,7 +5,7 @@ import { authenticated } from "../middleware/authenticated.middleware";
 import { UpdateOrganizationController } from "@modules/organization/useCases/update/UpdateOrganizationController";
 import { CreatePhotosOrganizationController } from "@modules/organization/useCases/createPhotos/CreatePhotosOrganizationController";
 
-import uploadConfig from "@config/upload";
+import uploadConfig from "@shared/config/upload";
 const avatar = uploadConfig.upload("./tmp/avatar");
 
 export default (router: Router): void => {

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import uploadConfig from "@config/upload";
+import uploadConfig from "@shared/config/upload";
 
 import { authenticated } from "../middleware/authenticated.middleware";
 
