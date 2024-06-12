@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  database:
+    image: postgres
+    container_name: database_animals
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=math
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=animals
+    volumes:
+      - pgdata:/data/postgres
+
+  app:
+    build: .
+    container_name: animal
+    restart: always
+    ports:
+      - 3333:3333
+      - 9229:9229
+    environment:
+      DB_USERNAME: math
+      DB_PASSWORD: 1234
+      DB_HOST: host.docker.internal
+      DB_DATABASE: animals
+      DB_PORT: 5432
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    links:
+      - database
+    depends_on:
+      - database
+
+volumes:
+  pgdata:
+    driver: local

@@ -7,7 +7,6 @@ export const createAccountMiddleware = (
   next: NextFunction
 ) => {
   const { user, organization } = req.body;
-  console.log( user);
 
   if (user && organization)
     throw new AppError(

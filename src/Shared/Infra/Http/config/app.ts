@@ -4,7 +4,6 @@ import "@shared/container"
 
 import "express-async-errors";
 
-
 import express from 'express'
 import setupMiddleware from './middleware'
 import setupRoutes from './routes'
