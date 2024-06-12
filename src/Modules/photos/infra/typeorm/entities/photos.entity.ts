@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
 import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
+import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
 
 @Entity("photos")
 export class Photo {
