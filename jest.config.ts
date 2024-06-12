@@ -4,6 +4,7 @@ module.exports = {
   clearMocks: true,
   coverageProvider: "v8",
   preset: "ts-jest",
+  setupFiles: ["./setupTests.js", "<rootDir>/.jest/setEnvVars.js"],
   testMatch: ["**/*.spec.ts"],
   testPathIgnorePatterns: ["\\\\node_modules\\\\"],
   transformIgnorePatterns: ["\\\\node_modules\\\\", "\\.pnp\\.[^\\\\]+$"],
@@ -13,7 +14,7 @@ module.exports = {
     "^@config/(.*)$": "<rootDir>/src/config/$1",
     "^@shared/(.*)$": "<rootDir>/src/shared/$1",
     "^@utils/(.*)$": "<rootDir>/src/utils/$1",
-    "^@validation/(.*)$": "<rootDir>/src/validation/$1"
+    "^@validation/(.*)$": "<rootDir>/src/validation/$1",
   },
   // collectCoverage: true,
   // coverageDirectory: "coverage",
@@ -21,8 +22,7 @@ module.exports = {
   //   "src/**/*.ts",
   //   "!src/**/*.spec.ts",
   //   "!src/**/*.d.ts",
-  //   "!src/shared/infra/typeorm/migrations/**" 
+  //   "!src/shared/infra/typeorm/migrations/**"
   // ],
   testEnvironment: "node",
-  setupFiles: ["<rootDir>/.jest/setEnvVars.js"]
 };
