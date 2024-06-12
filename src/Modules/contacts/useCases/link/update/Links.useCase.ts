@@ -12,13 +12,12 @@ export class ListLinkUseCase {
   ) {}
   async execute(
     form: LinkModel,
-    account: { id: number },
     type_account: RequestType
   ): Promise<LinkModel> {
     const instance = LinkModel.validade(form);
     const link = await this._link_repository.listByID(instance.id);
-
-    if (!link || account.id !== link[type_account].id)
+    
+    if (!link || instance[type_account].id !== link[type_account].id)
       throw new AppError("Não e possível atualizar o link");
 
     return await this._link_repository.update(link, instance);

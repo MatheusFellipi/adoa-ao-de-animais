@@ -10,6 +10,6 @@ import { authenticated } from "../middleware/authenticated.middleware";
 export default (router: Router): void => {
   router.get("/link", authenticated, LinkListController.handle);
   router.post("/link", authenticated, CreateLinkController.handle);
-  router.put("/link", authenticated, LinkUpdateController.handle);
+  router.put("/link/:id/", authenticated, LinkUpdateController.handle);
   router.delete("/link", authenticated, DeleteLinkController.handle);
 };

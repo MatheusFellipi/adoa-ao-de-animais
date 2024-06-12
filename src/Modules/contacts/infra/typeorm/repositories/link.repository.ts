@@ -46,6 +46,10 @@ export class LinkRepository implements ILinkRepository {
   async listByID(id: number): Promise<Link> {
     return await this.__repository.findOne({
       where: { id: id },
+      relations:{
+        organization: true,
+        user: true
+      }
     });
   }
 }
