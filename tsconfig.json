@@ -12,7 +12,6 @@
       "@utils/*": ["utils/*"],
       "@validation": ["validation/*"]
     },
-
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
