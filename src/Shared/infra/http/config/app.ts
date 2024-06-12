@@ -1,6 +1,6 @@
 import "reflect-metadata";
 require("dotenv").config();
-import "@shared/container"
+import "@shared/infra/tsyringe"
 
 import "express-async-errors";
 

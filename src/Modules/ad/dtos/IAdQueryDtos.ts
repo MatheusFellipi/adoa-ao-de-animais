@@ -1,6 +1,6 @@
 import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
 import { AnimalAdType } from "../enums/animalAd.enum";
-import { SortOrderEnum } from "@shared/enums/query.enum";
+import { SortOrderEnum } from "@shared/utils/enums/query.enum";
 
 export interface IAdQueryDtos {
   account_id?: { id: number };

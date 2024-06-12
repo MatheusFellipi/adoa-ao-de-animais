@@ -18,7 +18,7 @@ import { PhotoModelView } from "@modules/photos/model/photos";
 import { AppError } from "@shared/infra/errors/AppError";
 import { UserModalView } from "@modules/user/model/user";
 import { OrganizationModel } from "@modules/organization/model/organization";
-import { SortOrderEnum } from "../../../shared/enums/query.enum";
+import { SortOrderEnum } from "../../../shared/utils/enums/query.enum";
 import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";
 
 export class AnimalModel {
