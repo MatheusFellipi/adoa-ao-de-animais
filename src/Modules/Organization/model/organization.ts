@@ -1,12 +1,19 @@
-import { IsArray, IsDate, IsNotEmpty, IsNotEmptyObject, IsUrl, validate, ValidateIf } from "class-validator";
+import {
+  IsArray,
+  IsDate,
+  IsNotEmpty,
+  IsNotEmptyObject,
+  IsUrl,
+  validate,
+  ValidateIf,
+} from "class-validator";
 
 import { AppError } from "@shared/infra/errors/AppError";
 
-
-import { OrganizationType } from "../enums/organization.enum";
-import { AddressModelView } from "@modules/address/model/address";
-import { LinkModelView } from "@modules/contacts/model/link";
+import { AddressModel } from "@modules/address/model/address";
 import { ContactModel } from "@modules/contacts/model/contact";
+import { LinkModel } from "@modules/contacts/model/link";
+import { OrganizationType } from "../enums/organization.enum";
 
 import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";
 
@@ -38,7 +45,7 @@ export class OrganizationModel {
 
   @ValidateIf((o) => o.links !== undefined)
   @IsArray()
-  links?: LinkModelView[];
+  links?: LinkModel[];
 
   @ValidateIf((o) => o.photos !== undefined)
   @IsArray()
@@ -47,16 +54,22 @@ export class OrganizationModel {
 
   @IsArray()
   @IsNotEmptyObject({}, { each: true })
-  addresses: AddressModelView[];
+  addresses: AddressModel[];
 
   static validade(data: OrganizationModel) {
     const instance = new OrganizationModel();
-    Object.assign(instance, data)
+    Object.assign(instance, data);
     validate(this).then((errors) => {
       if (errors.length > 0)
-        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 400);
+        throw new AppError(
+          errors
+            .map((error) => Object.values(error.constraints))
+            .join(", ")
+            .toString(),
+          400
+        );
     });
-    return data
+    return data;
   }
 }
 
@@ -90,12 +103,17 @@ export class OrganizationUpdateModelView {
 
   static validade(data: OrganizationUpdateModelView) {
     const instance = new OrganizationUpdateModelView();
-    Object.assign(instance, data)
+    Object.assign(instance, data);
     validate(this).then((errors) => {
       if (errors.length > 0)
-        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 400);
+        throw new AppError(
+          errors
+            .map((error) => Object.values(error.constraints))
+            .join(", ")
+            .toString(),
+          400
+        );
     });
-    return data
+    return data;
   }
 }
-

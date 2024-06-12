@@ -2,9 +2,9 @@ import { IsNotEmpty, IsNotEmptyObject, Length, validate } from "class-validator"
 import { CityModelView } from "./city";
 import { AppError } from "@shared/infra/errors/AppError";
 import { UserModalView } from "@modules/user/model/user";
-import { OrganizationModelView } from "@modules/organization/model/organization";
+import { OrganizationModel } from "@modules/organization/model/organization";
 
-export class AddressModelView {
+export class AddressModel {
   id?: number
 
   @IsNotEmpty()
@@ -28,10 +28,10 @@ export class AddressModelView {
 
   user?: UserModalView
 
-  organization?: OrganizationModelView
+  organization?: OrganizationModel
 
-  static validade(data: AddressModelView) {
-    const instance = new AddressModelView();
+  static validade(data: AddressModel) {
+    const instance = new AddressModel();
     Object.assign(instance, data)
     validate(this).then((errors) => {
       if (errors.length > 0)

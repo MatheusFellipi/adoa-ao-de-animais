@@ -27,6 +27,6 @@ export class ListAnimalsUseCase {
     if (instance.microchip_code)
       criteria.microchipCode = instance.microchip_code;
 
-    return await this.__repository.listAllByAccount(account_id);
+    return await this.__repository.find(criteria);
   }
 }

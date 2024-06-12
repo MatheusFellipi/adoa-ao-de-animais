@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { UpdateAddressUseCase } from "./UpdateAddressUseCase";
+import { UpdateAddressUseCase } from "./Address.UseCase";
 
 export class UpdateAddressController {
   static async handle(request: Request, response: Response): Promise<Response> {
@@ -10,7 +10,6 @@ export class UpdateAddressController {
     const type = request.type
     const account = request.account[type]
     const authenticateUserUseCase = container.resolve(UpdateAddressUseCase);
-
     const token = await authenticateUserUseCase.execute({
       id: parseInt(id), city, street, postal_code, district, complement, [type]: account
     }, type);

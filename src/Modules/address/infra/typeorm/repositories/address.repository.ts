@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 
-import { dbContext } from "@shared/infra/typeorm"
+import { dbContext } from "@shared/infra/typeorm";
 import { IAddressRepository } from "../../repositories/IAddressRepository";
 
 import { Address } from "../entities/Address.entity";
@@ -13,10 +13,27 @@ export class AddressRepository implements IAddressRepository {
     this.__repository = dbContext.getRepository(Address);
   }
 
+  async delete(address: IAddressDtos): Promise<void> {
+    await this.__repository.delete({
+      id: address.id,
+    });
+  }
+
+  async find(found: any): Promise<Address[]> {
+    return await this.__repository
+      .createQueryBuilder("addresses")
+      .where("addresses.organization_id = :id OR addresses.user_id = :id", {
+        id: found,
+      })
+      .getMany();
+  }
+
   async createMulti(data: IAddressDtos[]): Promise<Address[]> {
     const addresses: Address[] = [];
     for (const item of data) {
-      addresses.push(await this.__repository.save(this.__repository.create(item)));
+      addresses.push(
+        await this.__repository.save(this.__repository.create(item))
+      );
     }
     return addresses;
   }
@@ -36,8 +53,9 @@ export class AddressRepository implements IAddressRepository {
       where: { id: id },
       relations: {
         city: { state: true },
-        organization: true, user: true
-      }
+        organization: true,
+        user: true,
+      },
     });
   }
 }
