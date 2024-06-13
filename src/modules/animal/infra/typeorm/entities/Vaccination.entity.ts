@@ -4,7 +4,7 @@ import { RelationshipVaccination } from "./RelationshipVaccination.entity";
 @Entity("vaccinations")
 export class Vaccination {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column("varchar")
   name: string;
@@ -13,5 +13,5 @@ export class Vaccination {
   description: string;
 
   @OneToOne(() => RelationshipVaccination)
-  doses: RelationshipVaccination;
+  doses?: RelationshipVaccination;
 }

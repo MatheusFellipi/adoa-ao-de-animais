@@ -6,16 +6,9 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "typeorm:sync": "npm run typeorm schema:sync -- -d src/shared/infra/typeorm",
-    "typeorm:drop": "npm run typeorm schema:drop",
-    "typeorm:reset": "npm run typeorm:drop && npm run typeorm:sync",
-    "typeorm:migrate": "env NODE_ENV=development npm run typeorm migration:generate -- -n",
     "typeorm:create": "yarn typeorm migration:create src/shared/infra/typeorm/migrations/",
     "typeorm:run": "yarn typeorm migration:run -d src/shared/infra/typeorm/index.ts",
-    "db:create": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs db:create",
-    "db:drop": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs db:drop",
-    "seed:run": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:run",
-    "seed:create": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:create",
+    "seed:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-extension/bin/cli.cjs seed:run -d src/shared/infra/typeorm/index.ts",
     "test": "jest"
   },
   "dependencies": {

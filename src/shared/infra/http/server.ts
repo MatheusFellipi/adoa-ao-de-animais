@@ -1,6 +1,4 @@
-import "reflect-metadata";
-import "@shared/infra/tsyringe"
-require("dotenv").config();
+
 
 import "express-async-errors";
 

@@ -8,7 +8,7 @@ import { Organization } from "@modules/organization/infra/typeorm/entities/Organ
 @Entity("addresses")
 export class Address {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   street: string;
@@ -23,14 +23,14 @@ export class Address {
   complement: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updated_at?: Date;
 
   @ManyToOne(() => City, (city) => city.addresses)
   @JoinColumn({ name: "city_id", referencedColumnName: "id" })
-  city: City;
+  city?: City;
 
   @ManyToOne(() => User, user => user.addresses)
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })

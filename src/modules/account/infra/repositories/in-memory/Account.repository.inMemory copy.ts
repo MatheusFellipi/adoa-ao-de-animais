@@ -1,0 +1,31 @@
+import { IAccountRepository } from "../IAccountRepository";
+import { IAccountDtos } from "@modules/account/dtos/account.dtos";
+import { Account } from "../../typeorm/entities/Account.entity";
+
+export class AccountRepositoryInMemory implements IAccountRepository {
+  private _account: Account[] = [];
+
+  async create(data: IAccountDtos): Promise<Account> {
+    const account = new Account();
+    Object.assign(account, data);
+    this._account.push(account);
+    return account;
+  }
+
+  async findById(id: number): Promise<Account> {
+    return this._account.find((x) => x.id === id);
+  }
+  
+  async findByIdFull(id: number): Promise<Account> {
+    return this._account.find((x) => x.id === id);
+  }
+  
+  async findExistsBy(id: number): Promise<boolean> {
+    const ex = this._account.find((x) => x.id === id);
+    return !!ex
+  }
+  
+  async findByEmail(email: string): Promise<Account> {
+    throw new Error("Method not implemented.");
+  }
+}

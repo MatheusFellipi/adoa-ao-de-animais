@@ -5,7 +5,7 @@ export interface IAccountRepository {
   create(data: IAccountDtos): Promise<Account>;
   findById(id: number): Promise<Account>;
   findByIdFull(id: number): Promise<Account>;
-  findExistsBy(found: string): Promise<boolean>
+  findExistsBy(id: number): Promise<boolean>
   findByEmail(email: string): Promise<Account>
 }
 

@@ -10,7 +10,7 @@ import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";
 @Entity("animals")
 export class Animal {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column({ nullable: false })
   @IsNotEmpty()
@@ -41,10 +41,10 @@ export class Animal {
   microchipCode?: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updated_at?: Date;
 
   @ManyToOne(() => Organization, organization => organization.animals)
   @JoinColumn({ name: "organization_id" })

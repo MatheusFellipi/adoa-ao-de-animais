@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
+import { Entity, Column,  OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { City } from "./City.entity";
 
 @Entity("states")
 export class State {
-  @PrimaryColumn()
-  id: number;
+  @PrimaryGeneratedColumn()
+  id?: number;
 
   @Column("varchar")
   acronyms: string;

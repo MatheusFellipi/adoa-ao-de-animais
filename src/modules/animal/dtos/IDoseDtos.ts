@@ -6,6 +6,6 @@ export interface IDoseDtos {
   dose: string;
   crmv: string;
   vaccination_date: Date;
-  vaccination: IVaccinationDtos;
+  vaccination?: IVaccinationDtos;
 }
 

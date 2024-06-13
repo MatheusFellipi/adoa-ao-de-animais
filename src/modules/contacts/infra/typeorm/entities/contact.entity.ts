@@ -5,7 +5,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGenerat
 @Entity("contacts")
 export class Contact {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   type: number

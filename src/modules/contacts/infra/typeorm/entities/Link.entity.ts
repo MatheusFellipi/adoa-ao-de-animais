@@ -6,7 +6,7 @@ import { Organization } from "@modules/organization/infra/typeorm/entities/Organ
 @Entity("links")
 export class Link {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   name: string

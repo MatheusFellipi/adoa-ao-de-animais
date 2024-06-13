@@ -9,7 +9,7 @@ import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
 @Entity("accounts")
 export class Account {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column({ unique: true, nullable: false })
   email: string;
@@ -23,11 +23,11 @@ export class Account {
   user?: User;
 
   @OneToMany(() => Tokens, t => t.account)
-  token: Tokens[];
+  token?: Tokens[];
   
   @Column()
   password: string;
 
   @Column({ name: "last_login", nullable: true })
-  last_login: Date;
+  last_login?: Date;
 }
