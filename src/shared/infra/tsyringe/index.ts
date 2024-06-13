@@ -25,6 +25,10 @@ import { AddressRepository } from "@modules/address/infra/typeorm/repositories/a
 import { ContactRepository } from "@modules/contacts/infra/typeorm/repositories/contact.repository";
 import { VaccinationCardRepository } from "@modules/animal/infra/typeorm/repositories/Vaccinationcard.repository";
 import { LinkRepository } from "@modules/contacts/infra/typeorm/repositories/link.repository";
+import { ICityRepository } from "@modules/address/infra/repositories/ICityRepository";
+import { IStateRepository } from "@modules/address/infra/repositories/IStateRepository";
+import { CityRepository } from "@modules/address/infra/typeorm/repositories/City.repository";
+import { StateRepository } from "@modules/address/infra/typeorm/repositories/State.repository";
 
 const ENV_TEST = process.env.NODE_ENV === "test";
 
@@ -80,4 +84,14 @@ container.registerSingleton<ITokenRepository>(
 container.registerSingleton<IPhotosRepository>(
   "IPhotosRepository",
   PhotoRepository
+);
+
+container.registerSingleton<ICityRepository>(
+  "ICityRepository",
+  CityRepository
+);
+
+container.registerSingleton<IStateRepository>(
+  "IStateRepository",
+  StateRepository
 );

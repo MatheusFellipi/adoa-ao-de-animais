@@ -16,6 +16,7 @@ class DbContext {
         ...db,
         entities: [`src/modules/**/entities/**.entity.ts`],
         migrations: [`${__dirname}/migrations/*{.ts,.js}`],
+        migrationsRun: true
       } as DataSourceOptions
     )
     return this.__connection

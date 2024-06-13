@@ -13,6 +13,6 @@ export class State {
   @Column("varchar")
   name: string;
 
-  @OneToMany(() => City, (city) => city.id)
+  @OneToMany(() => City, (city) => city.id, { cascade: true })
   cities: City[];
 }

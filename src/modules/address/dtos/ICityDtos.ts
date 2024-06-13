@@ -1,5 +1,4 @@
 export interface ICityDtos {
-  id: number;
+  id?: number;
   name: string;
 }
-

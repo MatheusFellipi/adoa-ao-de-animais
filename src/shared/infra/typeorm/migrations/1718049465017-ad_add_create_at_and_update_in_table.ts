@@ -6,12 +6,12 @@ export class AdAddCreateAtAndUpdateInTable1718049465017 implements MigrationInte
             new TableColumn({
                 name: "created_at",
                 type: "timestamp",
-                default: "now()"
+                default: "CURRENT_TIMESTAMP"
             }),
             new TableColumn({
                 name: "updated_at",
                 type: "timestamp",
-                default: "now()"
+                default: "CURRENT_TIMESTAMP"
             })
         ]);
     }

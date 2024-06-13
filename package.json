@@ -12,6 +12,10 @@
     "typeorm:migrate": "env NODE_ENV=development npm run typeorm migration:generate -- -n",
     "typeorm:create": "yarn typeorm migration:create src/shared/infra/typeorm/migrations/",
     "typeorm:run": "yarn typeorm migration:run -d src/shared/infra/typeorm/index.ts",
+    "db:create": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs db:create",
+    "db:drop": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs db:drop",
+    "seed:run": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:run",
+    "seed:create": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:create",
     "test": "jest"
   },
   "dependencies": {
@@ -36,6 +40,7 @@
     "swagger-ui-express": "^5.0.0",
     "tsyringe": "^4.8.0",
     "typeorm": "^0.3.20",
+    "typeorm-extension": "^3.5.1",
     "typeorm-pagination": "^2.0.3"
   },
   "devDependencies": {

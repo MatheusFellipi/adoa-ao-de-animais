@@ -71,7 +71,7 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                     {
                         name: 'created_at',
                         type: 'timestamp',
-                        default: 'now()',
+                        default: 'CURRENT_TIMESTAMP',
                     },
                     {
                         name: 'expires_at',
@@ -84,45 +84,47 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
         );
 
         // Add foreign key for organization_id in accounts table
-        await queryRunner.createForeignKey(
-            'accounts',
-            new TableForeignKey({
-                columnNames: ['organization_id'],
-                referencedColumnNames: ['id'],
-                referencedTableName: 'organizations',
-                onDelete: 'SET NULL',
-            }),
-        );
+        const foreignKeyOrganization = new TableForeignKey({
+            columnNames: ['organization_id'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'organizations',
+            onDelete: 'SET NULL',
+        });
+        await queryRunner.createForeignKey('accounts', foreignKeyOrganization);
 
         // Add foreign key for user_id in accounts table
-        await queryRunner.createForeignKey(
-            'accounts',
-            new TableForeignKey({
-                columnNames: ['user_id'],
-                referencedColumnNames: ['id'],
-                referencedTableName: 'users',
-                onDelete: 'SET NULL',
-            }),
-        );
+        const foreignKeyUser = new TableForeignKey({
+            columnNames: ['user_id'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'users',
+            onDelete: 'SET NULL',
+        });
+        await queryRunner.createForeignKey('accounts', foreignKeyUser);
 
         // Add foreign key for account_id in tokens table
-        await queryRunner.createForeignKey(
-            'tokens',
-            new TableForeignKey({
-                columnNames: ['account_id'],
-                referencedColumnNames: ['id'],
-                referencedTableName: 'accounts',
-                onDelete: 'CASCADE',
-            }),
-        );
+        const foreignKeyAccount = new TableForeignKey({
+            columnNames: ['account_id'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'accounts',
+            onDelete: 'CASCADE',
+        });
+        await queryRunner.createForeignKey('tokens', foreignKeyAccount);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey("accounts", "FK_accounts_organization_id");
-        await queryRunner.dropForeignKey("accounts", "FK_accounts_user_id");
-        await queryRunner.dropForeignKey("tokens", "FK_tokens_account_id");
+        // Drop foreign keys in the reverse order they were added
+        const tableTokens = await queryRunner.getTable('tokens');
+        const foreignKeyAccount = tableTokens.foreignKeys.find(fk => fk.columnNames.indexOf('account_id') !== -1);
+        await queryRunner.dropForeignKey('tokens', foreignKeyAccount);
+
+        const tableAccounts = await queryRunner.getTable('accounts');
+        const foreignKeyUser = tableAccounts.foreignKeys.find(fk => fk.columnNames.indexOf('user_id') !== -1);
+        const foreignKeyOrganization = tableAccounts.foreignKeys.find(fk => fk.columnNames.indexOf('organization_id') !== -1);
+        await queryRunner.dropForeignKey('accounts', foreignKeyUser);
+        await queryRunner.dropForeignKey('accounts', foreignKeyOrganization);
+
+        // Drop tables
         await queryRunner.dropTable('tokens');
         await queryRunner.dropTable('accounts');
     }
-
 }
