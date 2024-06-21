@@ -17,10 +17,10 @@ export class Contact {
   phone: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updated_at?: Date;
 
   @ManyToOne(() => User, user => user.contacts)
   @JoinColumn({ name: "user_id" })

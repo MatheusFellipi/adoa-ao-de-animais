@@ -10,5 +10,5 @@ export interface IAdRepository {
   delete(data: IAdDtos): Promise<void>;
   find(found: IAdQueryDtos): Promise<AnimalAd[]>;
   findById(id: number): Promise<AnimalAd>;
-  findByAccountID(found: number): Promise<Animal[]>;
+  findByAccountID(found: number): Promise<AnimalAd[]>;
 }

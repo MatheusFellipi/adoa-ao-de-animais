@@ -11,7 +11,7 @@ export class AnimalAdNModel {
   title: string;
 
   @IsNotEmpty()
-  description: string;
+  description?: string;
 
   @IsNotEmpty()
   type: AnimalAdType;

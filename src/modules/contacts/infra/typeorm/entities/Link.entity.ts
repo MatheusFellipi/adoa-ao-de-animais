@@ -15,10 +15,10 @@ export class Link {
   url: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updated_at?: Date;
 
   @ManyToOne(() => Organization, organization => organization.links)
   @JoinColumn({ name: "organization_id" })

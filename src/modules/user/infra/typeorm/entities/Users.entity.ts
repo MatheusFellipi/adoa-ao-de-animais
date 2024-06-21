@@ -9,7 +9,7 @@ import { Link } from "@modules/contacts/infra/typeorm/entities/Link.entity";
 @Entity({ name: "users" })
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column({nullable: false})
   name: string;
@@ -18,23 +18,23 @@ export class User {
   avatar?: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updated_at?: Date;
 
   @OneToMany(() => Address, address => address.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
   addresses: Address[];
 
   @OneToOne(() => Account, account => account.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
-  account: Account;
+  account?: Account;
 
   @OneToMany(() => Animal, animal => animal.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
-  animals: Animal[];
+  animals?: Animal[];
   
   @OneToMany(() => Contact, contact => contact.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
-  contacts: Contact[];
+  contacts?: Contact[];
 
   @OneToMany(() => Link, link => link.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
-  links: Link[];
+  links?: Link[];
 }

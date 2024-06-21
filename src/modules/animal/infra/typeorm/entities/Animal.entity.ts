@@ -17,10 +17,10 @@ export class Animal {
   name: string;
 
   @Column({ nullable: true, default: "" })
-  description: string;
+  description?: string;
 
   @Column({ nullable: true, default: "" })
-  origin: string;
+  origin?: string;
 
   @Column({ type: 'enum', enum: AnimalSize })
   size: AnimalSize;
@@ -29,10 +29,10 @@ export class Animal {
   gender: AnimalGender;
 
   @Column({ nullable: true, default: "" })
-  weight: string;
+  weight?: string;
 
   @Column({ name: "birth_date", nullable: true })
-  birthDate: Date;
+  birthDate?: Date;
 
   @Column({ nullable: true, default: "" })
   age: string;
@@ -56,7 +56,7 @@ export class Animal {
 
   @OneToOne(() => VaccinationCard, vaccinations => vaccinations.animal,)
   @JoinColumn({ name: "vaccination_card_id" })
-  vaccinationCard: VaccinationCard
+  vaccinationCard?: VaccinationCard
 
   @OneToMany(() => Organization, organization => organization.animals)
   photos?: Photo[];
