@@ -22,8 +22,8 @@ export class AnimalRepositoryInMemory implements IAnimalRepository {
       throw new Error("Animal not found.");
     }
     const updatedAnimal = { ...this._animal[animalIndex], ...change_data };
-    this._animal[animalIndex] = updatedAnimal;
-    return updatedAnimal;
+    this._animal[animalIndex] = updatedAnimal as Animal;
+    return updatedAnimal as Animal;
   }
 
   async delete(data: Animal): Promise<void> {
@@ -37,10 +37,10 @@ export class AnimalRepositoryInMemory implements IAnimalRepository {
   }
 
   async listAllByAccount(account_id: number): Promise<Animal[]> {
-    return this._animal.filter(animal => animal.account.id === account_id);
+    return this._animal.filter(animal => animal.user.id === account_id||animal.organization.id === account_id);
   }
 
   async findByIdFullReturn(id: number): Promise<Animal> {
-    return this.findById(id);  // Assuming findById returns the full entity.
+    return this.findById(id);
   }
 }

@@ -61,7 +61,7 @@ export class AccountRepository implements IAccountRepository {
     });
   }
 
-  async findExistsBy(found: string): Promise<boolean> {
-    return await this.__repository.existsBy({ email: found });
+  async findExistsBy(email: string): Promise<boolean> {
+    return await this.__repository.existsBy({ email });
   }
 }

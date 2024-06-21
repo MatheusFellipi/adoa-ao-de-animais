@@ -30,7 +30,9 @@ export class AnimalRepository implements IAnimalRepository {
   }
 
   async delete(data: Animal): Promise<void> {
-    await this.__repository.delete(data);
+    await this.__repository.delete({
+      id: data.id
+    });
   }
 
   async findById(id: number): Promise<Animal> {

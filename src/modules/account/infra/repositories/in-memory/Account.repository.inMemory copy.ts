@@ -20,8 +20,8 @@ export class AccountRepositoryInMemory implements IAccountRepository {
     return this._account.find((x) => x.id === id);
   }
   
-  async findExistsBy(id: number): Promise<boolean> {
-    const ex = this._account.find((x) => x.id === id);
+  async findExistsBy(email: string): Promise<boolean> {
+    const ex = this._account.find((x) => x.email === email);
     return !!ex
   }
   

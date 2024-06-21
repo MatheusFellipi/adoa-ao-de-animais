@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { dbContext } from "@shared/infra/typeorm"
+import { dbContext } from "@shared/infra/typeorm";
 
 import { IVaccinationRepository } from "../../repositories/IVaccinationRepository";
 import { IVaccinationDtos } from "@modules/animal/dtos/IVaccinationDtos";
@@ -11,22 +11,29 @@ export class VaccinationRepository implements IVaccinationRepository {
   constructor() {
     this.__repository = dbContext.getRepository(Vaccination);
   }
-  delete(data: IVaccinationDtos): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
+
   async create(data: IVaccinationDtos): Promise<Vaccination> {
-    return await this.__repository.save(this.__repository.create(data))
+    const user = this.__repository.create(data);
+    return await this.__repository.save(user);
   }
 
-  findById(id: number): Promise<Vaccination> {
-    throw new Error("Method not implemented.");
+  async findById(id: number): Promise<Vaccination> {
+    return await this.__repository.findOne({
+      where: { id: id },
+    });
   }
 
-  findExist(found: string): Promise<Vaccination> {
-    return this.__repository.findOne({
+  async findExist(found: string): Promise<Vaccination> {
+    return await this.__repository.findOne({
       where: {
-        name: found
-      }
-    })
+        name: found,
+      },
+    });
+  }
+
+  async delete(data: IVaccinationDtos): Promise<void> {
+    await this.__repository.delete({
+      id: data.id,
+    });
   }
 }

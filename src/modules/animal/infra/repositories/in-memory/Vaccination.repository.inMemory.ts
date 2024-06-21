@@ -16,11 +16,13 @@ export class VaccinationRepositoryInMemory implements IVaccinationRepository {
     return this._vaccinations.find((vaccination) => vaccination.id === id);
   }
 
-  async findExist(id: number): Promise<Vaccination> {
-    return this._vaccinations.find((vaccination) => vaccination.id === id);
+  async findExist(found: string): Promise<Vaccination> {
+    return this._vaccinations.find((vaccination) => vaccination.name === found);
   }
 
   async delete(data: IVaccinationDtos): Promise<void> {
-    this._vaccinations = this._vaccinations.filter((vaccination) => vaccination.id !== data.id);
+    this._vaccinations = this._vaccinations.filter(
+      (vaccination) => vaccination.id !== data.id
+    );
   }
 }

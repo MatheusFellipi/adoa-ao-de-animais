@@ -29,27 +29,35 @@ import { ICityRepository } from "@modules/address/infra/repositories/ICityReposi
 import { IStateRepository } from "@modules/address/infra/repositories/IStateRepository";
 import { CityRepository } from "@modules/address/infra/typeorm/repositories/City.repository";
 import { StateRepository } from "@modules/address/infra/typeorm/repositories/State.repository";
+import { UserRepositoryInMemory } from "@modules/user/infra/repositories/in-memory/User.Repository.InMemory";
+import { AddressRepositoryInMemory } from "@modules/address/infra/repositories/in-memory/Address.Repository.InMemory";
+import { AnimalRepositoryInMemory } from "@modules/animal/infra/repositories/in-memory/Animal.repository.inMemory";
+import { OrganizationRepositoryInMemory } from "@modules/organization/infra/repositories/in-memory/Organization.Repository.InMemory";
+import { VaccinationRepositoryInMemory } from "@modules/animal/infra/repositories/in-memory/Vaccination.repository.inMemory";
+import { VaccinationCardRepositoryInMemory } from "@modules/animal/infra/repositories/in-memory/VaccinationCard.repository.inMemory";
+import { AccountRepositoryInMemory } from "@modules/account/infra/repositories/in-memory/Account.repository.inMemory copy";
+import { TokenRepositoryInMemory } from "@modules/account/infra/repositories/in-memory/Token.Repository.InMemory";
 
 const ENV_TEST = process.env.NODE_ENV === "test";
 
 container.registerSingleton<IUsersRepository>(
   "IUsersRepository",
-  UsersRepository
+  ENV_TEST ? UserRepositoryInMemory : UsersRepository
 );
 
 container.registerSingleton<IAddressRepository>(
   "IAddressRepository",
-  AddressRepository
+  ENV_TEST ? AddressRepositoryInMemory : AddressRepository
 );
 
 container.registerSingleton<IAnimalRepository>(
   "IAnimalRepository",
-  AnimalRepository
+  ENV_TEST ? AnimalRepositoryInMemory : AnimalRepository
 );
 
 container.registerSingleton<IOrganizationRepository>(
   "IOrganizationRepository",
-  OrganizationRepository
+  ENV_TEST ? OrganizationRepositoryInMemory : OrganizationRepository
 );
 
 container.registerSingleton<ILinkRepository>("ILinkRepository", LinkRepository);
@@ -61,24 +69,24 @@ container.registerSingleton<IContactRepository>(
 
 container.registerSingleton<IVaccinationRepository>(
   "IVaccinationRepository",
-  VaccinationRepository
+  ENV_TEST ?  VaccinationRepositoryInMemory  : VaccinationRepository
 );
 
 container.registerSingleton<IVaccinationCardRepository>(
   "IVaccinationCardRepository",
-  VaccinationCardRepository
+  ENV_TEST ?  VaccinationCardRepositoryInMemory  : VaccinationCardRepository
 );
 
 container.registerSingleton<IDoseRepository>("IDoseRepository", DoseRepository);
 
 container.registerSingleton<IAccountRepository>(
   "IAccountRepository",
-  AccountRepository
+  ENV_TEST ?  AccountRepositoryInMemory  : AccountRepository
 );
 
 container.registerSingleton<ITokenRepository>(
   "ITokenRepository",
-  TokenRepository
+  ENV_TEST ?  TokenRepositoryInMemory  : TokenRepository
 );
 
 container.registerSingleton<IPhotosRepository>(
@@ -86,10 +94,7 @@ container.registerSingleton<IPhotosRepository>(
   PhotoRepository
 );
 
-container.registerSingleton<ICityRepository>(
-  "ICityRepository",
-  CityRepository
-);
+container.registerSingleton<ICityRepository>("ICityRepository", CityRepository);
 
 container.registerSingleton<IStateRepository>(
   "IStateRepository",
