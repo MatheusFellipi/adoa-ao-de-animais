@@ -9,29 +9,29 @@
     }
   },
   "paths": {
-    "/auth": {
+    "api-v1/auth": {
       "post": {
         "tags": [
           "authentication"
         ],
-        "summary": "Create a category",
-        "description": "Create a new category ",
+        "summary": "Login",
+        "description": "entrar no sistema",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "email": {
                     "type": "string"
                   },
-                  "description": {
+                  "password": {
                     "type": "string"
                   }
                 },
                 "example": {
-                  "name": "Nome da categoria",
-                  "description": "Descrição da categoria"
+                  "email": "johndoe@example.com",
+                  "password": "password123"
                 }
               }
             }
@@ -39,19 +39,31 @@
         },
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "criado"
           },
-          "500": {
-            "description": "Category already exists"
-          }
+          "400": [
+            {
+              "description": "A conta ja exite come esse e-mail"
+            },
+            {
+              "description": "falta de dados "
+            }
+          ]
         }
-      },
+      }
+    },
+    "api-v1/refreshToken": {
       "get": {
         "tags": [
           "authentication"
         ],
-        "summary": "List all categories",
-        "description": "List all categories",
+        "summary": "",
+        "description": "",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -62,10 +74,651 @@
                   "items": {
                     "type": "object",
                     "properties": {
-                      "name": {
+                      "token": {
                         "type": "string"
                       },
+                      "avatar": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "nao esta autorizado"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "",
+        "description": "",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "api-v1/account/": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "",
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "johndoe@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "password123"
+                  },
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "John Doe"
+                      },
+                      "addresses": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "street": {
+                              "type": "string",
+                              "example": "123 Main St"
+                            },
+                            "district": {
+                              "type": "string",
+                              "example": "bairro"
+                            },
+                            "state": {
+                              "type": "string",
+                              "example": "CA"
+                            },
+                            "postal_code": {
+                              "type": "string",
+                              "example": "12345"
+                            },
+                            "complement": {
+                              "type": "string",
+                              "example": "complement"
+                            },
+                            "city": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "integer",
+                                  "example": 1
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Acrelândia"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "contacts": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "integer",
+                              "example": 1
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "nome contato"
+                            },
+                            "phone": {
+                              "type": "string",
+                              "example": "555-1234"
+                            }
+                          }
+                        }
+                      },
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "url": {
+                              "type": "string",
+                              "example": "https://example.com"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Personal website"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "organization": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "Example Organization"
+                      },
+                      "avatar": {
+                        "type": "string",
+                        "example": "https://example.com/avatar.jpg"
+                      },
                       "description": {
+                        "type": "string",
+                        "example": "An example organization description."
+                      },
+                      "type": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "cnpj_cpf": {
+                        "type": "string",
+                        "example": "12345678901234"
+                      },
+                      "operation_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-01-01T09:00:00Z"
+                      },
+                      "addresses": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "street": {
+                              "type": "string",
+                              "example": "123 Main St"
+                            },
+                            "district": {
+                              "type": "string",
+                              "example": "bairro"
+                            },
+                            "state": {
+                              "type": "string",
+                              "example": "CA"
+                            },
+                            "postal_code": {
+                              "type": "string",
+                              "example": "12345"
+                            },
+                            "complement": {
+                              "type": "string",
+                              "example": "complement"
+                            },
+                            "city": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "integer",
+                                  "example": 1
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Acrelândia"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "contacts": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "integer",
+                              "example": 1
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "nome contato"
+                            },
+                            "phone": {
+                              "type": "string",
+                              "example": "555-1234"
+                            }
+                          }
+                        }
+                      },
+                      "links": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "url": {
+                              "type": "string",
+                              "example": "https://example.com"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Personal website"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "email": "tesqwte@example.com",
+                  "password": "password123123",
+                  "user": {
+                    "name": "John Doe",
+                    "addresses": [
+                      {
+                        "street": "123 Main St",
+                        "district": "bairro",
+                        "state": "CA",
+                        "postal_code": "12345",
+                        "complement": "complement",
+                        "city": {
+                          "id": 1,
+                          "name": "Acrelândia"
+                        }
+                      }
+                    ],
+                    "contacts": [
+                      {
+                        "type": 1,
+                        "name": "nome contato",
+                        "phone": "555-1234"
+                      }
+                    ],
+                    "links": [
+                      {
+                        "url": "https://example.com",
+                        "name": "Personal website"
+                      }
+                    ]
+                  },
+                  "organization": {
+                    "name": "Example Organization",
+                    "avatar": "https://example.com/avatar.jpg",
+                    "description": "An example organization description.",
+                    "type": 1,
+                    "cnpj_cpf": "12345678901234",
+                    "operation_at": "2023-01-01T09:00:00Z",
+                    "addresses": [
+                      {
+                        "street": "123 Main St",
+                        "district": "bairro",
+                        "state": "CA",
+                        "postal_code": "12345",
+                        "complement": "complement",
+                        "city": {
+                          "id": 1,
+                          "name": "Acrelândia"
+                        }
+                      }
+                    ],
+                    "contacts": [
+                      {
+                        "type": 1,
+                        "name": "nome contato",
+                        "phone": "555-1234"
+                      }
+                    ],
+                    "links": [
+                      {
+                        "url": "https://example.com",
+                        "name": "Personal website"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "",
+        "description": "",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "example": "johndoe@example.com"
+                      },
+                      "password": {
+                        "type": "string",
+                        "example": "password123"
+                      },
+                      "user": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "John Doe"
+                          },
+                          "addresses": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "street": {
+                                  "type": "string",
+                                  "example": "123 Main St"
+                                },
+                                "district": {
+                                  "type": "string",
+                                  "example": "bairro"
+                                },
+                                "state": {
+                                  "type": "string",
+                                  "example": "CA"
+                                },
+                                "postal_code": {
+                                  "type": "string",
+                                  "example": "12345"
+                                },
+                                "complement": {
+                                  "type": "string",
+                                  "example": "complement"
+                                },
+                                "city": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer",
+                                      "example": 1
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Acrelândia"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "contacts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "integer",
+                                  "example": 1
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "nome contato"
+                                },
+                                "phone": {
+                                  "type": "string",
+                                  "example": "555-1234"
+                                }
+                              }
+                            }
+                          },
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "url": {
+                                  "type": "string",
+                                  "example": "https://example.com"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Personal website"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "organization": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "Example Organization"
+                          },
+                          "avatar": {
+                            "type": "string",
+                            "example": "https://example.com/avatar.jpg"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "An example organization description."
+                          },
+                          "type": {
+                            "type": "integer",
+                            "example": 1
+                          },
+                          "cnpj_cpf": {
+                            "type": "string",
+                            "example": "12345678901234"
+                          },
+                          "operation_at": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-01-01T09:00:00Z"
+                          },
+                          "addresses": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "street": {
+                                  "type": "string",
+                                  "example": "123 Main St"
+                                },
+                                "district": {
+                                  "type": "string",
+                                  "example": "bairro"
+                                },
+                                "state": {
+                                  "type": "string",
+                                  "example": "CA"
+                                },
+                                "postal_code": {
+                                  "type": "string",
+                                  "example": "12345"
+                                },
+                                "complement": {
+                                  "type": "string",
+                                  "example": "complement"
+                                },
+                                "city": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer",
+                                      "example": 1
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "Acrelândia"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "contacts": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "integer",
+                                  "example": 1
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "nome contato"
+                                },
+                                "phone": {
+                                  "type": "string",
+                                  "example": "555-1234"
+                                }
+                              }
+                            }
+                          },
+                          "links": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "url": {
+                                  "type": "string",
+                                  "example": "https://example.com"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "example": "Personal website"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "nao esta autorizado"
+          }
+        }
+      }
+    },
+    "api-v1/address/": {
+      "post": {
+        "tags": [
+          "address"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "",
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "street": {
+                    "type": "string"
+                  },
+                  "district": {
+                    "type": "string"
+                  },
+                  "postal_code": {
+                    "type": "string"
+                  },
+                  "complement": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "address"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "token": {
+                        "type": "string"
+                      },
+                      "avatar": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "name": {
                         "type": "string"
                       }
                     }
@@ -76,17 +729,18 @@
           }
         }
       }
-    }
-  },
-  "definitions": {
-    "Specification": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
+    },
+    "api-v1/address/:id": {},
+    "definitions": {
+      "Specification": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
         }
       }
     }

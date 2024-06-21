@@ -32,7 +32,6 @@ export async function authenticated(
       organization: account.organization,
       user: account.user,
     };
-
     next();
   } catch (error) {
     throw new AppError("o token esta invalido", 401);

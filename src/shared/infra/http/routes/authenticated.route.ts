@@ -7,6 +7,6 @@ import { LogoutController } from "@modules/authenticated/useCase/logout/Logout.C
 
 export default (router: Router): void => {
   router.post("/auth", LoginController.handle);
-  router.get("/refreshToken", RefreshTokenController.handle);
+  router.get("/refreshToken", authenticated, RefreshTokenController.handle);
   router.delete("/refreshToken", authenticated, LogoutController.handle);
 };
