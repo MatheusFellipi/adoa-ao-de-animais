@@ -6,13 +6,13 @@ import {
   IsNotEmptyObject,
   ValidateIf,
 } from "class-validator";
-import { AddressModelView } from "@modules/address/model/address";
+import { AddressModel } from "@modules/address/model/address";
 import { AppError } from "@shared/utils/errors/AppError";
-import { LinkModelView } from "@modules/contacts/model/link";
+import { LinkModel } from "@modules/contacts/model/link";
 import { ContactModel } from "@modules/contacts/model/contact";
-import { AnimalModelView } from "@modules/animal/model/animal";
+import { AnimalModel } from "@modules/animal/model/animal";
 
-export class UserModalView {
+export class UserModal {
   id?: number;
 
   @IsNotEmpty()
@@ -25,7 +25,7 @@ export class UserModalView {
   @IsArray()
   @IsNotEmptyObject({}, { each: true })
   @ValidateIf((o) => o.links !== undefined)
-  addresses: AddressModelView[];
+  addresses: AddressModel[];
 
   @ValidateIf((o) => o.avatar !== undefined)
   @IsUrl()
@@ -33,14 +33,14 @@ export class UserModalView {
 
   @ValidateIf((o) => o.links !== undefined)
   @IsArray()
-  links?: LinkModelView[];
+  links?: LinkModel[];
 
   @ValidateIf((o) => o.animals !== undefined)
   @IsArray()
-  animals?: AnimalModelView[];
+  animals?: AnimalModel[];
 
-  static async validate(data: UserModalView) {
-    const instance = new UserModalView();
+  static async validate(data: UserModal) {
+    const instance = new UserModal();
     Object.assign(instance, data);
     const errors = await validate(instance);
     if (errors.length > 0) {

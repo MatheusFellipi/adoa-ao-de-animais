@@ -1,4 +1,4 @@
-import { UserModalView } from "@modules/user/model/user";
+import { UserModal } from "@modules/user/model/user";
 import { ICityDtos } from "./ICityDtos";
 import { IUserDtos } from "@modules/user/dtos/IUserDtos";
 
@@ -9,7 +9,7 @@ export interface IAddressDtos {
   postal_code: string;
   district: string;
   complement: string;
-  user?: IUserDtos | UserModalView | Object,
+  user?: IUserDtos | UserModal | Object,
   created_at?: Date;
   update_at?: Date;
 }

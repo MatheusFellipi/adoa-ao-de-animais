@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
+import { DeleteAnimalsUseCase } from "@modules/animal/useCases/animal/delete/DeleteAnimalsUseCase";
 
-import { DeleteAnimalsUseCase } from "./deleteAnimalsUseCase";
 
 
 export class DeleteAnimalController {

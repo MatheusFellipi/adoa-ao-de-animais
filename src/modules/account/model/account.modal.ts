@@ -5,7 +5,7 @@ import { AppError } from "@shared/utils/errors/AppError";
 
 
 import { OrganizationModel } from "@modules/organization/model/organization";
-import { UserModalView } from "@modules/user/model/user";
+import { UserModal } from "@modules/user/model/user";
 
 export class AccountModel {
   id?: number;
@@ -19,7 +19,7 @@ export class AccountModel {
 
   @ValidateIf((o) => o.links !== undefined)
   @IsArray()
-  user?: UserModalView;
+  user?: UserModal;
 
   @IsStrongPassword()
   password: string;

@@ -73,12 +73,12 @@ export class OrganizationModel {
   }
 }
 
-export class OrganizationUpdateModelView {
+export class OrganizationUpdateModel {
   id?: number;
 
   @ValidateIf((o) => o.avatar !== undefined)
   @IsNotEmpty()
-  name?: string;
+  name: string;
 
   @ValidateIf((o) => o.avatar !== undefined)
   @IsUrl()
@@ -90,10 +90,6 @@ export class OrganizationUpdateModelView {
 
   @ValidateIf((o) => o.avatar !== undefined)
   @IsNotEmpty()
-  type: OrganizationType | string;
-
-  @ValidateIf((o) => o.avatar !== undefined)
-  @IsNotEmpty()
   cnpj_cpf: string;
 
   @ValidateIf((o) => o.avatar !== undefined)
@@ -101,8 +97,8 @@ export class OrganizationUpdateModelView {
   @IsDate()
   operation_at: Date;
 
-  static validade(data: OrganizationUpdateModelView) {
-    const instance = new OrganizationUpdateModelView();
+  static validade(data: OrganizationUpdateModel) {
+    const instance = new OrganizationUpdateModel();
     Object.assign(instance, data);
     validate(this).then((errors) => {
       if (errors.length > 0)

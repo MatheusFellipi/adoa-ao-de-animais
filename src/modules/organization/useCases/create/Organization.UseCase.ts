@@ -14,7 +14,6 @@ export class CreateOrganizationUseCase {
     const instance = OrganizationModel.validade(data);
     const exists = await this.__repository.findExistsBy(data.cnpj_cpf);
     if (exists) throw new AppError("O cnpj/cpf ja esta em cadastrado.", 400);
-    const org = await this.__repository.create(instance);
-    return org
+    return await this.__repository.create(instance);
   }
 }

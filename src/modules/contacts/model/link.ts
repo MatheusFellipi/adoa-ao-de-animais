@@ -1,4 +1,4 @@
-import { UserModalView } from "@modules/user/model/user";
+import { UserModal } from "@modules/user/model/user";
 import { OrganizationModel } from "@modules/organization/model/organization";
 import { IsNotEmpty, validate, ValidateIf } from "class-validator";
 import { AppError } from "@shared/utils/errors/AppError";
@@ -16,7 +16,7 @@ export class LinkModel {
 
   organization?: OrganizationModel;
   
-  user?: UserModalView;
+  user?: UserModal;
 
   static validade(data: LinkModel) {
     const instance = new LinkModel();

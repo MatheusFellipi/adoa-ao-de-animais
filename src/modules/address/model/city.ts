@@ -1,11 +1,7 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty } from "class-validator";
 
 export class CityModelView {
-  @IsNotEmpty({
-    message: "O id nao pode ser vazio e tem que ser numero"
-  })
-  @IsNumber()
-  id: number
+  id?: number
 
   @IsNotEmpty({
     message: "O id nao pode ser vazio"

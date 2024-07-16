@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { OrganizationModelView } from "@modules/organization/model/organization";
+import { OrganizationModel } from "@modules/organization/model/organization";
 import { IOrganizationRepository } from "@modules/organization/infra/repositories/IOrganizationsRepository";
 
 
@@ -10,8 +10,7 @@ export class CreatePhotosOrganizationUseCase {
   constructor(
     @inject("IOrganizationRepository") private __repository: IOrganizationRepository
   ) { }
-  async execute(data: OrganizationModelView): Promise<OrganizationModelView> {
-    const instance = OrganizationModelView.validade(data);
-
+  async execute(data: OrganizationModel): Promise<void> {
+    const instance = OrganizationModel.validade(data);
   }
 }

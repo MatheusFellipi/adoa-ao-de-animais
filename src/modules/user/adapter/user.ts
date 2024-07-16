@@ -1,8 +1,8 @@
 import { User } from "../infra/typeorm/entities/Users.entity";
-import { UserModalView, UserUpdateModalView } from "../model/user";
+import { UserModal, UserUpdateModalView } from "../model/user";
 
 export class AdapterUser {
-  static userReturn(user: User): UserModalView {
+  static userReturn(user: User): UserModal {
     return {
       ...user,
       addresses: user.addresses,

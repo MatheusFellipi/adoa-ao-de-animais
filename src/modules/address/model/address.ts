@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsNotEmptyObject, Length, validate } from "class-validator";
 import { CityModelView } from "./city";
 import { AppError } from "@shared/utils/errors/AppError";
-import { UserModalView } from "@modules/user/model/user";
+import { UserModal } from "@modules/user/model/user";
 import { OrganizationModel } from "@modules/organization/model/organization";
 
 export class AddressModel {
@@ -26,7 +26,7 @@ export class AddressModel {
   @IsNotEmptyObject()
   city: CityModelView;
 
-  user?: UserModalView
+  user?: UserModal
 
   organization?: OrganizationModel
 

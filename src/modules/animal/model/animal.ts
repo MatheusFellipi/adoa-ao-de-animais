@@ -16,7 +16,7 @@ import { VaccinationCardModelView } from "./vaccinationCard";
 import { AnimalGender, AnimalSize } from "../enum/animal.enum";
 import { PhotoModelView } from "@modules/photos/model/photos";
 import { AppError } from "@shared/utils/errors/AppError";
-import { UserModalView } from "@modules/user/model/user";
+import { UserModal } from "@modules/user/model/user";
 import { OrganizationModel } from "@modules/organization/model/organization";
 import { SortOrderEnum } from "../../../shared/utils/enums/query.enum";
 import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";
@@ -60,7 +60,7 @@ export class AnimalModel {
 
   @ValidateIf((o) => o.user !== undefined)
   @IsNotEmpty()
-  user?: UserModalView;
+  user?: UserModal;
 
   static validate(data: AnimalModel) {
     const instance = new AnimalModel();

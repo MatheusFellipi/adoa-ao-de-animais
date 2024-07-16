@@ -1,4 +1,4 @@
-import { UserModalView } from "@modules/user/model/user";
+import { UserModal } from "@modules/user/model/user";
 import { AppError } from "@shared/utils/errors/AppError";
 import { IsNotEmpty, validate } from "class-validator";
 import { ContactType } from "../enum/contact.enum";
@@ -17,8 +17,7 @@ export class ContactModel {
   phone: string;
 
   organization?: OrganizationModel;
-
-  user?: UserModalView;
+  user?: UserModal;
 
   static validade(data: ContactModel) {
     const instance = new ContactModel();

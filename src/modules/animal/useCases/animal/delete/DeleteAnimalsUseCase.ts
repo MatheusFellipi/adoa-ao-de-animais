@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { AnimalModelView } from "@modules/animal/model/animal";
+import { AnimalModel } from "@modules/animal/model/animal";
 import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
 import { IAnimalRepository } from "@modules/animal/infra/repositories/IAnimalRepository";
 import { AppError } from "@shared/utils/errors/AppError";

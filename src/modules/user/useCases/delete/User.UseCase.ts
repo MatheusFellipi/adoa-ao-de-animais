@@ -3,14 +3,14 @@ import configAws from "@shared/services/aws/delete.s3"
 
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";
 import { AppError } from "@shared/utils/errors/AppError";
-import { UserModalView } from "@modules/user/model/user";
+import { UserModal } from "@modules/user/model/user";
 
 @injectable()
 export class DeleteUserUseCase {
   constructor(
     @inject("IUsersRepository") private __user_repository: IUsersRepository
   ) {}
-  async execute(account: UserModalView, id_params: number): Promise<void> {
+  async execute(account: UserModal, id_params: number): Promise<void> {
     if (account.id !== id_params)
       throw new AppError("Não e possível deletar a conta ");
     if (account.avatar) configAws.delete(account.avatar);

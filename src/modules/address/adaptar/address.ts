@@ -1,8 +1,8 @@
 import { Address } from "@modules/address/infra/typeorm/entities/Address.entity";
-import { AddressModelView } from "../model/address";
+import { AddressModel } from "../model/address";
 
 export class AdaptarAddress {
-  static addressMultiReturn(address: Address[]): AddressModelView[] {
+  static addressMultiReturn(address: Address[]): AddressModel[] {
     return address.map((item) => (
       {
         id: item.id,
@@ -16,7 +16,7 @@ export class AdaptarAddress {
       }
     ))
   }
-  static addressReturn(address: Address): AddressModelView {
+  static addressReturn(address: Address): AddressModel {
     return {
       id: address.id,
       street: address.street,

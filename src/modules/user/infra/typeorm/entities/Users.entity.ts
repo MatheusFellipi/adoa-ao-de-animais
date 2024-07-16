@@ -33,7 +33,7 @@ export class User {
   animals?: Animal[];
   
   @OneToMany(() => Contact, contact => contact.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
-  contacts?: Contact[];
+  contacts: Contact[];
 
   @OneToMany(() => Link, link => link.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
   links?: Link[];
