@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 import { runSeeder, Seeder, SeederFactoryManager } from "typeorm-extension";
 
-import { StateSeeder } from "./state.seed";
+import { StateSeeder } from "./State.seed";
 
 export class MainSeeder implements Seeder {
   async run(
