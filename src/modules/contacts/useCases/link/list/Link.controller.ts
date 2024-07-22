@@ -5,15 +5,12 @@ import { LinkListUseCase } from "./Links.useCase";
 
 export class LinkListController {
   static async handle(request: Request, response: Response): Promise<Response> {
-    const { user_id, organization_id } = request.query;
-    let account_id = null;
-    const type_account = request.type;
-    const account = request.account[type_account];
+    const { user_id } = request.query;
+    let account_id = user_id;
+    const account = request.account;
     const link = container.resolve(LinkListUseCase);
-    if (!user_id || !organization_id) account_id = account.id;
-    else if (typeof user_id === "string" && typeof organization_id === "string")
-      account_id = parseInt(user_id ?? organization_id);
-    const data = await link.execute(account_id);
+    if (!user_id) account_id = account.id;
+    const data = await link.execute(account_id as string);
     return response.status(200).json(data);
   }
 }

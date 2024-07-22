@@ -1,12 +1,18 @@
-import { AccountRepositoryInMemory } from '@modules/account/infra/repositories/in-memory/Account.repository.inMemory copy';
-import app from '@shared/infra/http/config/app';
-import request from 'supertest';
+import { AccountRepositoryInMemory } from "@modules/account/infra/repositories/in-memory/Account.repository.inMemory copy";
+import request from "supertest";
+
+import app from "@shared/infra/http/config/app";
 
 describe("test for create account", () => {
   let categoriesRepositoryInMemory: AccountRepositoryInMemory;
 
   beforeEach(() => {
     categoriesRepositoryInMemory = new AccountRepositoryInMemory();
+  });
+
+  it("should respond with a 201 for create account user", async () => {
+    const res = await request(app).get("/test");
+    expect(res.status).toBe(200);
   });
 
   it('should respond with a 201 for create account user', async () => {
@@ -134,5 +140,4 @@ describe("test for create account", () => {
       .expect(400);
       expect(resDuplicate.statusCode).toBe(400);
   });
-
 });

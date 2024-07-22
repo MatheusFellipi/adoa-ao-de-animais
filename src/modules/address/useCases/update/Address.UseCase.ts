@@ -10,11 +10,11 @@ export class UpdateAddressUseCase {
   constructor(
     @inject("IAddressRepository") private _address_repository: IAddressRepository
   ) { }
-  async execute(form: AddressModel, type: string): Promise<Address> {
+  async execute(form: AddressModel): Promise<Address> {
     const instance = AddressModel.validade(form)
     const address = await this._address_repository.findById(instance.id)
-    if (address[type].id !== instance[type].id)
-      throw new AppError(`O endereços não pertence: ${type} ${address[type].name}`)
+    if (address.user.id !== instance.user.id)
+      throw new AppError(`O endereços não pertence: Usuario ${address.user.name}`)
     return await this._address_repository.update(address, instance);
   }
 }

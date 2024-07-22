@@ -4,12 +4,12 @@ import { UpdateUserUseCase } from "./UpdateUserUseCase";
 
 export class UpdateUserController {
   static async handle(request: Request, response: Response): Promise<Response> {
-    const { name } = request.body;
+    const { name, cnpj_cpf, operation_at, description, type } = request.body;
     const avatar = request?.file?.key;
     const updateUserUseCase = container.resolve(UpdateUserUseCase);
     const token = await updateUserUseCase.execute(
-      { name, avatar },
-      request.account.user as any
+      { name, avatar, cnpj_cpf, operation_at, description, type, },
+      request.account
     );
     return response.status(200).json(token);
   }

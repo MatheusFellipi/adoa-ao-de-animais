@@ -4,7 +4,7 @@ import { AppError } from "@shared/utils/errors/AppError";
 import { VaccinationCardModelView } from "./vaccinationCard";
 
 export class DoseModelView {
-  id?: number;
+  id?: string;
 
   @IsNotEmpty()
   dose: string;

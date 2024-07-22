@@ -11,7 +11,7 @@ export class DeleteAnimalsUseCase {
     @inject("IAnimalRepository") private __repository: IAnimalRepository,
   ) { }
 
-  async execute(id_animal: number): Promise<void> {
+  async execute(id_animal: string): Promise<void> {
     const animal = await this.__repository.findById(id_animal)
     if (!animal) {
       throw new AppError("o animal noa exitem no banco de dados", 400)

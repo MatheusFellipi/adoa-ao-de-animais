@@ -4,16 +4,14 @@ import { AddressUseCase } from "./Address.UseCase";
 
 export class AddressListController {
   static async handle(request: Request, response: Response): Promise<Response> {
-    let { user_id, organization_id } = request.query;
-    const account = request.account[request.type];
+    let { user_id } = request.query;
+    const account = request.account;
     const address = container.resolve(AddressUseCase);
-    
-    if (!user_id && request.type === "user") user_id = account.id;
-    else if (!organization_id && request.type === "organization") organization_id = account.id;
+
+    if (!user_id) user_id = account.id;
 
     const data = await address.execute({
-      user_id: parseInt(user_id as string),
-      organization_id: parseInt(organization_id as string),
+      user_id: user_id as string,
     });
     return response.status(200).json(data);
   }

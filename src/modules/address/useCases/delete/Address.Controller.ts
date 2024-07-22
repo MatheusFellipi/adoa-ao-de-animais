@@ -6,13 +6,9 @@ import { DeleteAddressUseCase } from "./Address.UseCase";
 export class DeleteAddressController {
   static async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const account = request.account[request.type];
+    const account_id = request.account.id
     const authenticateUserUseCase = container.resolve(DeleteAddressUseCase);
-    const token = await authenticateUserUseCase.execute(
-      parseInt(id),
-      account,
-      request.type
-    );
+    const token = await authenticateUserUseCase.execute(id, account_id);
     return response.status(200).json(token);
   }
 }

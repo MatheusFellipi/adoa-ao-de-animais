@@ -4,8 +4,7 @@ import { IAddressRepository } from "@modules/address/infra/repositories/IAddress
 import { AddressModel } from "@modules/address/model/address";
 
 class AddressQueryModel {
-  user_id?: number;
-  organization_id?: number;
+  user_id?: string;
 
   static validade(form: AddressQueryModel) {
     return form;
@@ -20,10 +19,6 @@ export class AddressUseCase {
   ) {}
   async execute(query: AddressQueryModel): Promise<AddressModel[]> {
     const instance = AddressQueryModel.validade(query);
-    let id: number;
-    if (instance.organization_id) id = instance.organization_id;
-    else if (instance.user_id) id = instance.user_id;
-
-    return await this._address_repository.find(id);
+    return await this._address_repository.find(instance.user_id);
   }
 }

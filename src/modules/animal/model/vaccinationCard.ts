@@ -4,7 +4,7 @@ import { DoseModelView } from "./doseModelView";
 
 
 export class VaccinationCardModelView {
-  id?: number;
+  id?: string;
   
   dose: DoseModelView[];
 

@@ -7,12 +7,10 @@ export class UpdateAddressController {
   static async handle(request: Request, response: Response): Promise<Response> {
     const { city, street, postal_code, district, complement } = request.body;
     const { id } = request.params
-    const type = request.type
-    const account = request.account[type]
     const authenticateUserUseCase = container.resolve(UpdateAddressUseCase);
     const token = await authenticateUserUseCase.execute({
-      id: parseInt(id), city, street, postal_code, district, complement, [type]: account
-    }, type);
+      id, city, street, postal_code, district, complement, user: request.account
+    });
     return response.status(200).json(token);
   }
 }

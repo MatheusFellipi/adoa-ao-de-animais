@@ -10,7 +10,7 @@ export class UpdateAnimalController {
     const { id } = request.params
     const createUserUseCase = container.resolve(UpdateAnimalsUseCase);
     const animal = await createUserUseCase.execute(
-      { id: parseInt(id), age, gender, name, size, birthDate, description, microchipCode, origin, photos, weight }
+      { id, age, gender, name, size, birthDate, description, microchipCode, origin, photos, weight }
     );
     return response.status(201).json(animal)
   }

@@ -64,7 +64,7 @@ export class AnimalModel {
 }
 
 export class AnimalPhotoModelView {
-  animal_id?: number;
+  animal_id?: string;
   photos: PhotoModelView[];
 
   static validade(data: AnimalPhotoModelView) {

@@ -39,10 +39,7 @@ export class LoginUseCase {
       account.id
     );
 
-    if (
-      (account.organization && tokenAccount.length >= 2) ||
-      (account.user && tokenAccount.length >= 4)
-    )
+    if (account.user && tokenAccount.length >= 4)
       this._token_repository.delete(tokenAccount[0].id);
 
     const token_save = await this._token_repository.create({
@@ -53,9 +50,9 @@ export class LoginUseCase {
 
     const return_token = AdaptarAccount.accountReturn({
       token: newRefreshToken,
-      avatar: account.organization?.avatar ?? account.user?.avatar,
+      avatar: account.user?.avatar,
       email: account.email,
-      name: account.organization?.name ?? account.user?.name,
+      name: account.user?.name,
     });
 
     return { data: return_token, refreshToken: newRefreshToken };

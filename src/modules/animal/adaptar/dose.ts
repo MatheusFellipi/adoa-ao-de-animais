@@ -1,9 +1,9 @@
-import { RelationshipVaccination } from "../infra/typeorm/entities/Dose";
+import { Dose } from "../infra/typeorm/entities/Dose";
 import { DoseModelView } from "../model/doseModelView";
 
 export class AdaptarDose {
-  static doseReturn(address: RelationshipVaccination[]): DoseModelView[] {
-    return address.map((item) => (
+  static doseReturn(dose: Dose[]): DoseModelView[] {
+    return dose.map((item) => (
       {
         id: item.id,
         crmv: item.crmv,

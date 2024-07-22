@@ -13,10 +13,9 @@ export class UpdateContactController {
       name,
       phone,
       type,
-      id: parseInt(id),
+      id,
     },
-    request.account[request.type],
-    request.type
+    request.account.id,
   );
     return response.status(200).json(data);
   }

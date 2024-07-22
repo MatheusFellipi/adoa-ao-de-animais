@@ -22,5 +22,5 @@ export interface IUserUpdateDtos {
   description?: string;
   type: number;
   cnpj_cpf: string;
-  operation_at: string;
+  operation_at?: Date;
 }

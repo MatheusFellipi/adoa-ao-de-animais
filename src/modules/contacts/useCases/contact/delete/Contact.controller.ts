@@ -6,9 +6,9 @@ import { DeleteContactUseCase } from "./Contact.useCase";
 export class DeleteContactController {
   static async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const account = request.account[request.type];
+    const account = request.account
     const contact = container.resolve(DeleteContactUseCase);
-    await contact.execute(parseInt(id), account, request.type);
+    await contact.execute(id, account.id);
     return response.status(200).json({
       message: "O contado foi excluída permanentemente",
     });

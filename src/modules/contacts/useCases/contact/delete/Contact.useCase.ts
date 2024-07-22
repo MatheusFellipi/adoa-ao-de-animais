@@ -9,13 +9,9 @@ export class DeleteContactUseCase {
   constructor(
     @inject("IContactRepository") private _repository: IContactRepository
   ) {}
-  async execute(
-    id: number,
-    account: { id: string },
-    type: RequestType
-  ): Promise<void> {
+  async execute( id: string, account_id: string ): Promise<void> {
     const contact = await this._repository.listByID(id);
-    if (!contact || contact[type].id !== account.id)
+    if (!contact || contact.user.id !== account_id)
       throw new AppError("Não foi possível deletar o contado");
     return await this._repository.delete(contact);
   }

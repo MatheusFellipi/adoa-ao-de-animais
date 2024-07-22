@@ -21,7 +21,7 @@ export class AddressModel {
   @IsNotEmptyObject()
   city: CityModelView;
 
-  user: UserModal
+  user?: UserModal
 
   static validade(data: AddressModel) {
     const instance = new AddressModel();

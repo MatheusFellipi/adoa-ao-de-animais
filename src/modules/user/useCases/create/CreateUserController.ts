@@ -5,10 +5,10 @@ import { UserModal } from "@modules/user/model/user";
 
  export class CreateUserController {
   static async handle(request: Request, response: Response): Promise<Response> {
-    const { name, addresses, animals, contacts, links } = request.body;
+    const { name, cnpj_cpf, type, description, operation_at, addresses, animals, contacts, links } = request.body;
     const avatar = request?.file?.key;
     const createUserUseCase = container.resolve(CreateUserUseCase);
-    const token = await createUserUseCase.execute({ name, avatar, addresses, animals, contacts, links });
+    const token = await createUserUseCase.execute({ name, avatar, addresses, animals, contacts, links, cnpj_cpf, type, description, operation_at });
     return response.status(200).json(token);
   }
   

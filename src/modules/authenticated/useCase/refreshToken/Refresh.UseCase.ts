@@ -48,7 +48,7 @@ export class RefreshTokenUseCase {
         id: account.id,
       });
 
-       await this._token_repository.update(storedToken, {
+      await this._token_repository.update(storedToken, {
         account: account,
         token: newRefreshToken,
         expires_at: addDays(Date.now(), 7),
@@ -58,9 +58,9 @@ export class RefreshTokenUseCase {
         refreshToken: newRefreshToken,
         data: AdaptarAccount.accountReturn({
           token: newToken,
-          avatar: account.organization?.avatar ?? account.user?.avatar,
+          avatar: account.user?.avatar,
           email: account.email,
-          name: account.organization?.name ?? account.user?.name,
+          name: account.user?.name,
         }),
       };
     } catch (err) {

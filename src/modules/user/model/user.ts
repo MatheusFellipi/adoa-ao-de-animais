@@ -18,6 +18,14 @@ export class UserModal {
   @IsNotEmpty()
   name: string;
 
+  description?: string;
+
+  type: number;
+
+  cnpj_cpf: string;
+
+  operation_at?: Date;
+
   @IsArray()
   @IsNotEmptyObject({}, { each: true })
   contacts: ContactModel[];
@@ -55,17 +63,26 @@ export class UserModal {
   }
 }
 
-export class UserUpdateModalView {
-  @ValidateIf((o) => o.avatar !== undefined)
+export class UserUpdateModal {
+  id?: string;
+
   @IsNotEmpty()
   name: string;
 
+  description?: string;
+
+  type: number;
+
+  cnpj_cpf: string;
+
+  operation_at?: Date;
+
   @ValidateIf((o) => o.avatar !== undefined)
   @IsUrl()
-  avatar: string;
+  avatar?: string;
 
-  static async validate(data: UserUpdateModalView) {
-    const instance = new UserUpdateModalView();
+  static async validate(data: UserUpdateModal) {
+    const instance = new UserUpdateModal();
     Object.assign(instance, data);
     const errors = await validate(instance);
     if (errors.length > 0) {

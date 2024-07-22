@@ -10,9 +10,9 @@ export class DeleteAddressUseCase {
     @inject("IAddressRepository")
     private _address_repository: IAddressRepository
   ) {}
-  async execute(id: number, account: { id: string }, type: RequestType): Promise<void> {
+  async execute(id: string, account_id:string): Promise<void> {
     const address = await this._address_repository.findById(id);
-    if (address[type].id !== account.id)
+    if (address.user.id !== account_id)
       throw new AppError('Nao e possível deletar o endereços');
      await this._address_repository.delete(address)
   }
