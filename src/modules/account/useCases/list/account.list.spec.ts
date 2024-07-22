@@ -10,51 +10,12 @@ describe("test for create account", () => {
 
   beforeEach(async () => {
     categoriesRepositoryInMemory = new AccountRepositoryInMemory();
-
-    const res = await request(app)
-      .post("/api-v1/account")
-      .send({
-        "email": "cliente.teste.04@teste.com",
-        "password": "password123123",
-        "user": {
-          "name": "John Doe",
-          "addresses": [
-            {
-              "street": "123 Main St",
-              "district": "bairro",
-              "state": "CA",
-              "postal_code": "12345",
-              "complement": "complement",
-              "city": {
-                "id": 1,
-                "name": "Acrelândia"
-              }
-            }
-          ],
-          "contacts": [
-            {
-              "type": 1,
-              "name": "nome contato",
-              "phone": "555-1234"
-            }
-          ],
-          "links": [
-            {
-              "url": "https://example.com",
-              "name": "Personal website"
-            }
-          ]
-        }
-      })
-    user = res.body;
   });
 
   it("Not should list account, not authenticated, not token header", async () => {
-    console.log(user.token);
     const res = await request(app)
       .get("/api-v1/account")
       .auth(user.token, { type: "bearer" });
-    console.log(res.body);
     expect(res.statusCode).toBe(200);
   });
 

@@ -2,7 +2,7 @@ import { IVaccinationDtos } from "./IVaccinationDtos";
 
 
 export interface IDoseDtos {
-  id?: number;
+  id?: string;
   dose: string;
   crmv: string;
   vaccination_date: Date;

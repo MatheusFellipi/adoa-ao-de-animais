@@ -1,12 +1,9 @@
 import { UserModal } from "@modules/user/model/user";
-import { OrganizationModel } from "@modules/organization/model/organization";
-import { IsNotEmpty, validate, ValidateIf } from "class-validator";
+import { IsNotEmpty, validate } from "class-validator";
 import { AppError } from "@shared/utils/errors/AppError";
 
 export class LinkModel {
-  @ValidateIf(c=>c.id!== undefined)
-  @IsNotEmpty()
-  id?: number;
+  id?: string;
 
   @IsNotEmpty()
   name: string
@@ -14,8 +11,6 @@ export class LinkModel {
   @IsNotEmpty()
   url: string;
 
-  organization?: OrganizationModel;
-  
   user?: UserModal;
 
   static validade(data: LinkModel) {

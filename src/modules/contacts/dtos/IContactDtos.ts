@@ -1,5 +1,5 @@
 export interface IContactDtos {
-  id?: number;
+  id?: string;
   type: number
   name: string
   phone: string;

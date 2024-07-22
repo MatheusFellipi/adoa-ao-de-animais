@@ -1,12 +1,10 @@
-import { AnimalModel } from "@modules/animal/model/animal";
-import { OrganizationModel } from "@modules/organization/model/organization";
-
-import { AppError } from "@shared/utils/errors/AppError";
 import { validate } from "class-validator";
 
+import { AnimalModel } from "@modules/animal/model/animal";
+import { AppError } from "@shared/utils/errors/AppError";
+
 export class PhotoModelView {
-  id?: number;
-  organization?: OrganizationModel;
+  id?: string;
   animal?: AnimalModel;
   url: string;
 
@@ -22,8 +20,7 @@ export class PhotoModelView {
 }
 
 export class PhotoCreateInternalModelView {
-  id?: number;
-  organization?: OrganizationModel;
+  id?: string;
   animal?: AnimalModel;
   photos: { url: string }[];
 

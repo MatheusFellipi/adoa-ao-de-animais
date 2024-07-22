@@ -1,9 +1,8 @@
-import { IOrganizationDtos } from "@modules/organization/dtos/IOrganizationDtos";
 import { IUserDtos } from "@modules/user/dtos/IUserDtos";
 
 export interface ILinkDtos {
-  id?: number;
+  id?: string;
+  name:string
   user?: IUserDtos;
-  organization?: IOrganizationDtos;
   url: string;
 }

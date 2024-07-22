@@ -19,9 +19,7 @@ export class TokenRepositoryInMemory implements ITokenRepository {
 
   async update(tokenData: ITokenDtos, change_data: ITokenDtos): Promise<Tokens> {
     const tokenIndex = this._token.findIndex(token => token.id === tokenData.id);
-    if (tokenIndex === -1) {
-      throw new Error("Token not found.");
-    }
+    if (tokenIndex === -1)  throw new Error("Token not found.");
     const updatedToken = { ...this._token[tokenIndex], ...change_data };
     this._token[tokenIndex] = updatedToken;
     return updatedToken;

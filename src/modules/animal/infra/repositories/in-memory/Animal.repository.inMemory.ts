@@ -12,7 +12,7 @@ export class AnimalRepositoryInMemory implements IAnimalRepository {
     return animal;
   }
 
-  async findById(id: number): Promise<Animal> {
+  async findById(id: string): Promise<Animal> {
     return this._animal.find((org) => org.id === id);
   }
 
@@ -37,10 +37,10 @@ export class AnimalRepositoryInMemory implements IAnimalRepository {
   }
 
   async listAllByAccount(account_id: string): Promise<Animal[]> {
-    return this._animal.filter(animal => animal.user.id === account_id||animal.organization.id === account_id);
+    return this._animal.filter(animal => animal.user.id === account_id);
   }
 
-  async findByIdFullReturn(id: number): Promise<Animal> {
+  async findByIdFullReturn(id: string): Promise<Animal> {
     return this.findById(id);
   }
 }

@@ -4,7 +4,7 @@ import { AppError } from "@shared/utils/errors/AppError";
 import { UserModal } from "@modules/user/model/user";
 
 export class AddressModel {
-  id?: number
+  id?: string
 
   @IsNotEmpty()
   street: string;

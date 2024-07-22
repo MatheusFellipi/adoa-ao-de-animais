@@ -3,7 +3,7 @@ import { ICityDtos } from "./ICityDtos";
 import { IUserDtos } from "@modules/user/dtos/IUserDtos";
 
 export interface IAddressDtos {
-  id?: number;
+  id?: string;
   city: ICityDtos;
   street: string;
   postal_code: string;

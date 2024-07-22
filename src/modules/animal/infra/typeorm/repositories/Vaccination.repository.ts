@@ -17,7 +17,7 @@ export class VaccinationRepository implements IVaccinationRepository {
     return await this.__repository.save(user);
   }
 
-  async findById(id: number): Promise<Vaccination> {
+  async findById(id: string): Promise<Vaccination> {
     return await this.__repository.findOne({
       where: { id: id },
     });

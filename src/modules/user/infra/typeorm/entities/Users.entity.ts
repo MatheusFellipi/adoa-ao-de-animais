@@ -28,7 +28,7 @@ export class User {
   cnpj_cpf: string;
 
   @Column({ nullable: true })
-  operation_at: Date;
+  operation_at?: Date;
 
   @CreateDateColumn()
   created_at?: Date;

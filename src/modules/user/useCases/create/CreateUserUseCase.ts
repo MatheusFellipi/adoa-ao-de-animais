@@ -13,6 +13,8 @@ export class CreateUserUseCase {
   ) {}
   async execute(data: UserModal): Promise<UserModal> {
     const instance = await UserModal.validate(data);
+    console.log(instance);
+    
     const user = await this.__user_repository.create(instance);
     return AdapterUser.userReturn(user);
   }

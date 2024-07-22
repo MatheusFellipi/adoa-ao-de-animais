@@ -1,15 +1,12 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn , UpdateDateColumn } from "typeorm";
+import { ulid } from "ulid";
+
 import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
-import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
 
 @Entity("photos")
 export class Photo {
-  @PrimaryGeneratedColumn()
-  id?: number;
-
-  @ManyToOne(() => Organization, organization => organization.photos)
-  @JoinColumn({ name: "organization_id" })
-  organization?: Organization;
+  @PrimaryColumn()
+  id?: string;
 
   @ManyToOne(() => Animal, animal => animal.photos)
   @JoinColumn({ name: "animal_id" })
@@ -23,4 +20,10 @@ export class Photo {
 
   @UpdateDateColumn()
   updated_at?: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

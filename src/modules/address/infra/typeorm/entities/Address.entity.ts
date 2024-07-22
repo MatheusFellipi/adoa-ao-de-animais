@@ -1,14 +1,14 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
 
 import { City } from "./City.entity";
 
 import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
-import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
+import { ulid } from "ulid";
 
 @Entity("addresses")
 export class Address {
-  @PrimaryGeneratedColumn()
-  id?: number;
+  @PrimaryColumn()
+  id?: string;
 
   @Column()
   street: string;
@@ -20,7 +20,7 @@ export class Address {
   district: string;
 
   @Column()
-  complement: string;
+  complement?: string;
 
   @CreateDateColumn()
   created_at?: Date;
@@ -36,7 +36,9 @@ export class Address {
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   user?: User;
 
-  @ManyToOne(() => User, user => user.addresses)
-  @JoinColumn({ name: "organization_id", referencedColumnName: "id" })
-  organization?: Organization;
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

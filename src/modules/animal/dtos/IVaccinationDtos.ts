@@ -1,5 +1,5 @@
 export interface IVaccinationDtos {
-  id?: number;
+  id?: string;
   name: string;
   description: string;
 }

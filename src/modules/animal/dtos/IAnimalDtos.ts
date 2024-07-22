@@ -4,7 +4,7 @@ import { IVaccinationCardDtos } from "./IVaccinationCardDtos";
 
 
 export interface IAnimalDtos {
-  id?: number;
+  id?: string;
   name: string;
   description?: string;
   origin?: string;

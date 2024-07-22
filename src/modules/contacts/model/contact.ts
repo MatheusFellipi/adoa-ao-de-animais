@@ -2,10 +2,9 @@ import { UserModal } from "@modules/user/model/user";
 import { AppError } from "@shared/utils/errors/AppError";
 import { IsNotEmpty, validate } from "class-validator";
 import { ContactType } from "../enum/contact.enum";
-import { OrganizationModel } from "@modules/organization/model/organization";
 
 export class ContactModel {
-  id?: number;
+  id?: string;
 
   @IsNotEmpty()
   type: ContactType;
@@ -16,7 +15,6 @@ export class ContactModel {
   @IsNotEmpty()
   phone: string;
 
-  organization?: OrganizationModel;
   user?: UserModal;
 
   static validade(data: ContactModel) {

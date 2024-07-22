@@ -31,11 +31,6 @@ export class ContactRepository implements IContactRepository {
     return await this.__repository.find({
       where: [
         {
-          organization: {
-            id: account_id,
-          },
-        },
-        {
           user: {
             id: account_id,
           },
@@ -44,11 +39,10 @@ export class ContactRepository implements IContactRepository {
     });
   }
 
-  async listByID(id: number): Promise<Contact> {
+  async listByID(id: string): Promise<Contact> {
     return await this.__repository.findOne({
       where: { id: id },
       relations: {
-        organization: true,
         user: true,
       },
     });

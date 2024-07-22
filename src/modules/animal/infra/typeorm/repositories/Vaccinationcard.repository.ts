@@ -22,7 +22,7 @@ export class VaccinationCardRepository implements IVaccinationCardRepository {
     return await this.__repository.save(this.__repository.create(data));
   }
 
-  async findById(id: number): Promise<VaccinationCard> {
+  async findById(id: string): Promise<VaccinationCard> {
     return await this.__repository.findOne({
       where: { id: id },
     });

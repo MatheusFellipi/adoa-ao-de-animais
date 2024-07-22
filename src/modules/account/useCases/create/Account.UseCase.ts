@@ -16,9 +16,7 @@ export class CreateAccountUseCase {
     @inject("ITokenRepository") private _token_repository: ITokenRepository
   ) {}
 
-  async execute(
-    form: AccountModel
-  ): Promise<{ account: TokenReturnModel; refreshToken: string }> {
+  async execute( form: AccountModel ): Promise<{ account: TokenReturnModel; refreshToken: string }> {
     const instance = AccountModel.validade(form);
     const existe = await this.__repository.findExistsBy(instance.email);
     if (existe) throw new AppError("A conta ja exite come esse e-mail", 400);

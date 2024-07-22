@@ -32,11 +32,6 @@ export class LinkRepository implements ILinkRepository {
     return await this.__repository.find({
       where: [
         {
-          organization: {
-            id: account_id,
-          },
-        },
-        {
           user: {
             id: account_id,
           },
@@ -45,11 +40,10 @@ export class LinkRepository implements ILinkRepository {
     });
   }
 
-  async listByID(id: number): Promise<Link> {
+  async listByID(id: string): Promise<Link> {
     return await this.__repository.findOne({
       where: { id: id },
       relations:{
-        organization: true,
         user: true
       }
     });

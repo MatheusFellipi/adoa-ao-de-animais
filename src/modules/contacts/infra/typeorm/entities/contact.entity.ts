@@ -1,11 +1,12 @@
-import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+
+import { ulid } from "ulid";
 import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity("contacts")
 export class Contact {
-  @PrimaryGeneratedColumn()
-  id?: number;
+  @PrimaryColumn()
+  id?: string;
 
   @Column()
   type: number
@@ -26,7 +27,9 @@ export class Contact {
   @JoinColumn({ name: "user_id" })
   user?: User;
   
-  @ManyToOne(() => Organization, organization => organization.contacts)
-  @JoinColumn({ name: "organization_id" })
-  organization?: Organization;
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

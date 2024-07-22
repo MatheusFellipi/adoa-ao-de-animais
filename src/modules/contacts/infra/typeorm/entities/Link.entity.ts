@@ -1,12 +1,12 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { ulid } from "ulid";
 
 import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
-import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
 
 @Entity("links")
 export class Link {
-  @PrimaryGeneratedColumn()
-  id?: number;
+  @PrimaryColumn()
+  id?: string;
 
   @Column()
   name: string
@@ -20,11 +20,13 @@ export class Link {
   @UpdateDateColumn()
   updated_at?: Date;
 
-  @ManyToOne(() => Organization, organization => organization.links)
-  @JoinColumn({ name: "organization_id" })
-  organization?: Organization;
-
   @ManyToOne(() => User, user => user.links)
   @JoinColumn({ name: "user_id" })
   user?: User;
+
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

@@ -1,11 +1,8 @@
 import { IAnimalDtos } from "@modules/animal/dtos/IAnimalDtos";
 
-import { IOrganizationDtos } from "@modules/organization/dtos/IOrganizationDtos";
-
 export interface IPhotoDtos {
-  id?: number;
+  id?: string;
   animal?: IAnimalDtos
-  organization?: IOrganizationDtos
   url: string;
 }
 

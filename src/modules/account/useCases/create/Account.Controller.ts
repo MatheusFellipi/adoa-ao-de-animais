@@ -8,9 +8,7 @@ export class CreateAccountController {
     const { email, password, user} = request.body;
     user.avatar = request?.file?.key;
     const createUserUseCase = container.resolve(CreateAccountUseCase);
-    const { account, refreshToken } = await createUserUseCase.execute(
-      { email, password, user,  }
-    );
+    const { account, refreshToken } = await createUserUseCase.execute({ email, password, user });
     response.cookie("refresh_token", refreshToken, { httpOnly: true, sameSite: "none", secure: true });
     return response.status(201).json(account);
   }

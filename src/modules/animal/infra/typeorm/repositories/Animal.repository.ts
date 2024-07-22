@@ -35,13 +35,13 @@ export class AnimalRepository implements IAnimalRepository {
     });
   }
 
-  async findById(id: number): Promise<Animal> {
+  async findById(id: string): Promise<Animal> {
     return await this.__repository.findOne({
       where: { id: id },
     });
   }
 
-  async findByIdFullReturn(id: number): Promise<Animal> {
+  async findByIdFullReturn(id: string): Promise<Animal> {
     return await this.__repository.findOne({
       where: { id: id },
       relations: { vaccinationCard: true },

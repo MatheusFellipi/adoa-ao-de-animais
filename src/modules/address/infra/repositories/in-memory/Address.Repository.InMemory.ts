@@ -57,7 +57,7 @@ export class AddressRepositoryInMemory implements IAddressRepository {
     });
   }
 
-  async findById(id: number): Promise<Address> {
+  async findById(id: string): Promise<Address> {
     const address = this._addresses.find((address) => address.id === id);
     if (!address) {
       throw new Error("Address not found.");

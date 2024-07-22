@@ -48,12 +48,11 @@ export class AddressRepository implements IAddressRepository {
     return await this.__repository.save(address);
   }
 
-  async findById(id: number): Promise<Address> {
+  async findById(id: string): Promise<Address> {
     return await this.__repository.findOne({
       where: { id: id },
       relations: {
         city: { state: true },
-        organization: true,
         user: true,
       },
     });

@@ -1,15 +1,4 @@
-import {
-  IsArray,
-  IsEnum,
-  IsInt,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  IsUrl,
-  Max,
-  Min,
-  validate,
-  ValidateIf,
+import { IsArray, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, IsUrl, Max, Min, validate, ValidateIf,
 } from "class-validator";
 
 import { VaccinationCardModelView } from "./vaccinationCard";
@@ -17,12 +6,11 @@ import { AnimalGender, AnimalSize } from "../enum/animal.enum";
 import { PhotoModelView } from "@modules/photos/model/photos";
 import { AppError } from "@shared/utils/errors/AppError";
 import { UserModal } from "@modules/user/model/user";
-import { OrganizationModel } from "@modules/organization/model/organization";
-import { SortOrderEnum } from "../../../shared/utils/enums/query.enum";
 import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";
+import { SortOrderEnum } from "@shared/utils/enums/query.enum";
 
 export class AnimalModel {
-  id?: number;
+  id?: string;
 
   @IsNotEmpty()
   name: string;
@@ -53,10 +41,6 @@ export class AnimalModel {
   @IsArray()
   @IsUrl()
   photos?: Photo[];
-
-  @ValidateIf((o) => o.organization !== undefined)
-  @IsNotEmpty()
-  organization?: OrganizationModel;
 
   @ValidateIf((o) => o.user !== undefined)
   @IsNotEmpty()

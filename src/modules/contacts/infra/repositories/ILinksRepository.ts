@@ -6,5 +6,5 @@ export interface ILinkRepository {
   update(data: Link, change_data: ILinkDtos): Promise<Link>;
   delete(data: ILinkDtos): Promise<void>;
   listAllByAccountID(account_id: string): Promise<Link[]>;
-  listByID(id: number): Promise<Link>;
+  listByID(id: string): Promise<Link>;
 }

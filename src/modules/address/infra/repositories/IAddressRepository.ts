@@ -7,6 +7,6 @@ export interface IAddressRepository {
   delete(address: IAddressDtos): Promise<void>;
   find(found: any): Promise<Address[]>;
   createMulti(data: IAddressDtos[]): Promise<Address[]>;
-  findById(id: number): Promise<Address>;
+  findById(id: string): Promise<Address>;
 }
 

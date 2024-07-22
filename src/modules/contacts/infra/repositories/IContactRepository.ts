@@ -6,6 +6,6 @@ export interface IContactRepository {
   update(data: Contact, change_data: IContactDtos): Promise<Contact>;
   delete(data: IContactDtos): Promise<void>;
   listAllByAccountID(account_id: string): Promise<Contact[]>;
-  listByID(id: number): Promise<Contact>;
+  listByID(id: string): Promise<Contact>;
 }
 

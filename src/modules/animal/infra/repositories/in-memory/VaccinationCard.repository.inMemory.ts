@@ -12,7 +12,7 @@ export class VaccinationCardRepositoryInMemory implements IVaccinationCardReposi
     return vaccinationCard;
   }
 
-  async findById(id: number): Promise<VaccinationCard> {
+  async findById(id: string): Promise<VaccinationCard> {
     return this._vaccinationCards.find((card) => card.id === id);
   }
 
