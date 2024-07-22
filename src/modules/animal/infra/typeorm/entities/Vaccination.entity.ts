@@ -1,7 +1,7 @@
 import { Column, Entity, OneToOne, PrimaryColumn } from "typeorm";
 import { ulid } from "ulid";
 
-import { Dose } from "./Dose";
+import { Dose } from "./Dose.entity";
 
 @Entity("vaccinations")
 export class Vaccination {

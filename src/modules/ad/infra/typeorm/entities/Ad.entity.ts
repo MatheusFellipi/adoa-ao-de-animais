@@ -18,8 +18,8 @@ export class AnimalAd {
   @Column("text", { nullable: false })
   extra: string;
 
-  @Column({ type: "enum", enum: AnimalAdType })
-  type: AnimalAdType;
+  @Column()
+  type: number;
 
   @OneToOne(() => Animal, animal => animal)
   @JoinColumn({ name: "animal_id" })

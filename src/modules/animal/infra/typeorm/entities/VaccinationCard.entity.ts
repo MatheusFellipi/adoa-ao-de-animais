@@ -1,7 +1,7 @@
 import { CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { ulid } from "ulid";
 
-import { Dose } from "./Dose";
+import { Dose } from "./Dose.entity";
 import { Animal } from "./Animal.entity";
 
 @Entity("vaccination_cards")

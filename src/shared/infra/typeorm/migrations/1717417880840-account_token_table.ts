@@ -11,8 +11,11 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                         name: 'id',
                         type: "varchar",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: 'increment',
+                    },
+                    {
+                        name: 'user_id',
+                        type: 'varchar',
+                        isNullable: true,
                     },
                     {
                         name: 'email',
@@ -29,11 +32,6 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                         name: 'password',
                         type: 'varchar',
                         isNullable: false,
-                    },
-                    {
-                        name: 'user_id',
-                        type: 'int',
-                        isNullable: true,
                     },
                     {
                         name: 'last_login',
@@ -55,8 +53,6 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                         name: 'id',
                         type: "varchar",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: 'increment',
                     },
                     {
                         name: 'token',
@@ -65,7 +61,7 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                     },
                     {
                         name: 'account_id',
-                        type: 'int',
+                        type: 'varchar',
                         isNullable: false,
                     },
                     {
@@ -76,21 +72,13 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                     {
                         name: 'expires_at',
                         type: 'timestamp',
+                        default: 'CURRENT_TIMESTAMP',
                         isNullable: false,
                     },
                 ],
             }),
             true,
         );
-
-        // Add foreign key for organization_id in accounts table
-        const foreignKeyOrganization = new TableForeignKey({
-            columnNames: ['organization_id'],
-            referencedColumnNames: ['id'],
-            referencedTableName: 'organizations',
-            onDelete: 'SET NULL',
-        });
-        await queryRunner.createForeignKey('accounts', foreignKeyOrganization);
 
         // Add foreign key for user_id in accounts table
         const foreignKeyUser = new TableForeignKey({
@@ -119,9 +107,7 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
 
         const tableAccounts = await queryRunner.getTable('accounts');
         const foreignKeyUser = tableAccounts.foreignKeys.find(fk => fk.columnNames.indexOf('user_id') !== -1);
-        const foreignKeyOrganization = tableAccounts.foreignKeys.find(fk => fk.columnNames.indexOf('organization_id') !== -1);
         await queryRunner.dropForeignKey('accounts', foreignKeyUser);
-        await queryRunner.dropForeignKey('accounts', foreignKeyOrganization);
 
         // Drop tables
         await queryRunner.dropTable('tokens');

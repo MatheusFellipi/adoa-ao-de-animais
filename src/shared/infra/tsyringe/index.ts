@@ -35,7 +35,7 @@ import { AccountRepositoryInMemory } from "@modules/account/infra/repositories/i
 import { TokenRepositoryInMemory } from "@modules/account/infra/repositories/in-memory/Token.Repository.InMemory";
 import { DoseRepository } from "@modules/animal/infra/typeorm/repositories/Dose.repository";
 
-const ENV_TEST = process.env.NODE_ENV === "test";
+const ENV_TEST = false;
 
 container.registerSingleton<IAccountRepository>(
   "IAccountRepository",

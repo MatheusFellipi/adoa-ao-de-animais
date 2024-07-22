@@ -51,19 +51,12 @@ export class PhotoContactsLinksTable1717179934885 implements MigrationInterface 
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: "increment"
                     },
                     {
                         name: "user_id",
-                        type: "int",
-                        isNullable: true,
-                    },
-                    {
-                        name: "organization_id",
-                        type: "int",
+                        type: "varchar",
                         isNullable: true,
                     },
                     {
@@ -77,12 +70,12 @@ export class PhotoContactsLinksTable1717179934885 implements MigrationInterface 
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "now()"
+                        default: 'CURRENT_TIMESTAMP',
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
-                        default: 'now()'
+                        default: 'CURRENT_TIMESTAMP',
                     }
                 ]
             })
@@ -95,19 +88,12 @@ export class PhotoContactsLinksTable1717179934885 implements MigrationInterface 
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: "increment"
                     },
                     {
                         name: "animal_id",
-                        type: "int",
-                        isNullable: true,
-                    },
-                    {
-                        name: "organization_id",
-                        type: "int",
+                        type: "varchar",
                         isNullable: true,
                     },
                     {

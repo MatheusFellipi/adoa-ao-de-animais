@@ -20,7 +20,7 @@ class DbContext {
         entities: [`src/modules/**/entities/**.entity.ts`],
         migrations: [`${__dirname}/migrations/*{.ts,.js}`],
         seeds: [MainSeeder],
-        migrationsRun: true
+        migrationsRun: true,
       } as DataSourceOptions & SeederOptions
     )
     return this.__connection

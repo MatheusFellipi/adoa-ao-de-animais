@@ -1,4 +1,4 @@
-import { Dose } from "../infra/typeorm/entities/Dose";
+import { Dose } from "../infra/typeorm/entities/Dose.entity";
 import { DoseModelView } from "../model/doseModelView";
 
 export class AdaptarDose {

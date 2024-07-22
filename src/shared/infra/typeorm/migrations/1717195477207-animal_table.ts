@@ -42,11 +42,11 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                     },
                     {
                         name: "size",
-                        type: "int",
+                        type: "INTEGER",
                     },
                     {
                         name: "gender",
-                        type: "int",
+                        type: "INTEGER",
                     },
                     {
                         name: "weight",
@@ -71,12 +71,12 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "now()"
+                        default: 'CURRENT_TIMESTAMP',
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
-                        default: 'now()'
+                        default: 'CURRENT_TIMESTAMP',
                     }
                 ]
             })
@@ -89,7 +89,7 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
                     },
                     {
@@ -113,7 +113,7 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
                     },
                     {
@@ -137,7 +137,7 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
                     },
                     {
@@ -154,12 +154,12 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                     },
                     {
                         name: "vaccination_id",
-                        type: "int",
+                        type: "varchar",
                         isNullable: true,
                     },
                     {
                         name: "vaccination_card_id",
-                        type: "int",
+                        type: "varchar",
                         isNullable: true,
                     },
                     {

@@ -20,7 +20,7 @@ export async function authenticated( request: Request, __: Response, next: NextF
 
   try {
     const { sub: id } = verify( token, process.env.SECRET ?? "secret" ) as IPayLoad;
-    const account_repository = ENV_TEST ? new AccountRepositoryInMemory() : new AccountRepository();
+    const account_repository =  new AccountRepository();
     const account = await account_repository.findById(id);
     if (!account) throw new AppError("Esse usuário nao existe", 401);
     request.account = account.user;

@@ -29,18 +29,19 @@ export class AdAnimalTable1718043639538 implements MigrationInterface {
 
           {
             name: "type",
-            type: "int",
+            type: "INTEGER",
             isNullable: false,
           },
           {
             name: "created_at",
             type: "timestamp",
-            default: "now()",
+            default: "CURRENT_TIMESTAMP",
           },
           {
             name: "updated_at",
             type: "timestamp",
             isNullable: true,
+            default: "CURRENT_TIMESTAMP",
           },
           {
             name: "animal_id",

@@ -14,10 +14,10 @@ export class Tokens {
   @JoinColumn({ name: 'account_id' })
   account?: Account;
 
-  @Column({ name: 'created_at', default: () => 'now' })
+  @Column()
   created_at: Date;
 
-  @Column({ name: 'expires_at' })
+  @Column()
   expires_at: Date;
 
   constructor() {

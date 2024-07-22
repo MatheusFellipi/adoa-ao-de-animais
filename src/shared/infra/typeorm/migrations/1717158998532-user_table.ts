@@ -30,7 +30,7 @@ export class UserTable1717158998532 implements MigrationInterface {
                     },
                     {
                         name: "type",
-                        type: "int",
+                        type: "INTEGER",
                         isNullable: false
                     },
                     {
@@ -48,12 +48,12 @@ export class UserTable1717158998532 implements MigrationInterface {
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "now()"
+                        default: 'CURRENT_TIMESTAMP',
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
-                        default: 'now()'
+                        default: 'CURRENT_TIMESTAMP',
                     }
                 ]
             })

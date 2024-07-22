@@ -10,7 +10,7 @@ export class AddressCityStateTable1717113973993 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "varchar",
+                        type: "integer",
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: "increment"
@@ -34,7 +34,7 @@ export class AddressCityStateTable1717113973993 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "varchar",
+                        type: "integer",
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: "increment"
@@ -45,7 +45,7 @@ export class AddressCityStateTable1717113973993 implements MigrationInterface {
                     },
                     {
                         name: "state_id",
-                        type: "int"
+                        type: "integer"
                     }
                 ]
             })
@@ -63,11 +63,11 @@ export class AddressCityStateTable1717113973993 implements MigrationInterface {
                     },
                     {
                         name: "city_id",
-                        type: "int"
+                        type: "integer"
                     },
                     {
                         name: "user_id",
-                        type: "int",
+                        type: "varchar",
                         isNullable: true,
                     },
                     {
@@ -89,12 +89,12 @@ export class AddressCityStateTable1717113973993 implements MigrationInterface {
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "now()"
+                        default: 'CURRENT_TIMESTAMP',
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
-                        default: 'now()'
+                        default: 'CURRENT_TIMESTAMP',
                     }
                 ]
             })
