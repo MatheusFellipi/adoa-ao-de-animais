@@ -1,7 +1,3 @@
-
-
-import "express-async-errors";
-
 import { dbContext } from "../typeorm";
 import app from "./config/app";
 

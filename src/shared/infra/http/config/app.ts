@@ -1,3 +1,10 @@
+import "reflect-metadata"
+import 'dotenv/config'
+import "express-async-errors";
+
+import "@shared/infra/tsyringe/index"
+
+
 import express from 'express'
 import setupMiddleware from './middleware'
 import setupRoutes from './routes'

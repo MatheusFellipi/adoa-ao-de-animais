@@ -1,22 +1,29 @@
-import { CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { ulid } from "ulid";
 
-import { RelationshipVaccination } from "./RelationshipVaccination.entity";
+import { Dose } from "./Dose";
 import { Animal } from "./Animal.entity";
 
 @Entity("vaccination_cards")
 export class VaccinationCard {
-  @PrimaryGeneratedColumn()
-  id?: number;
+  @PrimaryColumn()
+  id?: string;
 
   @OneToOne(() => Animal, (animal) => animal.vaccinationCard, { cascade: true, onDelete: "CASCADE", nullable: true })
   animal?: Animal;
 
-  @OneToMany(() => RelationshipVaccination, (relationship) => relationship.vaccinationCard, { onDelete: "CASCADE", nullable: true })
-  dose: RelationshipVaccination[];
+  @OneToMany(() => Dose, (dose) => dose.vaccinationCard, { onDelete: "CASCADE", nullable: true })
+  dose: Dose[];
 
   @CreateDateColumn()
   created_at?: Date;
 
   @UpdateDateColumn()
   updated_at?: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

@@ -8,8 +8,8 @@ export interface IAddressDtos {
   street: string;
   postal_code: string;
   district: string;
-  complement: string;
-  user?: IUserDtos | UserModal | Object,
+  complement?: string;
+  user?: IUserDtos 
   created_at?: Date;
   update_at?: Date;
 }

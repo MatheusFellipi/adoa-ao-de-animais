@@ -1,6 +1,6 @@
 import { IDoseRepository } from "../IDoseRepository";
 import { IDoseDtos } from "@modules/animal/dtos/IDoseDtos";
-import { RelationshipVaccination } from "../../typeorm/entities/RelationshipVaccination.entity";
+import { RelationshipVaccination } from "../../typeorm/entities/Dose";
 
 export class DoseRepositoryInMemory implements IDoseRepository {
   private _relation: RelationshipVaccination[] = [];

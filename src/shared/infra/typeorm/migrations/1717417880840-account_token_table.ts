@@ -9,7 +9,7 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'int',
+                        type: "varchar",
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: 'increment',
@@ -21,19 +21,19 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                         isNullable: false,
                     },
                     {
-                        name: 'organization_id',
-                        type: 'int',
-                        isNullable: true,
-                    },
-                    {
-                        name: 'user_id',
-                        type: 'int',
-                        isNullable: true,
+                        name: 'super_admin',
+                        type: 'bool',
+                        default: false
                     },
                     {
                         name: 'password',
                         type: 'varchar',
                         isNullable: false,
+                    },
+                    {
+                        name: 'user_id',
+                        type: 'int',
+                        isNullable: true,
                     },
                     {
                         name: 'last_login',
@@ -53,7 +53,7 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'int',
+                        type: "varchar",
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: 'increment',

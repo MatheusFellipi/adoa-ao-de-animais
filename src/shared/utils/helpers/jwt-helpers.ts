@@ -1,20 +1,20 @@
-import { sign, verify } from "jsonwebtoken";
+import { sign } from "jsonwebtoken";
 
 export const jwtHelpers = {
-  createToken(account: { email: string; id: number }) {
+  createToken(account: { email: string; id: string }) {
     const newToken = sign(
       { email: account.email },
       process.env.SECRET ?? "secret",
       {
-        subject: account.id.toString(),
-        expiresIn: process.env.NODE_ENV === "production" ? "60s" : "1m",
+        subject: account.id,
+        expiresIn: process.env.NODE_ENV !== "test" ? "60s" : "5m",
       }
     );
     const newRefreshToken = sign(
       { email: account.email },
       process.env.SECRET_REFRESH ?? "secret",
       {
-        subject: account.id.toString(),
+        subject: account.id,
         expiresIn: "7d",
       }
     );

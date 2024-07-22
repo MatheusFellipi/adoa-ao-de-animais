@@ -39,7 +39,7 @@ export class UsersRepository implements IUsersRepository {
     return await this.__repository.save(user);
   }
 
-  async findByAccountId(id: number): Promise<User> {
+  async findByAccountId(id: string): Promise<User> {
     return await this.__repository.findOne({
       where: {
         account: {
@@ -49,7 +49,7 @@ export class UsersRepository implements IUsersRepository {
     });
   }
 
-  async findById(id: number): Promise<User> {
+  async findById(id: string): Promise<User> {
     return await this.__repository.findOne({
       where: { id: id },
       relations: { addresses: true },

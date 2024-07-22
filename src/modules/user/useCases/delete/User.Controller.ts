@@ -7,7 +7,7 @@ export class DeleteUserController {
     const { id } = request.params;
     const account = request.account[request.type];
     const updateUserUseCase = container.resolve(DeleteUserUseCase);
-    const token = await updateUserUseCase.execute(account, parseInt(id));
+    const token = await updateUserUseCase.execute(account, id);
     return response.status(200).json(token);
   }
 }

@@ -13,7 +13,7 @@ export class TokenRepositoryInMemory implements ITokenRepository {
     return token;
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     this._token = this._token.filter(token => token.id !== id);
   }
 
@@ -27,7 +27,7 @@ export class TokenRepositoryInMemory implements ITokenRepository {
     return updatedToken;
   }
 
-  async findByAccountID(found: number): Promise<Tokens[]> {
+  async findByAccountID(found: string): Promise<Tokens[]> {
     return this._token.filter((x) => x.account.id === found);
   }
 

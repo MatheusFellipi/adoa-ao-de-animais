@@ -1,12 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, Column, JoinColumn, OneToOne } from "typeorm";
+import { Entity, PrimaryColumn, ManyToOne, Column, JoinColumn, OneToOne } from "typeorm";
 
 import { VaccinationCard } from "./VaccinationCard.entity";
 import { Vaccination } from "./Vaccination.entity";
+import { ulid } from "ulid";
 
-@Entity("relationship_vaccinations")
-export class RelationshipVaccination {
-  @PrimaryGeneratedColumn()
-  id?: number;
+@Entity("Dose")
+export class Dose {
+  @PrimaryColumn()
+  id?: string;
 
   @Column()
   dose: string;
@@ -24,4 +25,10 @@ export class RelationshipVaccination {
   @ManyToOne(() => VaccinationCard, (vaccination) => vaccination.dose)
   @JoinColumn({ name: "vaccination_card_id" })
   vaccinationCard: VaccinationCard;
+
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

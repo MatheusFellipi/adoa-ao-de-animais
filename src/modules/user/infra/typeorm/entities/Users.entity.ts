@@ -1,21 +1,34 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany, OneToOne, } from "typeorm";
-
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne, PrimaryColumn, } from "typeorm";
 import { Address } from "@modules/address/infra/typeorm/entities/Address.entity";
 import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
 import { Account } from "@modules/account/infra/typeorm/entities/Account.entity";
 import { Contact } from "@modules/contacts/infra/typeorm/entities/Contact.entity";
 import { Link } from "@modules/contacts/infra/typeorm/entities/Link.entity";
 
+import { ulid } from 'ulid'
+
 @Entity({ name: "users" })
 export class User {
-  @PrimaryGeneratedColumn()
-  id?: number;
+  @PrimaryColumn()
+  id?: string;
 
   @Column({nullable: false})
   name: string;
 
   @Column({ nullable: false, })
   avatar?: string;
+
+  @Column({ nullable: false })
+  description?: string;
+
+  @Column({ nullable: false })
+  type: number;
+
+  @Column({ unique: true, nullable: false, length: 14 })
+  cnpj_cpf: string;
+
+  @Column({ nullable: true })
+  operation_at: Date;
 
   @CreateDateColumn()
   created_at?: Date;
@@ -37,4 +50,10 @@ export class User {
 
   @OneToMany(() => Link, link => link.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
   links?: Link[];
+
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

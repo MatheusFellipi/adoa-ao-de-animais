@@ -12,11 +12,11 @@ export class AccountRepositoryInMemory implements IAccountRepository {
     return account;
   }
 
-  async findById(id: number): Promise<Account> {
+  async findById(id: string): Promise<Account> {
     return this._account.find((x) => x.id === id);
   }
   
-  async findByIdFull(id: number): Promise<Account> {
+  async findByIdFull(id: string): Promise<Account> {
     return this._account.find((x) => x.id === id);
   }
   
@@ -26,6 +26,6 @@ export class AccountRepositoryInMemory implements IAccountRepository {
   }
   
   async findByEmail(email: string): Promise<Account> {
-    throw new Error("Method not implemented.");
+    return this._account.find((x) => x.id === email);
   }
 }

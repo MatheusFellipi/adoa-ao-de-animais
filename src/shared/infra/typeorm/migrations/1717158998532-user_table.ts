@@ -10,10 +10,8 @@ export class UserTable1717158998532 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: "increment"
                     },
                     {
                         name: "name",
@@ -24,6 +22,28 @@ export class UserTable1717158998532 implements MigrationInterface {
                         name: "avatar",
                         type: "varchar",
                         isNullable: true
+                    },
+                    {
+                        name: "description",
+                        type: "text",
+                        isNullable: true
+                    },
+                    {
+                        name: "type",
+                        type: "int",
+                        isNullable: false
+                    },
+                    {
+                        name: "cnpj_cpf",
+                        type: "varchar",
+                        length: "14",
+                        isUnique: true,
+                        isNullable: true
+                    },
+                    {
+                        name: "operation_at",
+                        type: "timestamp",
+                        isNullable: true,
                     },
                     {
                         name: "created_at",

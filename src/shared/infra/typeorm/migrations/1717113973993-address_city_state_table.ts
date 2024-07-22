@@ -10,7 +10,7 @@ export class AddressCityStateTable1717113973993 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: "increment"
@@ -34,7 +34,7 @@ export class AddressCityStateTable1717113973993 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
                         isGenerated: true,
                         generationStrategy: "increment"
@@ -58,10 +58,8 @@ export class AddressCityStateTable1717113973993 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: "increment"
                     },
                     {
                         name: "city_id",

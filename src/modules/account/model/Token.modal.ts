@@ -2,7 +2,7 @@ import { sign } from 'jsonwebtoken';
 import { AccountModel } from './account.modal';
 
 export class TokenModelView {
-  id?: number;
+  id?: string;
   token: string;
   account?: AccountModel;
   expires_at: Date;

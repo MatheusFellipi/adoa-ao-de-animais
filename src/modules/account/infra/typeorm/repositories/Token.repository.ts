@@ -21,7 +21,7 @@ export class TokenRepository implements ITokenRepository {
     });
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     await this.__repository.delete({ id: id });
   }
 
@@ -30,7 +30,7 @@ export class TokenRepository implements ITokenRepository {
     return await this.__repository.save(token);
   }
 
-  async deleteAll(id: number): Promise<void> {
+  async deleteAll(id: string): Promise<void> {
     await this.__repository.delete({
       account: {
         id: id,
@@ -42,7 +42,7 @@ export class TokenRepository implements ITokenRepository {
     return await this.__repository.save(this.__repository.create(data));
   }
 
-  async findByAccountID(found: number): Promise<Tokens[]> {
+  async findByAccountID(found: string): Promise<Tokens[]> {
     return await this.__repository.find({
       where: {
         account: {

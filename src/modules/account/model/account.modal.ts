@@ -1,25 +1,19 @@
-import { IsArray, IsEmail, IsStrongPassword, validate, ValidateIf } from "class-validator";
+import { IsEmail, IsNotEmptyObject, IsStrongPassword, validate } from "class-validator";
 import { hash, compare } from "bcrypt";
 
 import { AppError } from "@shared/utils/errors/AppError";
 
 
-import { OrganizationModel } from "@modules/organization/model/organization";
 import { UserModal } from "@modules/user/model/user";
 
 export class AccountModel {
-  id?: number;
+  id?: string;
 
   @IsEmail()
   email: string;
 
-  @ValidateIf((o) => o.avatar !== undefined)
-  @IsArray()
-  organization?: OrganizationModel;
-
-  @ValidateIf((o) => o.links !== undefined)
-  @IsArray()
-  user?: UserModal;
+  @IsNotEmptyObject()
+  user: UserModal;
 
   @IsStrongPassword()
   password: string;

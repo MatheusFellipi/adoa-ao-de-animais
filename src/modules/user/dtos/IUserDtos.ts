@@ -4,7 +4,7 @@ import { ILinkDtos } from "@modules/contacts/dtos/ILinkDtos";
 
 
 export interface IUserDtos {
-  id?: number;
+  id?: string;
   name: string;
   avatar?: string;
   addresses: IAddressDtos[];
@@ -13,7 +13,7 @@ export interface IUserDtos {
 }
 
 export interface IUserUpdateDtos {
-  id?: number;
+  id?: string;
   name: string;
   avatar?: string;
 }

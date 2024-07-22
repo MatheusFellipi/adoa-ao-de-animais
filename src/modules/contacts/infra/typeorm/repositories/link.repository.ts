@@ -28,7 +28,7 @@ export class LinkRepository implements ILinkRepository {
     });
   }
 
-  async listAllByAccountID(account_id: number): Promise<Link[]> {
+  async listAllByAccountID(account_id: string): Promise<Link[]> {
     return await this.__repository.find({
       where: [
         {

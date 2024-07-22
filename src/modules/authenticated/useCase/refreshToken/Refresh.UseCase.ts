@@ -41,7 +41,7 @@ export class RefreshTokenUseCase {
         process.env.SECRET ?? "secret"
       ) as IPayLoad;
 
-      const account = await this._account_repository.findById(parseInt(id));
+      const account = await this._account_repository.findById(id);
       if (!account) throw new AppError("A conta do usuária nao foi encontrada");
       const { newRefreshToken, newToken } = jwtHelpers.createToken({
         email: account.email,

@@ -81,7 +81,7 @@ container.registerSingleton<IDoseRepository>("IDoseRepository", DoseRepository);
 
 container.registerSingleton<IAccountRepository>(
   "IAccountRepository",
-  ENV_TEST ?  AccountRepositoryInMemory  : AccountRepository
+ AccountRepositoryInMemory 
 );
 
 container.registerSingleton<ITokenRepository>(

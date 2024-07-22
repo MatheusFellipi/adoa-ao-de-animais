@@ -11,7 +11,7 @@ export class DeleteContactUseCase {
   ) {}
   async execute(
     id: number,
-    account: { id: number },
+    account: { id: string },
     type: RequestType
   ): Promise<void> {
     const contact = await this._repository.listByID(id);

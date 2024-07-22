@@ -13,7 +13,7 @@ import { ContactModel } from "@modules/contacts/model/contact";
 import { AnimalModel } from "@modules/animal/model/animal";
 
 export class UserModal {
-  id?: number;
+  id?: string;
 
   @IsNotEmpty()
   name: string;

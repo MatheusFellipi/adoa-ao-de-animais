@@ -1,5 +1,5 @@
 import { IDoseDtos } from "@modules/animal/dtos/IDoseDtos";
-import { RelationshipVaccination } from "../typeorm/entities/RelationshipVaccination.entity";
+import { RelationshipVaccination } from "../typeorm/entities/Dose";
 
 export interface IDoseRepository {
   create(data: IDoseDtos): Promise<RelationshipVaccination>;

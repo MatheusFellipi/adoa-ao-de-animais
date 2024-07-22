@@ -13,12 +13,12 @@ export class UserRepositoryInMemory implements IUsersRepository {
   }
 
   async update(user: User, change_data: IUserUpdateDtos): Promise<User> {
-    const userIndex = this._user.findIndex((usr) => usr.id === user.id);
-    if (userIndex === -1) {
-      throw new Error("User not found.");
-    }
-    this._user[userIndex] = { ...this._user[userIndex], ...change_data };
-    return this._user[userIndex];
+    // const userIndex = this._user.findIndex((usr) => usr.id === user.id);
+    // if (userIndex === -1) {
+    //   throw new Error("User not found.");
+    // }
+    // this._user[userIndex] = { ...this._user[userIndex], ...change_data };
+    return this._user[0];
   }
 
   async delete(user: IUserDtos): Promise<void> {
@@ -29,7 +29,7 @@ export class UserRepositoryInMemory implements IUsersRepository {
     this._user.splice(userIndex, 1);
   }
 
-  async findById(id: number): Promise<User> {
+  async findById(id: string): Promise<User> {
     const user = this._user.find((usr) => usr.id === id);
     if (!user) {
       throw new Error("User not found.");

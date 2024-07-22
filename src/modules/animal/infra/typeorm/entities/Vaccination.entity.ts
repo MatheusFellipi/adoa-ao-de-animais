@@ -1,10 +1,12 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { RelationshipVaccination } from "./RelationshipVaccination.entity";
+import { Column, Entity, OneToOne, PrimaryColumn } from "typeorm";
+import { ulid } from "ulid";
+
+import { Dose } from "./Dose";
 
 @Entity("vaccinations")
 export class Vaccination {
-  @PrimaryGeneratedColumn()
-  id?: number;
+  @PrimaryColumn()
+  id?: string;
 
   @Column("varchar")
   name: string;
@@ -12,6 +14,12 @@ export class Vaccination {
   @Column("varchar")
   description: string;
 
-  @OneToOne(() => RelationshipVaccination)
-  doses?: RelationshipVaccination;
+  @OneToOne(() => Dose)
+  doses?: Dose;
+
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

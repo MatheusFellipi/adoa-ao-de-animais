@@ -12,7 +12,7 @@ export class UpdateContactUseCase {
   ) {}
   async execute(
     form: ContactModel,
-    account: { id: number },
+    account: { id: string },
     type: RequestType
   ): Promise<ContactModel> {
     const instance = ContactModel.validade(form);

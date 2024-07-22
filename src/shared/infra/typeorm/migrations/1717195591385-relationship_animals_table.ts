@@ -11,27 +11,20 @@ export class RelationshipAnimalsTable1717195591385 implements MigrationInterface
         }));
 
         await queryRunner.createForeignKey("animals", new TableForeignKey({
-            columnNames: ["organization_id"],
-            referencedColumnNames: ["id"],
-            referencedTableName: "organizations",
-            onDelete: "CASCADE" 
-        }));
-
-        await queryRunner.createForeignKey("animals", new TableForeignKey({
             columnNames: ["vaccination_card_id"],
             referencedColumnNames: ["id"],
             referencedTableName: "vaccination_cards",
             onDelete: "CASCADE"
         }));
 
-        await queryRunner.createForeignKey("relationship_vaccinations", new TableForeignKey({
+        await queryRunner.createForeignKey("dose", new TableForeignKey({
             columnNames: ["vaccination_card_id"],
             referencedColumnNames: ["id"],
             referencedTableName: "vaccination_cards",
             onDelete: "CASCADE"
         }));
 
-        await queryRunner.createForeignKey("relationship_vaccinations", new TableForeignKey({
+        await queryRunner.createForeignKey("dose", new TableForeignKey({
             columnNames: ["vaccination_id"],
             referencedColumnNames: ["id"],
             referencedTableName: "vaccinations",
@@ -41,10 +34,9 @@ export class RelationshipAnimalsTable1717195591385 implements MigrationInterface
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropForeignKey("animals", "FK_animals_vaccination_card_id");
-        await queryRunner.dropForeignKey("relationship_vaccinations", "FK_relationship_vaccinations_vaccination_card_id");
-        await queryRunner.dropForeignKey("relationship_vaccinations", "FK_relationship_vaccinations_vaccination_id");
+        await queryRunner.dropForeignKey("dose", "FK_dose_vaccination_card_id");
+        await queryRunner.dropForeignKey("dose", "FK_dose_vaccination_id");
         await queryRunner.dropForeignKey("animals","FK_animals_user_id")
-        await queryRunner.dropForeignKey("animals","FK_animals_organization_id")
     }
 
 }

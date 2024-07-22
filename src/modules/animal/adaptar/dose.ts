@@ -1,4 +1,4 @@
-import { RelationshipVaccination } from "../infra/typeorm/entities/RelationshipVaccination.entity";
+import { RelationshipVaccination } from "../infra/typeorm/entities/Dose";
 import { DoseModelView } from "../model/doseModelView";
 
 export class AdaptarDose {

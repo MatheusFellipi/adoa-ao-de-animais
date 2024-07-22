@@ -10,7 +10,7 @@ export class DeleteUserUseCase {
   constructor(
     @inject("IUsersRepository") private __user_repository: IUsersRepository
   ) {}
-  async execute(account: UserModal, id_params: number): Promise<void> {
+  async execute(account: UserModal, id_params: string): Promise<void> {
     if (account.id !== id_params)
       throw new AppError("Não e possível deletar a conta ");
     if (account.avatar) configAws.delete(account.avatar);

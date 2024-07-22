@@ -13,17 +13,12 @@ export class AccountRepository implements IAccountRepository {
     this.__repository = dbContext.getRepository(Account);
   }
 
-  async findByIdFull(id: number): Promise<Account> {
+  async findByIdFull(id: string): Promise<Account> {
     return await this.__repository.findOne({
       where: {
         id: id,
       },
       relations: {
-        organization: {
-          addresses: true,
-          contacts: true,
-          links: true,
-        },
         user: {
           addresses: true,
           contacts: true,
@@ -37,13 +32,12 @@ export class AccountRepository implements IAccountRepository {
     return await this.__repository.save(this.__repository.create(data));
   }
 
-  async findById(id: number): Promise<Account> {
+  async findById(id: string): Promise<Account> {
     return await this.__repository.findOne({
       where: {
         id: id,
       },
       relations: {
-        organization: true,
         user: true,
       },
     });
@@ -55,7 +49,6 @@ export class AccountRepository implements IAccountRepository {
         email: email,
       },
       relations: {
-        organization: true,
         user: true,
       },
     });

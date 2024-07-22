@@ -27,7 +27,7 @@ export class ContactRepository implements IContactRepository {
     });
   }
 
-  async listAllByAccountID(account_id: number): Promise<Contact[]> {
+  async listAllByAccountID(account_id: string): Promise<Contact[]> {
     return await this.__repository.find({
       where: [
         {

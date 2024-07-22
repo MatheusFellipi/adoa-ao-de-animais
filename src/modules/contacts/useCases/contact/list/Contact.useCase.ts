@@ -8,7 +8,7 @@ export class ListContactUseCase {
   constructor(
     @inject("IContactRepository") private _link_repository: IContactRepository
   ) { }
-  async execute(account_id: number): Promise<ContactModel[]> {
+  async execute(account_id: string): Promise<ContactModel[]> {
     return await this._link_repository.listAllByAccountID(account_id)
   }
 }

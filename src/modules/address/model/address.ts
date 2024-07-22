@@ -2,7 +2,6 @@ import { IsNotEmpty, IsNotEmptyObject, Length, validate } from "class-validator"
 import { CityModelView } from "./city";
 import { AppError } from "@shared/utils/errors/AppError";
 import { UserModal } from "@modules/user/model/user";
-import { OrganizationModel } from "@modules/organization/model/organization";
 
 export class AddressModel {
   id?: number
@@ -17,18 +16,12 @@ export class AddressModel {
   district: string;
 
   @Length(0, 1000,)
-  complement: string;
-
-  created_at?: Date
-
-  updated_at?: Date
+  complement?: string;
 
   @IsNotEmptyObject()
   city: CityModelView;
 
-  user?: UserModal
-
-  organization?: OrganizationModel
+  user: UserModal
 
   static validade(data: AddressModel) {
     const instance = new AddressModel();

@@ -10,26 +10,18 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: "increment"
                     },
                     {
                         name: "user_id",
-                        type: "int",
-                        isNullable: true,
-
-                    },
-                    {
-                        name: "organization_id",
-                        type: "int",
+                        type: "varchar",
                         isNullable: true,
 
                     },
                     {
                         name: "vaccination_card_id",
-                        type: "int",
+                        type: "varchar",
                         isNullable: true,
 
                     },
@@ -99,8 +91,6 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                         name: "id",
                         type: "int",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: "increment"
                     },
                     {
                         name: "name",
@@ -125,8 +115,6 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                         name: "id",
                         type: "int",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: "increment"
                     },
                     {
                         name: "created_at",
@@ -142,17 +130,15 @@ export class AnimalTable1717195477207 implements MigrationInterface {
             })
         );
 
-        // Create relationship_vaccinations table
+        // Create dose table
         await queryRunner.createTable(
             new Table({
-                name: "relationship_vaccinations",
+                name: "dose",
                 columns: [
                     {
                         name: "id",
                         type: "int",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: "increment"
                     },
                     {
                         name: "dose",
@@ -190,7 +176,7 @@ export class AnimalTable1717195477207 implements MigrationInterface {
         await queryRunner.dropTable("animals");
         await queryRunner.dropTable("vaccinations");
         await queryRunner.dropTable("vaccination_cards");
-        await queryRunner.dropTable("relationship_vaccinations");
+        await queryRunner.dropTable("dose");
     }
 
 }

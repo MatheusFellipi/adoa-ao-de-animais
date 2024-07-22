@@ -36,7 +36,7 @@ export class AnimalRepositoryInMemory implements IAnimalRepository {
     });
   }
 
-  async listAllByAccount(account_id: number): Promise<Animal[]> {
+  async listAllByAccount(account_id: string): Promise<Animal[]> {
     return this._animal.filter(animal => animal.user.id === account_id||animal.organization.id === account_id);
   }
 

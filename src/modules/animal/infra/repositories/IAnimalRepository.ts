@@ -7,6 +7,6 @@ export interface IAnimalRepository {
   delete(data: Animal): Promise<void>;
   find(criteria: object): Promise<Animal[]>
   findById(id: number): Promise<Animal>;
-  listAllByAccount(account_id: number): Promise<Animal[]>;
+  listAllByAccount(account_id: string): Promise<Animal[]>;
   findByIdFullReturn(id: number): Promise<Animal>;
 }

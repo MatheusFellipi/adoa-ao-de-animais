@@ -10,19 +10,12 @@ export class PhotoContactsLinksTable1717179934885 implements MigrationInterface 
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "varchar",
                         isPrimary: true,
-                        isGenerated: true,
-                        generationStrategy: "increment"
                     },
                     {
                         name: "user_id",
-                        type: "int",
-                        isNullable: true,
-                    },
-                    {
-                        name: "organization_id",
-                        type: "int",
+                        type: "varchar",
                         isNullable: true,
                     },
                     {

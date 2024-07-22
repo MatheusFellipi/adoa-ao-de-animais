@@ -15,7 +15,7 @@ export class AnimalRepository implements IAnimalRepository {
     throw new Error("Method not implemented.");
   }
 
-  listAllByAccount(account_id: number): Promise<Animal[]> {
+  listAllByAccount(account_id: string): Promise<Animal[]> {
     throw new Error("Method not implemented.");
   }
 

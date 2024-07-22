@@ -1,33 +1,35 @@
-import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, OneToOne, OneToMany } from "typeorm";
+import { Entity, Column, JoinColumn, ManyToOne, OneToOne, OneToMany, PrimaryColumn } from "typeorm";
 
 import { Tokens } from "./Token.entity";
 
-import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
 import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
+import { ulid } from "ulid";
 
 
 @Entity("accounts")
 export class Account {
-  @PrimaryGeneratedColumn()
-  id?: number;
+  @PrimaryColumn()
+  id?: string;
 
   @Column({ unique: true, nullable: false })
   email: string;
 
-  @ManyToOne(() => Organization, organization => organization.accounts)
-  @JoinColumn({ name: "organization_id" })
-  organization?: Organization;
+  @Column()
+  password: string;
 
   @OneToOne(() => User, user => user.account)
   @JoinColumn({ name: "user_id" })
-  user?: User;
+  user: User;
 
   @OneToMany(() => Tokens, t => t.account)
   token?: Tokens[];
   
-  @Column()
-  password: string;
-
   @Column({ name: "last_login", nullable: true })
   last_login?: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

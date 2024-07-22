@@ -1,19 +1,19 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { IsNotEmpty } from "class-validator";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryColumn, UpdateDateColumn,
+} from "typeorm";
+import { ulid } from "ulid";
 
 import { VaccinationCard } from "./VaccinationCard.entity";
 import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
-import { Organization } from "@modules/organization/infra/typeorm/entities/Organization.entity";
 import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
 import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";
 
+
 @Entity("animals")
 export class Animal {
-  @PrimaryGeneratedColumn()
-  id?: number;
+  @PrimaryColumn()
+  id?: string;
 
   @Column({ nullable: false })
-  @IsNotEmpty()
   name: string;
 
   @Column({ nullable: true, default: "" })
@@ -22,10 +22,10 @@ export class Animal {
   @Column({ nullable: true, default: "" })
   origin?: string;
 
-  @Column({ type: 'enum', enum: AnimalSize })
+  @Column({ type: "enum", enum: AnimalSize })
   size: AnimalSize;
 
-  @Column({ type: 'enum', enum: AnimalGender })
+  @Column({ type: "enum", enum: AnimalGender })
   gender: AnimalGender;
 
   @Column({ nullable: true, default: "" })
@@ -46,18 +46,20 @@ export class Animal {
   @UpdateDateColumn()
   updated_at?: Date;
 
-  @ManyToOne(() => Organization, organization => organization.animals)
-  @JoinColumn({ name: "organization_id" })
-  organization?: Organization;
+  @OneToOne(() => VaccinationCard, (vaccinations) => vaccinations.animal)
+  @JoinColumn({ name: "vaccination_card_id" })
+  vaccinationCard?: VaccinationCard;
 
-  @ManyToOne(() => User, user => user.animals)
+  @ManyToOne(() => User, (user) => user.animals)
   @JoinColumn({ name: "user_id" })
   user?: User;
 
-  @OneToOne(() => VaccinationCard, vaccinations => vaccinations.animal,)
-  @JoinColumn({ name: "vaccination_card_id" })
-  vaccinationCard?: VaccinationCard
-
-  @OneToMany(() => Organization, organization => organization.animals)
+  @OneToMany(() => Photo, (photo) => photo.animal)
   photos?: Photo[];
+
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

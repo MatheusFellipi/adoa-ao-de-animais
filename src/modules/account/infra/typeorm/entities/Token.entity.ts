@@ -1,12 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
 import { Account } from './Account.entity';
-
-
+import { ulid } from 'ulid';
 
 @Entity("tokens")
 export class Tokens {
-  @PrimaryGeneratedColumn()
-  id?: number;
+  @PrimaryColumn()
+  id?: string;
 
   @Column()
   token: string;
@@ -20,4 +19,10 @@ export class Tokens {
 
   @Column({ name: 'expires_at' })
   expires_at: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = ulid();
+    }
+  }
 }

@@ -34,7 +34,8 @@
     "tsyringe": "^4.8.0",
     "typeorm": "^0.3.20",
     "typeorm-extension": "^3.5.1",
-    "typeorm-pagination": "^2.0.3"
+    "typeorm-pagination": "^2.0.3",
+    "ulid": "^2.3.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

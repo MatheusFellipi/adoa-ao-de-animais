@@ -3,7 +3,7 @@ import { dbContext } from "@shared/infra/typeorm";
 
 import { IDoseRepository } from "../../repositories/IDoseRepository";
 import { IDoseDtos } from "@modules/animal/dtos/IDoseDtos";
-import { RelationshipVaccination } from "../entities/RelationshipVaccination.entity";
+import { RelationshipVaccination } from "../entities/Dose";
 
 export class DoseRepository implements IDoseRepository {
   private __repository: Repository<RelationshipVaccination>;
