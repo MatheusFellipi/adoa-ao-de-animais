@@ -65,8 +65,8 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                         isNullable: false,
                     },
                     {
-                        name: 'created_at',
-                        type: 'timestamp',
+                        name: "created_at",
+                        type: "timestamp",
                         default: 'CURRENT_TIMESTAMP',
                     },
                     {

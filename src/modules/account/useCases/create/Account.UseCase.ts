@@ -17,27 +17,21 @@ export class CreateAccountUseCase {
   ) {}
 
   async execute( form: AccountModel ): Promise<{ account: TokenReturnModel; refreshToken: string }> {
-    const instance = AccountModel.validade(form);
-    
-    const existe = await this.__repository.findExistsBy(instance.email);
-    if (existe) throw new AppError("A conta ja exite come esse e-mail", 400);
-
+    const instance = await AccountModel.validade(form);
+    const exist = await this.__repository.findExistsBy(instance.email);
+    if (exist) throw new AppError("A conta ja exite come esse e-mail", 400);
     instance.user = await CreateUserController.handleInternal(instance.user);
-
     instance.password = await AccountModel.crypto_password(instance.password);
     const account = await this.__repository.create(instance);
-
     const { newRefreshToken, newToken } = jwtHelpers.createToken({
       email: account.email,
       id: account.id,
     });
-
     await this._token_repository.create({
       account: account,
       token: newRefreshToken,
       expires_at: addDays(Date.now(), 1),
     });
-
     return {
       refreshToken: newRefreshToken,
       account: AdaptarAccount.accountReturn({

@@ -6,5 +6,6 @@ export interface IUsersRepository {
   update(user: User, change_date: IUserUpdateDtos): Promise<User>;
   delete(user: IUserDtos): Promise<void>;
   findById(id: string): Promise<User>;
+  findByCpfCnpj(found: string): Promise<boolean>;
 }
 

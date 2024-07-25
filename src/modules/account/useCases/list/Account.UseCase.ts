@@ -8,8 +8,9 @@ export class ListAccountUseCase {
   constructor(
     @inject("IAccountRepository") private __repository: IAccountRepository
   ) {}
-  async execute(account_id: string): Promise<Account> {
-    const account = await this.__repository.findByIdFull(account_id)
-    return account
+  async execute(account_id: string): Promise<Omit<Account, "password">> {
+    const account = await this.__repository.findByIdFull(account_id);
+    const { password, ...accountWithoutPassword } = account;
+    return accountWithoutPassword;
   }
 }

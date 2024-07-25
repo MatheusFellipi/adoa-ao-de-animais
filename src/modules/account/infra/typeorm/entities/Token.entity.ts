@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn, CreateDateColumn } from 'typeorm';
 import { Account } from './Account.entity';
 import { ulid } from 'ulid';
 
@@ -14,7 +14,7 @@ export class Tokens {
   @JoinColumn({ name: 'account_id' })
   account?: Account;
 
-  @Column()
+  @CreateDateColumn()
   created_at: Date;
 
   @Column()

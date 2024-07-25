@@ -13,25 +13,16 @@ export class UsersRepository implements IUsersRepository {
     this.__repository = dbContext.getRepository(User);
   }
 
+  async findByCpfCnpj(found: string): Promise<boolean> {
+    return await this.__repository.exists({ where: { cnpj_cpf: found } });
+  }
+
   async delete(user: IUserDtos): Promise<void> {
     this.__repository.delete(user);
   }
 
-  async create({
-    name,
-    avatar,
-    addresses,
-    contacts,
-    links,
-  }: IUserDtos): Promise<User> {
-    const user = this.__repository.create({
-      name,
-      avatar,
-      addresses,
-      contacts,
-      links,
-    });
-    return await this.__repository.save(user);
+  async create(data: IUserDtos): Promise<User> {
+    return await this.__repository.save(this.__repository.create(data));
   }
 
   async update(user: User, change_date: IUserUpdateDtos): Promise<User> {

@@ -9,7 +9,6 @@ export class AccountRepositoryInMemory implements IAccountRepository {
     const account = new Account();
     Object.assign(account, data);
     this._account.push(account);
-    console.log(this._account);
     return account;
   }
 

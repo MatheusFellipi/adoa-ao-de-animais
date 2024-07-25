@@ -1,32 +1,44 @@
-import { IsEmail, IsNotEmptyObject, IsStrongPassword, validate } from "class-validator";
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsNotEmptyObject,
+  IsStrongPassword,
+  validate,
+} from "class-validator";
 import { hash, compare } from "bcrypt";
 
 import { AppError } from "@shared/utils/errors/AppError";
-
 
 import { UserModal } from "@modules/user/model/user";
 
 export class AccountModel {
   id?: string;
 
-  @IsEmail()
+  @IsEmail(undefined,{ message: "O email deve ser um endereço de email válido" })
+  @IsNotEmpty({ message: "O email não pode estar vazio" })
   email: string;
 
-  @IsNotEmptyObject()
-  user: UserModal;
-
-  @IsStrongPassword()
+  @IsStrongPassword(undefined, { message: "A senha não é forte o suficiente" })
+  @IsNotEmpty({ message: "A senha não pode estar vazia" })
   password: string;
 
-  static validade(data: AccountModel) {
+  @IsNotEmptyObject(undefined,{ message: "O usuário não pode estar vazio" })
+  user: UserModal;
+
+  static async validade(data: AccountModel) {
     const instance = new AccountModel();
-    Object.assign(instance, data)
-    instance.email.toLowerCase()
-    validate(this).then((errors) => {
-      if (errors.length > 0)
-        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 400);
-    });
-    return data
+    Object.assign(instance, data);
+    const errors = await validate(instance);
+    if (errors.length > 0) {
+      throw new AppError(
+        errors
+          .map((error) => Object.values(error.constraints))
+          .join(", ")
+          .toString()
+      );
+    }
+
+    return instance;
   }
 
   static async crypto_password(password: string): Promise<string> {
@@ -37,4 +49,3 @@ export class AccountModel {
     return await compare(password, password_db);
   }
 }
-

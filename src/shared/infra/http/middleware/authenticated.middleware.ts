@@ -6,24 +6,31 @@ import { AccountRepositoryInMemory } from "@modules/account/infra/repositories/i
 
 import { AppError } from "@shared/utils/errors/AppError";
 
-
 interface IPayLoad {
   sub: string;
 }
 
-const ENV_TEST = process.env.NODE_ENV === "test";
-
-export async function authenticated( request: Request, __: Response, next: NextFunction) {
+export async function authenticated(
+  request: Request,
+  __: Response,
+  next: NextFunction
+) {
   const authHeader = request.headers.authorization;
   if (!authHeader) throw new AppError("o token esta faltando nos headers", 401);
   const [, token] = authHeader.split(" ");
 
   try {
-    const { sub: id } = verify( token, process.env.SECRET ?? "secret" ) as IPayLoad;
-    const account_repository =  new AccountRepository();
+    const { sub: id } = verify(
+      token,
+      process.env.SECRET ?? "secret"
+    ) as IPayLoad;
+    const account_repository = new AccountRepository();
     const account = await account_repository.findById(id);
     if (!account) throw new AppError("Esse usuário nao existe", 401);
-    request.account = account.user;
+    request.account = {
+      account_id: account.id,
+      ...account.user,
+    };
     next();
   } catch (error) {
     throw new AppError("o token esta invalido", 401);

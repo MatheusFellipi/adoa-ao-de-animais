@@ -5,7 +5,7 @@ import { CreateAccountUseCase } from "./Account.UseCase";
 
 export class CreateAccountController {
   static async handle(request: Request, response: Response): Promise<Response> {
-    const { email, password, user } = request.body;
+    const { email, password, user} = request.body;
     if (user) user.avatar = request?.file?.key;
     const createUserUseCase = container.resolve(CreateAccountUseCase);
     const { account, refreshToken } = await createUserUseCase.execute({
