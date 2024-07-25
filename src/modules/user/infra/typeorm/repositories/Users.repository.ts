@@ -18,7 +18,7 @@ export class UsersRepository implements IUsersRepository {
   }
 
   async delete(user: IUserDtos): Promise<void> {
-    this.__repository.delete(user);
+    this.__repository.delete({ id: user.id });
   }
 
   async create(data: IUserDtos): Promise<User> {

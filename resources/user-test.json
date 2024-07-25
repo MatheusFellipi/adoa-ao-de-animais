@@ -1,0 +1,37 @@
+{
+  "email": "cliente.teste.99@teste.com",
+  "password": "Password@123123",
+  "user": {
+    "name": "Example Organization",
+    "description": "An example organization description.",
+    "type": 1,
+    "cnpj_cpf": "70277237009",
+    "operation_at": "2023-01-01T09:00:00Z",
+    "addresses": [
+      {
+        "street": "123 Main St",
+        "district": "bairro",
+        "state": "CA",
+        "postal_code": "12345",
+        "complement": "complement",
+        "city": {
+          "id": 1,
+          "name": "Acrelândia"
+        }
+      }
+    ],
+    "contacts": [
+      {
+        "type": 1,
+        "name": "nome contato",
+        "phone": "555-1234"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://example.com",
+        "name": "Personal website"
+      }
+    ]
+  }
+}

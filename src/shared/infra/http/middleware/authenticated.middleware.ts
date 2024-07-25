@@ -2,9 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
 import { AccountRepository } from "@modules/account/infra/typeorm/repositories/Account.repository";
-import { AccountRepositoryInMemory } from "@modules/account/infra/repositories/in-memory/Account.repository.inMemory copy";
-
 import { AppError } from "@shared/utils/errors/AppError";
+import { TokenRepository } from "@modules/account/infra/typeorm/repositories/Token.repository";
 
 interface IPayLoad {
   sub: string;
@@ -24,11 +23,19 @@ export async function authenticated(
       token,
       process.env.SECRET ?? "secret"
     ) as IPayLoad;
-    const account_repository = new AccountRepository();
-    const account = await account_repository.findById(id);
+    
+    const _account_repository = new AccountRepository();
+    const account = await _account_repository.findById(id);
+    
     if (!account) throw new AppError("Esse usuário nao existe", 401);
+    const _token_repository = new TokenRepository();
+    
+    const token_exits = await _token_repository.findByToken(token);
+    if (!token_exits) throw new AppError("O token não esta disponível", 401);
+
     request.account = {
       account_id: account.id,
+      token,
       ...account.user,
     };
     next();

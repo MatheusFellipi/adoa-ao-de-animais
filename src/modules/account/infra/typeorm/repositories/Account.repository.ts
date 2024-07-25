@@ -13,6 +13,10 @@ export class AccountRepository implements IAccountRepository {
     this.__repository = dbContext.getRepository(Account);
   }
 
+  async delete(account: IAccountDtos): Promise<void> {
+    this.__repository.delete(account);
+  }
+
   async findByIdFull(id: string): Promise<Account> {
     return await this.__repository.findOne({
       where: {

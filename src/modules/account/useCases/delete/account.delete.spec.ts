@@ -4,12 +4,13 @@ import { DataSource } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm";
 import { runSeeders } from "typeorm-extension";
 import { MainSeeder } from "@shared/infra/typeorm/seeds/Main.seed";
+import { AccountRepository } from "@modules/account/infra/typeorm/repositories/Account.repository";
 
 jest.setTimeout(30000);
 
-describe("Account list", () => {
+describe("test for delete account", () => {
   let connection: DataSource;
-  let token: string;
+  let respo: AccountRepository;
 
   beforeAll(async () => {
     connection = await dbContext.initialize();
@@ -23,7 +24,11 @@ describe("Account list", () => {
     await runSeeders(connection, {
       seeds: [MainSeeder],
     });
-    const res = await request(app)
+    respo = new AccountRepository();
+  }, 30000);
+
+  it("should respond with a 201 for create account user", async () => {
+    await request(app)
       .post("/api-v1/account")
       .send({
         email: "cliente.teste.01@teste.com",
@@ -62,22 +67,27 @@ describe("Account list", () => {
             },
           ],
         },
-      });
-    token = res.body.token;
-  }, 30000);
+      })
+      .expect(201);
 
-  it("should respond with a 200 if list user logged", async () => {
     const res = await request(app)
-      .get("/api-v1/account")
-      .auth(token, { type: "bearer" })
+      .post("/api-v1/auth")
+      .send({
+        email: "cliente.teste.01@teste.com",
+        password: "Password@123123",
+      })
       .expect(200);
-    expect(res.body).not.toBeNull();
-    expect(res.body.password).toBe(undefined);
-    expect(res.body.user).not.toBeNull();
+
+    const sss = await request(app)
+      .delete("/api-v1/account")
+      .auth(res.body.token, { type: "bearer" });
+    console.log(sss);
+
+    const exist = await respo.findExistsBy("cliente.teste.01@teste.com");
+    expect(exist).toBe(false);
   }, 30000);
 
   it("should not respond with a 200 if auth missing", async () => {
-    const res = await request(app).get("/api-v1/account").expect(401);
-    expect(res.body.message).toBe("o token esta faltando nos headers");
+    await request(app).delete("/api-v1/account").expect(401);
   }, 30000);
 });

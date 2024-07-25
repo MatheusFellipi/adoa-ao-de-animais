@@ -20,8 +20,8 @@ export class LoginUseCase {
 
   async execute(
     form: AuthenticatedModel
-  ): Promise<{ data: TokenReturnModel; refreshToken: string }> {
-    const instance = AuthenticatedModel.validade(form);
+  ): Promise<TokenReturnModel> {
+    const instance = await AuthenticatedModel.validade(form);
     const account = await this.__repository.findByEmail(instance.email);
     if (!account) throw new AppError("o email ou a senha esta incorreta");
     const passwordMatch = await AuthenticatedModel.equals_password(
@@ -29,32 +29,25 @@ export class LoginUseCase {
       account.password
     );
     if (!passwordMatch) throw new AppError("Email oo password incorrect!");
-
-    const { newRefreshToken, newToken } = jwtHelpers.createToken({
+    const newRefreshToken = jwtHelpers.createToken({
       email: account.email,
       id: account.id,
     });
-
     const tokenAccount = await this._token_repository.findByAccountID(
       account.id
     );
-
     if (account.user && tokenAccount.length >= 4)
       this._token_repository.delete(tokenAccount[0].id);
-
-    const token_save = await this._token_repository.create({
+    await this._token_repository.create({
       account: account,
       token: newRefreshToken,
       expires_at: addDays(Date.now(), 7),
     });
-
-    const return_token = AdaptarAccount.accountReturn({
+    return AdaptarAccount.accountReturn({
       token: newRefreshToken,
-      avatar: account.user?.avatar,
+      avatar: account.user.avatar,
       email: account.email,
-      name: account.user?.name,
+      name: account.user.name,
     });
-
-    return { data: return_token, refreshToken: newRefreshToken };
   }
 }

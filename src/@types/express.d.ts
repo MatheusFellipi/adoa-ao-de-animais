@@ -2,6 +2,7 @@ declare namespace Express {
   export interface Request {
     account: {
       id?: string;
+      token: string
       account_id?: string
       name: string;
       avatar?: string;

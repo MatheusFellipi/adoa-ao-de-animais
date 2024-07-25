@@ -6,6 +6,7 @@ export interface IAccountRepository {
   findById(id: string): Promise<Account>;
   findByIdFull(id: string): Promise<Account>;
   findExistsBy(email: string): Promise<boolean>
+  delete(account: IAccountDtos): Promise<void>;
   findByEmail(email: string): Promise<Account>
 }
 

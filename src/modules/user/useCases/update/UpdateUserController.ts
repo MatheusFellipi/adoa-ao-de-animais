@@ -7,10 +7,17 @@ export class UpdateUserController {
     const { name, cnpj_cpf, operation_at, description, type } = request.body;
     const avatar = request?.file?.key;
     const updateUserUseCase = container.resolve(UpdateUserUseCase);
-    const token = await updateUserUseCase.execute(
-      { name, avatar, cnpj_cpf, operation_at, description, type, },
-      request.account
+    const data = await updateUserUseCase.execute(
+      {
+        id: request.account.id,
+        name,
+        avatar,
+        cnpj_cpf,
+        operation_at,
+        description,
+        type,
+      },
     );
-    return response.status(200).json(token);
+    return response.status(200).json(data);
   }
 }

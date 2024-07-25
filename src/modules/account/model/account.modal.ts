@@ -14,7 +14,9 @@ import { UserModal } from "@modules/user/model/user";
 export class AccountModel {
   id?: string;
 
-  @IsEmail(undefined,{ message: "O email deve ser um endereço de email válido" })
+  @IsEmail(undefined, {
+    message: "O email deve ser um endereço de email válido",
+  })
   @IsNotEmpty({ message: "O email não pode estar vazio" })
   email: string;
 
@@ -22,7 +24,7 @@ export class AccountModel {
   @IsNotEmpty({ message: "A senha não pode estar vazia" })
   password: string;
 
-  @IsNotEmptyObject(undefined,{ message: "O usuário não pode estar vazio" })
+  @IsNotEmptyObject(undefined, { message: "O usuário não pode estar vazio" })
   user: UserModal;
 
   static async validade(data: AccountModel) {
@@ -37,12 +39,12 @@ export class AccountModel {
           .toString()
       );
     }
-
+    instance.email.toLowerCase();
     return instance;
   }
 
   static async crypto_password(password: string): Promise<string> {
-    return await hash(password, 8);
+    return await hash(password, process.env.SECRET_HASH ?? 8);
   }
 
   static async equals_password(password: string, password_db: string) {

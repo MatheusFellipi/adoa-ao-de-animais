@@ -1,20 +1,25 @@
 import { inject, injectable } from "tsyringe";
-import configAws from "@shared/services/aws/delete.s3"
+import configAws from "@shared/services/aws/delete.s3";
 
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";
 import { AppError } from "@shared/utils/errors/AppError";
-import { UserModal } from "@modules/user/model/user";
+import { IAddressRepository } from "@modules/address/infra/repositories/IAddressRepository";
 
 @injectable()
 export class DeleteUserUseCase {
   constructor(
-    @inject("IUsersRepository") private __user_repository: IUsersRepository
+    @inject("IUsersRepository") private __user_repository: IUsersRepository,
+    @inject("IAddressRepository")
+    private _address_repository: IAddressRepository
   ) {}
-  async execute(account: UserModal, id_params: string): Promise<void> {
-    if (account.id !== id_params)
-      throw new AppError("Não e possível deletar a conta ");
-    if (account.avatar) configAws.delete(account.avatar);
-    await this.__user_repository.delete(account);
-    return;
+  async execute(userId: string): Promise<void> {
+    const user = await this.__user_repository.findById(userId);
+    if (!user) throw new AppError("Não e possível delete o Usuario");
+    if (user.avatar) configAws.delete(user.avatar);
+    const ad = await this._address_repository.find(userId)
+    await this._address_repository.deleteByUser(ad.map(item => item.id));
+    const sss = await this._address_repository.find(userId)
+    console.log(sss);
+    await this.__user_repository.delete(user);
   }
 }

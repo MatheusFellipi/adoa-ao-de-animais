@@ -25,6 +25,14 @@ export class TokenRepository implements ITokenRepository {
     await this.__repository.delete({ id: id });
   }
 
+  async deleteByAccount(id: string): Promise<void> {
+    await this.__repository.delete({
+      account: {
+        id: id,
+      },
+    });
+  }
+
   async update(token: Tokens, change_data: ITokenDtos): Promise<Tokens> {
     this.__repository.merge(token, change_data);
     return await this.__repository.save(token);

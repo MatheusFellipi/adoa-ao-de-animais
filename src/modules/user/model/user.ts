@@ -11,6 +11,7 @@ import { AppError } from "@shared/utils/errors/AppError";
 import { LinkModel } from "@modules/contacts/model/link";
 import { ContactModel } from "@modules/contacts/model/contact";
 import { AnimalModel } from "@modules/animal/model/animal";
+import { UserEnumType } from "@modules/user/enums/user.enum";
 
 export class UserModal {
   id?: string;
@@ -65,18 +66,12 @@ export class UserModal {
 
 export class UserUpdateModal {
   id?: string;
-
   @IsNotEmpty()
   name: string;
-
   description?: string;
-
-  type: number;
-
+  type: UserEnumType;
   cnpj_cpf: string;
-
   operation_at?: Date;
-
   @ValidateIf((o) => o.avatar !== undefined)
   @IsUrl()
   avatar?: string;
@@ -87,10 +82,7 @@ export class UserUpdateModal {
     const errors = await validate(instance);
     if (errors.length > 0) {
       throw new AppError(
-        errors
-          .map((error) => Object.values(error.constraints))
-          .join(", ")
-          .toString()
+        errors.map((error) => Object.values(error.constraints)).join(", ").toString()
       );
     }
     return instance;

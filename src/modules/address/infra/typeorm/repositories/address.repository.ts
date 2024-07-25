@@ -13,6 +13,10 @@ export class AddressRepository implements IAddressRepository {
     this.__repository = dbContext.getRepository(Address);
   }
 
+  async deleteByUser(address: string[]): Promise<void> {
+    await this.__repository.delete(address);
+  }
+
   async delete(address: IAddressDtos): Promise<void> {
     await this.__repository.delete({
       id: address.id,
@@ -20,12 +24,13 @@ export class AddressRepository implements IAddressRepository {
   }
 
   async find(found: any): Promise<Address[]> {
-    return await this.__repository
-      .createQueryBuilder("addresses")
-      .where("addresses.organization_id = :id OR addresses.user_id = :id", {
-        id: found,
-      })
-      .getMany();
+    return await this.__repository.find({
+      where: {
+        user: {
+          id: found,
+        },
+      },
+    });
   }
 
   async createMulti(data: IAddressDtos[]): Promise<Address[]> {
