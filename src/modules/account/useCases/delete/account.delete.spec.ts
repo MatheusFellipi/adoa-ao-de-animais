@@ -81,8 +81,6 @@ describe("test for delete account", () => {
     const sss = await request(app)
       .delete("/api-v1/account")
       .auth(res.body.token, { type: "bearer" });
-    console.log(sss);
-
     const exist = await respo.findExistsBy("cliente.teste.01@teste.com");
     expect(exist).toBe(false);
   }, 30000);
