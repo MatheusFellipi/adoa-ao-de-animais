@@ -18,6 +18,8 @@ export class DeleteUserUseCase {
     if (user.avatar) configAws.delete(user.avatar);
     const ad = await this._address_repository.find(userId)
     await this._address_repository.deleteByUser(ad.map(item => item.id));
+    const sss = await this._address_repository.find(userId)
+    console.log(sss);
     await this.__user_repository.delete(user);
   }
 }

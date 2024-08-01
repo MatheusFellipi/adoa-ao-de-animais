@@ -9,6 +9,6 @@ export class DeleteAddressController {
     const account_id = request.account.id
     const authenticateUserUseCase = container.resolve(DeleteAddressUseCase);
     const token = await authenticateUserUseCase.execute(id, account_id);
-    return response.status(204).json(token);
+    return response.status(200).json(token);
   }
 }

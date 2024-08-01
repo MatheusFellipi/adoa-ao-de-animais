@@ -28,7 +28,7 @@ export class AddressModel {
     Object.assign(instance, data)
     validate(this).then((errors) => {
       if (errors.length > 0)
-        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 400);
+        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 401);
     });
     return data
   }

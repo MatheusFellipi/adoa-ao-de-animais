@@ -10,6 +10,6 @@ export class AddressUseCaseController {
     const token = await authenticateUserUseCase.execute({
       city, street, postal_code, district, complement, user: account
     });
-    return response.status(201).json(token);
+    return response.status(200).json(token);
   }
 }
