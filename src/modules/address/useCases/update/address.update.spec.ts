@@ -60,13 +60,11 @@ describe("Test update user dadas", () => {
           name: "Acrelândia",
         },
       })
-      console.log(res.body);
-      
-      // expect(res.body).not.toBeNull()
-      // expect(res.body.id).toBe(address[0].id)
-      // expect(res.body.street).not.toBe(address[0].street)
-      // expect(res.body.district).not.toBe(address[0].district)
-      // expect(res.body.postal_code).not.toBe(address[0].postal_code)
-      // expect(res.body.complement).not.toBe(address[0].complement)
+      expect(res.body).not.toBeNull()
+      expect(res.body.id).toBe(address[0].id)
+      expect(res.body.street).not.toBe(address[0].street)
+      expect(res.body.district).not.toBe(address[0].district)
+      expect(res.body.postal_code).not.toBe(address[0].postal_code)
+      expect(res.body.complement).not.toBe(address[0].complement)
   }, 30000);
 });
