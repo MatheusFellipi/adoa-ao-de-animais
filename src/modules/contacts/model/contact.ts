@@ -17,19 +17,12 @@ export class ContactModel {
 
   user?: UserModal;
 
-  static validade(data: ContactModel) {
+  static async validade(data: ContactModel) {
     const instance = new ContactModel();
     Object.assign(instance, data);
-    validate(this).then((errors) => {
-      if (errors.length > 0)
-        throw new AppError(
-          errors
-            .map((error) => Object.values(error.constraints))
-            .join(", ")
-            .toString(),
-          400
-        );
-    });
+    const errors = await validate(instance);
+    if (errors.length > 0)
+      throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString());
     return data;
   }
 }

@@ -35,7 +35,7 @@ export class CreateAccountUseCase {
       token: newRefreshToken,
       expires_at: addDays(Date.now(), 1),
     });
-
+    
     return AdaptarAccount.accountReturn({
       token: newRefreshToken,
       avatar: account.user.avatar,

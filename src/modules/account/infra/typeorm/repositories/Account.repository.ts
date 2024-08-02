@@ -14,7 +14,9 @@ export class AccountRepository implements IAccountRepository {
   }
 
   async delete(account: IAccountDtos): Promise<void> {
-    this.__repository.delete(account);
+    this.__repository.delete({
+      id: account.id
+    });
   }
 
   async findByIdFull(id: string): Promise<Account> {

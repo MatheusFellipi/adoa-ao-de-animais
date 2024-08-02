@@ -9,7 +9,7 @@ export class CreateContactUseCase {
     @inject("IContactRepository") private _link_repository: IContactRepository
   ) { }
   async execute(form: ContactModel): Promise<ContactModel> {
-    const instance = ContactModel.validade(form)
+    const instance = await ContactModel.validade(form)
     return await this._link_repository.create(instance)
   }
 }

@@ -10,7 +10,7 @@ export class UpdateContactUseCase {
     @inject("IContactRepository") private _repository: IContactRepository
   ) {}
   async execute( form: ContactModel, account_id: string ): Promise<ContactModel> {
-    const instance = ContactModel.validade(form);
+    const instance = await ContactModel.validade(form);
     const contact_att = await this._repository.listByID(instance.id);
     if (!contact_att || account_id !== contact_att.user.id)
       throw new AppError("Nao foi possível atualizar os dados dos contados");

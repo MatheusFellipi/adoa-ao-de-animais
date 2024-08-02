@@ -77,16 +77,16 @@ describe("test for delete account", () => {
         password: "Password@123123",
       })
       .expect(200);
-
-    const sss = await request(app)
+      
+    await request(app)
       .delete("/api-v1/account")
       .auth(res.body.token, { type: "bearer" });
-    console.log(sss);
 
     const exist = await respo.findExistsBy("cliente.teste.01@teste.com");
     expect(exist).toBe(false);
+  
   }, 30000);
-
+  
   it("should not respond with a 200 if auth missing", async () => {
     await request(app).delete("/api-v1/account").expect(401);
   }, 30000);
