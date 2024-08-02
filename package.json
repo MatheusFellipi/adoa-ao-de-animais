@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.588.0",
+    "adocao_de_animais": "file:",
     "bcrypt": "^5.1.1",
     "brazilian-values": "^0.13.0",
     "class-validator": "^0.14.1",
