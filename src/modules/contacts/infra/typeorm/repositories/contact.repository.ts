@@ -13,7 +13,7 @@ export class ContactRepository implements IContactRepository {
   }
 
   async create(data: IContactDtos): Promise<Contact> {
-    return await this.__repository.save(data);
+    return await this.__repository.save(this.__repository.create(data));
   }
 
   async update(data: Contact, change_data: IContactDtos): Promise<Contact> {

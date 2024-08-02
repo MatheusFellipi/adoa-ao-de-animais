@@ -13,6 +13,6 @@ export class CreateContactController {
       type,
       user: account,
     });
-    return response.status(200).json(data);
+    return response.status(201).json(data);
   }
 }

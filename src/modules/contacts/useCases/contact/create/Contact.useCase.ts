@@ -6,10 +6,10 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 export class CreateContactUseCase {
   constructor(
-    @inject("IContactRepository") private _link_repository: IContactRepository
+    @inject("IContactRepository") private _contactsRepository: IContactRepository
   ) { }
   async execute(form: ContactModel): Promise<ContactModel> {
     const instance = await ContactModel.validade(form)
-    return await this._link_repository.create(instance)
+    return await this._contactsRepository.create(instance)
   }
 }
