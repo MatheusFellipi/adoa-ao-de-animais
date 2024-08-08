@@ -21,7 +21,8 @@ export class UserModal {
 
   description?: string;
 
-  type: number;
+  @IsNotEmpty()
+  type: UserEnumType;
 
   cnpj_cpf: string;
 

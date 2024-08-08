@@ -6,7 +6,6 @@ import { runSeeders } from "typeorm-extension";
 import { MainSeeder } from "@shared/infra/typeorm/seeds/Main.seed";
 import { AccountRepository } from "@modules/account/infra/typeorm/repositories/Account.repository";
 import { UserTestSeeder } from "@shared/infra/typeorm/seeds/User.Test.seed";
-import userTest from "../../../../../resources/user-test.json";
 import { Account } from "@modules/account/infra/typeorm/entities/Account.entity";
 
 jest.setTimeout(30000);
