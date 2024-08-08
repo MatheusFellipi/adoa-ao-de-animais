@@ -12,7 +12,7 @@ export class UpdateAnimalsUseCase {
   ) { }
 
   async execute(form: AnimalModel): Promise<Animal> {
-    const instance = AnimalModel.validate(form);
+    const instance = await AnimalModel.validate(form);
     const animal = await this.__repository.findById(instance.id)
 
     if (!animal) {

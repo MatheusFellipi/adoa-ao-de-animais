@@ -15,7 +15,7 @@ export class AnimalRepository implements IAnimalRepository {
     throw new Error("Method not implemented.");
   }
 
-  listAllByAccount(account_id: string): Promise<Animal[]> {
+  findByUser(account_id: string): Promise<Animal[]> {
     throw new Error("Method not implemented.");
   }
 
@@ -41,10 +41,5 @@ export class AnimalRepository implements IAnimalRepository {
     });
   }
 
-  async findByIdFullReturn(id: string): Promise<Animal> {
-    return await this.__repository.findOne({
-      where: { id: id },
-      relations: { vaccinationCard: true },
-    });
-  }
+
 }

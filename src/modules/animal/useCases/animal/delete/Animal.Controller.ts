@@ -1,6 +1,6 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
-import { DeleteAnimalsUseCase } from "@modules/animal/useCases/animal/delete/DeleteAnimalsUseCase";
+import { DeleteAnimalsUseCase } from "@modules/animal/useCases/animal/delete/Animal.UseCase";
 
 
 
@@ -9,7 +9,7 @@ export class DeleteAnimalController {
     const { id } = request.params
     const createUserUseCase = container.resolve(DeleteAnimalsUseCase);
     await createUserUseCase.execute(id);
-    return response.status(201).send("Os dados foram deletado do sistema")
+    return response.status(204).send()
   }
 }
 

@@ -12,6 +12,10 @@ export class PhotoRepository implements IPhotosRepository {
   constructor() {
     this.__repository = dbContext.getRepository(Photo);
   }
+  
+  listByIdAnimal(id: string): Promise<Photo[]> {
+    throw new Error("Method not implemented.");
+  }
 
   create(data: IPhotoDtos): Promise<Photo> {
     throw new Error("Method not implemented.");

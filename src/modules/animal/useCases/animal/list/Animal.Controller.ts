@@ -2,34 +2,27 @@ import { container } from "tsyringe";
 import { Request, Response } from "express";
 
 import { ListAnimalsUseCase } from "./Animal.UseCase";
-import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
+import { SortOrderEnum } from "@shared/utils/enums/query.enum";
 
 export class UpdateAnimalController {
   static async handle(request: Request, response: Response): Promise<Response> {
-    const { animal_id, name, size, gender, organization_id, user_id, microchip_code, page, limit, sortField, sortOrder,
-    } = request.params;
+    let { animal_id, name, size, gender, user_id, page, limit, sort } =
+      request.params;
 
-    const type = request.type;
-    const account = request.account[type];
-    let account_id = organization_id ?? user_id;
-
-    if (organization_id && user_id) account_id = account[type].id;
+    const account = request.account;
+    if (!user_id) user_id = account.id;
 
     const createUserUseCase = container.resolve(ListAnimalsUseCase);
 
     const animal = await createUserUseCase.execute({
       animal_id: parseInt(animal_id),
+      user_id: parseInt(user_id),
       name,
-      account_id: parseInt(account_id),
       size: parseInt(size),
       gender: parseInt(gender),
-      organization_id: parseInt(organization_id),
-      user_id: parseInt(user_id),
-      microchip_code,
+      sort: SortOrderEnum[sort ?? "ASC"],
       page: parseInt(page),
       limit: parseInt(limit),
-      sortField,
-      sortOrder: parseInt(sortOrder),
     });
     return response.status(201).json(animal);
   }

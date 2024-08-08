@@ -3,7 +3,7 @@ import { IAccountRepository } from "@modules/account/infra/repositories/IAccount
 import { ITokenRepository } from "@modules/account/infra/repositories/ITokenRepository";
 import { AccountModel } from "@modules/account/model/account.modal";
 import { TokenReturnModel } from "@modules/account/model/Token.modal";
-import { CreateUserController } from "@modules/user/useCases/create/CreateUserController";
+import { CreateUserController } from "@modules/user/useCases/create/User.Controller";
 import { AppError } from "@shared/utils/errors/AppError";
 import { jwtHelpers } from "@shared/utils/helpers/jwt-helpers";
 import { addDays } from "date-fns";

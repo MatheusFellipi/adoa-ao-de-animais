@@ -1,12 +1,8 @@
-import { IsArray, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, IsUrl, Max, Min, validate, ValidateIf,
-} from "class-validator";
+import { IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, Max, Min, validate, ValidateIf} from "class-validator";
 
-import { VaccinationCardModelView } from "./vaccinationCard";
 import { AnimalGender, AnimalSize } from "../enum/animal.enum";
-import { PhotoModelView } from "@modules/photos/model/photos";
 import { AppError } from "@shared/utils/errors/AppError";
 import { UserModal } from "@modules/user/model/user";
-import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";
 import { SortOrderEnum } from "@shared/utils/enums/query.enum";
 
 export class AnimalModel {
@@ -34,53 +30,17 @@ export class AnimalModel {
 
   microchipCode?: string;
 
-  @ValidateIf((o) => o.vaccinationCard !== undefined)
-  vaccinationCard?: VaccinationCardModelView;
-
-  @ValidateIf((o) => o.photos !== undefined)
-  @IsArray()
-  @IsUrl()
-  photos?: Photo[];
-
   @ValidateIf((o) => o.user !== undefined)
   @IsNotEmpty()
   user?: UserModal;
 
-  static validate(data: AnimalModel) {
+  static async validate(data: AnimalModel) {
     const instance = new AnimalModel();
     Object.assign(instance, data);
-    validate(this).then((errors) => {
-      if (errors.length > 0)
-        throw new AppError(
-          errors
-            .map((error) => Object.values(error.constraints))
-            .join(", ")
-            .toString(),
-          401
-        );
-    });
-    return data;
-  }
-}
-
-export class AnimalPhotoModelView {
-  animal_id?: string;
-  photos: PhotoModelView[];
-
-  static validade(data: AnimalPhotoModelView) {
-    const instance = new AnimalPhotoModelView();
-    Object.assign(instance, data);
-    validate(this).then((errors) => {
-      if (errors.length > 0)
-        throw new AppError(
-          errors
-            .map((error) => Object.values(error.constraints))
-            .join(", ")
-            .toString(),
-          401
-        );
-    });
-    return data;
+    const errors = await validate(instance);
+    if (errors.length > 0)
+      throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(),);
+    return instance;
   }
 }
 
@@ -91,7 +51,7 @@ export class AnimalQueryModel {
 
   @IsOptional()
   @IsInt()
-  account_id?: number;
+  user_id?: number;
 
   @IsOptional()
   @IsString()
@@ -105,17 +65,6 @@ export class AnimalQueryModel {
   @IsEnum(AnimalGender)
   gender?: AnimalGender;
 
-  @IsOptional()
-  @IsInt()
-  organization_id?: number;
-
-  @IsOptional()
-  @IsInt()
-  user_id?: number;
-
-  @IsOptional()
-  @IsString()
-  microchip_code?: string;
 
   @IsOptional()
   @IsInt()
@@ -130,26 +79,14 @@ export class AnimalQueryModel {
 
   @IsOptional()
   @IsString()
-  sortField?: string;
+  sort?: SortOrderEnum;
 
-  @IsOptional()
-  @IsString()
-  @IsEnum(SortOrderEnum, { message: "Sort order must be either ASC or DESC" })
-  SortOrderEnum: SortOrderEnum = 1;
-
-  static validade(data: AnimalQueryModel) {
+  static async validade(data: AnimalQueryModel) {
     const instance = new AnimalQueryModel();
     Object.assign(instance, data);
-    validate(this).then((errors) => {
+    const errors = await validate(instance)
       if (errors.length > 0)
-        throw new AppError(
-          errors
-            .map((error) => Object.values(error.constraints))
-            .join(", ")
-            .toString(),
-          401
-        );
-    });
-    return data;
+        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString());
+    return instance;
   }
 }
