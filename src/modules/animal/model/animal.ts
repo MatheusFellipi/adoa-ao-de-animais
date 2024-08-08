@@ -45,48 +45,49 @@ export class AnimalModel {
 }
 
 export class AnimalQueryModel {
-  @IsOptional()
-  @IsInt()
-  animal_id?: number;
+  @ValidateIf((o) => o.animal_id !== undefined)
+  @IsString()
+  animal_id?: string;
 
-  @IsOptional()
-  @IsInt()
-  user_id?: number;
+  @ValidateIf((o) => o.user_id !== undefined)
+  @IsString()
+  user_id?: string;
 
+  @ValidateIf((o) => o.name !== undefined)
   @IsOptional()
   @IsString()
   name?: string;
 
+  @ValidateIf((o) => o.size !== undefined)
   @IsOptional()
   @IsEnum(AnimalSize)
-  size?: AnimalSize;
+  size?: number;
 
+  @ValidateIf((o) => o.gender !== undefined)
   @IsOptional()
   @IsEnum(AnimalGender)
-  gender?: AnimalGender;
+  gender?: number;
 
-
-  @IsOptional()
   @IsInt()
   @Min(1)
   page: number = 1;
 
-  @IsOptional()
   @IsInt()
   @Min(1)
   @Max(100)
   limit: number = 10;
 
+  @ValidateIf((o) => o.sort !== undefined)
   @IsOptional()
   @IsString()
-  sort?: SortOrderEnum;
+  sort?: string;
 
   static async validade(data: AnimalQueryModel) {
     const instance = new AnimalQueryModel();
     Object.assign(instance, data);
-    const errors = await validate(instance)
-      if (errors.length > 0)
-        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString());
+    const errors = await validate(instance);
+    if (errors.length > 0)
+      throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString());
     return instance;
   }
 }

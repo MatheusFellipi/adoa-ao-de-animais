@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
 
-import { UpdateAnimalsUseCase } from "./UpdateAnimalsUseCase";
+import { UpdateAnimalsUseCase } from "./Animal.UseCase";
 
 
 export class UpdateAnimalController {
@@ -12,7 +12,7 @@ export class UpdateAnimalController {
     const animal = await createUserUseCase.execute(
       { id, age, gender, name, size, birthDate, description, microchipCode, origin, weight }
     );
-    return response.status(201).json(animal)
+    return response.status(200).json(animal)
   }
 }
 

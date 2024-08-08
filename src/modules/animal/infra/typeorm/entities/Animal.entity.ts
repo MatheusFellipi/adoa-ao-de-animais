@@ -2,7 +2,6 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, One
 } from "typeorm";
 import { ulid } from "ulid";
 
-import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
 import { VaccinationCard } from "./VaccinationCard.entity";
 import { User } from "@modules/user/infra/typeorm/entities/Users.entity";
 import { Photo } from "@modules/photos/infra/typeorm/entities/Photos.entity";

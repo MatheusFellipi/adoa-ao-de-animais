@@ -11,15 +11,6 @@ export class ListAnimalsUseCase {
 
   async execute(form: AnimalQueryModel): Promise<AnimalModel[]> {
     const instance = await AnimalQueryModel.validade(form);
-
-    let query: any = {};
-
-    if (instance.animal_id) query.id = instance.animal_id;
-    if (instance.name) query.name = instance.name;
-    if (instance.size) query.size = instance.size;
-    if (instance.gender) query.gender = instance.gender;
-    if (instance.user_id) query.user = { id: instance.user_id };
-
-    return await this.__repository.find(query);
+    return await this.__repository.findQuery(instance);
   }
 }

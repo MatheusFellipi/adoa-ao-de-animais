@@ -1,8 +1,8 @@
 
-import { VaccinationCardModelView } from "../model/vaccinationCard";
+import { VaccinationCardModel } from "../model/vaccinationCard";
 
 export class AdaptarVaccination {
-  static vaccinationReturn(address: VaccinationCardModelView[]): VaccinationCardModelView[] {
+  static vaccinationReturn(address: VaccinationCardModel[]): VaccinationCardModel[] {
     return address.map((item)=>(
       {
         id: item.id,

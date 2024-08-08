@@ -20,11 +20,11 @@ export class Dose {
 
   @OneToOne(() => Vaccination)
   @JoinColumn({ name: "vaccination_id" })
-  vaccination: Vaccination;
+  vaccination?: Vaccination;
 
   @ManyToOne(() => VaccinationCard, (vaccination) => vaccination.dose)
   @JoinColumn({ name: "vaccination_card_id" })
-  vaccinationCard: VaccinationCard;
+  vaccinationCard?: VaccinationCard;
 
   constructor() {
     if (!this.id) {

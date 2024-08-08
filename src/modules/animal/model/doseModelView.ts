@@ -1,7 +1,7 @@
 import { IsNotEmpty, validate } from "class-validator";
 import { VaccinationModelView } from "./vaccination";
 import { AppError } from "@shared/utils/errors/AppError";
-import { VaccinationCardModelView } from "./vaccinationCard";
+import { VaccinationCardModel } from "./vaccinationCard";
 
 export class DoseModelView {
   id?: string;
@@ -16,10 +16,10 @@ export class DoseModelView {
   crmv: string;
   
   @IsNotEmpty()
-  vaccination: VaccinationModelView;
+  vaccination?: VaccinationModelView;
 
   @IsNotEmpty()
-  vaccinationCard: VaccinationCardModelView;
+  vaccinationCard?: VaccinationCardModel;
 
   static validade(data: DoseModelView) {
     const instance = new DoseModelView();

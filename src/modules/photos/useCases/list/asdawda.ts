@@ -40,7 +40,7 @@ describe("Test list photos", () => {
     const res_account = new AccountRepository()
     const res_animal = new AnimalRepository()
     const account_id = (await res_account.findByEmail("cliente.teste.99@teste.com")).id
-    animal = await res_animal.listAllByAccount(account_id)
+    animal = await res_animal.findByUser(account_id)
   }, 30000);
 
   it("should respond with a 200 if create contact", async () => {

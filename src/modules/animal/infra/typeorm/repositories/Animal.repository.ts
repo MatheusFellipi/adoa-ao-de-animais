@@ -4,24 +4,46 @@ import { dbContext } from "@shared/infra/typeorm";
 import { Animal } from "../entities/Animal.entity";
 import { IAnimalRepository } from "../../repositories/IAnimalRepository";
 import { IAnimalDtos } from "@modules/animal/dtos/IAnimalDtos";
+import { AnimalQueryModel } from "@modules/animal/model/animal";
 
 export class AnimalRepository implements IAnimalRepository {
   private __repository: Repository<Animal>;
+  
   constructor() {
     this.__repository = dbContext.getRepository(Animal);
   }
-  
-  find(criteria: object): Promise<Animal[]> {
-    throw new Error("Method not implemented.");
+
+  async findQuery(params: AnimalQueryModel): Promise<Animal[]> {
+    const { animal_id, name, size, gender, user_id, sort } = params;
+    const query = this.__repository.createQueryBuilder("animal");
+    if (animal_id)
+      query.orWhere("animal.animal_id = :animal_id", { animal_id });
+    if (name) query.orWhere("animal.name LIKE :name", { name: `%${name}%` });
+    if (size) query.orWhere("animal.size = :size", { size });
+    if (gender) query.orWhere("animal.gender = :gender", { gender });
+    if (user_id) query.orWhere("animal.user_id = :user_id", { user_id });
+    if (sort) {
+      const [field, order] = sort.split(":");
+      query.orderBy(
+        `animal.${field}`,
+        order.toUpperCase() === "DESC" ? "DESC" : "ASC"
+      );
+    }
+    return await query.getMany();
   }
 
-  findByUser(account_id: string): Promise<Animal[]> {
-    throw new Error("Method not implemented.");
+  async findByUser(user_id: string): Promise<Animal[]> {
+    return await this.__repository.find({
+      where: {
+        user: {
+          id: user_id,
+        },
+      },
+    });
   }
 
   async create(data: IAnimalDtos): Promise<Animal> {
-    const user = this.__repository.create(data);
-    return await this.__repository.save(user);
+    return await this.__repository.save(this.__repository.create(data));
   }
 
   async update(data: Animal, change_data: IAnimalDtos): Promise<Animal> {
@@ -31,7 +53,7 @@ export class AnimalRepository implements IAnimalRepository {
 
   async delete(data: Animal): Promise<void> {
     await this.__repository.delete({
-      id: data.id
+      id: data.id,
     });
   }
 
@@ -40,6 +62,4 @@ export class AnimalRepository implements IAnimalRepository {
       where: { id: id },
     });
   }
-
-
 }

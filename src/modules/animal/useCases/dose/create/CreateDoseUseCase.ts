@@ -20,8 +20,6 @@ export class CreateDoseUseCase {
       dose.push(DoseModelView.validade(item))
     })
 
-
-
     dose.forEach(async (item) => {
       const vaccination = await CreateVaccinationController.handleInternal(item.vaccination)
       item.vaccination = vaccination

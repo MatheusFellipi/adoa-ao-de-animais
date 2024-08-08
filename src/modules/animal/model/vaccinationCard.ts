@@ -3,18 +3,17 @@ import { AppError } from "@shared/utils/errors/AppError";
 import { DoseModelView } from "./doseModelView";
 
 
-export class VaccinationCardModelView {
+export class VaccinationCardModel {
   id?: string;
   
   dose: DoseModelView[];
 
-  static validade(data: VaccinationCardModelView) {
-    const instance = new VaccinationCardModelView();
+  static async validade(data: VaccinationCardModel) {
+    const instance = new VaccinationCardModel();
     Object.assign(instance, data)
-    validate(this).then((errors) => {
+    const errors = await validate(instance)
       if (errors.length > 0)
         throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 401);
-    });
-    return data
+    return instance
   }
 }
