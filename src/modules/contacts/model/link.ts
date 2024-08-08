@@ -6,26 +6,19 @@ export class LinkModel {
   id?: string;
 
   @IsNotEmpty()
-  name: string
+  name: string;
 
   @IsNotEmpty()
   url: string;
 
   user?: UserModal;
 
-  static validade(data: LinkModel) {
+  static async validade(data: LinkModel) {
     const instance = new LinkModel();
     Object.assign(instance, data);
-    validate(this).then((errors) => {
-      if (errors.length > 0)
-        throw new AppError(
-          errors
-            .map((error) => Object.values(error.constraints))
-            .join(", ")
-            .toString(),
-          400
-        );
-    });
-    return data;
+    const errors = await validate(instance);
+    if (errors.length > 0)
+      throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString());
+    return instance;
   }
 }

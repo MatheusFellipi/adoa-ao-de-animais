@@ -10,7 +10,7 @@ export class CreateLinkUseCase {
     @inject("ILinkRepository") private _link_repository: ILinkRepository
   ) { }
   async execute(form: LinkModel): Promise<LinkModel> {
-    const instance = LinkModel.validade(form)
+    const instance = await LinkModel.validade(form)
     return await this._link_repository.create(instance)
   }
 }

@@ -11,7 +11,7 @@ export class ListLinkUseCase {
     @inject("ILinkRepository") private _link_repository: ILinkRepository
   ) {}
   async execute(form: LinkModel): Promise<LinkModel> {
-    const instance = LinkModel.validade(form);
+    const instance = await LinkModel.validade(form);
     const link = await this._link_repository.listByID(instance.id);
     if (!link || instance.user.id !== link.user.id)
       throw new AppError("Não e possível atualizar o link");

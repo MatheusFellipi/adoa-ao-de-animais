@@ -2,7 +2,6 @@ import { inject, injectable } from "tsyringe";
 
 import { ILinkRepository } from "@modules/contacts/infra/repositories/ILinksRepository";
 import { AppError } from "@shared/utils/errors/AppError";
-import { RequestType } from "@shared/type/request.type";
 
 @injectable()
 export class DeleteLinkUseCase {

@@ -12,19 +12,19 @@ export class LinkRepository implements ILinkRepository {
   constructor() {
     this.__repository = dbContext.getRepository(Link);
   }
-  
+
   async create(data: ILinkDtos): Promise<Link> {
-    return await this.__repository.save(data);
+    return await this.__repository.save(this.__repository.create(data));
   }
-  
+
   async update(data: Link, change_data: ILinkDtos): Promise<Link> {
     this.__repository.merge(data, change_data);
     return await this.__repository.save(data);
   }
-  
+
   async delete(data: ILinkDtos): Promise<void> {
     await this.__repository.delete({
-      id: data.id
+      id: data.id,
     });
   }
 
@@ -43,9 +43,9 @@ export class LinkRepository implements ILinkRepository {
   async listByID(id: string): Promise<Link> {
     return await this.__repository.findOne({
       where: { id: id },
-      relations:{
-        user: true
-      }
+      relations: {
+        user: true,
+      },
     });
   }
 }
