@@ -16,7 +16,7 @@ export class VaccinationCardModel {
     Object.assign(instance, data)
     const errors = await validate(instance)
       if (errors.length > 0)
-        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 401);
+        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString());
     return instance
   }
 }

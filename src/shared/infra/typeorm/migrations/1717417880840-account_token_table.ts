@@ -36,7 +36,7 @@ export class AccounttokensTable1717417880840 implements MigrationInterface {
                     {
                         name: 'last_login',
                         type: 'timestamp',
-                        default: "now()",
+                        default: "CURRENT_TIMESTAMP",
                         isNullable: true,
                     },
                 ],

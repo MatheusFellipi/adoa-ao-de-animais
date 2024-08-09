@@ -33,12 +33,12 @@ export class PhotoContactsLinksTable1717179934885 implements MigrationInterface 
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "now()"
+                        default: "CURRENT_TIMESTAMP"
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
-                        default: 'now()'
+                        default: "CURRENT_TIMESTAMP"
                     }
                 ]
             })
@@ -103,12 +103,12 @@ export class PhotoContactsLinksTable1717179934885 implements MigrationInterface 
                     {
                         name: "created_at",
                         type: "timestamp",
-                        default: "now()"
+                        default: "CURRENT_TIMESTAMP"
                     },
                     {
                         name: "updated_at",
                         type: "timestamp",
-                        default: 'now()'
+                        default: "CURRENT_TIMESTAMP"
                     }
                 ]
             })

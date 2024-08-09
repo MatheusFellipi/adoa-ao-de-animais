@@ -8,9 +8,11 @@ import { ListAnimalController } from "@modules/animal/useCases/animal/list/Anima
 
 import { CreateVaccinationCardController } from "@modules/animal/useCases/vaccinationCard/create/VaccinationCard.Controller";
 import { CreateDoseController } from "@modules/animal/useCases/dose/create/Dose.Controller";
+import { ListVaccinationController } from "@modules/animal/useCases/vaccination/list/Vaccination.Controller";
 
 export default (router: Router): void => {
   router.get("/animal", authenticated, ListAnimalController.handle);
+  router.get("/animal/vaccination", authenticated, ListVaccinationController.handle )
   router.post("/animal", authenticated, CreateAnimalController.handle);
   router.post("/animal/vaccination-card", authenticated, CreateVaccinationCardController.handle )
   router.post("/animal/dose", authenticated, CreateDoseController.handle )

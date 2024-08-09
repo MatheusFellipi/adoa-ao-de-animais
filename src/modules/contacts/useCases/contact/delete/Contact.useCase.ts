@@ -2,7 +2,6 @@ import { inject, injectable } from "tsyringe";
 
 import { AppError } from "@shared/utils/errors/AppError";
 import { IContactRepository } from "@modules/contacts/infra/repositories/IContactRepository";
-import { RequestType } from "@shared/type/request.type";
 
 @injectable()
 export class DeleteContactUseCase {

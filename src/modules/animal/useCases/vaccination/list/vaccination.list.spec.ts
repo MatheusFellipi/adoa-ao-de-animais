@@ -79,29 +79,27 @@ describe("Test Vaccination cards", () => {
       .auth(res.body.token, { type: "bearer" })
       .send(fakeAnimalData)
       .expect(201);
+      
     animal = res_animal.body;
-  }, 30000);
 
-  it("Should response 201 if created vaccination card animal", async () => {
     await request(app)
       .post(`/api-v1/animal/vaccination-card`)
       .auth(token, { type: "bearer" })
       .send({ ...fakeVaccinationCardModel, animal_id: animal.id })
       .expect(201)
+  }, 30000);
+
+  it("Should response 200 if list vaccination", async () => {
+    await request(app)
+      .get(`/api-v1/animal/vaccination`)
+      .auth(token, { type: "bearer" })
+      .expect(200)
   });
 
-  it("Should response 401 if missing auth in created vaccination card animal", async () => {
+  it("Should response 401 if missing auth in list vaccination", async () => {
     await request(app)
-      .post(`/api-v1/animal/vaccination-card`)
-      .send({ ...fakeVaccinationCardModel, animal_id: animal.id })
+      .get(`/api-v1/animal/vaccination`)
       .expect(401);
   });
 
-  it("Should response 400 if missing animal id in created vaccination card animal", async () => {
-    await request(app)
-      .post(`/api-v1/animal/vaccination-card`)
-      .auth(token, { type: "bearer" })
-      .send({ ...fakeVaccinationCardModel })
-      .expect(400);
-  });
 });

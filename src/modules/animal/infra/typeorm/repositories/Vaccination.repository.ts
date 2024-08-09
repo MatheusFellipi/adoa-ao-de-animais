@@ -12,6 +12,10 @@ export class VaccinationRepository implements IVaccinationRepository {
     this.__repository = dbContext.getRepository(Vaccination);
   }
 
+  async all(): Promise<Vaccination[]> {
+    return await this.__repository.find()
+  }
+
   async create(data: IVaccinationDtos): Promise<Vaccination> {
     const user = this.__repository.create(data);
     return await this.__repository.save(user);

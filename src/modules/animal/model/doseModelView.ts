@@ -1,5 +1,5 @@
 import { IsNotEmpty, validate } from "class-validator";
-import { VaccinationModelView } from "./vaccination";
+import { VaccinationModel } from "./vaccination";
 
 export class DoseModel {
   id?: string;
@@ -14,7 +14,7 @@ export class DoseModel {
   crmv: string;
   
   @IsNotEmpty()
-  vaccination: VaccinationModelView;
+  vaccination: VaccinationModel;
 
   @IsNotEmpty()
   vaccination_card_id?: string;
