@@ -24,7 +24,7 @@ describe("Account list", () => {
       seeds: [MainSeeder],
     });
     const res = await request(app)
-      .post("/api-v1/account")
+      .post("/api-v1/account/profile")
       .send({
         email: "cliente.teste.01@teste.com",
         password: "Password@123123",
@@ -68,7 +68,7 @@ describe("Account list", () => {
 
   it("should respond with a 200 if list user logged", async () => {
     const res = await request(app)
-      .get("/api-v1/account")
+      .get("/api-v1/account/profile")
       .auth(token, { type: "bearer" })
       .expect(200);
     expect(res.body).not.toBeNull();
@@ -77,7 +77,7 @@ describe("Account list", () => {
   }, 30000);
 
   it("should not respond with a 200 if auth missing", async () => {
-    const res = await request(app).get("/api-v1/account").expect(401);
+    const res = await request(app).get("/api-v1/account/profile").expect(401);
     expect(res.body.message).toBe("o token esta faltando nos headers");
   }, 30000);
 });

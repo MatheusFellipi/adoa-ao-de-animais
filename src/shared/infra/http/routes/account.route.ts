@@ -8,6 +8,6 @@ import { ListAccountController } from "@modules/account/useCases/list/Account.Co
 
 export default (router: Router): void => {
   router.post("/account", CreateAccountController.handle);
-  router.get("/account", authenticated, ListAccountController.handle);
+  router.get("/account/profile", authenticated, ListAccountController.handle);
   router.delete("/account", authenticated, DeleteAccountController.handle);
 };
