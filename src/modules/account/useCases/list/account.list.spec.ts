@@ -24,7 +24,7 @@ describe("Account list", () => {
       seeds: [MainSeeder],
     });
     const res = await request(app)
-      .post("/api-v1/account/profile")
+      .post("/api-v1/account")
       .send({
         email: "cliente.teste.01@teste.com",
         password: "Password@123123",

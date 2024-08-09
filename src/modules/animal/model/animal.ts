@@ -39,7 +39,7 @@ export class AnimalModel {
     Object.assign(instance, data);
     const errors = await validate(instance);
     if (errors.length > 0)
-      throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(),);
+      throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString());
     return instance;
   }
 }

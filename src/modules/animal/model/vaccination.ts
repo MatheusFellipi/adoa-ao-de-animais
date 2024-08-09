@@ -1,7 +1,7 @@
 import { AppError } from "@shared/utils/errors/AppError";
 import { IsNotEmpty, validate } from "class-validator";
 
-export class VaccinationModelView {
+export class VaccinationModel {
   id?: string;
   
   @IsNotEmpty()
@@ -10,14 +10,13 @@ export class VaccinationModelView {
   @IsNotEmpty()
   description: string;
 
-  static validade(data: VaccinationModelView) {
-    const instance = new VaccinationModelView();
+  static async validade(data: VaccinationModel) {
+    const instance = new VaccinationModel();
     Object.assign(instance, data)
-    validate(this).then((errors) => {
+    const errors = await validate(instance)
       if (errors.length > 0)
-        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 401);
-    });
-    return data
+        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString());
+    return instance
   }
 }
  

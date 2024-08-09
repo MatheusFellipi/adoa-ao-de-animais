@@ -1,13 +1,11 @@
 import { IsNotEmpty, validate } from "class-validator";
 import { VaccinationModelView } from "./vaccination";
-import { AppError } from "@shared/utils/errors/AppError";
-import { VaccinationCardModel } from "./vaccinationCard";
 
-export class DoseModelView {
+export class DoseModel {
   id?: string;
 
   @IsNotEmpty()
-  dose: string;
+  description: string;
 
   @IsNotEmpty()
   vaccination_date: Date;
@@ -16,18 +14,19 @@ export class DoseModelView {
   crmv: string;
   
   @IsNotEmpty()
-  vaccination?: VaccinationModelView;
+  vaccination: VaccinationModelView;
 
   @IsNotEmpty()
-  vaccinationCard?: VaccinationCardModel;
+  vaccination_card_id?: string;
 
-  static validade(data: DoseModelView) {
-    const instance = new DoseModelView();
-    Object.assign(instance, data)
-    validate(this).then((errors) => {
-      if (errors.length > 0)
-        throw new AppError(errors.map((error) => Object.values(error.constraints)).join(", ").toString(), 401);
-    });
-    return data
+  static async validade(data: DoseModel) {
+    const instance = new DoseModel();
+    Object.assign(instance, data);
+    const errors = await validate(instance);
+    if (errors.length > 0) {
+      const message = errors.map((error) => Object.values(error.constraints)).join(", ");
+      throw new Error(message);
+    }
+    return instance;
   }
 }

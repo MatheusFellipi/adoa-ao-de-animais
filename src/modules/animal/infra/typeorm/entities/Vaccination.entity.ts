@@ -14,8 +14,8 @@ export class Vaccination {
   @Column("varchar")
   description: string;
 
-  @OneToOne(() => Dose)
-  doses?: Dose;
+  @OneToOne(() => Dose, (dose) => dose.vaccination)
+  dose?: Dose;
 
   constructor() {
     if (!this.id) {

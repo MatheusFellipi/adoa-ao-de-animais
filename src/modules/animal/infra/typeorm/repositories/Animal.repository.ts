@@ -60,6 +60,9 @@ export class AnimalRepository implements IAnimalRepository {
   async findById(id: string): Promise<Animal> {
     return await this.__repository.findOne({
       where: { id: id },
+      relations:{
+        vaccinationCard:true
+      }
     });
   }
 }

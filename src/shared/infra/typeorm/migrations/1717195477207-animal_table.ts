@@ -141,7 +141,7 @@ export class AnimalTable1717195477207 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: "dose",
+                        name: "description",
                         type: "varchar"
                     },
                     {

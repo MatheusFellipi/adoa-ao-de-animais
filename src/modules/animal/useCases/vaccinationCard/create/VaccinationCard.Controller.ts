@@ -7,12 +7,10 @@ export class CreateVaccinationCardController {
   static async handle(request: Request, response: Response) {
     const { animal_id, dose } = request.body;
     const doseUseCase = container.resolve(CreateVaccinationCardUseCase);
-    const card = await doseUseCase.execute(
-      {
-        dose,
-      },
-      animal_id
-    );
+    const card = await doseUseCase.execute({
+      dose,
+      animal_id,
+    });
     return response.status(201).send(card);
   }
 }

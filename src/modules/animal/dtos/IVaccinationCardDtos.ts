@@ -1,8 +1,8 @@
-import { IDoseDtos } from "./IDoseDtos";
+import { IAnimalDtos } from "@modules/animal/dtos/IAnimalDtos";
 
 
 export interface IVaccinationCardDtos {
   id?: string;
-  dose: IDoseDtos[];
+  animal?: IAnimalDtos
 }
 

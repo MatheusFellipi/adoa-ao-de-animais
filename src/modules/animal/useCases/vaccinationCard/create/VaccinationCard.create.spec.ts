@@ -1,5 +1,6 @@
 import request from "supertest";
 import app from "@shared/infra/http/config/app";
+
 import { DataSource } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm";
 import { runSeeders } from "typeorm-extension";
@@ -8,14 +9,16 @@ import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
 import { UserTestSeeder } from "@shared/infra/typeorm/seeds/User.Test.seed";
 import { VaccinationCardModel } from "@modules/animal/model/vaccinationCard";
 import { AnimalModel } from "@modules/animal/model/animal";
+import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
 
 jest.setTimeout(30000);
 
 const fakeVaccinationCardModel: VaccinationCardModel = {
+  animal_id: "",
   dose: [
     {
       id: "1",
-      dose: "Dose Única",
+      description: "Dose Única",
       vaccination_date: new Date("2024-08-01"),
       crmv: "123456",
       vaccination: {
@@ -24,7 +27,7 @@ const fakeVaccinationCardModel: VaccinationCardModel = {
       },
     },
     {
-      dose: "Dose Única",
+      description: "Dose Única",
       vaccination_date: new Date("2024-08-01"),
       crmv: "123456",
       vaccination: {
@@ -50,6 +53,7 @@ const fakeAnimalData: AnimalModel = {
 describe("Test Vaccination cards", () => {
   let connection: DataSource;
   let token: string;
+  let animal: Animal;
 
   beforeAll(async () => {
     connection = await dbContext.initialize();
@@ -66,21 +70,37 @@ describe("Test Vaccination cards", () => {
         password: "Password@123123",
       })
       .expect(200);
-    token = res.body.token;
-  }, 30000);
 
-  it("Should response 201 if created vaccination card animal", async () => {
     const res_animal = await request(app)
       .post("/api-v1/animal/")
       .auth(token, { type: "bearer" })
       .send(fakeAnimalData)
       .expect(201);
+    animal = res_animal.body;
+    token = res.body.token;
+  }, 30000);
 
-    const res = await request(app)
+  it("Should response 201 if created vaccination card animal", async () => {
+    await request(app)
       .post(`/api-v1/animal/vaccination-card`)
       .auth(token, { type: "bearer" })
-      .send({ ...fakeVaccinationCardModel, animal_id: res_animal.body.id })
+      .send({ ...fakeVaccinationCardModel, animal_id: animal.body.id })
       .expect(201);
   });
 
+  it("Should response 201 if created vaccination card animal", async () => {
+    await request(app)
+      .post(`/api-v1/animal/vaccination-card`)
+      .auth(token, { type: "bearer" })
+      .send({ ...fakeVaccinationCardModel, animal_id: animal.body.id })
+      .expect(201);
+  });
+
+  it("Should response 400 if missing animal id in created vaccination card animal", async () => {
+    await request(app)
+      .post(`/api-v1/animal/vaccination-card`)
+      .auth(token, { type: "bearer" })
+      .send({ ...fakeVaccinationCardModel })
+      .expect(201);
+  });
 });

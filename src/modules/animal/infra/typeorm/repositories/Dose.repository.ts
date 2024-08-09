@@ -19,8 +19,7 @@ export class DoseRepository implements IDoseRepository {
   }
 
   async create(data: IDoseDtos): Promise<Dose> {
-    const user = this.__repository.create(data);
-    return await this.__repository.save(user);
+    return await this.__repository.save(this.__repository.create(data));
   }
 
   async findById(id: string): Promise<Dose> {

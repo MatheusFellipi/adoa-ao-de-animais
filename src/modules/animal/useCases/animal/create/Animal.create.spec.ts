@@ -14,15 +14,15 @@ import { Account } from "@modules/account/infra/typeorm/entities/Account.entity"
 jest.setTimeout(30000);
 
 const fakeAnimalData: AnimalModel = {
-  name: "Buddy",
-  description: "A friendly and energetic dog.",
-  origin: "Shelter",
-  size: AnimalSize.MEDIUM,
-  gender: AnimalGender.MALE,
-  weight: "25kg",
-  birthDate: new Date(2020, 5, 15),
-  age: "3 years",
-  microchipCode: "123456789",
+  "name": "Buddy",
+  "description": "A friendly and energetic dog.",
+  "origin": "Shelter",
+  "size": 2,
+  "gender": 2,
+  "weight": "25kg",
+  "birthDate": new Date(2020, 5, 15),
+  "age": "3 years",
+  "microchipCode": "123456789",
 };
 
 describe("Test request created animals", () => {

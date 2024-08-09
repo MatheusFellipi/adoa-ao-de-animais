@@ -1,12 +1,15 @@
-import { validate } from "class-validator";
+import { IsNotEmpty, validate } from "class-validator";
 import { AppError } from "@shared/utils/errors/AppError";
-import { DoseModelView } from "./doseModelView";
+import { DoseModel } from "./doseModelView";
 
 
 export class VaccinationCardModel {
   id?: string;
   
-  dose: DoseModelView[];
+  @IsNotEmpty()
+  animal_id: string
+
+  dose?: DoseModel[];
 
   static async validade(data: VaccinationCardModel) {
     const instance = new VaccinationCardModel();
