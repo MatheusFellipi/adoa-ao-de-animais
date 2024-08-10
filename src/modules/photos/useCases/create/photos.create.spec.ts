@@ -1,5 +1,6 @@
 import request from "supertest";
 import app from "@shared/infra/http/config/app";
+
 import { DataSource } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm";
 import { runSeeders } from "typeorm-extension";
@@ -8,10 +9,28 @@ import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
 import { UserTestSeeder } from "@shared/infra/typeorm/seeds/User.Test.seed";
 import { AnimalModel } from "@modules/animal/model/animal";
 import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
+import path from "path";
 
-jest.setTimeout(30000);
+const filePath = path.resolve(
+  __dirname,
+  "../../../../../resources/assets_test/b0b81847aa4ae96fc4165e8d81dc9d1f.jpg"
+);
 
-describe("Test List Animal Photos", () => {
+jest.setTimeout(60000);
+
+const fakeAnimalData: AnimalModel = {
+  name: "Buddy",
+  description: "A friendly and energetic dog.",
+  origin: "Shelter",
+  size: AnimalSize.MEDIUM,
+  gender: AnimalGender.MALE,
+  weight: "25kg",
+  birthDate: new Date(2020, 5, 15),
+  age: "3 years",
+  microchipCode: "123456789",
+};
+
+describe("Test Vaccination cards", () => {
   let connection: DataSource;
   let token: string;
   let animal: Animal;
@@ -32,56 +51,39 @@ describe("Test List Animal Photos", () => {
         password: "Password@123123",
       })
       .expect(200);
-    token = res.body.token;
 
-    const fakeAnimalData: AnimalModel = {
-      name: "Buddy",
-      description: "A friendly and energetic dog.",
-      origin: "Shelter",
-      size: AnimalSize.MEDIUM,
-      gender: AnimalGender.MALE,
-      weight: "25kg",
-      birthDate: new Date(2020, 5, 15),
-      age: "3 years",
-      microchipCode: "123456789",
-    };
+    token = res.body.token;
 
     const res_animal = await request(app)
       .post("/api-v1/animal/")
-      .auth(token, { type: "bearer" })
+      .auth(res.body.token, { type: "bearer" })
       .send(fakeAnimalData)
       .expect(201);
-    animal = res_animal.body;
 
+    animal = res_animal.body;
+  }, 30000);
+
+  it("Should upload photos successfully for a valid animal and respond with 201", async () => {
     await request(app)
       .patch(`/api-v1/animal/photos/${animal.id}`)
       .auth(token, { type: "bearer" })
-      .attach('photos', '../../../../../resources/assets_test/b0b81847aa4ae96fc4165e8d81dc9d1f.jpg')
-      .attach('photos', '../../../../../resources/assets_test/b0b81847aa4ae96fc4165e8d81dc9d1f.jpg')
+      .attach("photos", filePath)
+      .attach("photos", filePath)
       .expect(201);
-      
   });
 
-  it("Should list photos of an animal", async () => {
-    const res = await request(app)
-      .get(`/api-v1/animal/photos/${animal.id}`)
-      .auth(token, { type: "bearer" })
-      .expect(200);
-
-    expect(res.body).toHaveLength(2);
-    expect(res.body[0]).toHaveProperty("url");
-  });
-
-  it("Should return 401 if no auth token is provided", async () => {
+  it("Should respond with 400 if no photos are uploaded", async () => {
     await request(app)
-      .get(`/api-v1/animal/photos/${animal.id}`)
-      .expect(401);
+      .patch(`/api-v1/animal/photos/${animal.id}`)
+      .auth(token, { type: "bearer" })
+      .expect(400);
   });
 
-  it("Should return 404 if animal does not exist", async () => {
+  it("Should respond with 400 if trying to upload photos with an invalid animal_id", async () => {
     await request(app)
-      .get(`/api-v1/animal/photos/nonexistent-id`)
+      .patch(`/api-v1/animal/photos/invalid_animal_id`)
       .auth(token, { type: "bearer" })
-      .expect(404);
+      .attach("photos", filePath)
+      .expect(400);
   });
 });

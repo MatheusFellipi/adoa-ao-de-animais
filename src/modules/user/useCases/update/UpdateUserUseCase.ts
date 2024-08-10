@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import configAws from "@shared/services/aws/delete.s3";
+import {configAws} from "@shared/services/aws/delete.s3";
 
 import { UserUpdateModal } from "@modules/user/model/user";
 import { IUsersRepository } from "@modules/user/infra/repositories/IUsersRepository";

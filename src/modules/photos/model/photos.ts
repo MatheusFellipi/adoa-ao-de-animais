@@ -1,11 +1,15 @@
-import { validate } from "class-validator";
+import { IsArray, IsNotEmpty, validate } from "class-validator";
 
 import { AnimalModel } from "@modules/animal/model/animal";
 import { AppError } from "@shared/utils/errors/AppError";
 
 export class PhotoModel {
   id?: string;
-  animal_id?: string;
+  
+  @IsNotEmpty()
+  animal_id: string;
+
+  @IsArray()
   url: string[];
 
   static async validade(data: PhotoModel) {

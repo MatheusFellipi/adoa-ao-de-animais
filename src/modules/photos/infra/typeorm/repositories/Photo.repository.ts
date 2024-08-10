@@ -15,7 +15,9 @@ export class PhotoRepository implements IPhotosRepository {
   listByIdAnimal(id: string): Promise<Photo[]> {
     return this.__repository.find({
       where: {
-        id,
+        animal:{
+          id
+        },
       },
     });
   }

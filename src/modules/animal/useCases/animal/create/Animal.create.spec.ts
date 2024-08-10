@@ -7,7 +7,6 @@ import { runSeeders } from "typeorm-extension";
 import { MainSeeder } from "@shared/infra/typeorm/seeds/Main.seed";
 import { AccountRepository } from "@modules/account/infra/typeorm/repositories/Account.repository";
 import { AnimalModel } from "@modules/animal/model/animal";
-import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
 import { UserTestSeeder } from "@shared/infra/typeorm/seeds/User.Test.seed";
 import { Account } from "@modules/account/infra/typeorm/entities/Account.entity";
 
