@@ -26,7 +26,7 @@ const config = {
   },
 };
 
-export default {
+export const uploadConfig = {
   upload(folder: string) {
     return multer({
       ...config,
@@ -34,7 +34,7 @@ export default {
         destination: resolve(__dirname, "..", "..", folder),
         filename: (__, file: any, callback) => {
           const fileHash = randomBytes(16).toString("hex");
-          file.key = `${fileHash}-${file.originalname}`;
+          file.key = `${fileHash}-${file.originalname.replace(/\s+/g, '')}`;
           callback(null, file.key);
         },
       }),

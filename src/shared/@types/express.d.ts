@@ -2,8 +2,8 @@ declare namespace Express {
   export interface Request {
     account: {
       id?: string;
-      token: string
-      account_id?: string
+      token: string;
+      account_id?: string;
       name: string;
       avatar?: string;
       type: number;
@@ -11,6 +11,11 @@ declare namespace Express {
       contacts: any[];
       addresses: any[];
     };
+    files: [
+      {
+        key: string;
+      }
+    ];
     file: {
       key: string;
     };

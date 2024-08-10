@@ -5,6 +5,6 @@ export interface IPhotosRepository {
   create(data: IPhotoDtos): Promise<Photo>;
   listByIdAnimal(id: string): Promise<Photo[]>;
   update(data: Photo, change_data: IPhotoDtos): Promise<Photo>;
-  delete(data: Photo): Promise<void>
+  delete(photos: Photo[]): Promise<void>;
+  findByIdsAnimal(data_ids: string[], animal_id: string): Promise<Photo[]>
 }
-
