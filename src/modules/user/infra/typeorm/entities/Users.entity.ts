@@ -1,28 +1,21 @@
-import {
-  Entity,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  OneToMany,
-  OneToOne,
-  PrimaryColumn,
-} from "typeorm";
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne, PrimaryColumn, } from "typeorm";
 import { Address } from "@modules/address/infra/typeorm/entities/Address.entity";
 import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
 import { Account } from "@modules/account/infra/typeorm/entities/Account.entity";
 import { Contact } from "@modules/contacts/infra/typeorm/entities/Contact.entity";
 import { Link } from "@modules/contacts/infra/typeorm/entities/Link.entity";
-import { ulid } from "ulid";
+
+import { ulid } from 'ulid'
 
 @Entity({ name: "users" })
 export class User {
   @PrimaryColumn()
-  id: string;
+  id?: string;
 
-  @Column({ nullable: false })
+  @Column({nullable: false})
   name: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, })
   avatar?: string;
 
   @Column({ nullable: false })
@@ -43,19 +36,19 @@ export class User {
   @UpdateDateColumn()
   updated_at?: Date;
 
-  @OneToMany(() => Address, (address) => address.user, { cascade: true, onDelete: "CASCADE" })
-  addresses?: Address[];
+  @OneToMany(() => Address, address => address.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
+  addresses: Address[];
 
-  @OneToOne(() => Account, (account) => account.user, { cascade: true, onDelete: "CASCADE" })
+  @OneToOne(() => Account, account => account.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
   account?: Account;
 
-  @OneToMany(() => Animal, (animal) => animal.user, { cascade: true, onDelete: "CASCADE" })
+  @OneToMany(() => Animal, animal => animal.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
   animals?: Animal[];
+  
+  @OneToMany(() => Contact, contact => contact.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
+  contacts: Contact[];
 
-  @OneToMany(() => Contact, (contact) => contact.user, { cascade: true, onDelete: "CASCADE" })
-  contacts?: Contact[];
-
-  @OneToMany(() => Link, (link) => link.user, { cascade: true, onDelete: "CASCADE" })
+  @OneToMany(() => Link, link => link.user, { cascade: true, nullable: true, onDelete: "CASCADE" })
   links?: Link[];
 
   constructor() {
