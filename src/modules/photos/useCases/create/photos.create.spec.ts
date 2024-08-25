@@ -1,6 +1,9 @@
 import request from "supertest";
 import app from "@shared/infra/http/config/app";
 
+import fs from 'fs';
+import path from 'path';
+
 import { DataSource } from "typeorm";
 import { dbContext } from "@shared/infra/typeorm";
 import { runSeeders } from "typeorm-extension";
@@ -9,7 +12,6 @@ import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
 import { UserTestSeeder } from "@shared/infra/typeorm/seeds/User.Test.seed";
 import { AnimalModel } from "@modules/animal/model/animal";
 import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
-import path from "path";
 
 const filePath = path.resolve(
   __dirname,
@@ -85,5 +87,19 @@ describe("Test Vaccination cards", () => {
       .auth(token, { type: "bearer" })
       .attach("photos", filePath)
       .expect(400);
+  });
+
+  afterAll(async () => {
+    const tmpDir = path.resolve(__dirname, "../../../../tmp");
+  
+    fs.readdir(tmpDir, (err, files) => {
+      if (err) throw err;
+  
+      for (const file of files) {
+        fs.unlink(path.join(tmpDir, file), err => {
+          if (err) throw err;
+        });
+      }
+    });
   });
 });
