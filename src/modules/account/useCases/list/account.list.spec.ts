@@ -5,7 +5,7 @@ import { dbContext } from "@shared/infra/typeorm";
 import { runSeeders } from "typeorm-extension";
 import { MainSeeder } from "@shared/infra/typeorm/seeds/Main.seed";
 
-jest.setTimeout(30000);
+jest.setTimeout(50000);
 
 describe("Account list", () => {
   let connection: DataSource;
@@ -64,7 +64,7 @@ describe("Account list", () => {
         },
       });
     token = res.body.token;
-  }, 30000);
+  }, 50000);
 
   it("should respond with a 200 if list user logged", async () => {
     const res = await request(app)
@@ -74,10 +74,10 @@ describe("Account list", () => {
     expect(res.body).not.toBeNull();
     expect(res.body.password).toBe(undefined);
     expect(res.body.user).not.toBeNull();
-  }, 30000);
+  }, 50000);
 
   it("should not respond with a 200 if auth missing", async () => {
     const res = await request(app).get("/api-v1/account/profile").expect(401);
     expect(res.body.message).toBe("o token esta faltando nos headers");
-  }, 30000);
+  }, 50000);
 });

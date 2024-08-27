@@ -67,7 +67,7 @@ describe("Test Vaccination cards", () => {
 
   it("Should upload photos successfully for a valid animal and respond with 201", async () => {
     await request(app)
-      .patch(`/api-v1/animal/photos/${animal.id}`)
+      .patch(`/api-v1/photos/animal/${animal.id}`)
       .auth(token, { type: "bearer" })
       .attach("photos", filePath)
       .attach("photos", filePath)
@@ -76,30 +76,16 @@ describe("Test Vaccination cards", () => {
 
   it("Should respond with 400 if no photos are uploaded", async () => {
     await request(app)
-      .patch(`/api-v1/animal/photos/${animal.id}`)
+      .patch(`/api-v1/photos/animal/${animal.id}`)
       .auth(token, { type: "bearer" })
       .expect(400);
   });
 
   it("Should respond with 400 if trying to upload photos with an invalid animal_id", async () => {
     await request(app)
-      .patch(`/api-v1/animal/photos/invalid_animal_id`)
+      .patch(`/api-v1/photos/animal/invalid_animal_id`)
       .auth(token, { type: "bearer" })
       .attach("photos", filePath)
       .expect(400);
-  });
-
-  afterAll(async () => {
-    const tmpDir = path.resolve(__dirname, "../../../../tmp");
-  
-    fs.readdir(tmpDir, (err, files) => {
-      if (err) throw err;
-  
-      for (const file of files) {
-        fs.unlink(path.join(tmpDir, file), err => {
-          if (err) throw err;
-        });
-      }
-    });
   });
 });
