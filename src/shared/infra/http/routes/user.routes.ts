@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { UpdateUserController } from "@modules/user/useCases/update/UpdateUserController";
+import { UpdateUserController } from "@modules/user/useCases/update/User.controller";
 import { authenticated } from "../middleware/authenticated.middleware";
 
 import {uploadConfig} from "@shared/config/upload";

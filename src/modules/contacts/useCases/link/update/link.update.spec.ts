@@ -51,18 +51,20 @@ describe("Test create link", () => {
       .put(`/api-v1/link/${link[0].id}/`)
       .auth(token, { type: "bearer" })
       .send({
-        url: "https://example.com",
+        url: "https://example.com.up",
         name: "Personal website",
-      }).expect(200);
+      })
+      .expect(200);
     expect(res.body).not.toBeNull();
+    expect(res.body.url).toBe("https://example.com");
   }, 30000);
 
   it("should respond with a 200 if auth missing create link", async () => {
     const res = await request(app)
       .put(`/api-v1/link/${link[0].id}/`)
       .send({
-    "url": "https://example.com",
-        "name": "Personal website"
+        url: "https://example.com",
+        name: "Personal website",
       })
       .expect(401);
     expect(res.body).not.toBeNull();

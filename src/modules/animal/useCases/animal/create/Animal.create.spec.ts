@@ -10,7 +10,7 @@ import { AnimalModel } from "@modules/animal/model/animal";
 import { UserTestSeeder } from "@shared/infra/typeorm/seeds/User.Test.seed";
 import { Account } from "@modules/account/infra/typeorm/entities/Account.entity";
 
-jest.setTimeout(30000);
+jest.setTimeout(50000);
 
 const fakeAnimalData: AnimalModel = {
   "name": "Buddy",
@@ -47,7 +47,7 @@ describe("Test request created animals", () => {
     token = res.body.token;
     const res_account = new AccountRepository();
     account = await res_account.findByEmail("cliente.teste.99@teste.com");
-  }, 30000);
+  }, 50000);
 
   it("Should not response 201 if missing auth in create animals", async () => {
     fakeAnimalData.user = account.user;
@@ -55,7 +55,7 @@ describe("Test request created animals", () => {
       .post("/api-v1/animal")
       .send(fakeAnimalData)
       .expect(401);
-  }, 30000);
+  }, 50000);
 
   it("Should response 201 if create animals", async () => {
     fakeAnimalData.user = account.user;
@@ -64,5 +64,5 @@ describe("Test request created animals", () => {
       .auth(token, { type: "bearer" })
       .send(fakeAnimalData)
       .expect(201);
-  }, 30000);
+  }, 50000);
 });

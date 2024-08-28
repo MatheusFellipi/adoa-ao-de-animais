@@ -1,30 +1,29 @@
 import { inject, injectable } from "tsyringe";
 
-import { AnimalAdNModel } from "@modules/ad/model/ad";
 import { IAdRepository } from "@modules/ad/infra/repositories/IAdRepository";
 import { AdQueryModal } from "@modules/ad/model/query";
-import { IAdQueryDtos } from "@modules/ad/dtos/IAdQueryDtos";
+import { ListAd } from "@modules/ad/types/list";
 
 @injectable()
 export class AdListUseCase {
   constructor(@inject("IAdRepository") private _ad_repository: IAdRepository) {}
-  async execute(form: AdQueryModal): Promise<AnimalAdNModel[]> {
+  async execute(form: AdQueryModal): Promise<ListAd> {
     const instance = AdQueryModal.validade(form);
+    if (instance.ad_id)
+      return await this._ad_repository.findById(instance.ad_id);
+    const { data, total } = await this._ad_repository.find(instance);
+    const { limit, page } = instance;
+    const totalPages = Math.ceil(total / limit);
+    const nextPage = page < totalPages ? page + 1 : null;
+    const prevPage = page > 1 ? page - 1 : null;
 
-    let criteria: IAdQueryDtos = {};
-
-    criteria.page = instance.page;
-    criteria.limit = instance.limit;
-    criteria.sortField = instance.sortField;
-    criteria.sortOrder = instance.sortOrder;
-    
-    if (instance.ad_id) criteria.ad_id = instance.ad_id;
-    if (instance.size) criteria.size = instance.size;
-    if (instance.title) criteria.title = instance.title;
-    if (instance.type) criteria.type = instance.type;
-    if (instance.size) criteria.size = instance.size;
-    if (instance.gender) criteria.gender = instance.gender;
-
-    return await this._ad_repository.find(criteria);
+    return {
+      data,
+      total,
+      totalPages,
+      currentPage: page,
+      nextPage,
+      prevPage,
+    };
   }
 }

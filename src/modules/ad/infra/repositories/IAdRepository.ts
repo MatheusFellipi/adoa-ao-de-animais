@@ -7,7 +7,7 @@ export interface IAdRepository {
   create(data: IAdDtos): Promise<AnimalAd>;
   update(data: IAdDtos, change_data: AnimalAdNModel): Promise<AnimalAd>;
   delete(id: string): Promise<void>;
-  find(found: IAdQueryDtos): Promise<AnimalAd[]>;
+  find(found: IAdQueryDtos): Promise<{ data: AnimalAd[]; total: number }>;
   findById(id: string): Promise<AnimalAd>;
   findByAccountID(found: string): Promise<AnimalAd[]>;
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { UpdateUserUseCase } from "./UpdateUserUseCase";
+import { UpdateUserUseCase } from "./User.useCase";
 
 export class UpdateUserController {
   static async handle(request: Request, response: Response): Promise<Response> {

@@ -57,6 +57,7 @@ describe("Test create contacts", () => {
       })
       .expect(200);
     expect(res.body).not.toBeNull();
+    expect(res.body.name).toBe("nome att");
   }, 30000);
 
   it("should respond with a 200 if auth missing create contacts", async () => {

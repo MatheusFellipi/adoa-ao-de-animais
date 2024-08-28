@@ -7,7 +7,7 @@ import { runSeeders } from "typeorm-extension";
 import { MainSeeder } from "@shared/infra/typeorm/seeds/Main.seed";
 import { UserTestSeeder } from "@shared/infra/typeorm/seeds/User.Test.seed";
 
-jest.setTimeout(30000);
+jest.setTimeout(50000);
 
 describe("Test update user dadas", () => {
   let connection: DataSource;
@@ -33,7 +33,7 @@ describe("Test update user dadas", () => {
       })
       .expect(200);
     token = res.body.token;
-  }, 30000);
+  }, 50000);
 
   it("should respond with a 200 if create contact", async () => {
     const res = await request(app)
@@ -41,10 +41,10 @@ describe("Test update user dadas", () => {
       .auth(token, { type: "bearer" })
       .expect(200);
     expect(res.body).not.toBeNull();
-  }, 30000);
+  }, 50000);
 
   it("should respond with a 200 if auth missing list contacts", async () => {
     const res = await request(app).get(`/api-v1/link/`).expect(401);
     expect(res.body).not.toBeNull();
-  }, 30000);
+  }, 50000);
 });

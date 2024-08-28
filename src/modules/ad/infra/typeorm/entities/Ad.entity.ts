@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, PrimaryColumn } from "typeorm";
 import { IsNotEmpty } from "class-validator";
 import { Animal } from "@modules/animal/infra/typeorm/entities/Animal.entity";
 import { ulid } from "ulid";
 
 @Entity("animal_ad")
 export class AnimalAd {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id?: string;
 
   @Column({ nullable: false })

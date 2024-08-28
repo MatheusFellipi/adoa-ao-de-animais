@@ -1,4 +1,11 @@
-import { IsInt, IsOptional, IsString, Max, Min, validate } from "class-validator";
+import {
+  IsInt,
+  IsOptional,
+  IsString,
+  Max,
+  Min,
+  validate,
+} from "class-validator";
 import { AnimalAdType } from "../enums/animalAd.enum";
 import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
 import { SortOrderEnum } from "@shared/utils/enums/query.enum";
@@ -33,7 +40,6 @@ export class AdQueryModal {
   @Min(1)
   page?: number = 1;
 
-  @IsOptional()
   @IsInt()
   @Min(1)
   @Max(100)
@@ -47,7 +53,7 @@ export class AdQueryModal {
   @IsString()
   sortOrder?: SortOrderEnum = SortOrderEnum["desc"];
 
-  static validade(data: AdQueryModal) {
+  static validade(data: Partial<AdQueryModal>) {
     const instance = new AdQueryModal();
     Object.assign(instance, data);
     validate(this).then((errors) => {
@@ -56,8 +62,7 @@ export class AdQueryModal {
           errors
             .map((error) => Object.values(error.constraints))
             .join(", ")
-            .toString(),
-          401
+            .toString()
         );
     });
     return data;

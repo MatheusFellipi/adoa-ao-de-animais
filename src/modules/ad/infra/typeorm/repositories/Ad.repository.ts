@@ -27,27 +27,42 @@ export class AdRepository implements IAdRepository {
     await this.__repository.delete({ id });
   }
 
-  async find(found: IAdQueryDtos): Promise<AnimalAd[]> {
-    const query = this.__repository.createQueryBuilder("ad");
+  async find(found: IAdQueryDtos): Promise<{
+    data: AnimalAd[];
+    total: number;
+  }> {
+    const query = this.__repository.createQueryBuilder("animal_ad");
 
-    if (found.ad_id)
-      query.andWhere("ad.ad_id = :ad_id", { ad_id: found.ad_id });
-    if (found.size) query.andWhere("ad.size = :size", { size: found.size });
-    if (found.title)
-      query.andWhere("ad.title LIKE :title", { title: `%${found.title}%` });
-    if (found.type) query.andWhere("ad.type = :type", { type: found.type });
-    if (found.gender)
-      query.andWhere("ad.gender = :gender", { gender: found.gender });
-    if (found.sortField)
+    if (found.size) {
+      query.andWhere("animal_ad.size = :size", { size: found.size });
+    }
+    if (found.title) {
+      query.andWhere("animal_ad.title LIKE :title", {
+        title: `%${found.title}%`,
+      });
+    }
+    if (found.type) {
+      query.andWhere("animal_ad.type = :type", { type: found.type });
+    }
+    if (found.gender) {
+      query.andWhere("animal_ad.gender = :gender", { gender: found.gender });
+    }
+    if (found.sortField) {
       query.orderBy(
-        `ad.${found.sortField}`,
+        `animal_ad.${found.sortField}`,
         found.sortOrder === "asc" ? "ASC" : "DESC"
       );
+    }
+    const total = await query.getCount();
 
     query.skip((found.page - 1) * found.limit);
     query.take(found.limit);
+    const data = await query.getMany();
 
-    return await query.getMany();
+    return {
+      data,
+      total,
+    };
   }
 
   async findById(id: string): Promise<AnimalAd> {
