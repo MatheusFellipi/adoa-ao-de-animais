@@ -1,12 +1,4 @@
-import {
-  IsEnum,
-  IsInt,
-  IsOptional,
-  IsString,
-  Max,
-  Min,
-  validate,
-} from "class-validator";
+import { IsInt, IsOptional, IsString, Max, Min, validate } from "class-validator";
 import { AnimalAdType } from "../enums/animalAd.enum";
 import { AnimalGender, AnimalSize } from "@modules/animal/enum/animal.enum";
 import { SortOrderEnum } from "@shared/utils/enums/query.enum";
@@ -15,27 +7,15 @@ import { AppError } from "@shared/utils/errors/AppError";
 export class AdQueryModal {
   @IsOptional()
   @IsInt()
-  account_id?: number;
+  account_id?: string;
 
   @IsOptional()
   @IsInt()
-  organization_id?: number;
-
-  @IsOptional()
-  @IsInt()
-  user_id?: number;
-
-  @IsOptional()
-  @IsInt()
-  ad_id?: number;
+  ad_id?: string;
 
   @IsOptional()
   @IsString()
   title?: string;
-
-  @IsOptional()
-  @IsString()
-  description?: string;
 
   @IsOptional()
   type?: AnimalAdType;
@@ -65,8 +45,7 @@ export class AdQueryModal {
 
   @IsOptional()
   @IsString()
-  @IsEnum(SortOrderEnum, { message: "Sort order must be either ASC or DESC" })
-  sortOrder?: SortOrderEnum = 1;
+  sortOrder?: SortOrderEnum = SortOrderEnum["desc"];
 
   static validade(data: AdQueryModal) {
     const instance = new AdQueryModal();

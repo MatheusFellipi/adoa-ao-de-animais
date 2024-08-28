@@ -27,6 +27,8 @@ import { IStateRepository } from "@modules/address/infra/repositories/IStateRepo
 import { CityRepository } from "@modules/address/infra/typeorm/repositories/City.repository";
 import { StateRepository } from "@modules/address/infra/typeorm/repositories/State.repository";
 import { DoseRepository } from "@modules/animal/infra/typeorm/repositories/Dose.repository";
+import { IAdRepository } from "@modules/ad/infra/repositories/IAdRepository";
+import { AdRepository } from "@modules/ad/infra/typeorm/repositories/Ad.repository";
 
 container.registerSingleton<IAccountRepository>(
   "IAccountRepository",
@@ -83,3 +85,5 @@ container.registerSingleton<IStateRepository>(
   "IStateRepository",
   StateRepository
 );
+
+container.registerSingleton<IAdRepository>("IAdRepository", AdRepository);

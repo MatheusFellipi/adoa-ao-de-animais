@@ -10,7 +10,7 @@ export class AdCreateUseCase {
     @inject("IAdRepository") private _ad_repository: IAdRepository,
   ) { }
   async execute(form: AnimalAdNModel): Promise<AnimalAdNModel> {
-     const instance = AnimalAdNModel.validade(form)
+     const instance = await AnimalAdNModel.validade(form)
       return await this._ad_repository.create(instance)
   }
 }

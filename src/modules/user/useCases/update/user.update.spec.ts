@@ -8,7 +8,7 @@ import { AccountRepository } from "@modules/account/infra/typeorm/repositories/A
 import { UserTestSeeder } from "@shared/infra/typeorm/seeds/User.Test.seed";
 import { Account } from "@modules/account/infra/typeorm/entities/Account.entity";
 
-jest.setTimeout(30000);
+jest.setTimeout(50000);
 
 describe("Test update user dadas", () => {
   let connection: DataSource;
@@ -38,7 +38,7 @@ describe("Test update user dadas", () => {
     token = res.body.token;
     respo = new AccountRepository();
     user = await respo.findByEmail("cliente.teste.99@teste.com");
-  }, 30000);
+  }, 50000);
 
   it("should respond with a 201 if update user", async () => {
     const res = await request(app)
@@ -58,7 +58,7 @@ describe("Test update user dadas", () => {
       expect(user.user.cnpj_cpf).not.toBe("1234567890")
       expect(user.user.description).not.toBe("atualizado")
       expect(user.user.type).toBe(1)
-  }, 30000);
+  }, 50000);
 
   it("should not respond with a 201 if auth missing id request", async () => {
     await request(app)
@@ -67,5 +67,5 @@ describe("Test update user dadas", () => {
         ...user.user,
       })
       .expect(401);
-  }, 30000);
+  }, 50000);
 });

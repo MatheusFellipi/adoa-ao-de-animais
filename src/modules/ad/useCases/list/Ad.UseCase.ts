@@ -17,16 +17,10 @@ export class AdListUseCase {
     criteria.limit = instance.limit;
     criteria.sortField = instance.sortField;
     criteria.sortOrder = instance.sortOrder;
-
+    
     if (instance.ad_id) criteria.ad_id = instance.ad_id;
-
-    if (instance.organization_id)
-      criteria.organization = { id: instance.organization_id };
-    if (instance.user_id) criteria.user = { id: instance.user_id };
-
     if (instance.size) criteria.size = instance.size;
     if (instance.title) criteria.title = instance.title;
-    if (instance.description) criteria.description = instance.description;
     if (instance.type) criteria.type = instance.type;
     if (instance.size) criteria.size = instance.size;
     if (instance.gender) criteria.gender = instance.gender;

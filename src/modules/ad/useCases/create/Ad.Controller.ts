@@ -8,13 +8,13 @@ export class AdCreateController {
     const { title, description, type, animal } = request.body;
     const authenticateUserUseCase = container.resolve(AdCreateUseCase);
 
-    const token = await authenticateUserUseCase.execute({
+    const data = await authenticateUserUseCase.execute({
       title,
       description,
       type,
       animal,
     });
 
-    return response.status(200).json(token);
+    return response.status(201).json(data);
   }
 }

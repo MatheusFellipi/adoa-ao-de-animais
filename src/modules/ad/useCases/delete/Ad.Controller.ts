@@ -8,9 +8,8 @@ export class AdDeleteController {
     const { id } = request.params;
     const authenticateUserUseCase = container.resolve(AdDeleteUseCase);
     const token = await authenticateUserUseCase.execute(
-      parseInt(id),
-      request.account[request.type],
-      request.type
+      id,
+      request.account.id,
     );
     return response.status(200).json(token);
   }

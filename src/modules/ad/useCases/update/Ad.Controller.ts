@@ -8,17 +8,13 @@ export class ADUpdatesCreateController {
     const { title, description, type, animal } = request.body;
     const { id } = request.params;
     const authenticateUserUseCase = container.resolve(UpdateAdUseCase);
-    const token = await authenticateUserUseCase.execute(
-      {
-        id: parseInt(id),
-        title,
-        description,
-        type,
-        animal,
-      },
-      request.account[request.type],
-      request.type
-    );
+    const token = await authenticateUserUseCase.execute({
+      id,
+      title,
+      description,
+      type,
+      animal,
+    });
     return response.status(200).json(token);
   }
 }

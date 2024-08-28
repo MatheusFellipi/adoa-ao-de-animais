@@ -3,7 +3,7 @@ import { AnimalAdType } from "../enums/animalAd.enum";
 
 
 export interface IAdDtos {
-  id?: number;
+  id?: string;
   title: string;
   description: string;
   type: AnimalAdType;

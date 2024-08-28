@@ -70,7 +70,6 @@ describe("Test Vaccination cards", () => {
         password: "Password@123123",
       })
       .expect(200);
-  
       
     token = res.body.token;
 

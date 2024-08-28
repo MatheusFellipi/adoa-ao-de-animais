@@ -4,7 +4,7 @@ import { AppError } from "@shared/utils/errors/AppError";
 import { AnimalModel } from "@modules/animal/model/animal";
 
 export class AnimalAdNModel {
-  id?: number;
+  id?: string;
 
   @IsNotEmpty()
   title: string;

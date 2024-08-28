@@ -3,10 +3,8 @@ import { AnimalAdType } from "../enums/animalAd.enum";
 import { SortOrderEnum } from "@shared/utils/enums/query.enum";
 
 export interface IAdQueryDtos {
-  account_id?: { id: number };
-  organization?: { id: number };
-  user?: { id: number };
-  ad_id?: number;
+  user?: { id: string };
+  ad_id?: string;
   title?: string;
   description?: string;
   type?: AnimalAdType;
